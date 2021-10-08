@@ -1,5 +1,5 @@
 ﻿#include <iostream>
-//Learn from: https://www.youtube.com/watch?v=or1dAmUO8k0
+//Learn from: https://www.youtube.com/watch?v=pLy69V2F_8M
 #include"test.h"
 //#include"GLFW/glfw3.h"
 

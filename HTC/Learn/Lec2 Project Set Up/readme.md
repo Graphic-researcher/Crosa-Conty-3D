@@ -10,7 +10,7 @@ Create some kind of external executable application project(.exe)
 
 Link the engine(dll) to exe
 
-dynamic vs static link : [here](https://www.youtube.com/watch?v=or1dAmUO8k0)
+dynamic vs static link : [address1](https://www.youtube.com/watch?v=or1dAmUO8k0) [address2](https://www.youtube.com/watch?v=pLy69V2F_8M)
 
  C++ Linker：[here](https://www.youtube.com/watch?v=H4s55GgAg0I)
 
