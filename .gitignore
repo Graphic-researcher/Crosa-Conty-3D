@@ -30,3 +30,29 @@
 *.exe
 *.out
 *.app
+
+# folder
+**/build/
+**/lib/
+**/bin/
+**/bin-int/
+
+# visual studio
+*.vs/
+
+#json
+*.json
+
+#other
+*.log
+*.tlog
+*.lastbuildstate
+*.idb
+*.pdb
+*.jpg
+*.obj
+*.hdr
+*.mtl
+*.blend
+*.blendl
+TODO.md
