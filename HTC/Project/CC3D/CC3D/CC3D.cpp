@@ -13,3 +13,7 @@ int main()
     return 0;
 }
 
+//void Log(const char* m)
+//{
+//    std::cout << m << std::endl;
+//}
