@@ -22,8 +22,13 @@ use Marco **$(SolutionDir)**
 
 ![](https://i.loli.net/2021/10/08/DG5dYLAOXTKNfPg.png)
 
+### Static Linking
+
 ![image-20211008221144977](https://i.loli.net/2021/10/08/xECiXTfuAba6zBp.png)
 
 ![image-20211008221212060](https://i.loli.net/2021/10/08/pjyt9cxPh3l5fDb.png)
 
 ![image-20211008221323358](https://i.loli.net/2021/10/08/wcXeimHf4Dx8g1E.png)
+
+### Dynamic Linking
+![](https://i.loli.net/2021/10/08/kqx2Cev96uGSEHs.png)
