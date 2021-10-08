@@ -1,9 +1,5 @@
-#include<iostream>
-void Log(const char* m)
+#include"test.h"
+void Init()
 {
-    std::cout << m << std::endl;
+	Log("Hi,O");
 }
-//void Log(const char* m)
-//{
-//    std::cout << m << std::endl;
-//}
