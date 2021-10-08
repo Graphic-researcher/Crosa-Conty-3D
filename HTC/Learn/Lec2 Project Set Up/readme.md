@@ -31,4 +31,15 @@ use Marco **$(SolutionDir)**
 ![image-20211008221323358](https://i.loli.net/2021/10/08/wcXeimHf4Dx8g1E.png)
 
 ### Dynamic Linking
-![](https://i.loli.net/2021/10/08/kqx2Cev96uGSEHs.png)
+
+![image-20211008224942093](https://i.loli.net/2021/10/08/hN2GngBi6lYZ4IJ.png)
+
+![image-20211008225026226](https://i.loli.net/2021/10/08/kqx2Cev96uGSEHs.png)
+
+### Make & Work with Library
+
+tutorial : [here](https://www.youtube.com/watch?v=Wt4dxDNmDA8)
+
+![image-20211009001811096](https://i.loli.net/2021/10/09/9DcAgrZO5SGfh2V.png)
+
+![image-20211009001944128](https://i.loli.net/2021/10/09/fZIgcFL42VvnwQu.png)
