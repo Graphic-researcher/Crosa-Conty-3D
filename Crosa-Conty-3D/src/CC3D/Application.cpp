@@ -11,7 +11,7 @@ namespace CC3D {
 	}
 	void Application::Run()
 	{
-		while (window == NULL)
+		while (1)
 		{
 			//std::cout << "1" << std::endl;
 		}
