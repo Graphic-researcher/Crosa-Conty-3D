@@ -2,7 +2,7 @@
 
 tutorial : [here](https://www.youtube.com/watch?v=meARMOmTLgE&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=5)
 
-code version:
+code version : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/1655f04900207eba1f0fef3a9b34b8a8a897ae98/HTC/Project/Crosa-Conty-3D/Crosa-Conty-3D)
 
 ## Directory 
 
@@ -113,7 +113,7 @@ Run success :
 
 ![image-20211009154618267](https://i.loli.net/2021/10/09/XUGcBqNHYDgEsmL.png)
 
-**Entry Point** (IMPORTANT):
+## **Entry Point** (IMPORTANT):
 
 in Application.h (in CC3D):
 
