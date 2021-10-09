@@ -3,6 +3,7 @@
 ## Game Engine
 
 - [x] Entry point
+- [x] Log system
 - [ ] Application layer
 - [ ] Window layer
   * inputs
