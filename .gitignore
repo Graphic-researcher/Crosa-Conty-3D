@@ -58,3 +58,33 @@
 *.blendl
 TODO.md
 *.recipe
+
+#ignore in spdlog
+# example  files
+example/
+**/tests/*
+
+# generated files
+generated
+
+# Cmake
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Makefile
+cmake_install.cmake
+install_manifest.txt
+
+
+
+# idea
+.idea/
+
+*.clang-format
+*.clang-tidy
+*.yml
+*.sh
+*.in
+*.cmake
+*.clang
+

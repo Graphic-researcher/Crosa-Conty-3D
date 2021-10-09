@@ -27,9 +27,15 @@
     <ClInclude Include="src\CC3D\EntryPoint.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="src\CC3D\Log.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CC3D\Application.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CC3D\Log.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
