@@ -2,17 +2,17 @@
 
 ## Game Engine
 
-- [x] Entry point
-- [ ] Application layer
-- [ ] Window layer
+* Entry point
+* Application layer
+* Window layer
   * inputs
   * events
-- [ ] Renderer
-- [ ] Render API abstraction
-- [ ] Debugging support
-- [ ] Scripting
-- [ ] Entity-component system
-- [ ] Physics
-- [ ] File I/O,VFS
-- [ ] Build system
+* Renderer
+* Render API abstraction
+* Debugging support
+* Scripting
+* Entity-component system
+* Physics
+* File I/O,VFS
+* Build system
 
