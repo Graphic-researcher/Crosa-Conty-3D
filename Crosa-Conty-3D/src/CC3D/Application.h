@@ -14,7 +14,6 @@ namespace CC3D {
 
 		void Run();
 	private:
-		GLFWwindow* window;
 	};
 
 	Application* CreateApplication();
