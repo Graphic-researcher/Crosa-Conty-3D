@@ -14,6 +14,7 @@
     <ClInclude Include="src\CC3D.h" />
     <ClInclude Include="src\CC3D\Application.h" />
     <ClInclude Include="src\CC3D\Core.h" />
+    <ClInclude Include="src\CC3D\EntryPoint.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CC3D\Application.cpp" />

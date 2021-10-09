@@ -7,8 +7,10 @@ namespace CC3D {
 	public:
 		Application();
 		virtual ~Application();//this class would be inherited by other class
-		void run();
+		void Run();
 	};
+	//To be defined in CLIENT
+	Application* CreateApplication();
 }
 
 

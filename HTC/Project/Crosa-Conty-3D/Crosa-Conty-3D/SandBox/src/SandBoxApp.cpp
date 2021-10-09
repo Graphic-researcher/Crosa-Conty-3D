@@ -8,11 +8,7 @@ public:
 
 };
 
-
-
-void main()
+CC3D::Application* CC3D::CreateApplication()
 {
-	SandBox* test = new SandBox();
-	test->run();
-	delete test;
+	return new SandBox();
 }

@@ -6,7 +6,7 @@ namespace CC3D {
 	Application::~Application()
 	{
 	}
-	void Application::run()
+	void Application::Run()
 	{
 		while (true)
 		{

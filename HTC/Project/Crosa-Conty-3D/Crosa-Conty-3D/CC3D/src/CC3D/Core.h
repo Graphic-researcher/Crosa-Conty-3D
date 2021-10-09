@@ -7,5 +7,5 @@
 		#define CC3D_API _declspec(dllimport)
 	#endif // CC3D_BUILD_DLL
 #else
-	#error CC3D only support Windows!
+	#error CC3D only supports Windows!
 #endif //  CC3D_PLATFORM_WINDOWS
