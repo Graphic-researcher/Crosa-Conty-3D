@@ -2,6 +2,8 @@
 
 code version : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/a8896b16e1ae112cb5c7c94298b4e997569188f2/HTC/Project/Crosa-Conty-3D/Crosa-Conty-3D)
 
+tutorial：[here](https://www.youtube.com/watch?v=KG8cAGvn9d4&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=5)
+
 ## Core Idea
 
 Solution Project would contain more than the engine(CC3D is the name I call it...)

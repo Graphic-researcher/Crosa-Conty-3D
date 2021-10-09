@@ -2,6 +2,8 @@
 
 代码版本：[here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/a8896b16e1ae112cb5c7c94298b4e997569188f2/HTC/Project/Crosa-Conty-3D/Crosa-Conty-3D)
 
+课程地址：[here](https://www.youtube.com/watch?v=KG8cAGvn9d4&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=5)
+
 ## 核心要点
 
 建立工程文件
