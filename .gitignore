@@ -39,6 +39,7 @@
 
 # visual studio
 *.vs/
+*.vcxproj.user
 
 #json
 *.json

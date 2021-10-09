@@ -53,3 +53,12 @@ code version : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/
 ![image-20211009001811096](https://i.loli.net/2021/10/09/9DcAgrZO5SGfh2V.png)
 
 ![image-20211009001944128](https://i.loli.net/2021/10/09/fZIgcFL42VvnwQu.png)
+
+### Project OutPut Direction
+
+code version : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/d264d0ab682f16c152118fff939360f8b054ed07/HTC/Project/CC3D)
+
+![image-20211009130408707](https://i.loli.net/2021/10/09/lA6G9HOW7PfedUD.png)
+
+![image-20211009130440952](https://i.loli.net/2021/10/09/WBhC8V2IpZcY3Kr.png)
+
