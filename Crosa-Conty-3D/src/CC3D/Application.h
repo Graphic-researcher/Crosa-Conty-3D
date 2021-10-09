@@ -2,6 +2,8 @@
 
 #include "Core.h"
 
+
+
 namespace CC3D {
 
 	class CC3D_API Application
@@ -11,6 +13,8 @@ namespace CC3D {
 		virtual ~Application();
 
 		void Run();
+	private:
+		GLFWwindow* window;
 	};
 
 	Application* CreateApplication();

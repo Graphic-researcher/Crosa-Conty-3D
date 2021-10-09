@@ -1,4 +1,5 @@
 #include "Application.h"
+#include <iostream>
 
 namespace CC3D {
 	Application::Application()
@@ -10,7 +11,7 @@ namespace CC3D {
 	}
 	void Application::Run()
 	{
-		while (true)
+		while (window == NULL)
 		{
 			//std::cout << "1" << std::endl;
 		}

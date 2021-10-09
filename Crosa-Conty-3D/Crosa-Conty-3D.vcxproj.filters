@@ -32,5 +32,8 @@
     <ClCompile Include="src\CC3D\Application.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="..\Dependances\glad\src\glad.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
