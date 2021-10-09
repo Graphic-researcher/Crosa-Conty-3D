@@ -1,5 +1,7 @@
 # Lec2 Project Set Up
 
+code version : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/a8896b16e1ae112cb5c7c94298b4e997569188f2/HTC/Project/Crosa-Conty-3D/Crosa-Conty-3D)
+
 ## Core Idea
 
 Solution Project would contain more than the engine(CC3D is the name I call it...)

@@ -1,5 +1,7 @@
 # Lec2 建立工程文件
 
+代码版本：[here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/a8896b16e1ae112cb5c7c94298b4e997569188f2/HTC/Project/Crosa-Conty-3D/Crosa-Conty-3D)
+
 ## 核心要点
 
 建立工程文件
