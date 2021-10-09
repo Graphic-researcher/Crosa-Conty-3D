@@ -10,6 +10,52 @@
 
 将dll链接到exe
 
+## 项目配置
+
+![image-20211009133552522](https://i.loli.net/2021/10/09/xNGmUPAnSr6fKhV.png)
+
+![image-20211009134214094](https://i.loli.net/2021/10/09/fernlLdvmS6Iaw1.png)
+
+![image-20211009135509608](https://i.loli.net/2021/10/09/BGFRXVJ8gIoPpni.png)
+
+## 构建dll
+
+```c++
+//test.h:
+namespace CC3D {
+	_declspec(dllexport) void Print();
+}
+//test.cpp:
+#include"test.h"
+#include<stdio.h>
+namespace CC3D {
+	void Print() {
+		printf("HelloWorld!\n");
+	}
+}
+```
+
+![image-20211009141216743](https://i.loli.net/2021/10/09/TV6ZuiqbLgwOxe7.png)
+
+## exe链接dll
+
+```cpp
+//App.cpp in SandBox
+#include<iostream>
+namespace CC3D {
+	_declspec(dllimport) void Print();
+}
+void main()
+{
+	CC3D::Print();
+	system("pause");
+}
+```
+
+![image-20211009142558926](https://i.loli.net/2021/10/09/QDF6ENJuZiPVWg5.png)
+
+![image-20211009142425561](https://i.loli.net/2021/10/09/s61ai8oUuz59Y4k.png)
+
 ## 小技巧
 
 添加间接链接

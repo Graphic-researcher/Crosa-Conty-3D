@@ -18,6 +18,74 @@ dynamic vs static link : [address1](https://www.youtube.com/watch?v=or1dAmUO8k0)
 
 make Make & Work with Library ：[here](https://www.youtube.com/watch?v=Wt4dxDNmDA8)
 
+## Project Configure
+
+![image-20211009133552522](https://i.loli.net/2021/10/09/xNGmUPAnSr6fKhV.png)
+
+![image-20211009134214094](https://i.loli.net/2021/10/09/fernlLdvmS6Iaw1.png)
+
+Set the reference (right click sandbox and add reference)
+
+![image-20211009135509608](https://i.loli.net/2021/10/09/BGFRXVJ8gIoPpni.png)
+
+Close visual studio,open .sln with txt ,translate the follow code:
+
+```shell
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CC3D", "CC3D\CC3D.vcxproj", "{6A94323D-E0FC-4887-90A6-B275C413AE06}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SandBox", "SandBox\SandBox.vcxproj", "{59C8CFC0-9A85-43C9-ACE4-8D7F3E64A3B4}"
+EndProject
+```
+
+to:
+
+```shell
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SandBox", "SandBox\SandBox.vcxproj", "{59C8CFC0-9A85-43C9-ACE4-8D7F3E64A3B4}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CC3D", "CC3D\CC3D.vcxproj", "{6A94323D-E0FC-4887-90A6-B275C413AE06}"
+EndProject
+```
+
+Thus the SandBox(.exe) would be the first project to run if others clone your project from github or somewhere else.
+
+## Build the dll
+
+```c++
+//test.h in CC3D:
+namespace CC3D {
+	_declspec(dllexport) void Print();
+}
+//test.cpp in CC3D:
+#include"test.h"
+#include<stdio.h>
+namespace CC3D {
+	void Print() {
+		printf("HelloWorld!\n");
+	}
+}
+```
+
+![image-20211009141216743](https://i.loli.net/2021/10/09/TV6ZuiqbLgwOxe7.png)
+
+## Link dll to exe
+
+```cpp
+//App.cpp in SandBox
+#include<iostream>
+namespace CC3D {
+	_declspec(dllimport) void Print();
+}
+void main()
+{
+	CC3D::Print();
+	system("pause");
+}
+```
+
+![image-20211009142558926](https://i.loli.net/2021/10/09/QDF6ENJuZiPVWg5.png)
+
+![image-20211009142425561](https://i.loli.net/2021/10/09/s61ai8oUuz59Y4k.png)
+
 ## Tips
 
 ### Add relative directory folder
