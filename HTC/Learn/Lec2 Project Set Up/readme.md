@@ -134,3 +134,6 @@ code version : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/
 
 ![image-20211009130440952](https://i.loli.net/2021/10/09/WBhC8V2IpZcY3Kr.png)
 
+### Dll Linkage automatically
+
+For those who would rather just set up dll copying from within Visual Studio: Hazel Properties -> Build Events -> Post-Build Event -> Command Line: xcopy /y "$(OutDir)hazel.dll" "$(SolutionDir)bin\$(Configuration)-$(Platform)\Sandbox\"
