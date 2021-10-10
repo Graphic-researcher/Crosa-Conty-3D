@@ -2,7 +2,7 @@
 
 教程地址 : [here](https://www.youtube.com/watch?v=UQ718BrbQ5E&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=11)
 
-代码版本 : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/c9a4e3fd1fdbaca25b420f68c04f6206f3875cec/HTC/Project/Crosa-Conty-3D/Crosa-Conty-3D)
+代码版本 : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/47c30b6d3536a4f128ad70958fbbde41f3ca3076/HTC/Project/Crosa-Conty-3D/Crosa-Conty-3D)
 
 先修课程 : [Precompiled Headers in C++](https://www.youtube.com/watch?v=eSI4wctZUto)
 
