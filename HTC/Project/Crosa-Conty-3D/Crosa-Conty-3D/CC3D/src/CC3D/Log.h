@@ -3,6 +3,7 @@
 #include "Core.h"
 #include "spdlog/spdlog.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
+#include "spdlog/fmt/ostr.h"
 namespace CC3D {
 	class CC3D_API Log
 	{
@@ -30,3 +31,5 @@ namespace CC3D {
 #define CC3D_WARN(...)  ::CC3D::Log::GetClientLogger()->warn(__VA_ARGS__)
 #define CC3D_ERROR(...) ::CC3D::Log::GetClientLogger()->error(__VA_ARGS__)
 #define CC3D_FATAL(...) ::CC3D::Log::GetClientLogger()->fatal(__VA_ARGS__)
+
+

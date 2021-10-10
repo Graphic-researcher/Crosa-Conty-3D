@@ -9,3 +9,6 @@
 #else
 	#error CC3D only supports Windows!
 #endif //  CC3D_PLATFORM_WINDOWS
+
+//for Event.h
+#define BIT(x) (1 << x)

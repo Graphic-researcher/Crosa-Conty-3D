@@ -7,7 +7,7 @@ namespace CC3D {
 	{
 		//[Time Stamp] [name of logger] [actual message]
 		spdlog::set_pattern("%^[%T] %n: %v%$");
-		s_CoreLogger = spdlog::stdout_color_mt("HAZEL");
+		s_CoreLogger = spdlog::stdout_color_mt("CC3D");
 		s_CoreLogger->set_level(spdlog::level::trace);
 
 		s_ClientLogger = spdlog::stderr_color_mt("APP");
