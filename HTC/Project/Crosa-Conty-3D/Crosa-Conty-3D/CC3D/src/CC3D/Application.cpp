@@ -10,7 +10,7 @@
 ///////////////////////////
 
 
-
+#include "GLFW/glfw3.h"
 
 
 namespace CC3D {
@@ -22,6 +22,7 @@ namespace CC3D {
 	}
 	void Application::Run()
 	{
+		std::cout<<glfwInit()<<std::endl;
 		WindowResizeEvent e(1280, 720);
 		WindowCloseEvent e1;
 		KeyPressedEvent e2(1, 3);
