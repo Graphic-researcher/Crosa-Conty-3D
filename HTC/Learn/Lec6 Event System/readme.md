@@ -2,7 +2,7 @@
 
 tutorial: [here](https://www.youtube.com/watch?v=xnopUoZbMEk&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=10)
 
-code version: 
+code version: [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/befd36ece846fdad9b3617bb43476e0296edfc28/HTC/Project/Crosa-Conty-3D/Crosa-Conty-3D)
 
 ## Class Structure
 
@@ -383,6 +383,14 @@ void Application::Run()
     printf("Window Width: %d\n", e.GetWidth());
     if (e.IsInCategory(EventCategoryApplication))
     {
+        /// #include "spdlog/fmt/ostr.h"
+        /// this header file could use the ToString
+        /// function in your class automatically
+        /// if you don't want to include "spdlog/fmt/ostr.h"
+        /// you need to write the *.ToString() by yourself as follow
+        /// CC3D_TRACE(e.ToString())
+        
+        //CC3D_TRACE(e.ToString());
         CC3D_TRACE(e);
         CC3D_TRACE(e1);
         CC3D_TRACE(e2);
