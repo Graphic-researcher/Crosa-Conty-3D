@@ -1,5 +1,9 @@
+#include "ccpch.h"
+
 #include "Application.h"
-#include <iostream>
+
+#include "Events/ApplicationEvent.h"
+#include "Log.h"
 
 namespace CC3D {
 	Application::Application()
@@ -11,9 +15,20 @@ namespace CC3D {
 	}
 	void Application::Run()
 	{
+
 		while (1)
 		{
-			//std::cout << "1" << std::endl;
+			WindowResizeEvent e(1280, 720);
+			if (e.IsInCategory(EventCategoryApplication))
+			{
+				CC3D_TRACE(e);
+			}
+			if (e.IsInCategory(EventCategoryInput))
+			{
+				CC3D_TRACE(e);
+			}
+			//std::cout << "1" << std::e ndl;
+			while (1);
 		}
 	}
 }

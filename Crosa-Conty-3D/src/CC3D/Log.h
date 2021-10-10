@@ -1,10 +1,8 @@
 #pragma once
 
-#include <memory>
-
 #include "Core.h"
 #include "spdlog/spdlog.h"
-
+#include "spdlog/fmt/ostr.h"
 
 namespace CC3D {
 	class CC3D_API Log
