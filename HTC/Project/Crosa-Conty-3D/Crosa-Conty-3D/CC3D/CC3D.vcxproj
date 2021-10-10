@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\cc3d_pch.h" />
     <ClInclude Include="src\CC3D\Events\ApplicationEvent.h" />
     <ClInclude Include="src\CC3D\Events\Event.h" />
     <ClInclude Include="src\CC3D\Events\KeyEvent.h" />
@@ -22,6 +23,7 @@
     <ClInclude Include="src\CC3D\EntryPoint.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\cc3d_pch.cpp" />
     <ClCompile Include="src\CC3D\Log.cpp" />
     <ClCompile Include="src\CC3D\Application.cpp" />
   </ItemGroup>

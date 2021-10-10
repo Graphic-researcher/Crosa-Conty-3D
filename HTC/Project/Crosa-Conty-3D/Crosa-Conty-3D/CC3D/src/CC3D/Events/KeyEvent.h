@@ -2,8 +2,6 @@
 
 #include "Event.h"
 
-#include <sstream>
-
 namespace CC3D { 
 
 	class CC3D_API KeyEvent : public Event

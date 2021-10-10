@@ -1,3 +1,4 @@
+#include "cc3d_pch.h"
 #include "Log.h"
 namespace CC3D {
 	std::shared_ptr<spdlog::logger> Log::s_CoreLogger;

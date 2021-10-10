@@ -27,6 +27,13 @@ namespace CC3D {
 		printf("Window Width: %d\n", e.GetWidth());
 		if (e.IsInCategory(EventCategoryApplication))
 		{
+			/// #include "spdlog/fmt/ostr.h"
+			/// this header file could use the ToString
+			/// function in your class automatically
+			/// if you don't want to include "spdlog/fmt/ostr.h"
+			/// you need to write the *.ToString() by yourself as follow
+			/// CC3D_TRACE(e.ToString())
+			
 			//CC3D_TRACE(e.ToString());
 			CC3D_TRACE(e);
 			CC3D_TRACE(e1);

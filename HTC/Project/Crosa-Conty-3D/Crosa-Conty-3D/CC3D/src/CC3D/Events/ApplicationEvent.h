@@ -2,7 +2,7 @@
 
 #include "Event.h"
 
-#include <sstream>
+
 
 namespace CC3D {
 
