@@ -14,6 +14,27 @@ grab a bunch of header file and convert them a kind of compiled format that the 
 
 add these file and you can delete the header files [showed below] in other files
 
+include the precompile header in all you cpp file (include it in the first line such as below [Application.cpp]) 
+
+```c++
+#include "cc3d_pch.h"
+#include "Application.h"
+
+
+
+/////// Event System //////
+#include "CC3D/Events/ApplicationEvent.h"
+#include "CC3D/Events/KeyEvent.h"
+#include "CC3D/Log.h"
+///////////////////////////
+```
+
+Otherwise you will get this wrong:
+
+![image-20211010204608974](https://i.loli.net/2021/10/10/8KBcHrDRTMPlQgL.png)
+
+error link : [here](https://msdn.microsoft.com/query/dev16.query?appId=Dev16IDEF1&l=ZH-CN&k=k(C1010)&rd=true)
+
 cc3d_pch.h in CC3D
 
 ```c++
@@ -36,3 +57,6 @@ cc3d_pch.h in CC3D
 #endif //  CC3D_PLATFORM_WINDOWS
 ```
 
+![image-20211010204122847](https://i.loli.net/2021/10/10/ekwVHImK617frc9.png)
+
+![image-20211010204203246](https://i.loli.net/2021/10/10/EBYd52qegmn1Pw9.png)

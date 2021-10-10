@@ -14,6 +14,27 @@
 
 编写好预编译头文件后就可以删除其他文件里的相关头文件了。
 
+要把预编译头文件包含到每个cpp文件的第一行，例如：
+
+```c++
+#include "cc3d_pch.h"
+#include "Application.h"
+
+
+
+/////// Event System //////
+#include "CC3D/Events/ApplicationEvent.h"
+#include "CC3D/Events/KeyEvent.h"
+#include "CC3D/Log.h"
+///////////////////////////
+```
+
+否则会报错：
+
+![image-20211010204608974](https://i.loli.net/2021/10/10/8KBcHrDRTMPlQgL.png)
+
+error link : [here](https://msdn.microsoft.com/query/dev16.query?appId=Dev16IDEF1&l=ZH-CN&k=k(C1010)&rd=true)
+
 cc3d_pch.h in CC3D
 
 ```c++
@@ -36,3 +57,6 @@ cc3d_pch.h in CC3D
 #endif //  CC3D_PLATFORM_WINDOWS
 ```
 
+![image-20211010204122847](https://i.loli.net/2021/10/10/ekwVHImK617frc9.png)
+
+![image-20211010204203246](https://i.loli.net/2021/10/10/EBYd52qegmn1Pw9.png)
