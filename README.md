@@ -5,9 +5,9 @@
 - [x] Entry point
 - [x] Log system
 - [ ] Application layer
-- [ ] Window layer
-  * inputs
-  * events
+- [x] Window layer
+  - [ ] inputs
+  - [ ] events
 - [ ] Renderer
 - [ ] Render API abstraction
 - [ ] Debugging support

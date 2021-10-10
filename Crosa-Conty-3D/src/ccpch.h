@@ -12,6 +12,8 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include "CC3D/Log.h"
+
 #ifdef CC3D_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif

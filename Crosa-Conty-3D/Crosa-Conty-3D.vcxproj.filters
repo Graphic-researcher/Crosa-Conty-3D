@@ -30,19 +30,25 @@
     <ClInclude Include="src\CC3D\Log.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\Events\ApplicationEvent.h">
+    <ClInclude Include="src\CC3D\Events\ApplicationEvent.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\Events\Event.h">
+    <ClInclude Include="src\CC3D\Events\Event.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\Events\KeyEvent.h">
+    <ClInclude Include="src\CC3D\Events\KeyEvent.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\Events\MouseEvent.h">
+    <ClInclude Include="src\CC3D\Events\MouseEvent.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="src\ccpch.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CC3D\Window.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -54,6 +60,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\ccpch.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

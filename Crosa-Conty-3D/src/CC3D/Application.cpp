@@ -1,13 +1,15 @@
 #include "ccpch.h"
-
 #include "Application.h"
 
 #include "Events/ApplicationEvent.h"
-#include "Log.h"
+
+#include <GLFW/glfw3.h>
+
 
 namespace CC3D {
 	Application::Application()
 	{
+		m_Window = std::unique_ptr<Window>(Window::Create());
 	}
 
 	Application::~Application()
@@ -18,17 +20,13 @@ namespace CC3D {
 
 		while (1)
 		{
-			WindowResizeEvent e(1280, 720);
-			if (e.IsInCategory(EventCategoryApplication))
+			while (m_Running)
 			{
-				CC3D_TRACE(e);
+				glClearColor(0.5f, 0.0f, 0.5f, 1.0f);
+				glClear(GL_COLOR_BUFFER_BIT);
+
+				m_Window->OnUpdate();
 			}
-			if (e.IsInCategory(EventCategoryInput))
-			{
-				CC3D_TRACE(e);
-			}
-			//std::cout << "1" << std::e ndl;
-			while (1);
 		}
 	}
 }
