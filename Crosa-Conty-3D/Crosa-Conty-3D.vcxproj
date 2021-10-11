@@ -11,6 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\CC3D\Layer.h" />
+    <ClInclude Include="src\CC3D\LayerStack.h" />
     <ClInclude Include="src\CC3D\Log.h" />
     <ClInclude Include="src\CC3D.h" />
     <ClInclude Include="src\CC3D\Application.h" />
@@ -25,6 +27,8 @@
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\CC3D\Layer.cpp" />
+    <ClCompile Include="src\CC3D\LayerStack.cpp" />
     <ClCompile Include="src\CC3D\Log.cpp" />
     <ClCompile Include="src\CC3D\Application.cpp" />
     <ClCompile Include="src\ccpch.cpp">
