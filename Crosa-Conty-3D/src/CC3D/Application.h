@@ -2,6 +2,8 @@
 
 #include "Core.h"
 #include "Events/Event.h"
+#include "CC3D/Events/ApplicationEvent.h"
+
 #include "Window.h"
 
 namespace CC3D {
@@ -13,7 +15,11 @@ namespace CC3D {
 		virtual ~Application();
 
 		void Run();
+
+		void OnEvent(Event& e);
 	private:
+		bool OnWindowClose(WindowCloseEvent& e);
+
 		std::unique_ptr<Window> m_Window;
 		bool m_Running = true;
 	};

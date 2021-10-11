@@ -19,7 +19,7 @@ namespace CC3D {
 			return ss.str();
 		}
 
-		EVENT_CLASS_TYPE(MousedMoved)
+		EVENT_CLASS_TYPE(MouseMoved)
 		EVENT_CLASS_CATEGORY(EventCategoryMouse|EventCategoryInput)
 
 	private:

@@ -24,7 +24,7 @@ namespace CC3D {
 
 	class CC3D_API Window {
 	public:
-		using EventCallbackFn = std::function<void(Event&)>;
+		using EventCallbackFn = std::function<void(Event&)>;// 事件发生时调用的函数
 
 		virtual ~Window(){}
 
