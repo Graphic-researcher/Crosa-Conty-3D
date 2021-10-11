@@ -12,7 +12,7 @@ namespace CC3D {
 		WindowsWindow(const WindowProps& props);
 		virtual ~WindowsWindow();
 
-		void OnUpdate() override;
+		void OnUpdate() override;//glfw  swap buffers
 
 		inline unsigned int GetWidth() const override { return m_Data.Width; }
 		inline unsigned int GetHeight() const override { return m_Data.Height; }
@@ -27,6 +27,7 @@ namespace CC3D {
 	private:
 		GLFWwindow* m_Window;
 
+		//pass WindowData to GLFW
 		struct WindowData
 		{
 			std::string Title;

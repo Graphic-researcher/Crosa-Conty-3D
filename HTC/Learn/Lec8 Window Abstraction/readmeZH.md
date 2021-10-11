@@ -1,14 +1,14 @@
 # Lec8 Window Abstraction
 
-## Class Structure
+## 类视图
 
 ![image-20211010230700329](https://i.loli.net/2021/10/10/3729VLBrNKtwpv1.png)
 
-## Window Files
+## 窗口文件
 
 ### Window Class:
 
-To be inherited by Window Class of multiple platform
+作为接口会被实现其他平台的窗口类继承
 
 ```c++
 #pragma once
@@ -60,7 +60,7 @@ namespace CC3D {
 
 ### WindowsWindow Class:
 
-Windows Platform 
+Windows平台
 
 ```c++
 //.h file
@@ -189,7 +189,7 @@ namespace CC3D {
 
 Other file
 
-implement macros in Core.h
+在Core.h中实现如下宏指令（断点debug）
 
 ```c++
 //for Window
@@ -206,7 +206,7 @@ implement macros in Core.h
 
 ## Output
 
-Write this code in Application.class
+在Application类中写入窗口成员然后运行测试代码，出现大紫窗口说明成功了
 
 ```c++
 //.h

@@ -37,6 +37,8 @@ namespace CC3D {
 			s_GLFWInitialized = true;
 		}
 
+		///check Cherno's opengl series to learn more about glfw
+		///https://www.youtube.com/watch?v=W3gAzLwfIP0&list=PLlrATfBNZ98foTJPJ_Ev03o2oq3-GGOS2
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
 		glfwSetWindowUserPointer(m_Window, &m_Data);

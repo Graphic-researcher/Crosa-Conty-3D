@@ -12,6 +12,8 @@
 
 
 //for Window
+///check certain conditons,log message
+///if it fails,it would call debugbreak -> set a debug point on that line,to see what's wrong
 #ifdef CC3D_ENABLE_ASSERTS
 	#define CC3D_ASSERT(x, ...) { if(!(x)) { CC3D_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
 	#define CC3D_CORE_ASSERT(x, ...) { if(!(x)) { CC3D_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
