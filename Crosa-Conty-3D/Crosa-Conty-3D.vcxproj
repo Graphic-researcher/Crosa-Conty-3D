@@ -25,6 +25,8 @@
     <ClInclude Include="src\CC3D\Events\KeyEvent.h" />
     <ClInclude Include="src\CC3D\Events\MouseEvent.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
+    <ClInclude Include="vendor\GLAD\include\glad\glad.h" />
+    <ClInclude Include="vendor\GLAD\include\KHR\khrplatform.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CC3D\Layer.cpp" />
@@ -36,6 +38,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
+    <ClCompile Include="vendor\GLAD\src\glad.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -86,7 +89,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>CC3D_ENABLE_ASSERTS;CC3D_PLATFORM_WINDOWS;CC3D_BUILD_DLL;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\spdlog\include;$(SolutionDir)Crosa-Conty-3D\src;$(SolutionDir)Crosa-Conty-3D\vendor\GLFW\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\spdlog\include;$(SolutionDir)Crosa-Conty-3D\src;$(SolutionDir)Crosa-Conty-3D\vendor\GLFW\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\src</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>ccpch.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -108,7 +111,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>CC3D_ENABLE_ASSERTS;CC3D_PLATFORM_WINDOWS;CC3D_BUILD_DLL;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\spdlog\include;$(SolutionDir)Crosa-Conty-3D\src;$(SolutionDir)Crosa-Conty-3D\vendor\GLFW\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\spdlog\include;$(SolutionDir)Crosa-Conty-3D\src;$(SolutionDir)Crosa-Conty-3D\vendor\GLFW\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\src</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>ccpch.h</PrecompiledHeaderFile>
     </ClCompile>

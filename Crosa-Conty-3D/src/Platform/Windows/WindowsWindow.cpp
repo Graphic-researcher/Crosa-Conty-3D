@@ -4,6 +4,9 @@
 #include "CC3D/Events/ApplicationEvent.h"
 #include "CC3D/Events/MouseEvent.h"
 #include "CC3D/Events/KeyEvent.h"
+
+
+
 namespace CC3D
 {
 	static bool s_GLFWInitialized = false;
@@ -69,6 +72,9 @@ namespace CC3D
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		CC3D_CORE_ASSERT(status, "Failed to initialize Glad!");
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 

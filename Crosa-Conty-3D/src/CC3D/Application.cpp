@@ -3,8 +3,7 @@
 
 #include "Events/ApplicationEvent.h"
 
-#include <GLFW/glfw3.h>
-
+#include <glad/glad.h>
 
 namespace CC3D {
 

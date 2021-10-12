@@ -19,33 +19,17 @@
     <ClInclude Include="src\CC3D\Log.h">
       <Filter>CC3D</Filter>
     </ClInclude>
-    <ClInclude Include="src\CC3D\Events\ApplicationEvent.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CC3D\Events\Event.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CC3D\Events\KeyEvent.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CC3D\Events\MouseEvent.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ccpch.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CC3D\Window.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CC3D\Layer.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CC3D\LayerStack.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
+    <ClInclude Include="src\CC3D\Layer.h" />
+    <ClInclude Include="src\CC3D\LayerStack.h" />
+    <ClInclude Include="src\CC3D\Window.h" />
+    <ClInclude Include="src\ccpch.h" />
+    <ClInclude Include="src\CC3D\Events\ApplicationEvent.h" />
+    <ClInclude Include="src\CC3D\Events\Event.h" />
+    <ClInclude Include="src\CC3D\Events\KeyEvent.h" />
+    <ClInclude Include="src\CC3D\Events\MouseEvent.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
+    <ClInclude Include="vendor\GLAD\include\glad\glad.h" />
+    <ClInclude Include="vendor\GLAD\include\KHR\khrplatform.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CC3D\Application.cpp">
@@ -54,17 +38,10 @@
     <ClCompile Include="src\CC3D\Log.cpp">
       <Filter>CC3D</Filter>
     </ClCompile>
-    <ClCompile Include="src\ccpch.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CC3D\Layer.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CC3D\LayerStack.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
+    <ClCompile Include="src\CC3D\Layer.cpp" />
+    <ClCompile Include="src\CC3D\LayerStack.cpp" />
+    <ClCompile Include="src\ccpch.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
+    <ClCompile Include="vendor\GLAD\src\glad.cpp" />
   </ItemGroup>
 </Project>
