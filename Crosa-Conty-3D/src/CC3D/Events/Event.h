@@ -1,4 +1,4 @@
-#pragma once
+	#pragma once
 
 #include "ccpch.h"
 #include "CC3D/Core.h"
@@ -9,7 +9,7 @@ namespace CC3D {
 		None = 0,
 		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
 		AppTick, AppUpdate, AppRender,
-		KeyPressed, KeyReleased,
+		KeyPressed, KeyReleased, KeyTyped,
 		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
 	};
 	enum EventCategory
