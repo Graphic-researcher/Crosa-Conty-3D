@@ -4,13 +4,13 @@ tutorial : [here](https://www.youtube.com/watch?v=_Kj6BSfM6P4&list=PLlrATfBNZ98d
 
 code version : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/5a1bc8cbae8e5f6d95184be29e3006b0ff464853/HTC/Project/Crosa-Conty-3D/Crosa-Conty-3D)
 
-## What is Layers?
+## 什么是层?
 
-Layers determine the order of drawing process.
+层决定了渲染的顺序
 
-It's like Photoshop layers,what's more,the first (top) layer should be render at last.(So the layers should be structured as a stack)
+就像PS里的图层那样，另外，最开始的层要最后渲染，所以层适合被栈存储
 
-## Layer Scope
+## Layer作用域
 
 ### Layer Class
 
@@ -113,7 +113,7 @@ void LayerStack::PopOverlay(Layer* overlay)
 }
 ```
 
-## Application scope
+## Application作用域
 
 in Application.cpp :
 
@@ -154,7 +154,7 @@ void Application::OnEvent(Event& e)
 }
 ```
 
-## SandBox Scope 
+## SandBox作用域
 
 in SandBoxApp.cpp :
 
@@ -191,6 +191,6 @@ public:
 };
 ```
 
-## Build and Result
+## 构建和结果
 
 ![image-20211013164559960](https://i.loli.net/2021/10/13/MsjV3hKq7gUtGD2.png)
