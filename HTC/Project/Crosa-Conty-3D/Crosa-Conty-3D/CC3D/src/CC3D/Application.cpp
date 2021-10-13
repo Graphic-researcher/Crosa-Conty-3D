@@ -9,14 +9,16 @@
 #include "CC3D/Log.h"
 ///////////////////////////
 
-
 #include "GLFW/glfw3.h"
 
 
 namespace CC3D {
+#define BIND_EVENT_FN(x) std::bind(&Application::x,this,std::placeholders::_1)
 	Application::Application()
 	{
 		m_Window = std::unique_ptr<Window>(Window::Create());
+		//m_Window->SetEventCallback(std::bind(&Application::OnEvent, this, std::placeholders::_1));
+		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 	}
 	Application::~Application()
 	{
@@ -29,5 +31,9 @@ namespace CC3D {
 			glClear(GL_COLOR_BUFFER_BIT);
 			m_Window->OnUpdate();
 		}
+	}
+	void Application::OnEvent(Event& e)
+	{
+		CC3D_CORE_INFO("{0}", e);
 	}
 }

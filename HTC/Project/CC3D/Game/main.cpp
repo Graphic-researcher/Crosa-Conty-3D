@@ -1,10 +1,15 @@
 //#include"../CC3D/test.h"
 #include"test.h"
-//Learn from:https://www.youtube.com/watch?v=Wt4dxDNmDA8
+#include"functionPointer.h"
+#include "main.h"
+
+//Learn from:https://www.youtube.com/watch?v=p4sDgQ-jao4
+
 int main()
 {
-	CC3D::Log();
-	//Log();
+	funcptr::FunctionPointerTutor();
 	system("pause");
 	return 0;
 }
+
+

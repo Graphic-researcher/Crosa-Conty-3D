@@ -43,6 +43,14 @@ namespace CC3D {
 		glfwMakeContextCurrent(m_Window);
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
+
+		//set GLFW callbacks
+		///learn lambda:https://www.youtube.com/watch?v=mWgmBBz0y8c
+		///learn function pointer:https://www.youtube.com/watch?v=p4sDgQ-jao4
+		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)
+		{
+
+		});
 	}
 
 	void WindowsWindow::Shutdown()
