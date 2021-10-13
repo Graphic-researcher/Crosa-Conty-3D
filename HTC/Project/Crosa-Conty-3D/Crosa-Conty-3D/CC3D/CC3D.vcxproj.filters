@@ -108,6 +108,12 @@
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="src\CC3D\Layer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CC3D\LayerStack.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CC3D\Application.cpp">
@@ -123,6 +129,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CC3D\Layer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CC3D\LayerStack.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

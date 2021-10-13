@@ -11,6 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\CC3D\Layer.h" />
+    <ClInclude Include="src\CC3D\LayerStack.h" />
     <ClInclude Include="src\CC3D\Window.h" />
     <ClInclude Include="src\cc3d_pch.h" />
     <ClInclude Include="src\CC3D\Events\ApplicationEvent.h" />
@@ -44,6 +46,8 @@
     <ClInclude Include="vendor\spdlog\version.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\CC3D\Layer.cpp" />
+    <ClCompile Include="src\CC3D\LayerStack.cpp" />
     <ClCompile Include="src\cc3d_pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>

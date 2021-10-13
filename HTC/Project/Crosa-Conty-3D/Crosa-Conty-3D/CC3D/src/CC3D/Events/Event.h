@@ -41,6 +41,7 @@ namespace CC3D {
 	{
 		friend class EventDispatcher;
 	public:
+		bool Handled = false;
 		///to be inherited
 		virtual EventType GetEventType() const = 0;
 		virtual const char* GetName() const = 0;
@@ -53,8 +54,7 @@ namespace CC3D {
 			///ruturn 0 : not in any category at all , Otherwise it is or not in that category
 			return GetCategoryFlags() & category;
 		}
-	protected:
-		bool m_Handled = false;
+
 	};
 
 	class EventDispatcher
@@ -78,7 +78,7 @@ namespace CC3D {
 			if (m_Event.GetEventType() == T::GetStaticType())
 			{
 				///call that func -> function with that event
-				m_Event.m_Handled = func(*(T*)&m_Event);
+				m_Event.Handled = func(*(T*)&m_Event);
 				return true;
 			}
 			return false;
