@@ -54,19 +54,15 @@ namespace CC3D {
 
 	void Application::Run()
 	{
-
-		while (1)
+		while (m_Running)
 		{
-			while (m_Running)
-			{
-				glClearColor(0.5f, 0.0f, 0.5f, 1.0f);
-				glClear(GL_COLOR_BUFFER_BIT);
+			glClearColor(0.5f, 0.0f, 0.5f, 1.0f);
+			glClear(GL_COLOR_BUFFER_BIT);
 
-				for (Layer* layer : m_LayerStack)
-					layer->OnUpdate();
+			for (Layer* layer : m_LayerStack)
+				layer->OnUpdate();
 
-				m_Window->OnUpdate();
-			}
+			m_Window->OnUpdate();
 		}
 	}
 
