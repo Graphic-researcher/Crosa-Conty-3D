@@ -10,6 +10,12 @@
 #include "CC3D/Log.h"
 // ------------------------------
 
+// -------Event System-------------
+#include "CC3D/Input.h"
+#include "CC3D/KeyCodes.h"
+#include "CC3D/MouseButtonCodes.h"
+// ------------------------------
+
 // -------Gui System-------------
 #include "CC3D/Imgui/ImGuiLayer.h"
 // ------------------------------

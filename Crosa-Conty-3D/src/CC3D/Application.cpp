@@ -5,6 +5,8 @@
 
 #include <glad/glad.h>
 
+#include "Input.h"
+
 namespace CC3D {
 
 	// 非静态成员函数需要传递this指针作为第一个参数
