@@ -1,13 +1,7 @@
 #include "cc3d_pch.h"
 #include "Application.h"
-
-
-
-/////// Event System //////
-#include "CC3D/Events/ApplicationEvent.h"
-#include "CC3D/Events/KeyEvent.h"
 #include "CC3D/Log.h"
-///////////////////////////
+
 
 #include "GLFW/glfw3.h"
 
@@ -34,6 +28,15 @@ namespace CC3D {
 	}
 	void Application::OnEvent(Event& e)
 	{
+		EventDispatcher dispatcher(e);
+		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 		CC3D_CORE_INFO("{0}", e);
 	}
+
+	bool Application::OnWindowClose(WindowCloseEvent& e)
+	{
+		m_Running = false;
+		return true;
+	}
+
 }
