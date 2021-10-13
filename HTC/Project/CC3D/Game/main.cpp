@@ -1,13 +1,13 @@
 //#include"../CC3D/test.h"
 #include"test.h"
+#include"common.h"
 #include"functionPointer.h"
-#include "main.h"
-
-//Learn from:https://www.youtube.com/watch?v=p4sDgQ-jao4
+#include "Clambda.h"
 
 int main()
 {
 	funcptr::FunctionPointerTutor();
+	Clambda::LambdaTutor();
 	system("pause");
 	return 0;
 }

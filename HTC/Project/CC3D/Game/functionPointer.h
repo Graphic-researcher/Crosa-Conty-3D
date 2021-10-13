@@ -1,7 +1,6 @@
 #pragma once
-//Learn from:https://www.youtube.com/watch?v=p4sDgQ-jao4
-#include<iostream>
-#include<vector>
+///Learn from:https://www.youtube.com/watch?v=p4sDgQ-jao4
+//#include"common.h"
 namespace funcptr {
 	void Hello(const char* m)
 	{
@@ -26,7 +25,7 @@ namespace funcptr {
 	{
 		typedef void(*HelloFunction)(const char* m);
 
-		void(*htc)(const char* m);
+		void(*htc)(const char* m) = nullptr;
 		//auto func = &Hello;
 		auto func = Hello;
 		func("I'm func");
@@ -53,6 +52,7 @@ namespace funcptr {
 
 	void FunctionPointerTutor()
 	{
+		printf(Segline);
 		printf("This is FunctionPointerTutor\n");
 		printf("Learn from:https://www.youtube.com/watch?v=p4sDgQ-jao4 \n");
 		printf("Method1:\n");
@@ -61,5 +61,6 @@ namespace funcptr {
 		funcptr::Method2();
 		printf("Method3:\n");
 		funcptr::Method3();
+		printf(Segline);
 	}
 }
