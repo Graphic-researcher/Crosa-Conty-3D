@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\CC3D\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\CC3D\Layer.h" />
     <ClInclude Include="src\CC3D\LayerStack.h" />
     <ClInclude Include="src\CC3D\Window.h" />
@@ -24,10 +25,17 @@
     <ClInclude Include="src\CC3D\Application.h" />
     <ClInclude Include="src\CC3D\Core.h" />
     <ClInclude Include="src\CC3D\EntryPoint.h" />
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="vendor\glad\glad.h" />
     <ClInclude Include="vendor\GLFW\include\GLFW\glfw3.h" />
     <ClInclude Include="vendor\GLFW\include\GLFW\glfw3native.h" />
+    <ClInclude Include="vendor\imgui\imconfig.h" />
+    <ClInclude Include="vendor\imgui\imgui.h" />
+    <ClInclude Include="vendor\imgui\imgui_internal.h" />
+    <ClInclude Include="vendor\imgui\imstb_rectpack.h" />
+    <ClInclude Include="vendor\imgui\imstb_textedit.h" />
+    <ClInclude Include="vendor\imgui\imstb_truetype.h" />
     <ClInclude Include="vendor\KHR\khrplatform.h" />
     <ClInclude Include="vendor\spdlog\async.h" />
     <ClInclude Include="vendor\spdlog\async_logger-inl.h" />
@@ -46,6 +54,7 @@
     <ClInclude Include="vendor\spdlog\version.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\CC3D\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\CC3D\Layer.cpp" />
     <ClCompile Include="src\CC3D\LayerStack.cpp" />
     <ClCompile Include="src\cc3d_pch.cpp">
@@ -54,8 +63,17 @@
     </ClCompile>
     <ClCompile Include="src\CC3D\Log.cpp" />
     <ClCompile Include="src\CC3D\Application.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="vendor\glad\glad.cpp" />
+    <ClCompile Include="vendor\imgui\imgui.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_demo.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_draw.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_tables.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_widgets.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="vendor\imgui\LICENSE.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -104,7 +122,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>CC3D_PLATFORM_WINDOWS;CC3D_BUILD_DLL;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;CC3D_PLATFORM_WINDOWS;CC3D_BUILD_DLL;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)CC3D\vendor;$(SolutionDir)CC3D\src</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -118,7 +136,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)lib;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;gladd.lib;;glfw3d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>gladd.lib;imguid.lib;opengl32.lib;glfw3d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y "$(OutDir)CC3D.dll" "$(SolutionDir)bin\$(Configuration)-$(Platform)\SandBox\"</Command>
@@ -130,7 +148,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>CC3D_PLATFORM_WINDOWS;CC3D_BUILD_DLL;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;CC3D_PLATFORM_WINDOWS;CC3D_BUILD_DLL;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)CC3D\vendor;$(SolutionDir)CC3D\src</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -146,7 +164,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)lib;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glad.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>imgui.lib;opengl32.lib;glad.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y "$(OutDir)CC3D.dll" "$(SolutionDir)bin\$(Configuration)-$(Platform)\SandBox\"</Command>

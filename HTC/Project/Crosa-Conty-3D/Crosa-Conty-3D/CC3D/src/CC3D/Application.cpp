@@ -2,16 +2,23 @@
 #include "Application.h"
 #include "CC3D/Log.h"
 
-
+#include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
 
 namespace CC3D {
 #define BIND_EVENT_FN(x) std::bind(&Application::x,this,std::placeholders::_1)
+
+	Application* Application::s_Instance = nullptr;
+
+
 	Application::Application()
 	{
-		m_Window = std::unique_ptr<Window>(Window::Create());
-		//m_Window->SetEventCallback(std::bind(&Application::OnEvent, this, std::placeholders::_1));
+		CC3D_CORE_ASSERT(!s_Instance, "Application already exists!");
+		s_Instance = this;
+
+		m_Window = std::unique_ptr<Window>(Window::Create());///same as below
+		///m_Window->SetEventCallback(std::bind(&Application::OnEvent, this, std::placeholders::_1));
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 	}
 	Application::~Application()
@@ -19,6 +26,23 @@ namespace CC3D {
 	}
 	void Application::Run()
 	{
+		//glfwInit();
+		/// <summary>
+		/// !!!!very very very important here!!!!
+		/// !!!!very very very important here!!!!
+		/// !!!!very very very important here!!!!
+		/// If have the error of 0X00000 with glad 
+		/// The solution is below:
+		/// gladLoadGL();
+		/// </summary>
+		/// refer:
+		/// https://stackoverflow.com/questions/67400482/access-violation-executing-location-0x0000000000000000-opengl-with-glad-and-glf
+		gladLoadGL();//Load GLAD so it configures OpenGL
+		/// <summary>
+		/// !!!!very very very important here!!!!
+		/// !!!!very very very important here!!!!
+		/// !!!!very very very important here!!!!
+		/// </summary>
 		while (m_Running)
 		{
 			glClearColor(1, 0, 1, 1);
@@ -32,11 +56,13 @@ namespace CC3D {
 	void Application::PushLayer(Layer* layer)
 	{
 		m_LayerStack.PushLayer(layer);
+		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* layer)
 	{
 		m_LayerStack.PushOverlay(layer);
+		layer->OnAttach();
 	}
 
 	void Application::OnEvent(Event& e)

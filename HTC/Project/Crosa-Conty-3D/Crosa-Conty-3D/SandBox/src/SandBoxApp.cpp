@@ -26,6 +26,7 @@ public:
 	SandBox()
 	{
 		PushLayer(new ExampleLayer());
+		PushOverlay(new CC3D::ImGuiLayer());
 	}
 	~SandBox() {}
 
