@@ -14,8 +14,8 @@ namespace CC3D {
 		unsigned int Height;
 
 		WindowProps(const std::string& title = "CC3D Engine",
-			unsigned int width = 1280,
-			unsigned int height = 720)
+			unsigned int width = 500,
+			unsigned int height = 500)
 			: Title(title), Width(width), Height(height)
 		{
 		}
