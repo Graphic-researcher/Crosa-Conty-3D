@@ -4,10 +4,14 @@
 
 #include "CC3D/Application.h"
 #include "CC3D/Layer.h"
-#include "CC3D/Core.h"
+
 
 // -------Log System-------------
 #include "CC3D/Log.h"
+// ------------------------------
+
+// -------Gui System-------------
+#include "CC3D/Imgui/ImGuiLayer.h"
 // ------------------------------
 
 // -------Entry Point------------

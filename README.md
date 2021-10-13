@@ -6,8 +6,8 @@
 - [x] Log system
 - [ ] Application layer
 - [x] Window layer
-  - [ ] inputs
-  - [ ] events
+  - [x] inputs
+  - [x] events
 - [ ] Renderer
 - [ ] Render API abstraction
 - [ ] Debugging support
@@ -17,3 +17,9 @@
 - [ ] File I/O,VFS
 - [ ] Build system
 
+### Dependances
+
+* GLFW-3.3.4
+* Glad-4.6
+* Imgui-1.85
+* spdlog

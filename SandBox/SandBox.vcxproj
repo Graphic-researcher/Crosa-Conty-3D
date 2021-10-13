@@ -59,12 +59,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>CC3D_PLATFORM_WINDOWS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\spdlog\include;$(SolutionDir)Crosa-Conty-3D\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\spdlog\include;$(SolutionDir)Crosa-Conty-3D\src;$(SolutionDir)Crosa-Conty-3D\vendor\GLFW\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\src;$(SolutionDir)Crosa-Conty-3D\vendor\Imgui</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);</AdditionalLibraryDirectories>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -75,18 +76,23 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\spdlog\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\spdlog\include;$(SolutionDir)Crosa-Conty-3D\src;$(SolutionDir)Crosa-Conty-3D\vendor\GLFW\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\src;$(SolutionDir)Crosa-Conty-3D\vendor\Imgui</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>ImGui.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);glfw3.lib;</AdditionalDependencies>
+      <AdditionalLibraryDirectories>;$(SolutionDir)bin\ImGui\;$(SolutionDir)bin\$(Configuration)-$(Platform)\ImGui;$(SolutionDir)bin\$(Configuration)-$(Platform)\ImGui;$(SolutionDir)Crosa-Conty-3D\vendor\GLFW\lib-vc2019;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ProjectReference Include="..\Crosa-Conty-3D\Crosa-Conty-3D.vcxproj">
       <Project>{8d4c96cb-86f9-4acb-9d2e-b89e6504c2b4}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Crosa-Conty-3D\vendor\Imgui\Imgui.vcxproj">
+      <Project>{b6d8c255-0a39-49e5-9c58-2892436f0120}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
