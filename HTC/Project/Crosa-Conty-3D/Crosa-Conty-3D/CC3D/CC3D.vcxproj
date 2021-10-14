@@ -13,8 +13,10 @@
   <ItemGroup>
     <ClInclude Include="src\CC3D\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\CC3D\Input.h" />
+    <ClInclude Include="src\CC3D\KeyCodes.h" />
     <ClInclude Include="src\CC3D\Layer.h" />
     <ClInclude Include="src\CC3D\LayerStack.h" />
+    <ClInclude Include="src\CC3D\MouseButtonCodes.h" />
     <ClInclude Include="src\CC3D\Window.h" />
     <ClInclude Include="src\cc3d_pch.h" />
     <ClInclude Include="src\CC3D\Events\ApplicationEvent.h" />

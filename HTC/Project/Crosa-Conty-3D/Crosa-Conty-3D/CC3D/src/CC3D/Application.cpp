@@ -6,7 +6,7 @@
 
 
 #include "glad/glad.h"
-#include "GLFW/glfw3.h"
+///#include "GLFW/glfw3.h"
 
 
 namespace CC3D {
@@ -54,8 +54,7 @@ namespace CC3D {
 				layer->OnUpdate();
 			auto [x, y] = Input::GetMousePosition();
 			CC3D_CORE_TRACE("{0},{1}", x, y);
-			auto x1 = Input::IsKeyPressed(GLFW_KEY_A);
-			CC3D_CORE_TRACE("{0}", x1);
+
 			m_Window->OnUpdate();
 		}
 	}
