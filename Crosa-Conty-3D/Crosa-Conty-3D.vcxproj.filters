@@ -153,6 +153,8 @@
     <ClInclude Include="vendor\glm\glm\virtrev\xstream.hpp" />
     <ClInclude Include="vendor\glm\glm\ext.hpp" />
     <ClInclude Include="vendor\glm\glm\glm.hpp" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\CC3D\Renderer\GraphicsContext.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CC3D\Application.cpp">
@@ -169,6 +171,7 @@
     <ClCompile Include="src\CC3D\Imgui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\CC3D\Imgui\ImGuiBuild.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="vendor\glm\glm\core\func_common.inl" />

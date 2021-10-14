@@ -1,8 +1,8 @@
 #pragma once
 
 #include "CC3D/Window.h"
+#include "CC3D/Renderer/GraphicsContext.h"
 
-#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 namespace CC3D
@@ -28,6 +28,7 @@ namespace CC3D
 		virtual void Shutdown();
 	private:
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 
 		struct WindowData
 		{
