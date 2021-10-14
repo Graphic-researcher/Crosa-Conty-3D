@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\CC3D\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\CC3D\Input.h" />
     <ClInclude Include="src\CC3D\Layer.h" />
     <ClInclude Include="src\CC3D\LayerStack.h" />
     <ClInclude Include="src\CC3D\Window.h" />
@@ -26,6 +27,7 @@
     <ClInclude Include="src\CC3D\Core.h" />
     <ClInclude Include="src\CC3D\EntryPoint.h" />
     <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="vendor\glad\glad.h" />
     <ClInclude Include="vendor\GLFW\include\GLFW\glfw3.h" />
@@ -64,6 +66,7 @@
     <ClCompile Include="src\CC3D\Log.cpp" />
     <ClCompile Include="src\CC3D\Application.cpp" />
     <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="vendor\glad\glad.cpp" />
     <ClCompile Include="vendor\imgui\imgui.cpp" />
@@ -131,6 +134,7 @@
       <PreprocessKeepComments>false</PreprocessKeepComments>
       <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
       <UseStandardPreprocessor>false</UseStandardPreprocessor>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -12,6 +12,12 @@
 
 
 //for Window
+///linking runtime library dynamically; 
+///defined CC3D_ENABLE_ASSERTS if CC3D_DEBUG is on.
+#ifdef CC3D_DEBUG
+#define CC3D_ENABLE_ASSERTS
+#endif
+
 ///check certain conditons,log message
 ///if it fails,it would call debugbreak -> set a debug point on that line,to see what's wrong
 #ifdef CC3D_ENABLE_ASSERTS
