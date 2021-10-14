@@ -23,37 +23,28 @@ namespace CC3D {
 		m_Window = std::unique_ptr<Window>(Window::Create());///same as below
 		///m_Window->SetEventCallback(std::bind(&Application::OnEvent, this, std::placeholders::_1));
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+
+		m_ImGuiLayer = new ImGuiLayer();
+		PushOverlay(m_ImGuiLayer);
 	}
 	Application::~Application()
 	{
 	}
 	void Application::Run()
 	{
-		//glfwInit();
-		/// <summary>
-		/// !!!!very very very important here!!!!
-		/// !!!!very very very important here!!!!
-		/// !!!!very very very important here!!!!
-		/// If have the error of 0X00000 with glad 
-		/// The solution is below:
-		/// gladLoadGL();
-		/// </summary>
-		/// refer:
-		/// https://stackoverflow.com/questions/67400482/access-violation-executing-location-0x0000000000000000-opengl-with-glad-and-glf
 		gladLoadGL();//Load GLAD so it configures OpenGL
-		/// <summary>
-		/// !!!!very very very important here!!!!
-		/// !!!!very very very important here!!!!
-		/// !!!!very very very important here!!!!
-		/// </summary>
+
 		while (m_Running)
 		{
 			glClearColor(1, 0, 1, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
-			auto [x, y] = Input::GetMousePosition();
-			CC3D_CORE_TRACE("{0},{1}", x, y);
+			
+			m_ImGuiLayer->Begin();
+			for (Layer* layer : m_LayerStack)
+				layer->OnImGuiRender();
+			m_ImGuiLayer->End();
 
 			m_Window->OnUpdate();
 		}

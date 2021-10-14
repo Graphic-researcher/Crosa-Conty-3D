@@ -14,6 +14,7 @@ namespace CC3D {
 		virtual void OnAttach() {}///push to layer stack
 		virtual void OnDetach() {}///remove
 		virtual void OnUpdate() {}///call when layer update
+		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}///get event send to layer
 
 		inline const std::string& GetName() const { return m_DebugName; }

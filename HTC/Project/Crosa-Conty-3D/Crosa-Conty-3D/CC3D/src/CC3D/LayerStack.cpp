@@ -9,7 +9,6 @@ namespace CC3D {
 
 	LayerStack::LayerStack()
 	{
-		m_LayerInsert = m_Layers.begin();
 	}
 
 	/// When app shut down,destory layer stack
@@ -23,7 +22,8 @@ namespace CC3D {
 	///Push the layer to right place (before overlayer)
 	void LayerStack::PushLayer(Layer* layer)
 	{
-		m_LayerInsert = m_Layers.emplace(m_LayerInsert, layer);
+		m_Layers.emplace(m_Layers.begin() + m_LayerInsertIndex, layer);
+		m_LayerInsertIndex++;
 	}
 
 	///Push to back of list
@@ -41,7 +41,7 @@ namespace CC3D {
 		if (it != m_Layers.end())
 		{
 			m_Layers.erase(it);
-			m_LayerInsert--;
+			m_LayerInsertIndex--;
 		}
 	}
 

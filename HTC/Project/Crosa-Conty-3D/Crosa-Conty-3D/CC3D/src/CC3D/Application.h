@@ -7,7 +7,7 @@
 #include "Window.h"
 ///layer
 #include "CC3D/LayerStack.h"
-
+#include "CC3D/ImGui/ImGuiLayer.h"
 
 
 namespace CC3D {
@@ -33,8 +33,11 @@ namespace CC3D {
 		///Window
 		bool OnWindowClose(WindowCloseEvent& e);
 		std::unique_ptr<Window> m_Window;
+
 		///layer
 		LayerStack m_LayerStack;
+		ImGuiLayer* m_ImGuiLayer;
+
 
 		static Application* s_Instance;
 	};
