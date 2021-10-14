@@ -42,14 +42,14 @@ namespace CC3D {
 
 	void Application::PopLayer(Layer* layer)
 	{
-		m_LayerStack.PopLayer(layer);
 		layer->OnDetach();
+		m_LayerStack.PopLayer(layer);
 	}
 
 	void Application::PopOverlay(Layer* layer)
 	{
-		m_LayerStack.PopOverlay(layer);
 		layer->OnDetach();
+		m_LayerStack.PopOverlay(layer);
 	}
 
 
