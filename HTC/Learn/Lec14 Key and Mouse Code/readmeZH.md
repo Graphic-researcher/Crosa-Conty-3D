@@ -1,23 +1,23 @@
 # Lec14 Key and Mouse Code
 
-tutorial : [here](https://www.youtube.com/watch?v=zaJGn8pur5I&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=20)
+课程 : [here](https://www.youtube.com/watch?v=zaJGn8pur5I&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=20)
 
-code version :  [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/a6aca19e5bb864bee29401f58d8de8590f6ca6a1/HTC/Project/Crosa-Conty-3D/Crosa-Conty-3D)
+代码版本 :  [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/a6aca19e5bb864bee29401f58d8de8590f6ca6a1/HTC/Project/Crosa-Conty-3D/Crosa-Conty-3D)
 
-We want to get rid of glfw key code dependency ,so we need to define our own key code map 
+我们不希望利用GLFW键值而希望有一套自己的键值映射
 
-## Key Codes
+## 键盘 键值
 
 ```c++
 #pragma once
 
-/// You can change these key code map based on your platform
-/// Or using: #ifdef CC3D_PLATFORM_WINDOWS	... #endif
-/// Our key code map is the same as glfw map,so we don't need to write a 
-/// convert function to translate our key code to glfw key code map
-/// However,if you work in another platform using different key code map
-/// Then you should have a convert function to glfw key code map
-/// For example :
+/// 你可以修改这些键值根据系统
+/// 或者利用: #ifdef CC3D_PLATFORM_WINDOWS	... #endif 来区分平台
+/// 我们的键值映射和glfw的一样，所以就不用再写个转换函数，
+/// 把我们的键值转换到glfw键值
+/// 但是，如果你的平台有和glfw不同的键值映射
+/// 那么你就得在写个转换函数了
+/// 例如 : CC3DKeyCodeToGLFWKeyCode:
 /// glfwGetKey(window,CC3DKeyCodeToGLFWKeyCode(keycode));
 
 #ifdef CC3D_PLATFORM_WINDOWS
@@ -148,7 +148,7 @@ We want to get rid of glfw key code dependency ,so we need to define our own key
 #endif
 ```
 
-## Mouse Button Codes
+## 鼠标按钮  键值
 
 ```c++
 #pragma once
@@ -170,7 +170,7 @@ We want to get rid of glfw key code dependency ,so we need to define our own key
 #endif
 ```
 
-## SandBox Scope
+## SandBox 作用域
 
 ```c++
 void OnUpdate() override
@@ -191,7 +191,7 @@ void OnEvent(CC3D::Event& event) override
 }
 ```
 
-## Build and Result
+## 构建和结果
 
 ![image-20211014182413088](https://i.loli.net/2021/10/14/cf8SavHRtjn2kwD.png)
 
