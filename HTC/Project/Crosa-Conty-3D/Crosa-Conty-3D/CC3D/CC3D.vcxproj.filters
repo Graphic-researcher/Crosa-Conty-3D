@@ -150,6 +150,75 @@
     <ClInclude Include="src\CC3D\MouseButtonCodes.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="vendor\glm\common.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\glm\exponential.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\glm\ext.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\glm\fwd.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\glm\geometric.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\glm\glm.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\glm\integer.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\glm\mat2x2.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\glm\mat2x3.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\glm\mat2x4.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\glm\mat3x2.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\glm\mat3x3.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\glm\mat3x4.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\glm\mat4x2.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\glm\mat4x3.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\glm\mat4x4.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\glm\matrix.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\glm\packing.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\glm\trigonometric.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\glm\vec2.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\glm\vec3.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\glm\vec4.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\glm\vector_relational.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CC3D\Application.cpp">
@@ -200,8 +269,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="vendor\imgui\LICENSE.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
+    <Text Include="vendor\glm\CMakeLists.txt" />
   </ItemGroup>
 </Project>

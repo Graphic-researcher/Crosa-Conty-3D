@@ -34,6 +34,29 @@
     <ClInclude Include="vendor\glad\glad.h" />
     <ClInclude Include="vendor\GLFW\include\GLFW\glfw3.h" />
     <ClInclude Include="vendor\GLFW\include\GLFW\glfw3native.h" />
+    <ClInclude Include="vendor\glm\common.hpp" />
+    <ClInclude Include="vendor\glm\exponential.hpp" />
+    <ClInclude Include="vendor\glm\ext.hpp" />
+    <ClInclude Include="vendor\glm\fwd.hpp" />
+    <ClInclude Include="vendor\glm\geometric.hpp" />
+    <ClInclude Include="vendor\glm\glm.hpp" />
+    <ClInclude Include="vendor\glm\integer.hpp" />
+    <ClInclude Include="vendor\glm\mat2x2.hpp" />
+    <ClInclude Include="vendor\glm\mat2x3.hpp" />
+    <ClInclude Include="vendor\glm\mat2x4.hpp" />
+    <ClInclude Include="vendor\glm\mat3x2.hpp" />
+    <ClInclude Include="vendor\glm\mat3x3.hpp" />
+    <ClInclude Include="vendor\glm\mat3x4.hpp" />
+    <ClInclude Include="vendor\glm\mat4x2.hpp" />
+    <ClInclude Include="vendor\glm\mat4x3.hpp" />
+    <ClInclude Include="vendor\glm\mat4x4.hpp" />
+    <ClInclude Include="vendor\glm\matrix.hpp" />
+    <ClInclude Include="vendor\glm\packing.hpp" />
+    <ClInclude Include="vendor\glm\trigonometric.hpp" />
+    <ClInclude Include="vendor\glm\vec2.hpp" />
+    <ClInclude Include="vendor\glm\vec3.hpp" />
+    <ClInclude Include="vendor\glm\vec4.hpp" />
+    <ClInclude Include="vendor\glm\vector_relational.hpp" />
     <ClInclude Include="vendor\imgui\imconfig.h" />
     <ClInclude Include="vendor\imgui\imgui.h" />
     <ClInclude Include="vendor\imgui\imgui_internal.h" />
@@ -78,10 +101,8 @@
     <ClCompile Include="vendor\imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="vendor\glm\CMakeLists.txt" />
     <Text Include="vendor\imgui\LICENSE.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
