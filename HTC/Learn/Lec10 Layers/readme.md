@@ -12,6 +12,8 @@ It's like Photoshop layers,what's more,the first (top) layer should be render at
 
 ## Layer Scope
 
+![image-20211014171812070](https://i.loli.net/2021/10/14/c4GHRaDhSprJATV.png)
+
 ### Layer Class
 
 ```c++

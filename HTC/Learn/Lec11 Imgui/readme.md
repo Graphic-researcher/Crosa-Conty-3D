@@ -4,8 +4,6 @@ tutorial : [here](https://www.youtube.com/watch?v=st4lgNI6_F4&list=PLlrATfBNZ98d
 
 code version : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/6c6c7d2bdf47027f3ce1a9bafb304382829445e6/HTC/Project/Crosa-Conty-3D/Crosa-Conty-3D)
 
-
-
 ## ImGuiOpenGLRenderer Scope 
 
 It's refactor from 2 imgui files
@@ -13,6 +11,8 @@ It's refactor from 2 imgui files
 check it here : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/6c6c7d2bdf47027f3ce1a9bafb304382829445e6/HTC/Project/Crosa-Conty-3D/Crosa-Conty-3D/CC3D/src/Platform/OpenGL)
 
 ## ImGuiLayer Scope
+
+![image-20211014171734845](https://i.loli.net/2021/10/14/SfZasBwqtnYcQJy.png)
 
 ```c++
 class CC3D_API ImGuiLayer : public Layer

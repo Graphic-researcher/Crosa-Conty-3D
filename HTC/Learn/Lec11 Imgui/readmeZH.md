@@ -12,6 +12,8 @@ code version : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/
 
 ## ImGuiLayer 作用域
 
+![image-20211014171734845](https://i.loli.net/2021/10/14/SfZasBwqtnYcQJy.png)
+
 ```c++
 class CC3D_API ImGuiLayer : public Layer
 {

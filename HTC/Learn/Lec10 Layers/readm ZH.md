@@ -12,6 +12,8 @@ code version : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/
 
 ## Layer作用域
 
+![image-20211014171812070](https://i.loli.net/2021/10/14/c4GHRaDhSprJATV.png)
+
 ### Layer Class
 
 ```c++
