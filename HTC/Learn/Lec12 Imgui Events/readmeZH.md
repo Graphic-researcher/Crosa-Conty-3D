@@ -171,6 +171,4 @@ glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int keycode)
 
 ## 总结
 
-//TODO replace it with the note in ipad
-
-![Event System](https://i.loli.net/2021/10/14/GmR4Cql6LTJAzdZ.png)
+![image-20211014170700579](https://i.loli.net/2021/10/14/CjSEXKNURLa82xT.png)
