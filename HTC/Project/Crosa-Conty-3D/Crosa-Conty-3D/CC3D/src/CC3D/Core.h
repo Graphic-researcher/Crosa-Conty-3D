@@ -25,3 +25,9 @@
 
 //for Event.h
 #define BIT(x) (1 << x)
+
+
+///see more details about this:
+///std::bind(&XXX,this,std::placeholders::_1)
+///https://stackoverflow.com/questions/61649318/how-could-c-stdbind-return-value-assigned-to-stdfunction
+#define CC3D_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)

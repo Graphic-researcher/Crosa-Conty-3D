@@ -15,7 +15,7 @@ namespace CC3D {
 		None = 0,
 		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,//1 2 3 4 5
 		AppTick, AppUpdate, AppRender,									     //6 7 8
-		KeyPressed, KeyReleased,										     //9 10
+		KeyPressed, KeyReleased, KeyTyped,										     //9 10
 		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled	 //11 12 13 14
 	};
 
@@ -62,8 +62,8 @@ namespace CC3D {
 		template<typename T>
 		using EventFn = std::function<bool(T&)>;
 
-		///see more details about std::function:\
-		https://en.cppreference.com/w/cpp/utility/functional/function
+		///see more details about std::function:
+		///https://en.cppreference.com/w/cpp/utility/functional/function
 
 	public:
 		EventDispatcher(Event& event)
