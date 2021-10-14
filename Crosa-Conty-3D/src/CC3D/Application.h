@@ -8,6 +8,8 @@
 #include "Events/Event.h"
 #include "Events/ApplicationEvent.h"
 
+#include "CC3D/Imgui/ImGuiLayer.h"
+
 namespace CC3D {
 
 	class CC3D_API Application
@@ -35,6 +37,7 @@ namespace CC3D {
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 	private:

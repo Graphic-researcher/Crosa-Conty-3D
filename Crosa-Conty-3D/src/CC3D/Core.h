@@ -1,10 +1,14 @@
 #pragma once
 
 #ifdef CC3D_PLATFORM_WINDOWS
-	#ifdef CC3D_BUILD_DLL
-		#define CC3D_API __declspec(dllexport)
+	#if CC3D_DYNAMIC_LINK
+		#ifdef CC3D_BUILD_DLL
+			#define CC3D_API __declspec(dllexport)
+		#else 
+			#define CC3D_API __declspec(dllimport)
+		#endif
 	#else 
-		#define CC3D_API __declspec(dllimport)
+		#define CC3D_API
 	#endif
 #else
 	#error CC3D only support Windows!

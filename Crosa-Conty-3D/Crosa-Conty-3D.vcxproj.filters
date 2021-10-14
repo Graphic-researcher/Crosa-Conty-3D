@@ -31,8 +31,6 @@
     <ClInclude Include="vendor\GLAD\include\glad\glad.h" />
     <ClInclude Include="vendor\GLAD\include\KHR\khrplatform.h" />
     <ClInclude Include="src\CC3D\Imgui\ImGuiLayer.h" />
-    <ClInclude Include="src\Platform\OpenGL\imgui_impl_opengl3_loader.h" />
-    <ClInclude Include="src\Platform\OpenGL\imgui_impl_opengl3.h" />
     <ClInclude Include="src\CC3D\Input.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\CC3D\KeyCodes.h" />
@@ -169,9 +167,8 @@
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="vendor\GLAD\src\glad.cpp" />
     <ClCompile Include="src\CC3D\Imgui\ImGuiLayer.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\imgui_impl_opengl3.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\imgui_tables.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
+    <ClCompile Include="src\CC3D\Imgui\ImGuiBuild.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="vendor\glm\glm\core\func_common.inl" />

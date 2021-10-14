@@ -242,7 +242,7 @@ static bool ImGui_ImplGlfw_Init(GLFWwindow* window, bool install_callbacks, Glfw
     io.GetClipboardTextFn = ImGui_ImplGlfw_GetClipboardText;
     io.ClipboardUserData = bd->Window;
 #if defined(_WIN32)
-    io.ImeWindowHandle = (void*)glfwGetWin32Window(bd->Window);
+    //io.ImeWindowHandle = (void*)glfwGetWin32Window(bd->Window);
 #endif
 
     // Create mouse cursors

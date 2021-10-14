@@ -21,7 +21,9 @@ namespace CC3D {
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
-		//
+		
+		m_ImGuiLayer = new ImGuiLayer();
+		PushOverlay(m_ImGuiLayer);
 	}
 
 	Application::~Application()
@@ -30,14 +32,16 @@ namespace CC3D {
 
 	void Application::PushLayer(Layer* layer)
 	{
-		m_LayerStack.PushLayer(layer);
 		layer->OnAttach();
+		m_LayerStack.PushLayer(layer);
+		
 	}
 
-	void Application::PushOverlay(Layer* layer)
+	void Application::PushOverlay(Layer* layer) 
 	{
-		m_LayerStack.PushOverlay(layer);
 		layer->OnAttach();
+		m_LayerStack.PushOverlay(layer);
+		
 	}
 
 	void Application::PopLayer(Layer* layer)
@@ -77,6 +81,11 @@ namespace CC3D {
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
+
+			m_ImGuiLayer->Begin();
+			for (Layer* layer : m_LayerStack)
+				layer->OnImGuiRender();
+			m_ImGuiLayer->End();
 
 			m_Window->OnUpdate();
 		}
