@@ -17,7 +17,9 @@
     <ClInclude Include="src\CC3D\Layer.h" />
     <ClInclude Include="src\CC3D\LayerStack.h" />
     <ClInclude Include="src\CC3D\MouseButtonCodes.h" />
+    <ClInclude Include="src\CC3D\Renderer\Buffer.h" />
     <ClInclude Include="src\CC3D\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\CC3D\Renderer\Renderer.h" />
     <ClInclude Include="src\CC3D\Renderer\Shader.h" />
     <ClInclude Include="src\CC3D\Window.h" />
     <ClInclude Include="src\cc3d_pch.h" />
@@ -30,6 +32,7 @@
     <ClInclude Include="src\CC3D\Application.h" />
     <ClInclude Include="src\CC3D\Core.h" />
     <ClInclude Include="src\CC3D\EntryPoint.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
@@ -90,6 +93,8 @@
     <ClCompile Include="src\CC3D\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\CC3D\Layer.cpp" />
     <ClCompile Include="src\CC3D\LayerStack.cpp" />
+    <ClCompile Include="src\CC3D\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\CC3D\Renderer\Renderer.cpp" />
     <ClCompile Include="src\CC3D\Renderer\Shader.cpp" />
     <ClCompile Include="src\cc3d_pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -97,6 +102,7 @@
     </ClCompile>
     <ClCompile Include="src\CC3D\Log.cpp" />
     <ClCompile Include="src\CC3D\Application.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
