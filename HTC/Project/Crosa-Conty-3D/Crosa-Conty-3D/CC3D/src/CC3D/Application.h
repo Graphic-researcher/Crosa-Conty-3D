@@ -38,6 +38,7 @@ namespace CC3D {
 		LayerStack m_LayerStack;
 		ImGuiLayer* m_ImGuiLayer;
 
+		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
 
 		static Application* s_Instance;
 	};
