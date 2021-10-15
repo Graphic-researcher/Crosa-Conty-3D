@@ -8,7 +8,8 @@
 ///layer
 #include "CC3D/LayerStack.h"
 #include "CC3D/ImGui/ImGuiLayer.h"
-
+///render
+#include "CC3D/Renderer/Shader.h"
 
 namespace CC3D {
 	//class _declspec(dllexport) Application
@@ -37,9 +38,9 @@ namespace CC3D {
 		///layer
 		LayerStack m_LayerStack;
 		ImGuiLayer* m_ImGuiLayer;
-
+		///Render	
 		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
-
+		std::unique_ptr<Shader> m_Shader;
 		static Application* s_Instance;
 	};
 	//To be defined in CLIENT
