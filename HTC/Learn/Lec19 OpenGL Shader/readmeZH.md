@@ -1,10 +1,10 @@
 # Lec19 OpenGL Shader
 
-tutorial ：[here](https://www.youtube.com/watch?v=QBCCHm_9HV8&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=29)
+教程：[here](https://www.youtube.com/watch?v=QBCCHm_9HV8&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=29)
 
-code version : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/0f3fc57d95538ce03a260d53503f637926473405/HTC/Project/Crosa-Conty-3D/Crosa-Conty-3D)
+代码版本 : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/0f3fc57d95538ce03a260d53503f637926473405/HTC/Project/Crosa-Conty-3D/Crosa-Conty-3D)
 
-## Shader Scope
+## Shader 作用域
 
 ```c++
 class Shader
@@ -138,7 +138,7 @@ void Shader::Unbind() const
 }
 ```
 
-## Application Scope
+## Application 作用域
 
 ```c++
 //Application.h:
@@ -202,7 +202,7 @@ m_Shader.reset(new Shader(vertexSrc, fragmentSrc));
 m_Shader->Bind();
 ```
 
-## Build and Result 
+## 构建和结果
 
 ```c++
 std::string vertexSrc = R"(
