@@ -1,9 +1,11 @@
 #include "cc3d_pch.h"
 #include "WindowsWindow.h"
+#include "Platform/OpenGL/OpenGLContext.h"
 
 #include "CC3D/Events/ApplicationEvent.h"
 #include "CC3D/Events/MouseEvent.h"
 #include "CC3D/Events/KeyEvent.h"
+
 
 namespace CC3D {
 
@@ -49,7 +51,9 @@ namespace CC3D {
 		///check Cherno's opengl series to learn more about glfw
 		///https://www.youtube.com/watch?v=W3gAzLwfIP0&list=PLlrATfBNZ98foTJPJ_Ev03o2oq3-GGOS2
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
+		m_Context = new OpenGLContext(m_Window);
+		m_Context->Init();
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
@@ -151,7 +155,7 @@ namespace CC3D {
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)

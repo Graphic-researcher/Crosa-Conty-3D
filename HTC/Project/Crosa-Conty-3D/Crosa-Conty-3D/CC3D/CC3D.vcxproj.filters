@@ -225,6 +225,12 @@
     <ClInclude Include="vendor\imgui\examples\imgui_impl_opengl3_loader.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="src\CC3D\Renderer\GraphicsContext.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CC3D\Application.cpp">
@@ -276,6 +282,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\CC3D\ImGui\ImGuiBuild.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
