@@ -1,6 +1,6 @@
 //#include "../../CC3D/src/CC3D.h"
 #include "CC3D.h"
-
+#include "imgui/imgui.h"
 
 
 
@@ -13,10 +13,18 @@ public:
 
 	}
 
+
 	void OnUpdate() override
 	{
 		if (CC3D::Input::IsKeyPressed(CC3D_KEY_TAB))
 			CC3D_TRACE("Tab key is pressed (poll)!");
+	}
+
+	virtual void OnImGuiRender() override
+	{
+		ImGui::Begin("Test");
+		ImGui::Text("Hello CC3D!");
+		ImGui::End();
 	}
 
 	void OnEvent(CC3D::Event& event) override
