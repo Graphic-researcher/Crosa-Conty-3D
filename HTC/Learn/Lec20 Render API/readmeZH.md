@@ -1,16 +1,16 @@
 # Lec20 Render API
 
-tutorial : [here](https://www.youtube.com/watch?v=BwCqRqqbB1Y&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=30)
+课程 : [here](https://www.youtube.com/watch?v=BwCqRqqbB1Y&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=30)
 
-code version : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/0f3fc57d95538ce03a260d53503f637926473405/HTC/Project/Crosa-Conty-3D/Crosa-Conty-3D)
+代码版本 : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/0f3fc57d95538ce03a260d53503f637926473405/HTC/Project/Crosa-Conty-3D/Crosa-Conty-3D)
 
-Abstract the render api so that you can use multiple graphic api,such as opengl,d3d.
+抽象渲染api这样以后我们可以方便添加其他图形api
 
-## Overview
+## 总览
 
 ![image-20211015224758458](https://i.loli.net/2021/10/15/wgYPMTHSfGFBD9k.png)
 
-## Renderer Scope
+## Renderer 作用域
 
 ```c++
 enum class RendererAPI
@@ -28,7 +28,7 @@ private:
 RendererAPI Renderer::s_RendererAPI = RendererAPI::OpenGL;
 ```
 
-## Buffer Scope
+## Buffer 作用域
 
 ```c++
 class VertexBuffer
@@ -79,7 +79,7 @@ IndexBuffer* IndexBuffer::Create(uint32_t* indices, uint32_t size)
 }
 ```
 
-## OpenGLBuffer Scope
+## OpenGLBuffer 作用域
 
 ```c++
 class OpenGLVertexBuffer : public VertexBuffer
@@ -162,7 +162,7 @@ void OpenGLIndexBuffer::Unbind() const
 }
 ```
 
-## Application Scope
+## Application 作用域
 
 ```c++
 //Application.h 
