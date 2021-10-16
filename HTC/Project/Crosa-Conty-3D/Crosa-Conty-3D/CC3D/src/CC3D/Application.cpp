@@ -137,9 +137,7 @@ namespace CC3D {
 
 		m_BlueShader.reset(new Shader(blueShaderVertexSrc, blueShaderFragmentSrc));
 	}
-	Application::~Application()
-	{
-	}
+
 	void Application::Run()
 	{
 		gladLoadGL();//Load GLAD so it configures OpenGL
@@ -173,13 +171,11 @@ namespace CC3D {
 	void Application::PushLayer(Layer* layer)
 	{
 		m_LayerStack.PushLayer(layer);
-		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* layer)
 	{
 		m_LayerStack.PushOverlay(layer);
-		layer->OnAttach();
 	}
 
 	void Application::OnEvent(Event& e)

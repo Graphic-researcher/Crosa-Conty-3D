@@ -8,9 +8,4 @@ namespace CC3D {
 	{
 	}
 
-	Layer::~Layer()
-	{
-
-	}
-
 }

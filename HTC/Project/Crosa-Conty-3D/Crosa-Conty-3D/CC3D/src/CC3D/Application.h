@@ -19,7 +19,7 @@ namespace CC3D {
 	{
 	public:
 		Application();
-		virtual ~Application();//this class would be inherited by other class
+		virtual ~Application() = default;//this class would be inherited by other class
 		void Run();
 		///Events
 		void OnEvent(Event& e);
