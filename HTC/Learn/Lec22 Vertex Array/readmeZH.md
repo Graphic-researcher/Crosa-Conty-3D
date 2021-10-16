@@ -1,16 +1,16 @@
 # Lec22 Vertex Array
 
-tutorial : [here](https://www.youtube.com/watch?v=rkxrw8dNrvI&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=32)
+课程: [here](https://www.youtube.com/watch?v=rkxrw8dNrvI&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=32)
 
-code version : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/5707cef5b6f3b475986761db1c4c51cecf9104f3/HTC/Project/Crosa-Conty-3D/Crosa-Conty-3D)
+代码版本 : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/5707cef5b6f3b475986761db1c4c51cecf9104f3/HTC/Project/Crosa-Conty-3D/Crosa-Conty-3D)
 
-## Overview
+## 总览
 
 ![image-20211016230257736](https://i.loli.net/2021/10/16/whZEvC3pNyPXDuR.png)
 
-## VertexArray Scope
+## VertexArray 作用域
 
-### VertexArray Scope
+### VertexArray 作用域
 
 ```c++
 class VertexArray
@@ -42,7 +42,7 @@ VertexArray* VertexArray::Create()
 }
 ```
 
-### OpenGLVertexArray Scope
+### OpenGLVertexArray 作用域
 
 ```c++
 class OpenGLVertexArray : public VertexArray
@@ -141,7 +141,7 @@ void OpenGLVertexArray::SetIndexBuffer(const std::shared_ptr<IndexBuffer>& index
 }
 ```
 
-## Application Scope
+## Application 作用域
 
 ```c++
 ///Application.h
@@ -319,7 +319,7 @@ void Application::Run()
 }
 ```
 
-## Build and Result
+## 构建结果
 
 ![image-20211016231107379](https://i.loli.net/2021/10/16/pZJH7hvREXwsAed.png)
 
