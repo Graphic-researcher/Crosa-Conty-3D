@@ -156,6 +156,9 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\CC3D\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\CC3D\Renderer\Shader.h" />
+    <ClInclude Include="src\CC3D\Renderer\Buffer.h" />
+    <ClInclude Include="src\CC3D\Renderer\Renderer.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CC3D\Application.cpp">
@@ -174,6 +177,9 @@
     <ClCompile Include="src\CC3D\Imgui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\CC3D\Renderer\Shader.cpp" />
+    <ClCompile Include="src\CC3D\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\CC3D\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="vendor\glm\glm\core\func_common.inl" />
