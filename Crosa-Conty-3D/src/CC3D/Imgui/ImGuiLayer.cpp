@@ -47,7 +47,7 @@ namespace CC3D
 		GLFWwindow* window = static_cast<GLFWwindow*>(app.GetWindow().GetNativeWindow());
 
 		ImGui_ImplGlfw_InitForOpenGL(window, true);
-		ImGui_ImplOpenGL3_Init("#version 460");
+		ImGui_ImplOpenGL3_Init("#version 460"); // TODO what this£¿
 		
 	}
 	void ImGuiLayer::OnDetach()

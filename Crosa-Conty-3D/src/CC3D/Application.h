@@ -10,6 +10,8 @@
 
 #include "CC3D/Imgui/ImGuiLayer.h"
 
+#include "CC3D/Renderer/Shader.h"
+
 namespace CC3D {
 
 	class CC3D_API Application
@@ -42,6 +44,7 @@ namespace CC3D {
 		LayerStack m_LayerStack;
 
 		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+		std::unique_ptr<Shader> m_Shader;
 	private:
 		static Application* s_Instance;
 	};

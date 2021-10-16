@@ -23,6 +23,7 @@ namespace CC3D {
 		CC3D_CORE_INFO("  Vendor: {0}", glGetString(GL_VENDOR));
 		CC3D_CORE_INFO("  Renderer: {0}", glGetString(GL_RENDERER));
 		CC3D_CORE_INFO("  Version: {0}", glGetString(GL_VERSION));
+		CC3D_CORE_INFO("  GLSL_Version: {0}", glGetString(GL_SHADING_LANGUAGE_VERSION));
 	}
 	void OpenGLContext::SwapBuffers()
 	{
