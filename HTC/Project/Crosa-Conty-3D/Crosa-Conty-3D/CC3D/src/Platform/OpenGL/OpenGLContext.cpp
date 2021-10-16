@@ -16,6 +16,7 @@ namespace CC3D {
 
 	void OpenGLContext::Init()
 	{
+		///gladLoadGL();//Load GLAD so it configures OpenGL
 		glfwMakeContextCurrent(m_WindowHandle);
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		CC3D_CORE_ASSERT(status, "Failed to initialize Glad!");
