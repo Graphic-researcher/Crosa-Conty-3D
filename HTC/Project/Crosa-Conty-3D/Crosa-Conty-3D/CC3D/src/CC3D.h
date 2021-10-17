@@ -1,8 +1,9 @@
 #pragma once
 // For use by CC3D Application
 #include "CC3D/Application.h"
-///log
+///Core
 #include "CC3D/Log.h"
+#include "CC3D/Core/Timestep.h"
 ///layer
 #include "CC3D/Layer.h"
 #include "CC3D/ImGui/ImGuiLayer.h"

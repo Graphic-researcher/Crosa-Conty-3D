@@ -8,10 +8,11 @@
 ///layer
 #include "CC3D/LayerStack.h"
 #include "CC3D/ImGui/ImGuiLayer.h"
+///Core
+#include "CC3D/Core/Timestep.h"
 
 
 namespace CC3D {
-	//class _declspec(dllexport) Application
 	class CC3D_API Application //use CC3D_API as replacement of _declspec(dllexport) 
 	{
 	public:
@@ -30,6 +31,8 @@ namespace CC3D {
 
 	private:
 		bool m_Running = true;
+		///Core
+		float m_LastFrameTime = 0.0f;///for time step
 		///Window
 		bool OnWindowClose(WindowCloseEvent& e);
 		std::unique_ptr<Window> m_Window;

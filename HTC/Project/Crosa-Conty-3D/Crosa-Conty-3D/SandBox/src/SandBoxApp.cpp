@@ -123,32 +123,35 @@ public:
 	}
 
 
-	void OnUpdate() override
+	void OnUpdate(CC3D::Timestep ts) override
 	{
+		///Log the delta time
+		CC3D_TRACE("Delta time:{0}s ({1}ms)",ts.GetSeconds(), ts.GetMilliseconds());
+
 		///translation
 		if (CC3D::Input::IsKeyPressed(CC3D_KEY_LEFT))
 		{
-			m_CameraPosition.x -= m_CameraMoveSpeed;
+			m_CameraPosition.x -= m_CameraMoveSpeed * ts;
 		}
 		else if (CC3D::Input::IsKeyPressed(CC3D_KEY_RIGHT))
 		{
-			m_CameraPosition.x += m_CameraMoveSpeed;
+			m_CameraPosition.x += m_CameraMoveSpeed * ts;
 		}
 		if (CC3D::Input::IsKeyPressed(CC3D_KEY_DOWN))
 		{
-			m_CameraPosition.y -= m_CameraMoveSpeed;
+			m_CameraPosition.y -= m_CameraMoveSpeed * ts;
 		}
 		else if (CC3D::Input::IsKeyPressed(CC3D_KEY_UP))
 		{
-			m_CameraPosition.y += m_CameraMoveSpeed;
+			m_CameraPosition.y += m_CameraMoveSpeed * ts;
 		}
 
 
 		///roation
 		if (CC3D::Input::IsKeyPressed(CC3D_KEY_A))
-			m_CameraRotation += m_CameraRotationSpeed;
+			m_CameraRotation += m_CameraRotationSpeed * ts;
 		if (CC3D::Input::IsKeyPressed(CC3D_KEY_D))
-			m_CameraRotation -= m_CameraRotationSpeed;
+			m_CameraRotation -= m_CameraRotationSpeed * ts;
 
 		CC3D::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		CC3D::RenderCommand::Clear();
@@ -181,10 +184,10 @@ private:
 	CC3D::OrthographicCamera m_Camera;
 	///Render Data
 	glm::vec3 m_CameraPosition;
-	float m_CameraMoveSpeed = 0.1f;
+	float m_CameraMoveSpeed = 10.0f;
 
 	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 0.1f;
+	float m_CameraRotationSpeed = 180.0f;
 
 };
 

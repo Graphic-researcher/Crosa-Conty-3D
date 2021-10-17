@@ -1,6 +1,8 @@
 #pragma once
-
+///Core
 #include "CC3D/Core.h"
+#include "CC3D/Core/Timestep.h"
+
 #include "CC3D/Events/Event.h"
 
 namespace CC3D {
@@ -13,7 +15,7 @@ namespace CC3D {
 
 		virtual void OnAttach() {}///push to layer stack
 		virtual void OnDetach() {}///remove
-		virtual void OnUpdate() {}///call when layer update
+		virtual void OnUpdate(Timestep ts) {}///call when layer update
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}///get event send to layer
 
