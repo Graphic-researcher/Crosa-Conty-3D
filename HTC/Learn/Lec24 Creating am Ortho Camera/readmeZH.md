@@ -1,14 +1,14 @@
 # Lec24 Creating am Orthographic Camera
 
-tutorial : [here](https://www.youtube.com/watch?v=NjKv-HWstxA&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=35)
+课程 : [here](https://www.youtube.com/watch?v=NjKv-HWstxA&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=35)
 
-code version : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/d01cf3d3b7c85d586cd6caff34007aaa8cee067a/HTC/Project/Crosa-Conty-3D/Crosa-Conty-3D)
+代码版本 : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/d01cf3d3b7c85d586cd6caff34007aaa8cee067a/HTC/Project/Crosa-Conty-3D/Crosa-Conty-3D)
 
-prerequisite : [Camera and How they work](https://www.youtube.com/watch?v=LfbqtmqxX04&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=34)
+先修课 : [Camera and How they work](https://www.youtube.com/watch?v=LfbqtmqxX04&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=34)
 
-learnopengl : [Camera System](https://learnopengl.com/Getting-started/Camera)
+learnopenglZH : [Camera System](https://learnopengl-cn.github.io/01%20Getting%20started/09%20Camera/)
 
-## Orthographic Camera Scope
+## Orthographic Camera 作用域
 
 ```c++
 class OrthographicCamera
@@ -50,7 +50,7 @@ void OrthographicCamera::RecalculateViewMatrix()
 }
 ```
 
-## Shader Scope
+## Shader 作用域
 
 ```c++
 class Shader
@@ -74,7 +74,7 @@ void Shader::UploadUniformMat4(const std::string& name, const glm::mat4& matrix)
 }
 ```
 
-## Render Scope
+## Render 作用域
 
 ```c++
 class Renderer
@@ -115,7 +115,7 @@ void Renderer::Submit(const std::shared_ptr<Shader>& shader, const std::shared_p
 }
 ```
 
-## Application Scope
+## Application 作用域
 
 ```c++
 //Application.h:
@@ -261,7 +261,7 @@ void Application::Run()
 }
 ```
 
-## Build and Result
+## 构建和结果
 
 ```c++
 OrthographicCamera test2(-1.0f, 1.0f, -1.0f, 1.0f);
