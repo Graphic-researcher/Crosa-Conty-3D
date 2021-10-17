@@ -12,6 +12,7 @@
 
 #include "CC3D/Renderer/Shader.h"
 #include "CC3D/Renderer/Buffer.h"
+#include "CC3D/Renderer/VertexArray.h"
 
 namespace CC3D {
 
@@ -44,9 +45,11 @@ namespace CC3D {
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
-		std::unique_ptr<Shader> m_Shader;
-		std::unique_ptr<VertexBuffer> m_VertexBuffer;
-		std::unique_ptr<IndexBuffer> m_IndexBuffer;
+		std::shared_ptr<Shader> m_Shader;
+		std::shared_ptr<VertexArray> m_VertexArray;
+
+		std::shared_ptr<Shader> m_BlueShader;
+		std::shared_ptr<VertexArray> m_SquareVA;
 	private:
 		static Application* s_Instance;
 	};
