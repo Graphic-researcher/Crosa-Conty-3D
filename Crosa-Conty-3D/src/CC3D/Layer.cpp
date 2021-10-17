@@ -7,9 +7,4 @@ namespace CC3D {
 		:m_DebugName(debugName)
 	{
 	}
-
-	Layer::~Layer()
-	{
-
-	}
 }

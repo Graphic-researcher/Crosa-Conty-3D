@@ -20,7 +20,7 @@ namespace CC3D {
 	{
 	public:
 		Application();
-		virtual ~Application();
+		virtual ~Application() = default;
 
 		void Run();
 

@@ -138,10 +138,6 @@ namespace CC3D {
 
 	}
 
-	Application::~Application()
-	{
-	}
-
 	void Application::PushLayer(Layer* layer)
 	{
 		layer->OnAttach();

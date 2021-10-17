@@ -9,7 +9,7 @@ namespace CC3D {
 	{
 	public:
 		Layer(const std::string& name = "Layer");
-		virtual ~Layer();
+		virtual ~Layer() = default;
 
 		virtual void OnAttach(){}
 		virtual void OnDetach(){}

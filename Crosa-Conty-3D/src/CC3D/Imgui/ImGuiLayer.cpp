@@ -18,9 +18,7 @@ namespace CC3D
 	{
 
 	}
-	ImGuiLayer::~ImGuiLayer()
-	{
-	}
+
 	void ImGuiLayer::OnAttach()
 	{
 		//IMGUI_CHECKVERSION();

@@ -12,7 +12,7 @@ namespace CC3D
 	{
 	public:
 		ImGuiLayer();
-		~ImGuiLayer();
+		~ImGuiLayer() = default;// = default 表示调用c++默认的析构(构造)函数
 
 		virtual void OnAttach() override;
 		virtual void OnDetach() override;
