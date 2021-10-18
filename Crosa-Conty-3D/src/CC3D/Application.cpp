@@ -27,6 +27,9 @@ namespace CC3D {
 
 		m_VertexArray.reset(VertexArray::Create());
 
+		/// <summary>
+		/// Create a new VertexBuffer
+		/// </summary>
 		float vertices[3 * 7] = {
 			-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
 			 0.5f, -0.5f, 0.0f, 0.2f, 0.3f, 0.8f, 1.0f,
@@ -45,7 +48,9 @@ namespace CC3D {
 		m_VertexArray->AddVertexBuffer(vertexBuffer);
 
 		
-
+		/// <summary>
+		/// Create a new IndexBuffer
+		/// </summary>
 		unsigned int indices[3] = { 0,1,2 };
 		std::shared_ptr<IndexBuffer> indexBuffer;
 		indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
@@ -60,6 +65,10 @@ namespace CC3D {
 			-0.75f,  0.75f, 0.0f
 		};
 
+
+		/// <summary>
+		/// Create a Square VertexBuffer
+		/// </summary>
 		std::shared_ptr<VertexBuffer> squareVB;
 		squareVB.reset(VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 		squareVB->SetLayout({
@@ -67,6 +76,10 @@ namespace CC3D {
 			});
 		m_SquareVA->AddVertexBuffer(squareVB);
 
+
+		/// <summary>
+		/// Create IndexBuffer for Square
+		/// </summary>
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
 		std::shared_ptr<IndexBuffer> squareIB;
 		squareIB.reset(IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
@@ -142,14 +155,12 @@ namespace CC3D {
 	{
 		layer->OnAttach();
 		m_LayerStack.PushLayer(layer);
-		
 	}
 
 	void Application::PushOverlay(Layer* layer) 
 	{
 		layer->OnAttach();
 		m_LayerStack.PushOverlay(layer);
-		
 	}
 
 	void Application::PopLayer(Layer* layer)

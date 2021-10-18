@@ -19,8 +19,14 @@ namespace CC3D {
 		virtual const std::shared_ptr<IndexBuffer>& GetIndexBuffer() const { return m_IndexBuffer; }
 	private:
 		uint32_t m_RendererID;
+
+		// VertexBuffers mains mutiBuffers for vertices------
 		std::vector<std::shared_ptr<VertexBuffer>> m_VertexBuffers;
+		// --------------------------------------------------
+
+		// IndexBuffer contains index of each triangle-------
 		std::shared_ptr<IndexBuffer> m_IndexBuffer;
+		// --------------------------------------------------
 	};
 
 }
