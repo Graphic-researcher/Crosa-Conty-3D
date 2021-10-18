@@ -2,7 +2,10 @@
 
 #include "imgui.h"
 
+#include "Platform/OpenGL/OpenGLShader.h"
+
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 class ExampleLayer: public CC3D::Layer
 {
@@ -105,7 +108,7 @@ public:
 			}
 		)";
 
-		m_Shader.reset(new CC3D::Shader(vertexSrc, fragmentSrc));
+		m_Shader.reset(CC3D::Shader::Create(vertexSrc, fragmentSrc));
 
 
 		std::string blueShaderVertexSrc = R"(
@@ -132,13 +135,15 @@ public:
 
 			in vec3 v_Position;
 
+			uniform vec3 u_Color;
+
 			void main()
 			{
-				color = vec4(0.2, 0.3, 0.8, 1.0);
+				color = vec4(u_Color, 1.0);
 			}
 		)";
-
-		m_BlueShader.reset(new CC3D::Shader(blueShaderVertexSrc, blueShaderFragmentSrc));
+		
+		m_FlatColorShader.reset(CC3D::Shader::Create(blueShaderVertexSrc, blueShaderFragmentSrc));
 
 	}
 
@@ -172,17 +177,20 @@ public:
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
+		std::dynamic_pointer_cast<CC3D::OpenGLShader>(m_FlatColorShader)->Bind();
+		std::dynamic_pointer_cast<CC3D::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+
 		for (int y = 0; y < 20; y++)
 		{
 			for (int x = 0; x < 20; x++)
 			{
 				glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
 				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
-				CC3D::Renderer::Submit(m_BlueShader, m_SquareVA, transform);
+				CC3D::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
 			}
 		}
 
-		CC3D::Renderer::Submit(m_BlueShader, m_SquareVA);
+		CC3D::Renderer::Submit(m_FlatColorShader, m_SquareVA);
 		CC3D::Renderer::Submit(m_Shader, m_VertexArray);
 
 		CC3D::Renderer::EndScene();
@@ -190,9 +198,9 @@ public:
 
 	virtual void OnImGuiRender() override
 	{
-		//ImGui::Begin("Test");
-		//ImGui::Text("Hello World");
-		//ImGui::End();
+		ImGui::Begin("Settings");
+		ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));
+		ImGui::End();
 	}
 
 	void OnEvent(CC3D::Event& event) override
@@ -209,7 +217,7 @@ private:
 	std::shared_ptr<CC3D::Shader> m_Shader;
 	std::shared_ptr<CC3D::VertexArray> m_VertexArray;
 
-	std::shared_ptr<CC3D::Shader> m_BlueShader;
+	std::shared_ptr<CC3D::Shader> m_FlatColorShader;
 	std::shared_ptr<CC3D::VertexArray> m_SquareVA;
 
 	CC3D::OrthographicCamera m_Camera;
@@ -218,6 +226,8 @@ private:
 
 	float m_CameraRotation = 0.0f;
 	float m_CameraRotationSpeed = 180.0f;
+
+	glm::vec3 m_SquareColor = glm::vec3(0.2f, 0.3f, 0.8f);
 };
 
 class Sandbox : public CC3D::Application
