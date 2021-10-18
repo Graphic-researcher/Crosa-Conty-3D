@@ -145,6 +145,8 @@ public:
 		
 		m_FlatColorShader.reset(CC3D::Shader::Create(blueShaderVertexSrc, blueShaderFragmentSrc));
 
+		std::dynamic_pointer_cast<CC3D::OpenGLShader>(m_FlatColorShader)->Bind();
+		std::dynamic_pointer_cast<CC3D::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
 	}
 
 	void OnUpdate(CC3D::Timestep ts) override
@@ -177,8 +179,7 @@ public:
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
-		std::dynamic_pointer_cast<CC3D::OpenGLShader>(m_FlatColorShader)->Bind();
-		std::dynamic_pointer_cast<CC3D::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+
 
 		for (int y = 0; y < 20; y++)
 		{
@@ -186,6 +187,19 @@ public:
 			{
 				glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
 				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
+				if ((x + y) % 2 == 0)
+				{
+					m_SquareColor = glm::vec3(0.8f, 0.3f, 0.3f);
+					std::dynamic_pointer_cast<CC3D::OpenGLShader>(m_FlatColorShader)->Bind();
+					std::dynamic_pointer_cast<CC3D::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+				}
+				else
+				{
+					m_SquareColor = glm::vec3(0.2f, 0.3f, 0.8f);
+					std::dynamic_pointer_cast<CC3D::OpenGLShader>(m_FlatColorShader)->Bind();
+					std::dynamic_pointer_cast<CC3D::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+				}
+					
 				CC3D::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
 			}
 		}
