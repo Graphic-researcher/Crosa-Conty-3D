@@ -14,6 +14,8 @@
 #include "CC3D/Renderer/Buffer.h"
 #include "CC3D/Renderer/VertexArray.h"
 
+#include "Renderer/OrthographicCamera.h"
+
 namespace CC3D {
 
 	class CC3D_API Application
@@ -50,6 +52,8 @@ namespace CC3D {
 
 		std::shared_ptr<Shader> m_BlueShader;
 		std::shared_ptr<VertexArray> m_SquareVA;
+
+		OrthographicCamera m_Camera;
 	private:
 		static Application* s_Instance;
 	};

@@ -2,5 +2,5 @@
 #include "RendererAPI.h"
 
 namespace CC3D {
-	RendererAPI::API RendererAPI::s_API = RendererAPI::API::None;
+	RendererAPI::API RendererAPI::s_API = RendererAPI::API::OpenGL;
 }
