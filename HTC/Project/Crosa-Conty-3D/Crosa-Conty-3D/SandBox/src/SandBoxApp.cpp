@@ -132,7 +132,7 @@ public:
 		///Log the delta time
 		CC3D_TRACE("Delta time:{0}s ({1}ms)",ts.GetSeconds(), ts.GetMilliseconds());
 
-		///translation
+		///Camera translation
 		if (CC3D::Input::IsKeyPressed(CC3D_KEY_LEFT))
 		{
 			m_CameraPosition.x -= m_CameraMoveSpeed * ts;
@@ -151,7 +151,7 @@ public:
 		}
 
 
-		///roation
+		///Camera roation
 		if (CC3D::Input::IsKeyPressed(CC3D_KEY_A))
 			m_CameraRotation += m_CameraRotationSpeed * ts;
 		if (CC3D::Input::IsKeyPressed(CC3D_KEY_D))
