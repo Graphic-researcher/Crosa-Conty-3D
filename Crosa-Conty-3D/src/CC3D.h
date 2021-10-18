@@ -5,6 +5,16 @@
 #include "CC3D/Application.h"
 #include "CC3D/Layer.h"
 
+// -------Renderer-------------
+#include "CC3D/Renderer/Renderer.h"
+#include "CC3D/Renderer/RenderCommand.h"
+
+#include "CC3D/Renderer/Buffer.h"
+#include "CC3D/Renderer/Shader.h"
+#include "CC3D/Renderer/VertexArray.h"
+
+#include "CC3D/Renderer/OrthographicCamera.h"
+// ----------------------------
 
 // -------Log System-------------
 #include "CC3D/Log.h"

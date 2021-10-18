@@ -16,9 +16,11 @@
 
 #include "Renderer/OrthographicCamera.h"
 
+#include "GLFW/glfw3.h"
+
 namespace CC3D {
 
-	class CC3D_API Application
+	class Application
 	{
 	public:
 		Application();
@@ -47,13 +49,8 @@ namespace CC3D {
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexArray> m_VertexArray;
+		float m_LastFrameTime = 0.0f;
 
-		std::shared_ptr<Shader> m_BlueShader;
-		std::shared_ptr<VertexArray> m_SquareVA;
-
-		OrthographicCamera m_Camera;
 	private:
 		static Application* s_Instance;
 	};

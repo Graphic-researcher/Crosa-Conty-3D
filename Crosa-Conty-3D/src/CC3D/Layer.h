@@ -2,6 +2,7 @@
 
 #include "CC3D/Core.h"
 #include "CC3D/Events/Event.h"
+#include "Core/Timestep.h"
 
 namespace CC3D {
 
@@ -13,7 +14,7 @@ namespace CC3D {
 
 		virtual void OnAttach(){}
 		virtual void OnDetach(){}
-		virtual void OnUpdate(){}
+		virtual void OnUpdate(Timestep ts) {}
 		virtual void OnEvent(Event& event){}
 
 		virtual void OnImGuiRender(){}
