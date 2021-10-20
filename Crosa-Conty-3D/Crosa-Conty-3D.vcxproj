@@ -30,6 +30,7 @@
     <ClInclude Include="src\CC3D\Renderer\Renderer.h" />
     <ClInclude Include="src\CC3D\Renderer\Shader.h" />
     <ClInclude Include="src\CC3D\Renderer\Buffer.h" />
+    <ClInclude Include="src\CC3D\Renderer\Texture.h" />
     <ClInclude Include="src\CC3D\Renderer\VertexArray.h" />
     <ClInclude Include="src\CC3D\Window.h" />
     <ClInclude Include="src\ccpch.h" />
@@ -41,6 +42,7 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
@@ -164,6 +166,7 @@
     <ClInclude Include="vendor\glm\glm\gtx\verbose_operator.hpp" />
     <ClInclude Include="vendor\glm\glm\gtx\wrap.hpp" />
     <ClInclude Include="vendor\glm\glm\virtrev\xstream.hpp" />
+    <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CC3D\Imgui\ImGuiBuild.cpp" />
@@ -178,6 +181,7 @@
     <ClCompile Include="src\CC3D\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\CC3D\Renderer\Renderer.cpp" />
     <ClCompile Include="src\CC3D\Renderer\Shader.cpp" />
+    <ClCompile Include="src\CC3D\Renderer\Texture.cpp" />
     <ClCompile Include="src\CC3D\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\ccpch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -187,10 +191,12 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="vendor\GLAD\src\glad.cpp" />
+    <ClCompile Include="vendor\stb_image\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\Imgui\Imgui.vcxproj">
@@ -351,7 +357,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>CC3D_ENABLE_ASSERTS;_CRT_SECURE_NO_WARNINGS;CC3D_PLATFORM_WINDOWS;CC3D_BUILD_DLL;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\spdlog\include;$(SolutionDir)Crosa-Conty-3D\src;$(SolutionDir)Crosa-Conty-3D\vendor\GLFW\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\src;$(SolutionDir)Crosa-Conty-3D\vendor\Imgui;$(SolutionDir)Crosa-Conty-3D\vendor\glm</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\spdlog\include;$(SolutionDir)Crosa-Conty-3D\src;$(SolutionDir)Crosa-Conty-3D\vendor\GLFW\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\src;$(SolutionDir)Crosa-Conty-3D\vendor\Imgui;$(SolutionDir)Crosa-Conty-3D\vendor\glm;$(SolutionDir)Crosa-Conty-3D\vendor\stb_image</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>ccpch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
