@@ -1,5 +1,5 @@
 #pragma once
-
+#include<memory>
 #ifdef  CC3D_PLATFORM_WINDOWS
 	#if CC3D_DYNAMIC_LINK
 		#ifdef CC3D_BUILD_DLL
@@ -41,3 +41,13 @@
 ///std::bind(&XXX,this,std::placeholders::_1)
 ///https://stackoverflow.com/questions/61649318/how-could-c-stdbind-return-value-assigned-to-stdfunction
 #define CC3D_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
+
+namespace CC3D {
+
+	template<typename T>
+	using Scope = std::unique_ptr<T>;
+
+	template<typename T>
+	using Ref = std::shared_ptr<T>;
+
+}
