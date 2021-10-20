@@ -361,4 +361,7 @@
     <Text Include="vendor\imgui\LICENSE.txt" />
     <Text Include="vendor\glm\CMakeLists.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
 </Project>
