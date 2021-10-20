@@ -22,6 +22,7 @@ namespace CC3D {
 	/// shader_ptr:https://en.cppreference.com/w/cpp/memory/shared_ptr
 	/// </summary>
 	private:
+		uint32_t m_VertexBufferIndex = 0;
 		uint32_t m_RendererID;
 		std::vector<std::shared_ptr<VertexBuffer>> m_VertexBuffers;
 		std::shared_ptr<IndexBuffer> m_IndexBuffer;
