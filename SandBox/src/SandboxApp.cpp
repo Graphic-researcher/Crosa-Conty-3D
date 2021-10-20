@@ -24,16 +24,33 @@ public:
 			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
 		};
 
+		float vertices2[3 * 7] = {
+			-0.1f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
+			 0.5f, -0.7f, 0.0f, 0.2f, 0.3f, 0.8f, 1.0f,
+			 0.0f,  0.9f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
+		};
+
+
 		CC3D::Ref<CC3D::VertexBuffer> vertexBuffer;
 		vertexBuffer.reset(CC3D::VertexBuffer::Create(vertices, sizeof(vertices)));
+
+		CC3D::Ref<CC3D::VertexBuffer> vertexBuffer2;
+		vertexBuffer2.reset(CC3D::VertexBuffer::Create(vertices2, sizeof(vertices2)));
 
 		CC3D::BufferLayout layout = {
 			{CC3D::ShaderDataType::Float3, "a_Position"},
 			{CC3D::ShaderDataType::Float4, "a_Color"}
 		};
 
+		CC3D::BufferLayout layout2 = {
+			{CC3D::ShaderDataType::Float3, "a_Position"},
+			{CC3D::ShaderDataType::Float4, "a_Color"}
+		};
+
 		vertexBuffer->SetLayout(layout);
 		m_VertexArray->AddVertexBuffer(vertexBuffer);
+		vertexBuffer2->SetLayout(layout);
+		m_VertexArray->AddVertexBuffer(vertexBuffer2);
 
 
 		/// <summary>
@@ -79,6 +96,8 @@ public:
 			
 			layout(location = 0) in vec3 a_Position;
 			layout(location = 1) in vec4 a_Color;
+			layout(location = 2) in vec3 b_Position;
+			layout(location = 3) in vec4 b_Color;
 
 			uniform mat4 u_ViewProjection;	
 			uniform mat4 u_Transform;
@@ -88,9 +107,9 @@ public:
 
 			void main()
 			{
-				v_Position = a_Position;
-				v_Color = a_Color;
-				gl_Position =  u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
+				v_Position = a_Position + b_Position;
+				v_Color = a_Color + b_Color/5;
+				gl_Position =  u_ViewProjection * u_Transform * vec4(a_Position + b_Position, 1.0);	
 			}
 		)";
 
@@ -249,9 +268,7 @@ public:
 		CC3D::Renderer::Submit(m_FlatColorShader, m_SquareVA);
 		CC3D::Renderer::Submit(m_Shader, m_VertexArray);
 
-		// add texture
-		m_Texture->Bind();
-		CC3D::Renderer::Submit(m_TextureShader, m_SquareVA);
+		
 
 		CC3D::Renderer::EndScene();
 	}
