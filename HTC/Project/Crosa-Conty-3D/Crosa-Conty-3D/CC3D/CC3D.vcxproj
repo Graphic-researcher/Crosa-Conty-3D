@@ -25,6 +25,7 @@
     <ClInclude Include="src\CC3D\Renderer\Renderer.h" />
     <ClInclude Include="src\CC3D\Renderer\RendererAPI.h" />
     <ClInclude Include="src\CC3D\Renderer\Shader.h" />
+    <ClInclude Include="src\CC3D\Renderer\Texture.h" />
     <ClInclude Include="src\CC3D\Renderer\VertexArray.h" />
     <ClInclude Include="src\CC3D\Window.h" />
     <ClInclude Include="src\cc3d_pch.h" />
@@ -41,6 +42,7 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
@@ -95,6 +97,7 @@
     <ClInclude Include="vendor\spdlog\spdlog.h" />
     <ClInclude Include="vendor\spdlog\tweakme.h" />
     <ClInclude Include="vendor\spdlog\version.h" />
+    <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CC3D\ImGui\ImGuiBuild.cpp" />
@@ -107,6 +110,7 @@
     <ClCompile Include="src\CC3D\Renderer\Renderer.cpp" />
     <ClCompile Include="src\CC3D\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\CC3D\Renderer\Shader.cpp" />
+    <ClCompile Include="src\CC3D\Renderer\Texture.cpp" />
     <ClCompile Include="src\CC3D\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\cc3d_pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -118,6 +122,7 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
@@ -129,13 +134,11 @@
     <ClCompile Include="vendor\imgui\imgui_draw.cpp" />
     <ClCompile Include="vendor\imgui\imgui_tables.cpp" />
     <ClCompile Include="vendor\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="vendor\stb_image\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="vendor\glm\CMakeLists.txt" />
     <Text Include="vendor\imgui\LICENSE.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

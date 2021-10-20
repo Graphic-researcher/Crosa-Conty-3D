@@ -14,7 +14,7 @@
 //-------Render--------------
 #include "CC3D/Renderer/Renderer.h"
 #include "CC3D/Renderer/RenderCommand.h"
-
+#include "CC3D/Renderer/Texture.h"
 #include "CC3D/Renderer/Buffer.h"
 #include "CC3D/Renderer/Shader.h"
 #include "CC3D/Renderer/VertexArray.h"
