@@ -19,7 +19,7 @@ namespace CC3D {
 		virtual const Ref<IndexBuffer>& GetIndexBuffer() const { return m_IndexBuffer; }
 	private:
 		uint32_t m_RendererID;
-		uint32_t m_VertexBufferIndexOffset = 0;
+		uint32_t m_VertexBufferIndex = 0;
 		// VertexBuffers mains mutiBuffers for vertices------
 		std::vector<Ref<VertexBuffer>> m_VertexBuffers;
 		// --------------------------------------------------
