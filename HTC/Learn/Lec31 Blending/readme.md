@@ -16,11 +16,15 @@ prerequisite : [here](https://www.youtube.com/watch?v=o1_yJ60UIxs&list=PLlrATfBN
 
 ### RGBA channel error
 
+code version : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/3a754a490deb9a0277fd846d91c8511aa77e137a/HTC/Project/Crosa-Conty-3D/Crosa-Conty-3D)
+
 ![image-20211021134601952](https://i.loli.net/2021/10/21/9HdZlahJF8M3rSs.png)
 
 ### Blending error
 
+code version :
 
+![image-20211021135118120](https://i.loli.net/2021/10/21/FvGPBk8WJlm3YZX.png)
 
 ### Blending Support
 
