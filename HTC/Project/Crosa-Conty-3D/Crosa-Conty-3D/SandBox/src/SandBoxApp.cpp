@@ -202,6 +202,7 @@ public:
 		m_TextureShader.reset(CC3D::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
 
 		m_Texture = CC3D::Texture2D::Create("assets/textures/Checkerboard.png");
+		m_ChernoLogoTexture = CC3D::Texture2D::Create("assets/textures/ChernoLogo.png");
 
 		std::dynamic_pointer_cast<CC3D::OpenGLShader>(m_TextureShader)->Bind();
 		std::dynamic_pointer_cast<CC3D::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
@@ -287,7 +288,8 @@ public:
 		///draw texture
 		m_Texture->Bind();
 		CC3D::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
-
+		m_ChernoLogoTexture->Bind();
+		CC3D::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 		//CC3D::Renderer::Submit(m_Shader, m_VertexArray);
 
 		CC3D::Renderer::EndScene();
@@ -310,7 +312,7 @@ private:
 	CC3D::Ref<CC3D::VertexArray> m_VertexArray;
 	CC3D::Ref<CC3D::Shader> m_FlatColorShader, m_TextureShader,m_UVShader;
 	CC3D::Ref<CC3D::VertexArray> m_SquareVA;
-	CC3D::Ref<CC3D::Texture2D> m_Texture;
+	CC3D::Ref<CC3D::Texture2D> m_Texture,m_ChernoLogoTexture;
 	CC3D::OrthographicCamera m_Camera;
 	///Render Data
 	glm::vec3 m_CameraPosition;
