@@ -22,13 +22,13 @@ code version : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/
 
 ### Blending error
 
-code version :
+code version : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/39896f79294d52b1069b389660d9a24451fab0c9/HTC/Project/Crosa-Conty-3D/Crosa-Conty-3D)
 
 ![image-20211021135118120](https://i.loli.net/2021/10/21/FvGPBk8WJlm3YZX.png)
 
 ### Blending Support
 
-
+![image-20211021140049078](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20211021140049078.png)
 
 
 

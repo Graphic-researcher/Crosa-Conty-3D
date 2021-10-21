@@ -3,7 +3,7 @@
 #include "CC3D/Log.h"
 
 #include "Input.h"
-
+#include "CC3D/Renderer/Renderer.h"
 ///temporarily
 #include<GLFW/glfw3.h>
 
@@ -22,6 +22,7 @@ namespace CC3D {
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 		//m_Window->SetVSync(false);///glfwinterval(0)
+		Renderer::Init();
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
 	}

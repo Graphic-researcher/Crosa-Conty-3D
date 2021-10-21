@@ -4,6 +4,11 @@
 #include <glad/glad.h>
 
 namespace CC3D {
+	void OpenGLRendererAPI::Init()
+	{
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	}
 
 	void OpenGLRendererAPI::SetClearColor(const glm::vec4& color)
 	{
@@ -19,5 +24,4 @@ namespace CC3D {
 	{
 		glDrawElements(GL_TRIANGLES, vertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
 	}
-
 }
