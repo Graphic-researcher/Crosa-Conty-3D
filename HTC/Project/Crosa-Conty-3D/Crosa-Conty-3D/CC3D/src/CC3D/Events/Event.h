@@ -60,11 +60,7 @@ namespace CC3D {
 
 	class EventDispatcher
 	{
-		template<typename T>
-		using EventFn = std::function<bool(T&)>;
 
-		///see more details about std::function:
-		///https://en.cppreference.com/w/cpp/utility/functional/function
 
 	public:
 		EventDispatcher(Event& event)
@@ -72,14 +68,14 @@ namespace CC3D {
 		{
 		}
 
-		///T:any event (such as window resizing)
-		template<typename T>
-		bool Dispatch(EventFn<T> func)
+		// F will be deduced by the compiler
+		template<typename T, typename F>
+		bool Dispatch(const F& func)
 		{
 			if (m_Event.GetEventType() == T::GetStaticType())
 			{
 				///call that func -> function with that event
-				m_Event.Handled = func(*(T*)&m_Event);
+				m_Event.Handled = func(static_cast<T&>(m_Event));
 				return true;
 			}
 			return false;

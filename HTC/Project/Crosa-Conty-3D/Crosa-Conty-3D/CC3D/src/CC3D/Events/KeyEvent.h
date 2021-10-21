@@ -11,8 +11,8 @@ namespace CC3D {
 
 
 		///The | (bitwise OR) in C or C++ takes two numbers as operands and does OR on every bit of two numbers. \
-		The result of OR is 1 if any of the two bits is 1. \
-		refer: https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/
+		///The result of OR is 1 if any of the two bits is 1. \
+		///refer: https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/
 		EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
 	protected:
 		KeyEvent(int keycode)
@@ -38,9 +38,9 @@ namespace CC3D {
 
 		EVENT_CLASS_TYPE(KeyPressed)
 		///same as follow:
-		///static EventType GetStaticType() { return EventType::KeyPressed; }\
-								virtual EventType GetEventType() const override { return GetStaticType(); }\
-								virtual const char* GetName() const override { return "KeyPressed"; }
+		///static EventType GetStaticType() { return EventType::KeyPressed; }
+		///						virtual EventType GetEventType() const override { return GetStaticType(); }
+		///						virtual const char* GetName() const override { return "KeyPressed"; }
 	private:
 		int m_RepeatCount;///allow us to press a key and it can operate repeatly until we release it
 	};
