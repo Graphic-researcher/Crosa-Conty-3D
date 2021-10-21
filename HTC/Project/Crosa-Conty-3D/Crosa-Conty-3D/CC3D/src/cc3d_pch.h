@@ -11,7 +11,7 @@
 #include <vector>
 #include <unordered_map>
 #include <unordered_set>
-
+#include <array>
 
 #include "CC3D/Log.h"
 

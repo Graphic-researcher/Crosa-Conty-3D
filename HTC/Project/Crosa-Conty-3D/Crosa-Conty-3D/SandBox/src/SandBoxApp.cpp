@@ -95,7 +95,7 @@ public:
 			}
 		)";
 
-		m_Shader.reset(CC3D::Shader::Create(vertexSrc, fragmentSrc));
+		m_Shader = CC3D::Shader::Create("VertexPosColor", vertexSrc, fragmentSrc);
 
 		std::string flatColorShaderVertexSrc = R"(
 			#version 330 core
@@ -127,11 +127,9 @@ public:
 				color = vec4(u_Color, 1.0);
 			}
 		)";
-		m_FlatColorShader.reset(CC3D::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
-
-		/// <summary>
+		m_FlatColorShader = CC3D::Shader::Create("FlatColor", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);
+		m_ShaderLibrary.Add(m_FlatColorShader);///add shader to shaderlib
 		/// Draw Plate UV
-		/// </summary>
 		std::string UVShaderVertexSrc = R"(
 			#version 330 core
 			
@@ -164,15 +162,15 @@ public:
 			}
 		)";
 
-		m_UVShader.reset(CC3D::Shader::Create(UVShaderVertexSrc, UVShaderFragmentSrc));
-
-		m_TextureShader.reset(CC3D::Shader::Create("assets/shaders/Texture.glsl"));
+		m_UVShader = CC3D::Shader::Create("UVColor",UVShaderVertexSrc, UVShaderFragmentSrc);
+		m_ShaderLibrary.Add(m_UVShader);///add shader to shaderlib
+		auto textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
 		m_Texture = CC3D::Texture2D::Create("assets/textures/Checkerboard.png");
 		m_ChernoLogoTexture = CC3D::Texture2D::Create("assets/textures/ChernoLogo.png");
 
-		std::dynamic_pointer_cast<CC3D::OpenGLShader>(m_TextureShader)->Bind();
-		std::dynamic_pointer_cast<CC3D::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+		std::dynamic_pointer_cast<CC3D::OpenGLShader>(textureShader)->Bind();
+		std::dynamic_pointer_cast<CC3D::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
 
 	}
 
@@ -230,7 +228,8 @@ public:
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
-
+		auto TestShader = m_ShaderLibrary.Get("UVColor");
+		
 		std::dynamic_pointer_cast<CC3D::OpenGLShader>(m_FlatColorShader)->Bind();
 		std::dynamic_pointer_cast<CC3D::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
 
@@ -250,13 +249,14 @@ public:
 		///draw uv
 		glm::vec3 pos( 1.5f,0.0f, 0.0f);
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos)* glm::scale(glm::mat4(1.0f), glm::vec3(1.5f));
-		CC3D::Renderer::Submit(m_UVShader, m_SquareVA,transform);
-
+		///CC3D::Renderer::Submit(m_UVShader, m_SquareVA, transform);//use shader to sumbit
+		CC3D::Renderer::Submit(TestShader, m_SquareVA,transform);//sumbit by shaderlib
+		auto textureShader = m_ShaderLibrary.Get("Texture");
 		///draw texture
 		m_Texture->Bind();
-		CC3D::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		CC3D::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 		m_ChernoLogoTexture->Bind();
-		CC3D::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		CC3D::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 		//CC3D::Renderer::Submit(m_Shader, m_VertexArray);
 
 		CC3D::Renderer::EndScene();
@@ -277,10 +277,12 @@ private:
 	///Render	
 	CC3D::Ref<CC3D::Shader> m_Shader;
 	CC3D::Ref<CC3D::VertexArray> m_VertexArray;
-	CC3D::Ref<CC3D::Shader> m_FlatColorShader, m_TextureShader,m_UVShader;
+	CC3D::Ref<CC3D::Shader> m_FlatColorShader,m_UVShader;
 	CC3D::Ref<CC3D::VertexArray> m_SquareVA;
 	CC3D::Ref<CC3D::Texture2D> m_Texture,m_ChernoLogoTexture;
 	CC3D::OrthographicCamera m_Camera;
+	CC3D::ShaderLibrary m_ShaderLibrary;
+
 	///Render Data
 	glm::vec3 m_CameraPosition;
 	float m_CameraMoveSpeed = 5.0f;
