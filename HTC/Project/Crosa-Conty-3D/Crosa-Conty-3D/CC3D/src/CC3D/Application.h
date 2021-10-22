@@ -31,10 +31,14 @@ namespace CC3D {
 
 	private:
 		bool m_Running = true;
+		bool m_Minimized = false;
+
 		///Core
 		float m_LastFrameTime = 0.0f;///for time step
 		///Window
 		bool OnWindowClose(WindowCloseEvent& e);
+		bool OnWindowResize(WindowResizeEvent& e);
+
 		std::unique_ptr<Window> m_Window;
 		///layer
 		LayerStack m_LayerStack;
