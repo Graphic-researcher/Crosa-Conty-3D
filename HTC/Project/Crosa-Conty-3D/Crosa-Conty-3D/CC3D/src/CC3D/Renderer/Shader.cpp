@@ -40,21 +40,21 @@ namespace CC3D {
 		Add(name, shader);
 	}
 
-	CC3D::Ref<CC3D::Shader> ShaderLibrary::Load(const std::string& filepath)
+	Ref<Shader> ShaderLibrary::Load(const std::string& filepath)
 	{
 		auto shader = Shader::Create(filepath);
 		Add(shader);
 		return shader;
 	}
 
-	CC3D::Ref<CC3D::Shader> ShaderLibrary::Load(const std::string& name, const std::string& filepath)
+	Ref<Shader> ShaderLibrary::Load(const std::string& name, const std::string& filepath)
 	{
 		auto shader = Shader::Create(filepath);
 		Add(name, shader);
 		return shader;
 	}
 
-	CC3D::Ref<CC3D::Shader> ShaderLibrary::Get(const std::string& name)
+	Ref<Shader> ShaderLibrary::Get(const std::string& name)
 	{
 		CC3D_CORE_ASSERT(Exists(name), "Shader not found!");
 		return m_Shaders[name];

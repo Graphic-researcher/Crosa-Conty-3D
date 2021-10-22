@@ -16,7 +16,10 @@ namespace CC3D {
 	LayerStack::~LayerStack()
 	{
 		for (Layer* layer : m_Layers)
+		{
+			layer->OnDetach();
 			delete layer;
+		}
 	}
 
 	///Push the layer to right place (before overlayer)
