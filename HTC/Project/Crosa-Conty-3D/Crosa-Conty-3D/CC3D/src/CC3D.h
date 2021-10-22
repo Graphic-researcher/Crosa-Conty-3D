@@ -18,8 +18,8 @@
 #include "CC3D/Renderer/Buffer.h"
 #include "CC3D/Renderer/Shader.h"
 #include "CC3D/Renderer/VertexArray.h"
-
 #include "CC3D/Renderer/OrthographicCamera.h"
+#include "CC3D/OrthographicCameraController.h"
 //--------------------------------
 
 //-------Entry Point--------------

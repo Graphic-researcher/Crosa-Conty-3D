@@ -18,6 +18,7 @@
     <ClInclude Include="src\CC3D\Layer.h" />
     <ClInclude Include="src\CC3D\LayerStack.h" />
     <ClInclude Include="src\CC3D\MouseButtonCodes.h" />
+    <ClInclude Include="src\CC3D\OrthographicCameraController.h" />
     <ClInclude Include="src\CC3D\Renderer\Buffer.h" />
     <ClInclude Include="src\CC3D\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\CC3D\Renderer\OrthographicCamera.h" />
@@ -104,6 +105,7 @@
     <ClCompile Include="src\CC3D\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\CC3D\Layer.cpp" />
     <ClCompile Include="src\CC3D\LayerStack.cpp" />
+    <ClCompile Include="src\CC3D\OrthographicCameraController.cpp" />
     <ClCompile Include="src\CC3D\Renderer\Buffer.cpp" />
     <ClCompile Include="src\CC3D\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\CC3D\Renderer\RenderCommand.cpp" />

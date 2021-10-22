@@ -13,7 +13,7 @@ class ExampleLayer : public CC3D::Layer
 {
 public:
 	ExampleLayer()
-		: Layer("Example"),m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f),m_SquareTransform(0.0f)
+		: Layer("Example"), m_CameraController(1280.0f / 720.0f)
 	{
 		m_VertexArray.reset(CC3D::VertexArray::Create());
 
@@ -179,33 +179,10 @@ public:
 	{
 		///Log the delta time
 		CC3D_TRACE("Delta time:{0}s ({1}ms)",ts.GetSeconds(), ts.GetMilliseconds());
-
-		///Camera translation
-		if (CC3D::Input::IsKeyPressed(CC3D_KEY_LEFT))
-		{
-			m_CameraPosition.x -= m_CameraMoveSpeed * ts;
-		}
-		else if (CC3D::Input::IsKeyPressed(CC3D_KEY_RIGHT))
-		{
-			m_CameraPosition.x += m_CameraMoveSpeed * ts;
-		}
-		if (CC3D::Input::IsKeyPressed(CC3D_KEY_DOWN))
-		{
-			m_CameraPosition.y -= m_CameraMoveSpeed * ts;
-		}
-		else if (CC3D::Input::IsKeyPressed(CC3D_KEY_UP))
-		{
-			m_CameraPosition.y += m_CameraMoveSpeed * ts;
-		}
-
-
-		///Camera roation
-		if (CC3D::Input::IsKeyPressed(CC3D_KEY_A))
-			m_CameraRotation += m_CameraRotationSpeed * ts;
-		if (CC3D::Input::IsKeyPressed(CC3D_KEY_D))
-			m_CameraRotation -= m_CameraRotationSpeed * ts;
-
 		
+		// Update
+		m_CameraController.OnUpdate(ts);
+
 		///model transform
 		if (CC3D::Input::IsKeyPressed(CC3D_KEY_I))
 		{
@@ -221,10 +198,10 @@ public:
 		CC3D::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		CC3D::RenderCommand::Clear();
 
-		m_Camera.SetPosition(m_CameraPosition);
-		m_Camera.SetRotation(m_CameraRotation);
 
-		CC3D::Renderer::BeginScene(m_Camera);
+
+		CC3D::Renderer::BeginScene(m_CameraController.GetCamera());
+
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
@@ -269,27 +246,22 @@ public:
 		ImGui::End();
 	}
 
-	void OnEvent(CC3D::Event& event) override
+	void OnEvent(CC3D::Event& e) override
 	{
+		m_CameraController.OnEvent(e);
 	}
 
 private:
 	///Render	
+	CC3D::ShaderLibrary m_ShaderLibrary;
 	CC3D::Ref<CC3D::Shader> m_Shader;
-	CC3D::Ref<CC3D::VertexArray> m_VertexArray;
 	CC3D::Ref<CC3D::Shader> m_FlatColorShader,m_UVShader;
+	CC3D::Ref<CC3D::VertexArray> m_VertexArray;
 	CC3D::Ref<CC3D::VertexArray> m_SquareVA;
 	CC3D::Ref<CC3D::Texture2D> m_Texture,m_ChernoLogoTexture;
-	CC3D::OrthographicCamera m_Camera;
-	CC3D::ShaderLibrary m_ShaderLibrary;
+	CC3D::OrthographicCameraController m_CameraController;
 
 	///Render Data
-	glm::vec3 m_CameraPosition;
-	float m_CameraMoveSpeed = 5.0f;
-
-	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 180.0f;
-
 	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
 
 
