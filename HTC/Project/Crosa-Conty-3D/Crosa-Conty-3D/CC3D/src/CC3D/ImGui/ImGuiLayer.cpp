@@ -5,7 +5,7 @@
 #include "imgui/examples/imgui_impl_glfw.h"
 #include "imgui/examples/imgui_impl_opengl3.h"
 
-#include "CC3D/Application.h"
+#include "CC3D/Core/Application.h"
 
 // TEMPORARY
 #include "glad/glad.h"

@@ -1,6 +1,6 @@
 #include "cc3d_pch.h"
 #include "Application.h"
-#include "CC3D/Log.h"
+#include "CC3D/Core/Log.h"
 
 #include "Input.h"
 #include "CC3D/Renderer/Renderer.h"

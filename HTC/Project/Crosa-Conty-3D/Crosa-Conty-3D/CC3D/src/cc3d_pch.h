@@ -13,7 +13,7 @@
 #include <unordered_set>
 #include <array>
 
-#include "CC3D/Log.h"
+#include "CC3D/Core/Log.h"
 
 #ifdef  CC3D_PLATFORM_WINDOWS
 	#include <Windows.h>

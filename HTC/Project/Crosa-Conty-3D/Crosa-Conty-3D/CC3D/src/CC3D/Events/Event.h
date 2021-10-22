@@ -1,6 +1,6 @@
 #pragma once
 #include "cc3d_pch.h"
-#include "CC3D/Core.h"
+#include "CC3D/Core/Core.h"
 
 
 

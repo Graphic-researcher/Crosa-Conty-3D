@@ -15,19 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\CC3D\Core.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CC3D\Application.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="src\CC3D.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CC3D\EntryPoint.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CC3D\Log.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="src\CC3D\Events\ApplicationEvent.h">
@@ -102,16 +90,7 @@
     <ClInclude Include="vendor\KHR\khrplatform.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\CC3D\Window.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CC3D\Layer.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CC3D\LayerStack.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="vendor\imgui\imgui.h">
@@ -135,16 +114,7 @@
     <ClInclude Include="vendor\imgui\imstb_truetype.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\CC3D\Input.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CC3D\KeyCodes.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CC3D\MouseButtonCodes.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\common.hpp">
@@ -276,27 +246,45 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\CC3D\OrthographicCameraController.h">
+    <ClInclude Include="src\CC3D\Core\Application.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CC3D\Core\EntryPoint.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CC3D\Core\Core.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CC3D\Core\Input.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CC3D\Core\KeyCodes.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CC3D\Core\Layer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CC3D\Core\LayerStack.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CC3D\Core\Log.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CC3D\Core\MouseButtonCodes.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CC3D\Core\Window.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CC3D\Renderer\OrthographicCameraController.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\CC3D\Application.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CC3D\Log.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="src\cc3d_pch.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CC3D\Layer.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CC3D\LayerStack.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="vendor\imgui\imgui.cpp">
@@ -377,7 +365,19 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\CC3D\OrthographicCameraController.cpp">
+    <ClCompile Include="src\CC3D\Core\Application.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CC3D\Core\Layer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CC3D\Core\LayerStack.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CC3D\Core\Log.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CC3D\Renderer\OrthographicCameraController.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

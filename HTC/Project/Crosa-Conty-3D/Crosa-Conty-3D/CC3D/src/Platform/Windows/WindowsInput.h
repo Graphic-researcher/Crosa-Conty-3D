@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CC3D/Input.h"
+#include "CC3D/Core/Input.h"
 
 namespace CC3D {
 
