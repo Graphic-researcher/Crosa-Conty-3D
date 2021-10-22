@@ -1,6 +1,7 @@
 #pragma once
 
 #include "RenderCommand.h"
+
 #include "OrthographicCamera.h"
 #include "Shader.h"
 
@@ -8,6 +9,8 @@ namespace CC3D {
 	class Renderer
 	{
 	public:
+		static void Init();
+
 		static void BeginScene(OrthographicCamera& camera);
 		static void EndScene();
 

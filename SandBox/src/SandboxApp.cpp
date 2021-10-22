@@ -203,7 +203,8 @@ public:
 		
 		m_TextureShader.reset(CC3D::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
 
-		m_Texture = CC3D::Texture2D::Create("assets/textures/waifu.png");
+		m_Texture = CC3D::Texture2D::Create("assets/textures/waifu.png");//读取纹理时先要设置纹理
+		m_Tex = CC3D::Texture2D::Create("assets/textures/72137544_p0.png");
 
 		std::dynamic_pointer_cast<CC3D::OpenGLShader>(m_TextureShader)->Bind();
 		std::dynamic_pointer_cast<CC3D::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
@@ -264,11 +265,12 @@ public:
 			}
 		}
 
-		// change color
-		CC3D::Renderer::Submit(m_FlatColorShader, m_SquareVA);
-		CC3D::Renderer::Submit(m_Shader, m_VertexArray);
+		m_Texture->Bind();
+		CC3D::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		m_Tex->Bind();
+		CC3D::Renderer::Submit(m_TextureShader, m_SquareVA);
 
-		
+		//CC3D::Renderer::Submit(m_Shader, m_VertexArray);
 
 		CC3D::Renderer::EndScene();
 	}
@@ -298,6 +300,7 @@ private:
 	std::shared_ptr<CC3D::VertexArray> m_SquareVA;
 
 	CC3D::Ref<CC3D::Texture2D> m_Texture;
+	CC3D::Ref<CC3D::Texture2D> m_Tex;
 
 	CC3D::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
