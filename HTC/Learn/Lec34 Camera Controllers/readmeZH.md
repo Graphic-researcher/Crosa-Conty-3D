@@ -4,7 +4,7 @@
 
 代码版本 : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/507411b18be783b9902ea670c456ebe4748f75eb/HTC/Project/Crosa-Conty-3D/Crosa-Conty-3D)
 
-先修课 : [2D Renderer](https://www.youtube.com/watch?v=ULO8JhM9FsQ&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=46)
+先修课 : [2D Renderer](https://www.youtube.com/watch?v=ULO8JhM9FsQ&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=46) [Projection](https://www.youtube.com/watch?v=xZs6K7VLM7A&list=PLlrATfBNZ98foTJPJ_Ev03o2oq3-GGOS2&index=20)
 
 ## Camera 作用域
 
