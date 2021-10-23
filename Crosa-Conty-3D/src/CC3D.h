@@ -25,6 +25,7 @@
 #include "CC3D/Input.h"
 #include "CC3D/KeyCodes.h"
 #include "CC3D/MouseButtonCodes.h"
+#include "CC3D/OrthographicCameraController.h"
 // ------------------------------
 
 // -------Gui System-------------

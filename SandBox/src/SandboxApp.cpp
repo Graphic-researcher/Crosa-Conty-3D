@@ -11,7 +11,7 @@ class ExampleLayer: public CC3D::Layer
 {
 public:
 	ExampleLayer()
-		:Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f)
+		:Layer("Example"), m_CameraController(1280.0f / 720.0f)
 	{
 		m_VertexArray.reset(CC3D::VertexArray::Create());
 
@@ -181,31 +181,14 @@ public:
 
 	void OnUpdate(CC3D::Timestep ts) override
 	{
-		if (CC3D::Input::IsKeyPressed(CC3D_KEY_TAB))
-			CC3D_TRACE("Tab key is pressed(poll)!");
+		// Camera
+		m_CameraController.OnUpdate(ts);
 
-		if (CC3D::Input::IsKeyPressed(CC3D_KEY_LEFT))
-			m_CameraPosition.x -= m_CameraMoveSpeed * ts;
-		else if (CC3D::Input::IsKeyPressed(CC3D_KEY_RIGHT))
-			m_CameraPosition.x += m_CameraMoveSpeed * ts;
-
-		if (CC3D::Input::IsKeyPressed(CC3D_KEY_UP))
-			m_CameraPosition.y += m_CameraMoveSpeed * ts;
-		else if (CC3D::Input::IsKeyPressed(CC3D_KEY_DOWN))
-			m_CameraPosition.y -= m_CameraMoveSpeed * ts;
-
-		if (CC3D::Input::IsKeyPressed(CC3D_KEY_A))
-			m_CameraRotation += m_CameraRotationSpeed * ts;
-		if (CC3D::Input::IsKeyPressed(CC3D_KEY_D))
-			m_CameraRotation -= m_CameraRotationSpeed * ts;
-
+		// Render
 		CC3D::RenderCommand::SetClearColor(glm::vec4(0.1f, 0.1f, 0.1f, 1));
 		CC3D::RenderCommand::Clear();
 
-		m_Camera.SetPosition(m_CameraPosition);
-		m_Camera.SetRotation(m_CameraRotation);
-
-		CC3D::Renderer::BeginScene(m_Camera);
+		CC3D::Renderer::BeginScene(m_CameraController.GetCamera());
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
@@ -253,13 +236,7 @@ public:
 
 	void OnEvent(CC3D::Event& event) override
 	{
-		//if (event.GetEventType() == CC3D::EventType::KeyPressed)
-		//{
-		//	CC3D::KeyPressedEvent& e = (CC3D::KeyPressedEvent&)event;
-		//	if (e.GetKeyCode() == CC3D_KEY_TAB)
-		//		CC3D_TRACE("Tab key is pressed(event)!");
-		//	CC3D_TRACE("{0}", (char)e.GetKeyCode());
-		//}
+		m_CameraController.OnEvent(event);
 	}
 private:
 	CC3D::ShaderLibrary m_ShaderLibrary;
@@ -272,12 +249,7 @@ private:
 	CC3D::Ref<CC3D::Texture2D> m_Texture;
 	CC3D::Ref<CC3D::Texture2D> m_Tex;
 
-	CC3D::OrthographicCamera m_Camera;
-	glm::vec3 m_CameraPosition;
-	float m_CameraMoveSpeed = 5.0f;
-
-	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 180.0f;
+	CC3D::OrthographicCameraController m_CameraController;
 
 	glm::vec3 m_SquareColor = glm::vec3(0.2f, 0.3f, 0.8f);
 };
