@@ -24,3 +24,4 @@
 * Imgui-1.85
 * spdlog
 * glm 0.9.3.4
+* stb_image 2.27
