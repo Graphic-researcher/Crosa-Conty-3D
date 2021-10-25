@@ -28,7 +28,7 @@ namespace CC3D {
 	{
 		// rotate around z-axis
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), m_Position) *
-			glm::rotate(glm::mat4(1.0f), glm::radians(m_Rotation), glm::vec3(0, 0, 1));
+			glm::rotate(glm::mat4(1.0f), m_Rotation, glm::vec3(0, 0, 1));// glm::rotate need degree as parameter in version 0.9.3.4
 
 		// View matrix will be premultip by mvpMatrix of objects
 		m_ViewMatrix = glm::inverse(transform);
