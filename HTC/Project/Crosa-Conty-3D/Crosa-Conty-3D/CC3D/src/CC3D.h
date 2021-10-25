@@ -21,7 +21,3 @@
 #include "CC3D/Renderer/OrthographicCamera.h"
 #include "CC3D/Renderer/OrthographicCameraController.h"
 //--------------------------------
-
-//-------Entry Point--------------
-#include "CC3D/Core/EntryPoint.h"
-//--------------------------------
