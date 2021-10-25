@@ -137,18 +137,21 @@ namespace CC3D {
 
 		const char* typeToken = "#type";
 		size_t typeTokenLength = strlen(typeToken);
-		size_t pos = source.find(typeToken, 0);
-		while (pos != std::string::npos)// std::string::npos mains "until the end of the string"
+		size_t pos = source.find(typeToken, 0);// 从#type的位置开始读取字符串，即从“#type”的‘#’开始
+		while (pos != std::string::npos)// std::string::npos mains "到字符串结尾"
 		{
-			size_t eol = source.find_first_of("\r\n", pos);
+			//第一行，shader的type，vertex还是fragment
+			size_t eol = source.find_first_of("\r\n", pos);// 读取一行的长度，\r\n是Windows的换行符，eol：end of line
 			CC3D_CORE_ASSERT(eol != std::string::npos, "Syntax error");
-			size_t begin = pos + typeTokenLength + 1;
-			std::string type = source.substr(begin, eol - begin);// string::substr https://www.cplusplus.com/reference/string/string/substr/
+			size_t begin = pos + typeTokenLength + 1;// 在#type之后
+			std::string type = source.substr(begin, eol - begin);// 读取第一行的字符串，即shader的type，string::substr https://www.cplusplus.com/reference/string/string/substr/
 			CC3D_CORE_ASSERT(ShaderTypeFromString(type), "Invalid shader type specified");
 
-			size_t nextLinePos = source.find_first_not_of("\r\n", eol);
-			pos = source.find(typeToken, nextLinePos);
-			shaderSources[ShaderTypeFromString(type)] = source.substr(nextLinePos, pos - (nextLinePos == std::string::npos ? source.size() - 1 : nextLinePos));
+			//之后的字符串
+			size_t nextLinePos = source.find_first_not_of("\r\n", eol);// 从#type下一行开始，跳过“\r\n”，source.find_first_not_of https://www.cplusplus.com/reference/string/string/find_first_not_of/
+			CC3D_CORE_ASSERT(nextLinePos != std::string::npos, "Syntax error");
+			pos = source.find(typeToken, nextLinePos);// 读取下一个#type的位置，没有则返回字符串结尾
+			shaderSources[ShaderTypeFromString(type)] = (pos == std::string::npos) ? source.substr(nextLinePos) : source.substr(nextLinePos, pos - nextLinePos);
 		}
 
 		return shaderSources;
