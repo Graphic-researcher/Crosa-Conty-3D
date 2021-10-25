@@ -1,16 +1,16 @@
 # Lec36 2D Rendering Preparation
 
-tutorial : [here](https://www.youtube.com/watch?v=sEiZZ2APlDs&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=50)
+课程 : [here](https://www.youtube.com/watch?v=sEiZZ2APlDs&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=50)
 
-code version : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/ccd045e1a847af4023d590168ec5961848d2870b/HTC)
+代码版本 : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/ccd045e1a847af4023d590168ec5961848d2870b/HTC)
 
-## Overview
+## 总览
 
- Hazel repository  merged some members' (the contributors to hazel) pull requests to fix or improve the hazel's source code , and I also get them into CC3D(our engine for learn) , you can check the changes of details through version control tools.  
+Hazel的仓库合并了其他人的pull request来修bug或者提高代码效率，我也抄了对应提交的部分，所以两者（hazel和CC3D）目前仍然是平行的，你可以查看版本历史来看更改的细节。
 
-Now we will go through the 2D rendering part in our engine.
+下面我们将开始2D渲染环节的准备。
 
-## Vertex Array Scope
+## Vertex Array 作用域
 
 ```c++
 Ref<VertexArray> VertexArray::Create()
@@ -25,7 +25,7 @@ Ref<VertexArray> VertexArray::Create()
 }
 ```
 
-## Sand2D (new) Scope
+## Sand2D (new) 作用域
 
 ```c++
 class Sandbox2D : public CC3D::Layer
@@ -116,7 +116,7 @@ void Sandbox2D::OnEvent(CC3D::Event& e)
 }
 ```
 
-## SandBoxApp Scope
+## SandBoxApp 作用域
 
 ```c++
 SandBox()
