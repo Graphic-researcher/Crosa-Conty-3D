@@ -1,8 +1,8 @@
 #include "ccpch.h"
 #include "OrthographicCameraController.h"
 
-#include "CC3D/Input.h"
-#include "CC3D/KeyCodes.h"
+#include "CC3D/Core/Input.h"
+#include "CC3D/Core/KeyCodes.h"
 
 namespace CC3D {
 

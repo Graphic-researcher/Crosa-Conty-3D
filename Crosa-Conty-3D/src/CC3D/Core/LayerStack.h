@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CC3D/Core.h"
+#include "CC3D/Core/Core.h"
 #include "Layer.h"
 
 #include <vector>

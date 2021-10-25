@@ -4,9 +4,9 @@
 #include "CC3D/Events/ApplicationEvent.h"
 
 #include "Window.h"
-#include "CC3D/LayerStack.h"
-#include "Events/Event.h"
-#include "Events/ApplicationEvent.h"
+#include "CC3D/Core/LayerStack.h"
+#include "CC3D/Events/Event.h"
+#include "CC3D/Events/ApplicationEvent.h"
 
 #include "CC3D/Imgui/ImGuiLayer.h"
 
@@ -14,7 +14,7 @@
 #include "CC3D/Renderer/Buffer.h"
 #include "CC3D/Renderer/VertexArray.h"
 
-#include "Renderer/OrthographicCamera.h"
+#include "CC3D/Renderer/OrthographicCamera.h"
 
 #include "GLFW/glfw3.h"
 

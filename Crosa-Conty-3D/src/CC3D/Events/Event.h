@@ -1,7 +1,7 @@
 	#pragma once
 
 #include "ccpch.h"
-#include "CC3D/Core.h"
+#include "CC3D/Core/Core.h"
 
 namespace CC3D {
 	enum class EventType

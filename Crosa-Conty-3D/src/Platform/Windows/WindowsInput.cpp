@@ -1,7 +1,7 @@
 #include "ccpch.h"
 #include "WindowsInput.h"
 
-#include "CC3D/Application.h"
+#include "CC3D/Core/Application.h"
 #include <GLFW/glfw3.h>
 
 namespace CC3D

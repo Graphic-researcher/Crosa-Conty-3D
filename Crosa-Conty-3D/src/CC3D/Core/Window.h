@@ -2,7 +2,7 @@
 
 #include "ccpch.h"
 
-#include "CC3D/Core.h"
+#include "CC3D/Core/Core.h"
 #include "CC3D/Events/Event.h"
 
 namespace CC3D {

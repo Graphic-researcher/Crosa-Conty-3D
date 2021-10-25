@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CC3D/Window.h"
+#include "CC3D/Core/Window.h"
 #include "CC3D/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>

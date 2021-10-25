@@ -1,8 +1,8 @@
 #pragma once
 
-#include "CC3D/Core.h"
+#include "CC3D/Core/Core.h"
 #include "CC3D/Events/Event.h"
-#include "Core/Timestep.h"
+#include "CC3D/Core/Timestep.h"
 
 namespace CC3D {
 

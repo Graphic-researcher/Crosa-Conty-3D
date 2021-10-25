@@ -2,8 +2,8 @@
 
 // For use by CC3D applications
 
-#include "CC3D/Application.h"
-#include "CC3D/Layer.h"
+#include "CC3D/Core/Application.h"
+#include "CC3D/Core/Layer.h"
 
 // -------Renderer-------------
 #include "CC3D/Renderer/Renderer.h"
@@ -18,14 +18,14 @@
 // ----------------------------
 
 // -------Log System-------------
-#include "CC3D/Log.h"
+#include "CC3D/Core/Log.h"
 // ------------------------------
 
 // -------Event System-------------
-#include "CC3D/Input.h"
-#include "CC3D/KeyCodes.h"
-#include "CC3D/MouseButtonCodes.h"
-#include "CC3D/OrthographicCameraController.h"
+#include "CC3D/Core/Input.h"
+#include "CC3D/Core/KeyCodes.h"
+#include "CC3D/Core/MouseButtonCodes.h"
+#include "CC3D/Renderer/OrthographicCameraController.h"
 // ------------------------------
 
 // -------Gui System-------------
@@ -33,6 +33,6 @@
 // ------------------------------
 
 // -------Entry Point------------
-#include "CC3D/EntryPoint.h"
+#include "CC3D/Core/EntryPoint.h"
 // ------------------------------
 
