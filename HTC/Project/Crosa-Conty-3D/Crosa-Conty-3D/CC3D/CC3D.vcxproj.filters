@@ -279,6 +279,9 @@
     <ClInclude Include="src\CC3D\Renderer\OrthographicCameraController.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="src\CC3D\Renderer\Renderer2D.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cc3d_pch.cpp">
@@ -378,6 +381,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\CC3D\Renderer\OrthographicCameraController.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CC3D\Renderer\Renderer2D.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
