@@ -38,6 +38,8 @@ namespace CC3D {
 		glTextureParameteri(m_RendererID, GL_TEXTURE_MIN_FILTER, GL_LINEAR);// GL_TEXTURE_MIN_FILTER指模型太小，图片被缩小的情况
 		glTextureParameteri(m_RendererID, GL_TEXTURE_MAG_FILTER, GL_NEAREST);// GL_TEXTURE_MAG_FILTER指模型太大，图片被放大的情况
 
+
+
 		glTextureSubImage2D(m_RendererID, 0, 0, 0, m_Width, m_Height, dataFormat, GL_UNSIGNED_BYTE, data);
 	
 		stbi_image_free(data);

@@ -22,8 +22,7 @@ private:
 	CC3D::Ref<CC3D::VertexArray> m_SquareVA;
 	CC3D::ShaderLibrary m_ShaderLibrary;
 
-	CC3D::Ref<CC3D::Texture2D> m_Texture;
-	CC3D::Ref<CC3D::Texture2D> tex1,tex2;
+	CC3D::Ref<CC3D::Texture2D> m_CheckerboardTexture;
 
 	glm::vec4 m_SquareColor = glm::vec4(0.2f, 0.3f, 0.8f, 1.0f);
 
