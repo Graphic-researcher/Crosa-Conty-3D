@@ -1,10 +1,10 @@
 # Lec39 2D Renderer Texture
 
-tutorial : [here](https://www.youtube.com/watch?v=mW8eW3pLtmk&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=53)
+课程 : [here](https://www.youtube.com/watch?v=mW8eW3pLtmk&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=53)
 
-code version : [here]()
+代码版本 : [here]()
 
-## Render Scope
+## Render 作用域
 
 ### Render2D
 
@@ -95,7 +95,7 @@ void OpenGLRendererAPI::Init()
 }
 ```
 
-## Sandbox2D Scope
+## Sandbox2D 作用域
 
 ```c++
 void Sandbox2D::OnAttach()
@@ -124,7 +124,7 @@ void Sandbox2D::OnUpdate(CC3D::Timestep ts)
 }
 ```
 
-## Depth judgment
+## 深度判断
 
 ```c++
 CC3D::Renderer2D::BeginScene(m_CameraController.GetCamera());
