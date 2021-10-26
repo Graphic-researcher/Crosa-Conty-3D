@@ -52,3 +52,4 @@ template<typename T>
 
  e8b2ad93：Made Input a true singleton
 
+60cf553b：Basic ref-counting system to terminate glfw
