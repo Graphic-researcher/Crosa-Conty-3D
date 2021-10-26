@@ -47,7 +47,7 @@ namespace CC3D{
 		squareIB = CC3D::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
 		s_Data->QuadVertexArray->SetIndexBuffer(squareIB);
 
-		s_Data->FlatColorShader = Shader::Create("assets/shaders/Texture.glsl");
+		s_Data->FlatColorShader = Shader::Create("assets/shaders/Flat.glsl");
 		
 	}
 	void Renderer2D::Shutdown()
