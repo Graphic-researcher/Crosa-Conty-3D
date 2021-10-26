@@ -33,6 +33,7 @@ namespace CC3D
 
 	void WindowsWindow::OnUpdate()
 	{
+		// 检查并调用事件，交换缓冲
 		glfwPollEvents();
 		glfwSwapBuffers(m_Window);
 	}

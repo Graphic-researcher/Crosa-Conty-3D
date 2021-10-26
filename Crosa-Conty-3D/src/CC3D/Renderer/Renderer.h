@@ -25,7 +25,7 @@ namespace CC3D {
 			glm::mat4 ViewProjectionMatrix;
 		};
 
-		static SceneData* s_SceneData;
+		static Scope<Renderer::SceneData> s_SceneData;
 	};
 
 }

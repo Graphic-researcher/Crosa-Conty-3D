@@ -13,7 +13,7 @@ public:
 	ExampleLayer()
 		:Layer("Example"), m_CameraController(1280.0f / 720.0f, true)
 	{
-		m_VertexArray.reset(CC3D::VertexArray::Create());
+		m_VertexArray = CC3D::VertexArray::Create();
 
 		/// <summary>
 		/// Create a new VertexBuffer
@@ -32,10 +32,10 @@ public:
 
 
 		CC3D::Ref<CC3D::VertexBuffer> vertexBuffer;
-		vertexBuffer.reset(CC3D::VertexBuffer::Create(vertices, sizeof(vertices)));
+		vertexBuffer = CC3D::VertexBuffer::Create(vertices, sizeof(vertices));
 
 		CC3D::Ref<CC3D::VertexBuffer> vertexBuffer2;
-		vertexBuffer2.reset(CC3D::VertexBuffer::Create(vertices2, sizeof(vertices2)));
+		vertexBuffer2 = CC3D::VertexBuffer::Create(vertices2, sizeof(vertices2));
 
 		CC3D::BufferLayout layout = {
 			{CC3D::ShaderDataType::Float3, "a_Position"},
@@ -58,10 +58,10 @@ public:
 		/// </summary>
 		unsigned int indices[3] = { 0,1,2 };
 		CC3D::Ref<CC3D::IndexBuffer> indexBuffer;
-		indexBuffer.reset(CC3D::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+		indexBuffer = CC3D::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
-		m_SquareVA.reset(CC3D::VertexArray::Create());
+		m_SquareVA = CC3D::VertexArray::Create();
 
 		float squareVertices[5 * 4] = {
 			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
@@ -75,7 +75,7 @@ public:
 		/// Create a Square VertexBuffer
 		/// </summary>
 		CC3D::Ref<CC3D::VertexBuffer> squareVB;
-		squareVB.reset(CC3D::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+		squareVB = CC3D::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
 		squareVB->SetLayout({
 			{ CC3D::ShaderDataType::Float3, "a_Position" },
 			{ CC3D::ShaderDataType::Float2, "a_TexCoord" }
@@ -88,7 +88,7 @@ public:
 		/// </summary>
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
 		CC3D::Ref<CC3D::IndexBuffer> squareIB;
-		squareIB.reset(CC3D::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+		squareIB = CC3D::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
 		m_SquareVA->SetIndexBuffer(squareIB);
 
 		std::string vertexSrc = R"(

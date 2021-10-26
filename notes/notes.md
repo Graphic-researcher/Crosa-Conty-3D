@@ -10,6 +10,28 @@ C + number: compile error
 
 linking stage is to find the function have been used
 
+## Difference between const and constexpr
+
+**const** doesn't distinguish between Compilation-Period constants and run-time constants
+
+**constexpr** is limited to compilation-period constants
+
+```c++
+template<typename T>
+	using Scope = std::unique_ptr<T>;
+	template<typename T, typename ... Args>
+	constexpr Scope<T> CreateScope(Args&& ... args)
+	{
+		return std::make_unique<T>(std::forward<Args>(args)...);
+	}
+	/*constexpr std::unique_ptr<T> CreateScope(Args&& ... args)
+	{
+		return std::make_unique<T>(std::forward<Args>(args)...);
+	}*/
+```
+
+
+
 ## #define usage 
 
 ''##'' mains link former and later
