@@ -171,6 +171,7 @@
     <ClInclude Include="src\CC3D\Renderer\Texture.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h" />
     <ClInclude Include="src\CC3D\Renderer\OrthographicCameraController.h" />
+    <ClInclude Include="src\CC3D\Renderer\Renderer2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CC3D\Core\Application.cpp">
@@ -203,6 +204,7 @@
     <ClCompile Include="src\CC3D\Renderer\Texture.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp" />
     <ClCompile Include="src\CC3D\Renderer\OrthographicCameraController.cpp" />
+    <ClCompile Include="src\CC3D\Renderer\Renderer2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="vendor\glm\glm\core\func_common.inl" />

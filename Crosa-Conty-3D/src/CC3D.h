@@ -7,6 +7,7 @@
 
 // -------Renderer-------------
 #include "CC3D/Renderer/Renderer.h"
+#include "CC3D/Renderer/Renderer2D.h"
 #include "CC3D/Renderer/RenderCommand.h"
 
 #include "CC3D/Renderer/Buffer.h"
@@ -15,6 +16,7 @@
 #include "CC3D/Renderer/VertexArray.h"
 
 #include "CC3D/Renderer/OrthographicCamera.h"
+#include "CC3D/Renderer/OrthographicCameraController.h"
 // ----------------------------
 
 // -------Log System-------------
@@ -25,14 +27,9 @@
 #include "CC3D/Core/Input.h"
 #include "CC3D/Core/KeyCodes.h"
 #include "CC3D/Core/MouseButtonCodes.h"
-#include "CC3D/Renderer/OrthographicCameraController.h"
 // ------------------------------
 
 // -------Gui System-------------
 #include "CC3D/Imgui/ImGuiLayer.h"
-// ------------------------------
-
-// -------Entry Point------------
-#include "CC3D/Core/EntryPoint.h"
 // ------------------------------
 
