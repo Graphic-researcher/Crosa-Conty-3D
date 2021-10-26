@@ -1,10 +1,10 @@
 # Lec38 2D Renderer Transform
 
-tutorial : [here](https://www.youtube.com/watch?v=-Qt12lcAF0Y&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=52)
+课程 : [here](https://www.youtube.com/watch?v=-Qt12lcAF0Y&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=52)
 
-code version : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/9d348733a8c9f7968a3b152b4079c0214d1a1852/HTC/Project/Crosa-Conty-3D/Crosa-Conty-3D)
+代码版本 : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/9d348733a8c9f7968a3b152b4079c0214d1a1852/HTC/Project/Crosa-Conty-3D/Crosa-Conty-3D)
 
-## Render Scope
+## Render 作用域
 
 ### Shader
 
@@ -60,7 +60,7 @@ void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, cons
 }
 ```
 
-## Sandbox2D Scope
+## Sandbox2D 作用域
 
 ```c++
 void Sandbox2D::OnUpdate(CC3D::Timestep ts)
@@ -79,6 +79,6 @@ void Sandbox2D::OnUpdate(CC3D::Timestep ts)
 }
 ```
 
-## Build and Result
+## 构建和结果
 
 ![image-20211026150602904](https://i.loli.net/2021/10/26/oWFuADgVCrws5E3.png)
