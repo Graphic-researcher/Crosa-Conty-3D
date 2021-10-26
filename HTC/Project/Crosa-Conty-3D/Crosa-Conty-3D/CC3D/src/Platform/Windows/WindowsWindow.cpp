@@ -43,7 +43,7 @@ namespace CC3D {
 		{
 			CC3D_CORE_INFO("Initializing GLFW");
 			int success = glfwInit();
-			CC3D_CORE_ASSERT(success, "Could not intialize GLFW!");
+			CC3D_CORE_ASSERT(success, "Could not initialize GLFW!");
 			glfwSetErrorCallback(GLFWErrorCallback);
 		}
 
