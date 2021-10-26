@@ -14,7 +14,7 @@ Sandbox2D::Sandbox2D()
 
 void Sandbox2D::OnAttach()
 {
-	m_CheckerboardTexture = CC3D::Texture2D::Create("assets/textures/waifu.png");
+	m_CheckerboardTexture = CC3D::Texture2D::Create("assets/textures/waifualpha.png");
 }
 
 void Sandbox2D::OnDetach()
@@ -35,10 +35,6 @@ void Sandbox2D::OnUpdate(CC3D::Timestep ts)
 	CC3D::Renderer2D::DrawQuad(glm::vec2{ 0.5f, -0.5f }, glm::vec2{ 0.5f, 0.75f }, glm::vec4{ 0.2f, 0.3f, 0.8f, 1.0f });
 	CC3D::Renderer2D::DrawQuad(glm::vec3{ 0.0f, 0.0f, -0.1f }, glm::vec2{ 10.0f, 10.0f }, m_CheckerboardTexture);
 	CC3D::Renderer2D::EndScene();
-
-	// TODO: Add these functions - Shader::SetMat4, Shader::SetFloat4
-	// std::dynamic_pointer_cast<Hazel::OpenGLShader>(m_FlatColorShader)->Bind();
-	// std::dynamic_pointer_cast<Hazel::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat4("u_Color", m_SquareColor);
 }
 
 void Sandbox2D::OnImGuiRender()
