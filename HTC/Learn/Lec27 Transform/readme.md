@@ -216,4 +216,4 @@ Press I to move up squares and press K to move down
 
 Pay attention,now you should enhance the idea of model and view transform,when you press I(up) and K(down) which is applying model matrix on the vertex position,the transform is exactly we want. We want them go up and they go up,go down and they go down. But back to direct key[↑↓→←],any transform we apply them is just opposing to our expectation. And that is view transform,as cherno said,view transform can just imagine as the inverse of our transform.So play with this demo and may you can have a clear mind of transform.
 
-![Trans](.\Trans.gif)
+![Trans](./Trans.gif)
