@@ -10,8 +10,7 @@ int main(int argc,char** argv)
 	
 	CC3D::Log::Init();
 	CC3D_CORE_WARN("Initializing...\n");
-	int a = 5;
-	CC3D_INFO("hello! Var={0}",a);
+	CC3D_INFO("hello! CC3D!");
 
 	auto app = CC3D::CreateApplication();
 	app->Run();
