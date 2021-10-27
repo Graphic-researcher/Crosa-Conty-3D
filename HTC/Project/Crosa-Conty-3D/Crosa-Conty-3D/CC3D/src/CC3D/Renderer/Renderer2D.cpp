@@ -43,10 +43,27 @@ namespace CC3D {
 		squareIB.reset(IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 		s_Data->QuadVertexArray->SetIndexBuffer(squareIB);
 
-		s_Data->WhiteTexture = Texture2D::Create(1, 1);
+		size_t tex_size = 1;
+		s_Data->WhiteTexture = Texture2D::Create(tex_size, tex_size);
+				//R G B A?	(wrong!) it's A B G R
 		uint32_t whiteTextureData = 0xffffffff;//white color
+
+		//ABGR
+		//uint32_t whiteTextureData[4] = {
+		//0xffffffff,//white
+		//0xff0000ff,//red
+		//0xff00ff00,//blue
+		//0xffff0000,//green
+		//};
+
 		///uint32_t whiteTextureData = 0x00000000;
-		s_Data->WhiteTexture->SetData(&whiteTextureData, sizeof(uint32_t));
+		///whiteTextureData = 0xff00ffff;//yellow
+		///whiteTextureData = 0xff0000ff;//red
+		///whiteTextureData = 0xfff000ff;//pink? wrong
+		///whiteTextureData = 0xffff00ff;//pink? wrong
+
+	
+		s_Data->WhiteTexture->SetData(&whiteTextureData, sizeof(whiteTextureData));
 
 		s_Data->TextureShader = Shader::Create("assets/shaders/Texture.glsl");
 		s_Data->TextureShader->Bind();

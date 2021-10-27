@@ -89,11 +89,11 @@ void OpenGLRendererAPI::DrawIndexed(const std::shared_ptr<VertexArray>& vertexAr
 }
 ```
 
-## Blend 
+## 混合
 
 渲染顺序很重要，因为alpha混合需要源颜色（即将绘制的颜色）和已经在帧缓冲的颜色做混合，所以你要先绘制不透明物体，再绘制透明物体。
 
-先绘制不透明物体 [正确t]
+先绘制不透明物体 [正确]
 
 ```c++
 CC3D::Renderer2D::BeginScene(m_CameraController.GetCamera());
@@ -109,13 +109,111 @@ CC3D::Renderer2D::EndScene();
 
 因为透明物体会和背景混合
 
-```c++
+```
 CC3D::Renderer2D::BeginScene(m_CameraController.GetCamera());
 CC3D::Renderer2D::DrawQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, { 0.8f, 0.2f, 0.3f, 1.0f });
 CC3D::Renderer2D::DrawQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, { 0.2f, 0.3f, 0.8f, 0.3f });
-CC3D::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 1.0f, 1.0c++f }, m_CheckerboardTexture);
+CC3D::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 1.0f, 1.0f }, m_CheckerboardTexture);
 CC3D::Renderer2D::EndScene();
 ```
 
 ![image-20211026230241799](https://i.loli.net/2021/10/26/w3WztDkgBK9a1mf.png)
+
+## OpenGL生成纹理
+
+```c++
+OpenGLTexture2D::OpenGLTexture2D(uint32_t width, uint32_t height)
+: m_Width(width), m_Height(height)
+{
+    m_InternalFormat = GL_RGBA8;
+    m_DataFormat = GL_RGBA;
+
+    glCreateTextures(GL_TEXTURE_2D, 1, &m_RendererID);
+    glTextureStorage2D(m_RendererID, 1, m_InternalFormat, m_Width, m_Height);
+
+    glTextureParameteri(m_RendererID, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTextureParameteri(m_RendererID, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+    glTextureParameteri(m_RendererID, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTextureParameteri(m_RendererID, GL_TEXTURE_WRAP_T, GL_REPEAT);
+}
+void OpenGLTexture2D::SetData(void* data, uint32_t size)
+{
+    uint32_t bpp = m_DataFormat == GL_RGBA ? 4 : 3;
+    CC3D_CORE_ASSERT(size == m_Width * m_Height * bpp, "Data must be entire texture!");
+    glTextureSubImage2D(m_RendererID, 0, 0, 0, m_Width, m_Height, m_DataFormat, GL_UNSIGNED_BYTE, 		data);
+}
+```
+
+```c++
+//Render2D.cpp
+s_Data->WhiteTexture = Texture2D::Create(1, 1);
+	//R G B A?	(wrong!) it's A B G R
+uint32_t whiteTextureData = 0xffffffff;//white color
+s_Data->WhiteTexture->SetData(&whiteTextureData, sizeof(whiteTextureData));
+//Sandbox2D.cpp
+CC3D::Renderer2D::DrawQuad({ 0.0f, 0.0f }, { 1.0f, 1.0f }, { 1.0f, 1.0f, 1.0f, 1.0f });
+```
+
+![image-20211027120124414](https://i.loli.net/2021/10/27/pbrmFgP4YsX5q2T.png)
+
+```c++
+//Render2D.cpp
+s_Data->WhiteTexture = Texture2D::Create(1, 1);
+	//R G B A?	(wrong!) it's A B G R
+uint32_t whiteTextureData = 0xff00ffff;//yellow color
+s_Data->WhiteTexture->SetData(&whiteTextureData, sizeof(whiteTextureData));
+//Sandbox2D.cpp
+CC3D::Renderer2D::DrawQuad({ 0.0f, 0.0f }, { 1.0f, 1.0f }, { 1.0f, 1.0f, 1.0f, 1.0f });
+```
+
+![image-20211027120519952](https://i.loli.net/2021/10/27/rYGmCeuzAJI7hRP.png)
+
+```c++
+//Render2D.cpp
+s_Data->WhiteTexture = Texture2D::Create(1, 1);
+					//R G B A?	(wrong!) it's A B G R
+uint32_t whiteTextureData = 0xff0000ff;//yellow color
+s_Data->WhiteTexture->SetData(&whiteTextureData, sizeof(whiteTextureData));
+//Sandbox2D.cpp
+CC3D::Renderer2D::DrawQuad({ 0.0f, 0.0f }, { 1.0f, 1.0f }, { 1.0f, 1.0f, 1.0f, 1.0f });
+```
+
+![image-20211027120648511](https://i.loli.net/2021/10/27/OVA2H4WJFQPIX7Y.png)
+
+但这出现了一些问题:
+
+```c++
+//Render2D.cpp
+s_Data->WhiteTexture = Texture2D::Create(1, 1);
+		//R G B A?	(wrong!) it's A B G R
+uint32_t whiteTextureData = 0xfff000ff;//yellow color
+s_Data->WhiteTexture->SetData(&whiteTextureData, sizeof(whiteTextureData));
+//Sandbox2D.cpp
+CC3D::Renderer2D::DrawQuad({ 0.0f, 0.0f }, { 1.0f, 1.0f }, { 1.0f, 1.0f, 1.0f, 1.0f });
+```
+
+![image-20211027122109177](https://i.loli.net/2021/10/27/NrI5PW6oexXTaC4.png)
+
+![image-20211027122203790](https://i.loli.net/2021/10/27/26Womwv4kuEij1p.png)
+
+所以**glTextureSubImage2D**对图片数据的读取方式可能和我理解的有问题
+
+最终我们发现
+
+颜色数据读取的方式不是RGBA而是ABGR
+
+```c++
+s_Data->WhiteTexture = Texture2D::Create(2, 2);
+//ABGR
+uint32_t whiteTextureData[4] = {
+    0xffffffff,//white
+    0xff0000ff,//red
+    0xff00ff00,//blue
+    0xffff0000,//green
+};
+s_Data->WhiteTexture->SetData(&whiteTextureData, sizeof(whiteTextureData));
+```
+
+![image-20211027123814030](https://i.loli.net/2021/10/27/anWOT8FNrpjgdIk.png)
 
