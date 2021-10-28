@@ -22,7 +22,7 @@ namespace CC3D {
 		}
 	};
 
-	class CC3D_API Window {
+	class Window {
 	public:
 		using EventCallbackFn = std::function<void(Event&)>;// 事件发生时调用的函数
 
@@ -39,6 +39,6 @@ namespace CC3D {
 
 		virtual void* GetNativeWindow() const = 0;
 
-		static Window* Create(const WindowProps& props = WindowProps());
+		static Scope<Window> Create(const WindowProps& props = WindowProps());
 	};
 }

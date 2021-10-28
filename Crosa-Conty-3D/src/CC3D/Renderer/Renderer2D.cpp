@@ -1,10 +1,10 @@
 #include "ccpch.h"
-#include "Renderer2D.h"
+#include "CC3D/Renderer/Renderer2D.h"
 
-#include "VertexArray.h"
-#include "Shader.h"
+#include "CC3D/Renderer/VertexArray.h"
+#include "CC3D/Renderer/Shader.h"
 #include "Platform/OpenGL/OpenGLShader.h"
-#include "RenderCommand.h"
+#include "CC3D/Renderer/RenderCommand.h"
 
 #include <glm/gtc/matrix_transform.hpp>
 

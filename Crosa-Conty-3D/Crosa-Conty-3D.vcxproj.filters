@@ -206,6 +206,7 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp" />
     <ClCompile Include="src\CC3D\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\CC3D\Renderer\Renderer2D.cpp" />
+    <ClCompile Include="src\CC3D\Renderer\GraphicContext.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="vendor\glm\glm\core\func_common.inl" />

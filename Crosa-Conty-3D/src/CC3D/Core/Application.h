@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Core.h"
+#include "CC3D/Core/Core.h"
 #include "CC3D/Events/ApplicationEvent.h"
 
-#include "Window.h"
+#include "CC3D/Core/Window.h"
 #include "CC3D/Core/LayerStack.h"
 #include "CC3D/Events/Event.h"
 #include "CC3D/Events/ApplicationEvent.h"
@@ -24,7 +24,7 @@ namespace CC3D {
 	{
 	public:
 		Application();
-		virtual ~Application() = default;
+		virtual ~Application();
 
 		void Run();
 

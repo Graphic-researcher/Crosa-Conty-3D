@@ -1,6 +1,7 @@
 	#pragma once
 
 #include "ccpch.h"
+
 #include "CC3D/Core/Core.h"
 
 namespace CC3D {
@@ -29,7 +30,7 @@ namespace CC3D {
 
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override{return category;}
 
-	class CC3D_API Event
+	class Event
 	{
 	public:
 		bool Handled = false;

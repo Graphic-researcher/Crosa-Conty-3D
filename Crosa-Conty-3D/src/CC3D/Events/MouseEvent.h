@@ -4,7 +4,7 @@
 
 namespace CC3D {
 
-	class CC3D_API MouseMovedEvent : public Event
+	class MouseMovedEvent : public Event
 	{
 	public:
 		MouseMovedEvent(float x, float y): m_MouseX(x), m_MouseY(y){}
@@ -26,7 +26,7 @@ namespace CC3D {
 		float m_MouseX, m_MouseY;
 	};
 
-	class CC3D_API MouseScrolledEvent : public Event
+	class MouseScrolledEvent : public Event
 	{
 	public:
 		MouseScrolledEvent(float xOffset, float yOffset)
@@ -49,7 +49,7 @@ namespace CC3D {
 		float m_XOffset, m_YOffset;
 	};
 
-	class CC3D_API MouseButtonEvent : public Event
+	class MouseButtonEvent : public Event
 	{
 	public:
 		inline int GetMouseButton() const { return m_Button; }
@@ -60,7 +60,7 @@ namespace CC3D {
 		int m_Button;
 	};
 
-	class CC3D_API MouseButtonPressedEvent :public MouseButtonEvent
+	class MouseButtonPressedEvent :public MouseButtonEvent
 	{
 	public:
 		MouseButtonPressedEvent(int button)
@@ -76,7 +76,7 @@ namespace CC3D {
 		EVENT_CLASS_TYPE(MouseButtonPressed)
 	};
 
-	class CC3D_API MouseButtonReleasedEvent :public MouseButtonEvent
+	class MouseButtonReleasedEvent :public MouseButtonEvent
 	{
 	public:
 		MouseButtonReleasedEvent(int button)

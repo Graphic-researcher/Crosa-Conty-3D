@@ -1,7 +1,7 @@
 #pragma once
 
-#include "OrthographicCamera.h"
-#include "Texture.h"
+#include "CC3D/Renderer/OrthographicCamera.h"
+#include "CC3D/Renderer/Texture.h"
 
 namespace CC3D {
 

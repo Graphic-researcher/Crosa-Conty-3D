@@ -1,6 +1,6 @@
 #include <CC3D.h>
 #include "CC3D/Core/EntryPoint.h"
-#include "imgui.h"
+#include <imgui.h>
 
 #include "Platform/OpenGL/OpenGLShader.h"
 
@@ -167,8 +167,8 @@ public:
 		
 		m_FlatColorShader = CC3D::Shader::Create("FlatColor", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);
 
-		std::dynamic_pointer_cast<CC3D::OpenGLShader>(m_FlatColorShader)->Bind();
-		std::dynamic_pointer_cast<CC3D::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+		m_FlatColorShader->Bind();
+		m_FlatColorShader->SetFloat3("u_Color", m_SquareColor);
 	
 
 		
@@ -177,8 +177,8 @@ public:
 		m_Texture = CC3D::Texture2D::Create("assets/textures/waifu.png");//读取纹理时先要设置纹理
 		m_Tex = CC3D::Texture2D::Create("assets/textures/72137544_p0.png");
 
-		std::dynamic_pointer_cast<CC3D::OpenGLShader>(TextureShader)->Bind();
-		std::dynamic_pointer_cast<CC3D::OpenGLShader>(TextureShader)->UploadUniformInt("u_Texture", 0);
+		TextureShader->Bind();
+		TextureShader->SetInt("u_Texture", 0);
 	}
 
 	void OnUpdate(CC3D::Timestep ts) override
@@ -205,14 +205,14 @@ public:
 				if ((x + y) % 2 == 0)
 				{
 					m_SquareColor = glm::vec3(0.8f, 0.3f, 0.3f);
-					std::dynamic_pointer_cast<CC3D::OpenGLShader>(m_FlatColorShader)->Bind();
-					std::dynamic_pointer_cast<CC3D::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+					m_FlatColorShader->Bind();
+					m_FlatColorShader->SetFloat3("u_Color", m_SquareColor);
 				}
 				else
 				{
 					m_SquareColor = glm::vec3(0.2f, 0.3f, 0.8f);
-					std::dynamic_pointer_cast<CC3D::OpenGLShader>(m_FlatColorShader)->Bind();
-					std::dynamic_pointer_cast<CC3D::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+					m_FlatColorShader->Bind();
+					m_FlatColorShader->SetFloat3("u_Color", m_SquareColor);
 				}
 					
 				CC3D::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);

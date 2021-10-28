@@ -1,16 +1,13 @@
 #include "ccpch.h"
-#include "Application.h"
+#include "CC3D/Core/Application.h"
 
 #include "CC3D/Events/ApplicationEvent.h"
 
 #include "CC3D/Renderer/Renderer.h"
 
-#include "Input.h"
+#include "CC3D/Core/Input.h"
 
 namespace CC3D {
-
-	// 非静态成员函数需要传递this指针作为第一个参数
-#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 	
 	Application* Application::s_Instance = nullptr;
 	
@@ -20,13 +17,19 @@ namespace CC3D {
 		s_Instance = this;
 
 		m_Window = Scope<Window>(Window::Create());
-		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+		m_Window->SetEventCallback(CC3D_BIND_EVENT_FN(Application::OnEvent));
 
 		CC3D::Renderer::Init();
 		
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
 	}
+
+	Application::~Application()
+	{
+		Renderer::Shutdown();
+	}
+
 
 	void Application::PushLayer(Layer* layer)
 	{
@@ -57,8 +60,8 @@ namespace CC3D {
 	void Application::OnEvent(Event& e)
 	{
 		EventDispatcher dispatcher(e);
-		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
-		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
+		dispatcher.Dispatch<WindowCloseEvent>(CC3D_BIND_EVENT_FN(Application::OnWindowClose));
+		dispatcher.Dispatch<WindowResizeEvent>(CC3D_BIND_EVENT_FN(Application::OnWindowResize));
 
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
 		{

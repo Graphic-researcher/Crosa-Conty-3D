@@ -178,6 +178,7 @@
     <ClCompile Include="src\CC3D\Core\LayerStack.cpp" />
     <ClCompile Include="src\CC3D\Core\Log.cpp" />
     <ClCompile Include="src\CC3D\Core\Application.cpp" />
+    <ClCompile Include="src\CC3D\Renderer\GraphicContext.cpp" />
     <ClCompile Include="src\CC3D\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\CC3D\Renderer\Buffer.cpp" />
     <ClCompile Include="src\CC3D\Renderer\OrthographicCamera.cpp" />

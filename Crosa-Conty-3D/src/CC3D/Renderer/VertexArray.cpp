@@ -1,7 +1,7 @@
 #include "ccpch.h"
-#include "VertexArray.h"
+#include "CC3D/Renderer/VertexArray.h"
 
-#include "Renderer.h"
+#include "CC3D/Renderer/Renderer.h"
 #include "Platform/OpenGL/OpenGLVertexArray.h"
 
 namespace CC3D {

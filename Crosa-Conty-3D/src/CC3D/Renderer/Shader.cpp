@@ -1,7 +1,7 @@
 #include "ccpch.h"
-#include "Shader.h"
+#include "CC3D/Renderer/Shader.h"
 
-#include "Renderer.h"
+#include "CC3D/Renderer/Renderer.h"
 #include "Platform/OpenGL/OpenGLShader.h"
 
 namespace CC3D{

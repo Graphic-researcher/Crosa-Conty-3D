@@ -1,7 +1,7 @@
 #include "ccpch.h"
-#include "Buffer.h"
+#include "CC3D/Renderer/Buffer.h"
 
-#include "Renderer.h"
+#include "CC3D/Renderer/Renderer.h"
 
 #include "Platform/OpenGL/OpenGLBuffer.h"
 

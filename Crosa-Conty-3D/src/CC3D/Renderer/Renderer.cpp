@@ -1,8 +1,8 @@
 #include "ccpch.h"
-#include "Renderer.h"
+#include "CC3D/Renderer/Renderer.h"
 
 #include "Platform/OpenGL/OpenGLShader.h"
-#include "Renderer2D.h"
+#include "CC3D/Renderer/Renderer2D.h"
 
 namespace CC3D {
 
@@ -12,6 +12,11 @@ namespace CC3D {
 	{
 		RenderCommand::Init();
 		Renderer2D::Init();
+	}
+
+	void Renderer::Shutdown()
+	{
+		Renderer2D::Shutdown();
 	}
 
 	void Renderer::OnWindowResize(uint32_t width, uint32_t height)

@@ -1,9 +1,9 @@
 #include "ccpch.h"
-#include "ImGuiLayer.h"
+#include "CC3D/Imgui/ImGuiLayer.h"
 
-#include "imgui.h"
-#include "backends/imgui_impl_opengl3.h"
-#include "backends/imgui_impl_glfw.h"
+#include <imgui.h>
+#include <backends/imgui_impl_opengl3.h>
+#include <backends/imgui_impl_glfw.h>
 
 #include "CC3D/Core/Application.h"
 

@@ -1,11 +1,7 @@
 #include "ccpch.h"
-#include "LayerStack.h"
+#include "CC3D/Core/LayerStack.h"
 
 namespace CC3D {
-
-	LayerStack::LayerStack()
-	{
-	}
 
 	LayerStack::~LayerStack()
 	{
