@@ -172,6 +172,8 @@
     <ClInclude Include="src\CC3D\Debug\Instrumentor.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\CC3D\Core\Input.cpp" />
+    <ClCompile Include="src\CC3D\Core\Window.cpp" />
     <ClCompile Include="src\CC3D\Imgui\ImGuiBuild.cpp" />
     <ClCompile Include="src\CC3D\Imgui\ImGuiLayer.cpp" />
     <ClCompile Include="src\CC3D\Core\Layer.cpp" />

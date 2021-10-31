@@ -6,7 +6,6 @@
 
 namespace CC3D
 {
-	Input* Input::s_Instance = new WindowsInput();
 	
 	bool WindowsInput::IsKeyPressedImpl(KeyCode key)
 	{
