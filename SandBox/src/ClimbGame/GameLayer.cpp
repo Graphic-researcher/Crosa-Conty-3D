@@ -27,19 +27,19 @@ void GameLayer::OnUpdate(CC3D::Timestep ts)
 		m_State = GameState::GameOver;
 
 	// ¸üÐÂÉãÏñÍ·Î»ÖÃ£¬ÉãÏñÍ·ÉÏÉý
-	{
-		cameraSpeed += std::log(m_Time + 1) * 0.001;
-		auto pos = m_Camera->GetPosition();
-		m_Camera->SetPosition(pos + glm::vec3(0.0f, cameraSpeed * ts, 0.0f));
-		m_Level.ChangeCameraPosition(m_Camera->GetPosition());
-	}
+	//{
+	//	cameraSpeed += std::log(m_Time + 1) * 0.001;
+	//	auto pos = m_Camera->GetPosition();
+	//	m_Camera->SetPosition(pos + glm::vec3(0.0f, cameraSpeed * ts, 0.0f));
+	//	m_Level.ChangeCameraPosition(m_Camera->GetPosition());
+	//}
 	// TODO ÅÐ¶ÏÊÇ·ñ³¬³öÉãÏñÍ··¶Î§
 	{
 		auto pos = m_Level.GetPlayer().GetPosition();
 	}
 	
 
-	/*if (CC3D::Input::IsKeyPressed(CC3D::KeyCode::W))
+	if (CC3D::Input::IsKeyPressed(CC3D::KeyCode::W))
 	{
 		auto pos = m_Camera->GetPosition();
 		m_Camera->SetPosition(pos + glm::vec3(0.0f, cameraSpeed * ts, 0.0f));
@@ -62,7 +62,7 @@ void GameLayer::OnUpdate(CC3D::Timestep ts)
 		auto pos = m_Camera->GetPosition();
 		m_Camera->SetPosition(pos + glm::vec3(cameraSpeed * ts, 0.0f, 0.0f));
 		m_Level.ChangeCameraPosition(m_Camera->GetPosition());
-	}*/
+	}
 
 
 	switch (m_State)
@@ -109,7 +109,7 @@ void GameLayer::CreateCamera(uint32_t width, uint32_t height)
 {
 	float aspectRatio = (float)width / (float)height;
 
-	float camWidth = 64.0f;
+	float camWidth = 20.0f;
 	float bottom = -camWidth;
 	float top = camWidth;
 	float left = bottom * aspectRatio;

@@ -11,6 +11,33 @@ struct Pillar
 	glm::vec2 BottomScale = glm::vec2{ 15.0f, 20.0f };
 };
 
+enum tilesetType
+{
+	shortTileset = 1, normalTileset, longTileset
+};
+struct Tileset
+{
+	tilesetType type;
+	glm::vec3 tilesetPos;
+	glm::vec2 Scale;
+	Tileset(tilesetType t, glm::vec3 pos)
+	{
+		float factor = 0.8f;
+		tilesetPos = pos;
+		tilesetPos.y -= 0.7;
+		type = t;
+		switch (type)
+		{
+		case tilesetType::shortTileset:
+			Scale = glm::vec2(5.0f, 1.6f) * factor;
+		case tilesetType::normalTileset:
+			Scale = glm::vec2(7.0f, 1.6f) * factor;
+		case tilesetType::longTileset:
+			Scale = glm::vec2(9.0f, 1.6f) * factor;
+		}
+	}
+};
+
 class Level
 {
 public:
@@ -39,8 +66,12 @@ private:
 	std::vector<glm::vec3> buildsPos;
 	std::vector<glm::vec3> backPos;
 
+	std::vector<Tileset> tilesets;
+	glm::vec3 tilesetsOffset = glm::vec3(0.0f, 0.0f, 0.0f);
+
+
 	glm::vec3 currentBuildPos = glm::vec3(0.0f, 0.0f, 1.0f);
-	std::vector<glm::vec3> tilesetPos;
+	
 
 	bool m_GameOver = false;
 
