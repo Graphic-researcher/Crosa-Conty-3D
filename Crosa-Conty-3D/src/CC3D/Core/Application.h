@@ -18,6 +18,8 @@
 
 #include "GLFW/glfw3.h"
 
+int main(int argc, char** argv);
+
 namespace CC3D {
 
 	class Application
@@ -25,8 +27,6 @@ namespace CC3D {
 	public:
 		Application();
 		virtual ~Application();
-
-		void Run();
 
 		void OnEvent(Event& e);
 
@@ -42,9 +42,10 @@ namespace CC3D {
 
 		inline Window& GetWindow() { return *m_Window; }
 	private:
+		void Run();
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);
-
+	private:
 		Scope<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
@@ -55,6 +56,7 @@ namespace CC3D {
 
 	private:
 		static Application* s_Instance;
+		friend int ::main(int argc, char** argv);
 	};
 
 	Application* CreateApplication();
