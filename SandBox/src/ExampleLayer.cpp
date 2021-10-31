@@ -184,6 +184,8 @@ void ExampleLayer::OnDetach()
 }
 inline void ExampleLayer::OnUpdate(CC3D::Timestep ts)
 {
+	CC3D_PROFILE_FUNCTION();
+
 	// Camera
 	m_CameraController.OnUpdate(ts);
 
