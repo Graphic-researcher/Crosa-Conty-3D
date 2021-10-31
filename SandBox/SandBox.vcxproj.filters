@@ -24,6 +24,18 @@
     <ClCompile Include="src\ExampleLayer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="src\ClimbGame\GameLayer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ClimbGame\Level.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ClimbGame\Player.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ClimbGame\Random.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\Texture.glsl" />
@@ -34,6 +46,18 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="src\ExampleLayer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ClimbGame\GameLayer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ClimbGame\Level.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ClimbGame\Player.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ClimbGame\Random.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

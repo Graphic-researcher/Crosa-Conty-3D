@@ -98,6 +98,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\ClimbGame\GameLayer.cpp" />
+    <ClCompile Include="src\ClimbGame\Level.cpp" />
+    <ClCompile Include="src\ClimbGame\Player.cpp" />
+    <ClCompile Include="src\ClimbGame\Random.cpp" />
     <ClCompile Include="src\ExampleLayer.cpp" />
     <ClCompile Include="src\Sandbox2D.cpp" />
     <ClCompile Include="src\SandboxApp.cpp" />
@@ -107,6 +111,10 @@
     <None Include="assets\shaders\Texture.glsl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\ClimbGame\GameLayer.h" />
+    <ClInclude Include="src\ClimbGame\Level.h" />
+    <ClInclude Include="src\ClimbGame\Player.h" />
+    <ClInclude Include="src\ClimbGame\Random.h" />
     <ClInclude Include="src\ExampleLayer.h" />
     <ClInclude Include="src\Sandbox2D.h" />
   </ItemGroup>
