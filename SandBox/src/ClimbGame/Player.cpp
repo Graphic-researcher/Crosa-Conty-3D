@@ -10,6 +10,7 @@ void Player::LoadAssets()
 
 void Player::OnUpdate(CC3D::Timestep ts)
 {
+
 }
 
 void Player::OnRender()

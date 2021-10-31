@@ -31,6 +31,7 @@ void GameLayer::OnUpdate(CC3D::Timestep ts)
 		cameraSpeed += std::log(m_Time + 1) * 0.001;
 		auto pos = m_Camera->GetPosition();
 		m_Camera->SetPosition(pos + glm::vec3(0.0f, cameraSpeed * ts, 0.0f));
+		m_Level.ChangeCameraPosition(m_Camera->GetPosition());
 	}
 	// TODO 判断是否超出摄像头范围
 	{
@@ -38,30 +39,31 @@ void GameLayer::OnUpdate(CC3D::Timestep ts)
 	}
 	
 
-	//if (CC3D::Input::IsKeyPressed(CC3D::KeyCode::W))
-	//{
-	//	auto pos = m_Camera->GetPosition();
-	//	m_Camera->SetPosition(pos + glm::vec3(0.0f, cameraSpeed * ts, 0.0f));
+	/*if (CC3D::Input::IsKeyPressed(CC3D::KeyCode::W))
+	{
+		auto pos = m_Camera->GetPosition();
+		m_Camera->SetPosition(pos + glm::vec3(0.0f, cameraSpeed * ts, 0.0f));
+		m_Level.ChangeCameraPosition(m_Camera->GetPosition());
+	}
+	if (CC3D::Input::IsKeyPressed(CC3D::KeyCode::A))
+	{
+		auto pos = m_Camera->GetPosition();
+		m_Camera->SetPosition(pos + glm::vec3(-cameraSpeed * ts, 0.0f, 0.0f));
+		m_Level.ChangeCameraPosition(m_Camera->GetPosition());
+	}
+	if (CC3D::Input::IsKeyPressed(CC3D::KeyCode::S))
+	{
+		auto pos = m_Camera->GetPosition();
+		m_Camera->SetPosition(pos + glm::vec3(0.0f, -cameraSpeed * ts, 0.0f));
+		m_Level.ChangeCameraPosition(m_Camera->GetPosition());
+	}
+	if (CC3D::Input::IsKeyPressed(CC3D::KeyCode::D))
+	{
+		auto pos = m_Camera->GetPosition();
+		m_Camera->SetPosition(pos + glm::vec3(cameraSpeed * ts, 0.0f, 0.0f));
+		m_Level.ChangeCameraPosition(m_Camera->GetPosition());
+	}*/
 
-	//}
-	//if (CC3D::Input::IsKeyPressed(CC3D::KeyCode::A))
-	//{
-	//	auto pos = m_Camera->GetPosition();
-	//	m_Camera->SetPosition(pos + glm::vec3(-cameraSpeed * ts, 0.0f, 0.0f));
-
-	//}
-	//if (CC3D::Input::IsKeyPressed(CC3D::KeyCode::S))
-	//{
-	//	auto pos = m_Camera->GetPosition();
-	//	m_Camera->SetPosition(pos + glm::vec3(0.0f, -cameraSpeed * ts, 0.0f));
-
-	//}
-	//if (CC3D::Input::IsKeyPressed(CC3D::KeyCode::D))
-	//{
-	//	auto pos = m_Camera->GetPosition();
-	//	m_Camera->SetPosition(pos + glm::vec3(cameraSpeed * ts, 0.0f, 0.0f));
-
-	//}
 
 	switch (m_State)
 	{
@@ -82,9 +84,6 @@ void GameLayer::OnUpdate(CC3D::Timestep ts)
 
 void GameLayer::OnImGuiRender()
 {
-	ImGui::Begin("demo");
-	ImGui::ShowDemoWindow();
-	ImGui::End();
 }
 
 void GameLayer::OnEvent(CC3D::Event& e)
@@ -101,6 +100,7 @@ bool GameLayer::OnMouseButtonPressed(CC3D::MouseButtonPressedEvent& e)
 
 bool GameLayer::OnWindowResize(CC3D::WindowResizeEvent& e)
 {
+	// TODO  最小化窗口，相机位置会变为0
 	CreateCamera(e.GetWidth(), e.GetHeight());
 	return false;
 }
@@ -109,7 +109,7 @@ void GameLayer::CreateCamera(uint32_t width, uint32_t height)
 {
 	float aspectRatio = (float)width / (float)height;
 
-	float camWidth = 8.0f;
+	float camWidth = 64.0f;
 	float bottom = -camWidth;
 	float top = camWidth;
 	float left = bottom * aspectRatio;

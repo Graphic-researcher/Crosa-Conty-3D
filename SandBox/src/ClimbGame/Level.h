@@ -26,7 +26,7 @@ public:
 
 	Player& GetPlayer() { return m_Player; }
 
-	void GetCameraPosition(CC3D::OrthographicCamera camera) { cameraPos = camera.GetPosition(); }
+	void ChangeCameraPosition(glm::vec3 p) { cameraPos = p; }
 private:
 	void CreatePillar(int index, float offset);
 	bool CollisionTest();
@@ -35,6 +35,12 @@ private:
 private:
 	Player m_Player;
 	glm::vec3 cameraPos;
+
+	std::vector<glm::vec3> buildsPos;
+	std::vector<glm::vec3> backPos;
+
+	glm::vec3 currentBuildPos = glm::vec3(0.0f, 0.0f, 1.0f);
+	std::vector<glm::vec3> tilesetPos;
 
 	bool m_GameOver = false;
 
