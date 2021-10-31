@@ -1,6 +1,6 @@
 #include "CC3D.h"
-#include "imgui/imgui.h"
-#include "Platform/OpenGL/OpenGLShader.h"
+#include <imgui/imgui.h>
+
 
 //-------Entry Point--------------
 #include "CC3D/Core/EntryPoint.h"
@@ -25,8 +25,7 @@ public:
 			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
 		};
 
-		CC3D::Ref<CC3D::VertexBuffer> vertexBuffer;
-		vertexBuffer.reset(CC3D::VertexBuffer::Create(vertices, sizeof(vertices)));
+		CC3D::Ref<CC3D::VertexBuffer> vertexBuffer = CC3D::VertexBuffer::Create(vertices, sizeof(vertices));
 		CC3D::BufferLayout layout = {
 			{ CC3D::ShaderDataType::Float3, "a_Position" },
 			{ CC3D::ShaderDataType::Float4, "a_Color" }
@@ -35,9 +34,7 @@ public:
 		m_VertexArray->AddVertexBuffer(vertexBuffer);
 
 		uint32_t indices[3] = { 0, 1, 2 };
-		CC3D::Ref<CC3D::IndexBuffer> indexBuffer;
-		indexBuffer.reset(CC3D::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
-		m_VertexArray->SetIndexBuffer(indexBuffer);
+		CC3D::Ref<CC3D::IndexBuffer> indexBuffer = CC3D::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));		m_VertexArray->SetIndexBuffer(indexBuffer);
 
 		m_SquareVA = CC3D::VertexArray::Create();
 
@@ -50,8 +47,7 @@ public:
 		};
 
 
-		CC3D::Ref<CC3D::VertexBuffer> squareVB;
-		squareVB.reset(CC3D::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+		CC3D::Ref<CC3D::VertexBuffer> squareVB = CC3D::VertexBuffer::Create(squareVertices, sizeof(squareVertices));		
 		squareVB->SetLayout({
 			{ CC3D::ShaderDataType::Float3, "a_Position" },
 			{ CC3D::ShaderDataType::Float2, "a_TexCoord" }
@@ -59,9 +55,7 @@ public:
 		m_SquareVA->AddVertexBuffer(squareVB);
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		CC3D::Ref<CC3D::IndexBuffer> squareIB;
-		squareIB.reset(CC3D::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
-		m_SquareVA->SetIndexBuffer(squareIB);
+		CC3D::Ref<CC3D::IndexBuffer> squareIB = CC3D::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));		m_SquareVA->SetIndexBuffer(squareIB);
 
 		std::string vertexSrc = R"(
 			#version 330 core
@@ -172,9 +166,8 @@ public:
 		m_Texture = CC3D::Texture2D::Create("assets/textures/Checkerboard.png");
 		m_ChernoLogoTexture = CC3D::Texture2D::Create("assets/textures/ChernoLogo.png");
 
-		std::dynamic_pointer_cast<CC3D::OpenGLShader>(textureShader)->Bind();
-		std::dynamic_pointer_cast<CC3D::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
-
+		textureShader->Bind();
+		textureShader->SetInt("u_Texture", 0);
 	}
 
 
@@ -210,9 +203,8 @@ public:
 
 		auto TestShader = m_ShaderLibrary.Get("UVColor");//find shader by name in shaderlibray
 		
-		std::dynamic_pointer_cast<CC3D::OpenGLShader>(m_FlatColorShader)->Bind();
-		std::dynamic_pointer_cast<CC3D::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
-
+		m_FlatColorShader->Bind();
+		m_FlatColorShader->SetFloat3("u_Color", m_SquareColor);
 
 
 		for (int y = 0; y < 20; y++)

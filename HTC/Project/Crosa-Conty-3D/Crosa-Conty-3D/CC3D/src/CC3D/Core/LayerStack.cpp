@@ -1,15 +1,11 @@
 #include "cc3d_pch.h"
-#include "LayerStack.h"
+#include "CC3D/Core/LayerStack.h"
 
 namespace CC3D {
 
 	///Layer:Operate from List begin
 	///OverLayer:Operate from List end
 
-
-	LayerStack::LayerStack()
-	{
-	}
 
 	/// When app shut down,destory layer stack
 

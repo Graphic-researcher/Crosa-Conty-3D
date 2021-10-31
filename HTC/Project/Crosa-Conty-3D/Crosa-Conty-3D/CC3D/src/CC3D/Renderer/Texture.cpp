@@ -1,7 +1,7 @@
 #include "cc3d_pch.h"
-#include "Texture.h"
+#include "CC3D/Renderer/Texture.h"
 
-#include "Renderer.h"
+#include "CC3D/Renderer/Renderer.h"
 #include "Platform/OpenGL/OpenGLTexture.h"
 
 namespace CC3D {

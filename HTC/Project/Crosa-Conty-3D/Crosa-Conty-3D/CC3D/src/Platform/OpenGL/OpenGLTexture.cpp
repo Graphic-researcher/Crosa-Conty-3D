@@ -1,7 +1,7 @@
 #include "cc3d_pch.h"
-#include "OpenGLTexture.h"
+#include "Platform/OpenGL/OpenGLTexture.h"
 
-#include "stb_image/stb_image.h"
+#include <stb_image/stb_image.h>
 
 #include <glad/glad.h>
 

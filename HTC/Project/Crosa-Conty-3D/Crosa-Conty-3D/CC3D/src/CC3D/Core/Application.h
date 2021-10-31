@@ -1,10 +1,10 @@
 #pragma once
-#include "Core.h"//contain marcos
+#include "CC3D/Core/Core.h"
 ///event
 #include "CC3D/Events/Event.h"
 #include "CC3D/Events/ApplicationEvent.h"
 ///Window
-#include "Window.h"
+#include "CC3D/Core/Window.h"
 ///layer
 #include "CC3D/Core/LayerStack.h"
 #include "CC3D/ImGui/ImGuiLayer.h"
@@ -13,11 +13,11 @@
 
 
 namespace CC3D {
-	class CC3D_API Application //use CC3D_API as replacement of _declspec(dllexport) 
+	class Application //use  as replacement of _declspec(dllexport) 
 	{
 	public:
 		Application();
-		virtual ~Application() = default;//this class would be inherited by other class
+		virtual ~Application();
 		void Run();
 		///Events
 		void OnEvent(Event& e);

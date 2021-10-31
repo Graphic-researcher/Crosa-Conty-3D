@@ -1,15 +1,14 @@
 #include "cc3d_pch.h"
-#include "ImGuiLayer.h"
-
+#include "CC3D/ImGui/ImGuiLayer.h"
 #include "imgui/imgui.h"
-#include "imgui/examples/imgui_impl_glfw.h"
-#include "imgui/examples/imgui_impl_opengl3.h"
+#include <imgui/examples/imgui_impl_glfw.h>
+#include <imgui/examples/imgui_impl_opengl3.h>
 
 #include "CC3D/Core/Application.h"
 
 // TEMPORARY
-#include "glad/glad.h"
-#include "GLFW/glfw3.h"
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
 namespace CC3D {
 

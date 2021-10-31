@@ -1,5 +1,5 @@
 #pragma once
-
+#include "CC3D/Core/Core.h"
 #ifdef  CC3D_PLATFORM_WINDOWS
 
 extern CC3D::Application* CC3D::CreateApplication();

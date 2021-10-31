@@ -1,6 +1,5 @@
 #include "cc3d_pch.h"
-#include "OrthographicCamera.h"
-
+#include "CC3D/Renderer/OrthographicCamera.h"
 #include <glm/gtc/matrix_transform.hpp>
 
 namespace CC3D {

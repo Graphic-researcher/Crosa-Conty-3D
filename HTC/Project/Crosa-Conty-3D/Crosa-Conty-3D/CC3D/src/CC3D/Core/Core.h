@@ -42,22 +42,6 @@
 #endif // End of platform detection
 
 
-// DLL support
-#ifdef  CC3D_PLATFORM_WINDOWS
-	#if CC3D_DYNAMIC_LINK
-		#ifdef CC3D_BUILD_DLL
-			#define CC3D_API _declspec(dllexport)
-		#else
-			#define CC3D_API _declspec(dllimport)
-		#endif // CC3D_BUILD_DLL
-	#else
-		#define CC3D_API
-	#endif
-#else
-	#error CC3D only supports Windows!
-#endif //  CC3D_PLATFORM_WINDOWS
-
-
 //for Window
 ///linking runtime library dynamically; 
 ///defined CC3D_ENABLE_ASSERTS if CC3D_DEBUG is on.

@@ -1,6 +1,5 @@
 #include "cc3d_pch.h"
-#include "OrthographicCameraController.h"
-
+#include "CC3D/Renderer/OrthographicCameraController.h"
 #include "CC3D/Core/Input.h"
 #include "CC3D/Core/KeyCodes.h"
 

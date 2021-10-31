@@ -9,7 +9,7 @@
 
 namespace CC3D {
 
-	class CC3D_API Input
+	class Input
 	{
 	protected:
 		Input() = default;

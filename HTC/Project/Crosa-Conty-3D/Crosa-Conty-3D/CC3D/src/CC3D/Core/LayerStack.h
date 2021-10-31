@@ -1,16 +1,16 @@
 #pragma once
 
 #include "CC3D/Core/Core.h"
-#include "Layer.h"
+#include "CC3D/Core/Layer.h"
 
 #include <vector>
 
 namespace CC3D {
 
-	class CC3D_API LayerStack
+	class LayerStack
 	{
 	public:
-		LayerStack();
+		LayerStack() = default;
 		~LayerStack();
 
 		void PushLayer(Layer* layer);

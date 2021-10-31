@@ -8,7 +8,7 @@
 
 namespace CC3D {
 
-	class CC3D_API ImGuiLayer : public Layer
+	class  ImGuiLayer : public Layer
 	{
 	public:
 		ImGuiLayer();

@@ -1,5 +1,5 @@
 #include "cc3d_pch.h"
-#include "WindowsInput.h"
+#include "Platform/Windows/WindowsInput.h"
 
 #include "CC3D/Core/Application.h"
 #include <GLFW/glfw3.h>

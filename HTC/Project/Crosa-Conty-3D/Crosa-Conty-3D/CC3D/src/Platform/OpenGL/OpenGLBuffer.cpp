@@ -1,6 +1,5 @@
 #include "cc3d_pch.h"
-#include "OpenGLBuffer.h"
-
+#include "Platform/OpenGL/OpenGLBuffer.h"
 #include <glad/glad.h>
 
 namespace CC3D {

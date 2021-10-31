@@ -1,10 +1,9 @@
 #pragma once
 
-#include "Event.h"
-
+#include "CC3D/Events/Event.h"
 namespace CC3D { 
 
-	class CC3D_API KeyEvent : public Event
+	class KeyEvent : public Event
 	{
 	public:
 		inline int GetKeyCode() const { return m_KeyCode; }
@@ -21,7 +20,7 @@ namespace CC3D {
 		int m_KeyCode;///keyboard value
 	};
 
-	class CC3D_API KeyPressedEvent : public KeyEvent
+	class KeyPressedEvent : public KeyEvent
 	{
 	public:
 		KeyPressedEvent(int keycode, int repeatCount)
@@ -45,7 +44,7 @@ namespace CC3D {
 		int m_RepeatCount;///allow us to press a key and it can operate repeatly until we release it
 	};
 
-	class CC3D_API KeyReleasedEvent : public KeyEvent
+	class KeyReleasedEvent : public KeyEvent
 	{
 	public:
 		KeyReleasedEvent(int keycode)
@@ -62,7 +61,7 @@ namespace CC3D {
 	};
 
 
-	class CC3D_API KeyTypedEvent : public KeyEvent
+	class KeyTypedEvent : public KeyEvent
 	{
 	public:
 		KeyTypedEvent(int keycode)

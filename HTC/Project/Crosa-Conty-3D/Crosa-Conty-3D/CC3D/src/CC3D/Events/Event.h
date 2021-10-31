@@ -38,7 +38,7 @@ namespace CC3D {
 
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 	///Base Event Class
-	class CC3D_API Event
+	class Event
 	{
 		friend class EventDispatcher;
 	public:

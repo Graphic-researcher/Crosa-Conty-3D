@@ -106,6 +106,7 @@
     <ClCompile Include="src\CC3D\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\CC3D\Core\Layer.cpp" />
     <ClCompile Include="src\CC3D\Core\LayerStack.cpp" />
+    <ClCompile Include="src\CC3D\Renderer\GraphicsContext.cpp" />
     <ClCompile Include="src\CC3D\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\CC3D\Renderer\Buffer.cpp" />
     <ClCompile Include="src\CC3D\Renderer\OrthographicCamera.cpp" />

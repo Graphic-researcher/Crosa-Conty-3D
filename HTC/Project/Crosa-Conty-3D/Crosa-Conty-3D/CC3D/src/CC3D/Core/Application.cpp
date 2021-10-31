@@ -1,16 +1,13 @@
 #include "cc3d_pch.h"
-#include "Application.h"
+#include "CC3D/Core/Application.h"
 #include "CC3D/Core/Log.h"
-
-#include "Input.h"
+#include "CC3D/Core/Input.h"
 #include "CC3D/Renderer/Renderer.h"
 ///temporarily
 #include<GLFW/glfw3.h>
 
 
 namespace CC3D {
-#define BIND_EVENT_FN(x) std::bind(&Application::x,this,std::placeholders::_1)
-
 	Application* Application::s_Instance = nullptr;
 
 
@@ -19,12 +16,17 @@ namespace CC3D {
 		CC3D_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 
-		m_Window = std::unique_ptr<Window>(Window::Create());
-		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+		m_Window = Window::Create();
+		m_Window->SetEventCallback(CC3D_BIND_EVENT_FN(Application::OnEvent));
 		//m_Window->SetVSync(false);///glfwinterval(0)
 		Renderer::Init();
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
+	}
+
+	Application::~Application()
+	{
+		Renderer::Shutdown();
 	}
 
 	void Application::Run()
@@ -65,8 +67,8 @@ namespace CC3D {
 	void Application::OnEvent(Event& e)
 	{
 		EventDispatcher dispatcher(e);
-		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
-		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
+		dispatcher.Dispatch<WindowCloseEvent>(CC3D_BIND_EVENT_FN(Application::OnWindowClose));
+		dispatcher.Dispatch<WindowResizeEvent>(CC3D_BIND_EVENT_FN(Application::OnWindowResize));
 
 		CC3D_CORE_INFO("{0}", e);
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
