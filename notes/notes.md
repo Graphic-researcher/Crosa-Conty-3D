@@ -140,3 +140,5 @@ The `chrono` library defines three main types as well as utility functions and c
 
 60cf553b：Basic ref-counting system to terminate glfw
 
+7e979217：Auto deducing an availabe __FUNCSIG__ definition (#174)
+
