@@ -16,11 +16,14 @@ Sandbox2D::Sandbox2D()
 
 void Sandbox2D::OnAttach()
 {
+	CC3D_PROFILE_FUNCTION();
+
 	m_CheckerboardTexture = CC3D::Texture2D::Create("assets/textures/waifualpha.png");
 }
 
 void Sandbox2D::OnDetach()
 {
+	CC3D_PROFILE_FUNCTION();
 }
 
 void Sandbox2D::OnUpdate(CC3D::Timestep ts)
@@ -28,10 +31,8 @@ void Sandbox2D::OnUpdate(CC3D::Timestep ts)
 	CC3D_PROFILE_FUNCTION();
 
 	// Camera
-	{
-		CC3D_PROFILE_SCOPE("CameraController::OnUpdate");
-		m_CameraController.OnUpdate(ts);
-	}
+	m_CameraController.OnUpdate(ts);
+
 
 	// Render
 	{

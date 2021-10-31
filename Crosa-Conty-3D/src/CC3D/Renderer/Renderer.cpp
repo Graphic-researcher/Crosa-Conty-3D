@@ -10,6 +10,8 @@ namespace CC3D {
 
 	void Renderer::Init()
 	{
+		CC3D_PROFILE_FUNCTION();
+
 		RenderCommand::Init();
 		Renderer2D::Init();
 	}

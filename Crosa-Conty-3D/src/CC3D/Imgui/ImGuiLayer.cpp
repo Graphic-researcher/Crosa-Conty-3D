@@ -21,6 +21,8 @@ namespace CC3D
 
 	void ImGuiLayer::OnAttach()
 	{
+		CC3D_PROFILE_FUNCTION();
+
 		//IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
 
@@ -50,6 +52,8 @@ namespace CC3D
 	}
 	void ImGuiLayer::OnDetach()
 	{
+		CC3D_PROFILE_FUNCTION();
+
 		ImGui_ImplOpenGL3_Shutdown();
 		ImGui_ImplGlfw_Shutdown();
 		ImGui::DestroyContext();
@@ -57,12 +61,16 @@ namespace CC3D
 	}
 	void ImGuiLayer::Begin()
 	{
+		CC3D_PROFILE_FUNCTION();
+
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
 	}
 	void ImGuiLayer::End()
 	{ 
+		CC3D_PROFILE_FUNCTION();
+
 		ImGuiIO& io = ImGui::GetIO();
 		Application& app = Application::Get();
 		io.DisplaySize = ImVec2(app.GetWindow().GetWidth(), app.GetWindow().GetHeight());
