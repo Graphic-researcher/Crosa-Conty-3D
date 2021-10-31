@@ -34,7 +34,7 @@
     <ClInclude Include="src\CC3D\Core\Input.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\CC3D\Core\KeyCodes.h" />
-    <ClInclude Include="src\CC3D\Core\MouseButtonCodes.h" />
+    <ClInclude Include="src\CC3D\Core\MouseCodes.h" />
     <ClInclude Include="vendor\glm\glm\core\_detail.hpp" />
     <ClInclude Include="vendor\glm\glm\core\_fixes.hpp" />
     <ClInclude Include="vendor\glm\glm\core\_swizzle.hpp" />
