@@ -38,7 +38,7 @@ namespace CC3D {
 			CC3D_PROFILE_SCOPE("stbi_load - OpenGLTexture2D::OpenGLTexture2D(const std:string&)");
 			data = stbi_load(path.c_str(), &width, &height, &channels, 0);
 		}
-		CC3D_CORE_ASSERT(data, "Failed to load image!");
+		CC3D_CORE_ASSERT(data, "Failed to load image!: " + path);
 		m_Width = width;
 		m_Height = height;
 

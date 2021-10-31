@@ -25,6 +25,8 @@ public:
 	void Reset();
 
 	Player& GetPlayer() { return m_Player; }
+
+	void GetCameraPosition(CC3D::OrthographicCamera camera) { cameraPos = camera.GetPosition(); }
 private:
 	void CreatePillar(int index, float offset);
 	bool CollisionTest();
@@ -32,6 +34,7 @@ private:
 	void GameOver();
 private:
 	Player m_Player;
+	glm::vec3 cameraPos;
 
 	bool m_GameOver = false;
 
@@ -41,5 +44,6 @@ private:
 
 	std::vector<Pillar> m_Pillars;
 
-	CC3D::Ref<CC3D::Texture2D> m_TriangleTexture;
+	std::vector<CC3D::Ref<CC3D::Texture2D>> buildingTexture;
+	std::vector<CC3D::Ref<CC3D::Texture2D>> backgroundTexture;
 };

@@ -22,6 +22,7 @@ public:
 private:
 	void CreateCamera(uint32_t width, uint32_t height);
 private:
+	float cameraSpeed = 10.0f;
 	CC3D::Scope<CC3D::OrthographicCamera> m_Camera;
 	Level m_Level;
 	ImFont* m_Font;
@@ -34,4 +35,5 @@ private:
 	};
 
 	GameState m_State = GameState::MainMenu;
+
 };

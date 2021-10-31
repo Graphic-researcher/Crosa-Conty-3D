@@ -9,6 +9,7 @@
 
 #include "Sandbox2D.h"
 #include "ExampleLayer.h"
+#include "ClimbGame/GameLayer.h"
 
 class Sandbox : public CC3D::Application
 {
@@ -16,7 +17,8 @@ public:
 	Sandbox()
 	{
 		//PushLayer(new ExampleLayer());
-		PushLayer(new Sandbox2D());
+		//PushLayer(new Sandbox2D());
+		PushLayer(new GameLayer());
 	}
 
 	~Sandbox()
