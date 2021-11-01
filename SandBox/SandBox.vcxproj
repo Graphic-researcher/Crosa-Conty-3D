@@ -111,6 +111,7 @@
     <None Include="assets\shaders\Texture.glsl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\ClimbGame\Animator2D.h" />
     <ClInclude Include="src\ClimbGame\GameLayer.h" />
     <ClInclude Include="src\ClimbGame\Level.h" />
     <ClInclude Include="src\ClimbGame\Player.h" />

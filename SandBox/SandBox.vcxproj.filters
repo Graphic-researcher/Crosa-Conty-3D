@@ -60,5 +60,8 @@
     <ClInclude Include="src\ClimbGame\Random.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="src\ClimbGame\Animator2D.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

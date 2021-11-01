@@ -4,6 +4,42 @@
 
 #include "Random.h"
 
+struct AnimationClip2D
+{
+	std::vector<CC3D::Ref<CC3D::Texture2D>> Textures;
+	CC3D::Ref<CC3D::Texture2D> currentTexture;
+	unsigned int texture_id = 0;
+	bool isRepeat = false;
+	bool isPlaying = true;
+	float playRate = 0.1f;
+	void push_back(std::string path)
+	{
+		Textures.push_back(CC3D::Texture2D::Create(path));
+	}
+	void update(CC3D::Timestep ts)
+	{
+		if (playRate < 0)
+		{
+			if (isRepeat) {
+				currentTexture = Textures.at(texture_id);
+				texture_id = (texture_id + 1) % Textures.size();
+			}
+			else {
+				if (texture_id >= Textures.size()) {
+					isPlaying = false;
+					return;
+				}
+				currentTexture = Textures.at(texture_id);
+				texture_id = texture_id + 1;
+			}
+			playRate = 0.1f;
+		}
+		else
+			playRate -= ts;
+		
+	}
+};
+
 struct Collision2D
 {
 	glm::vec2 normal = glm::vec2(0.0f,0.0f);
@@ -77,7 +113,7 @@ public:
 	uint32_t GetScore() const { return (uint32_t)(m_Position.x + 10.0f) / 10.0f; }
 private:
 	float moveSpeed = 6;
-	float jumpSpeed = 10;
+	float jumpSpeed = 15;
 	glm::vec2 m_Position = glm::vec2{ -10.0f, 0.0f };
 	glm::vec2 m_Velocity = glm::vec2{ 0.0f, 0.0f };
 	glm::vec2 m_Scale = glm::vec2(2.5f, 2.7f);
@@ -89,8 +125,12 @@ private:
 
 	float m_Time = 0.0f;
 
-	std::vector<CC3D::Ref<CC3D::Texture2D>> idelTexture;
-	std::vector<CC3D::Ref<CC3D::Texture2D>> jumpTexture;
-	std::vector<CC3D::Ref<CC3D::Texture2D>> walkTexture;
-	std::vector<CC3D::Ref<CC3D::Texture2D>> runTexture;
+	bool isIdel = true;
+	bool isRun = false;
+	bool isJump = false;
+
+	AnimationClip2D idelTexture;
+	AnimationClip2D jumpTexture;
+	AnimationClip2D walkTexture;
+	AnimationClip2D runTexture;
 };
