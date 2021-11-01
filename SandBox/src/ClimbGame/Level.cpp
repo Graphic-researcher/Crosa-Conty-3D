@@ -28,10 +28,10 @@ void Level::Init()
 	for (int i = 0; i < 12; i++)
 	{
 		tilesets.push_back(Tileset(static_cast<TilesetType>(rand()%3+1), glm::vec3(float(rand() % 10)-5, 24.0f, 0.7f) - tilesetsOffset));
-		tilesetsOffset.y += 4.0;
+		tilesetsOffset.y += 6.0;
 	}
 	// 初始化角色位置
-	m_Player.SetPosition(glm::vec2(tilesets.at(tilesets.size() / 2+1).tilesetPos.x, tilesets.at(tilesets.size() / 2 + 1).tilesetPos.y + 2));
+	m_Player.SetPosition(glm::vec2(tilesets.at(tilesets.size() / 2 - 2).tilesetPos.x, tilesets.at(tilesets.size() / 2 - 2).tilesetPos.y + 2));
 }
 
 void Level::OnUpdate(CC3D::Timestep ts)
@@ -90,11 +90,10 @@ void Level::OnUpdate(CC3D::Timestep ts)
 		buildsPos.insert(buildsPos.begin(),tv);
 	}
 
-
 	// 平台生成
 	if (cameraPos.y - tilesets.at(tilesets.size() / 2).tilesetPos.y >= 1.6f)
 	{
-		Tileset t(static_cast<TilesetType>(rand() % 3 + 1), glm::vec3(float((rand() % 10) - 5), tilesets.at(0).tilesetPos.y + 4.0f, 0.7f));
+		Tileset t(static_cast<TilesetType>(rand() % 3 + 1), glm::vec3(float((rand() % 10) - 5), tilesets.at(0).tilesetPos.y + 6.0f, 0.7f));
 		tilesets.pop_back();
 		tilesets.insert(tilesets.begin(), t);
 	}
