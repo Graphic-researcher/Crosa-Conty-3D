@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\CC3D\Core\Timestep.h" />
+    <ClInclude Include="src\CC3D\Debug\Instrumentor.h" />
     <ClInclude Include="src\CC3D\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\CC3D\Core\Input.h" />
     <ClInclude Include="src\CC3D\Core\KeyCodes.h" />

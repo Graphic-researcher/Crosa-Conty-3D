@@ -14,6 +14,7 @@
 #include <array>
 
 #include "CC3D/Core/Log.h"
+#include "CC3D/Debug/Instrumentor.h"
 
 #ifdef  CC3D_PLATFORM_WINDOWS
 	#include <Windows.h>

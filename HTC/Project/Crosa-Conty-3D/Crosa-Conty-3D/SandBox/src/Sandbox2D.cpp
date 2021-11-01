@@ -43,7 +43,8 @@ private:
 	bool m_Stopped;
 };
 
-#define PROFILE_SCOPE(name) Timer timer##__LINE__(name, [&](ProfileResult profileResult) { m_ProfileResults.push_back(profileResult); })
+///use timer0 to avoid redefination with Instrumentor Profiling Scope
+#define PROFILE_SCOPE(name) Timer timer0##__LINE__(name, [&](ProfileResult profileResult) { m_ProfileResults.push_back(profileResult); })
 
 
 Sandbox2D::Sandbox2D()
@@ -62,23 +63,31 @@ void Sandbox2D::OnDetach()
 
 void Sandbox2D::OnUpdate(CC3D::Timestep ts)
 {
+	CC3D_PROFILE_FUNCTION();
+
 	PROFILE_SCOPE("Sandbox2D::OnUpdate");
 	// Update
 	m_CameraController.OnUpdate(ts);
 
 	{
+		CC3D_PROFILE_SCOPE("CameraController::OnUpdate");
+
 		PROFILE_SCOPE("CameraController::OnUpdate");
 		m_CameraController.OnUpdate(ts);
 	}
 
 	// Render
 	{
+		CC3D_PROFILE_SCOPE("Renderer Prep");
+
 		PROFILE_SCOPE("Renderer Prep");
 		CC3D::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		CC3D::RenderCommand::Clear();
 	}
 
 	{
+		CC3D_PROFILE_SCOPE("Renderer Draw");
+
 		PROFILE_SCOPE("Renderer Draw");
 		CC3D::Renderer2D::BeginScene(m_CameraController.GetCamera());///set view matrix
 		//CC3D::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 1.0f, 1.0f }, m_CheckerboardTexture);
@@ -96,6 +105,8 @@ void Sandbox2D::OnUpdate(CC3D::Timestep ts)
 
 void Sandbox2D::OnImGuiRender()
 {
+	CC3D_PROFILE_FUNCTION();
+
 	ImGui::Begin("Settings");
 	ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
 	
