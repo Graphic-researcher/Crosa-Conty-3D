@@ -3,6 +3,7 @@
 
 void Level::Init()
 {
+	m_Player.LoadAssets();
 	backgroundTexture.push_back(CC3D::Texture2D::Create("src/ClimbGame/ClimbGame/Textures/BackGround/skyline.png"));
 	backgroundTexture.push_back(CC3D::Texture2D::Create("src/ClimbGame/ClimbGame/Textures/BackGround/sky-a.png"));
 	backgroundTexture.push_back(CC3D::Texture2D::Create("src/ClimbGame/ClimbGame/Textures/BackGround/sky-b.png"));
@@ -13,21 +14,22 @@ void Level::Init()
 	buildingTexture.push_back(CC3D::Texture2D::Create("src/ClimbGame/ClimbGame/Textures/BackGround/tileset-normal.png"));
 	buildingTexture.push_back(CC3D::Texture2D::Create("src/ClimbGame/ClimbGame/Textures/BackGround/tileset-long.png"));
 	//buildsPos.push_back(glm::vec3(0.0f, -24.0f * 2, 0.5f));
-	buildsPos.push_back(glm::vec3(0.0f, -12.0f * 2, 0.5f));
-	buildsPos.push_back(glm::vec3(0.0f, 0.0f, 0.5f));
 	buildsPos.push_back(glm::vec3(0.0f, 12.0f * 2, 0.5f));
+	buildsPos.push_back(glm::vec3(0.0f, 0.0f, 0.5f));
+	buildsPos.push_back(glm::vec3(0.0f, -12.0f * 2, 0.5f));
 	//buildsPos.push_back(glm::vec3(0.0f, 24.0f * 2, 0.5f));
 
-	backPos.push_back(glm::vec3(0.0f, 24.0f * 2 + 10.3f*2, 0.1f));
-	backPos.push_back(glm::vec3(0.0f, 24.0f * 2 + 10.3f * 6, 0.1f));
 	backPos.push_back(glm::vec3(0.0f, 24.0f * 2 + 10.3f * 10, 0.1f));
+	backPos.push_back(glm::vec3(0.0f, 24.0f * 2 + 10.3f * 6, 0.1f));
+	backPos.push_back(glm::vec3(0.0f, 24.0f * 2 + 10.3f * 2, 0.1f));
 
 	Random::Init();
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 12; i++)
 	{
-		tilesets.push_back(Tileset(static_cast<tilesetType>(rand()%3+1), glm::vec3(float(rand() % 10)-5, 0.0f, 0.7f) + tilesetsOffset));
+		tilesets.push_back(Tileset(static_cast<TilesetType>(rand()%3+1), glm::vec3(float(rand() % 10)-5, 24.0f, 0.7f) - tilesetsOffset));
 		tilesetsOffset.y += 4.0;
 	}
+	
 }
 
 void Level::OnUpdate(CC3D::Timestep ts)
@@ -35,12 +37,21 @@ void Level::OnUpdate(CC3D::Timestep ts)
 	m_Player.OnUpdate(ts);
 
 	// 建筑生成
-	if (std::abs(cameraPos.y - buildsPos.at(buildsPos.size()/2).y) >= 12.0f)
+	if (cameraPos.y - buildsPos.at(buildsPos.size()/2).y >= 12.0f)
 	{ 
 		glm::vec3 tv = buildsPos.back();
 		buildsPos.pop_back();
 		tv.y = buildsPos.at(0).y + 24.0f;
 		buildsPos.insert(buildsPos.begin(),tv);
+	}
+
+
+	// 平台生成
+	if (cameraPos.y - tilesets.at(tilesets.size() / 2).tilesetPos.y >= 1.6f)
+	{
+		Tileset t(static_cast<TilesetType>(rand() % 3 + 1), glm::vec3(float((rand() % 10) - 5), tilesets.at(0).tilesetPos.y + 4.0f, 0.7f));
+		tilesets.pop_back();
+		tilesets.insert(tilesets.begin(), t);
 	}
 
 	// 背景生成
@@ -54,8 +65,6 @@ void Level::OnUpdate(CC3D::Timestep ts)
 			backPos.insert(backPos.begin(), tv);
 		}
 	}
-	// 平台生成
-	
 	
 	if (0)
 	{
@@ -69,21 +78,18 @@ void Level::OnUpdate(CC3D::Timestep ts)
 
 void Level::OnRender()
 {
+	// Draw background
+	CC3D::Renderer2D::DrawQuad(glm::vec3(0.0f, 20.0f, 0.1f), glm::vec2(12.8f * 4, 24.0f * 4), backgroundTexture.at(0));
+	for (int i = 0; i < backPos.size(); i++)
+	{
+		CC3D::Renderer2D::DrawQuad(backPos.at(i), glm::vec2(12.8f * 4, 10.3f * 4), backgroundTexture.at(i % 2 + 1));
+	}
+
 	// Draw Building
 	for (int i = 0; i < buildsPos.size(); i++)
 	{
 		CC3D::Renderer2D::DrawQuad(buildsPos.at(i), glm::vec2(7.8f * 2, 12.0f * 2), buildingTexture.at(0));
 	}
-
-	// Draw background
-	CC3D::Renderer2D::DrawQuad(glm::vec3(0.0f, 20.0f, 0.5f), glm::vec2(12.8f*4, 24.0f*4) , backgroundTexture.at(0));
-
-	for (int i = 0; i < backPos.size(); i++)
-	{
-		CC3D::Renderer2D::DrawQuad(backPos.at(i), glm::vec2(12.8f * 4, 10.3f * 4), backgroundTexture.at(i%2+1));
-	}
-
-	
 
 	// Draw Tileset
 	for (int i = 0; i < tilesets.size(); i++)

@@ -11,16 +11,17 @@ struct Pillar
 	glm::vec2 BottomScale = glm::vec2{ 15.0f, 20.0f };
 };
 
-enum tilesetType
+enum TilesetType
 {
 	shortTileset = 1, normalTileset, longTileset
 };
 struct Tileset
 {
-	tilesetType type;
+	TilesetType type;
 	glm::vec3 tilesetPos;
 	glm::vec2 Scale;
-	Tileset(tilesetType t, glm::vec3 pos)
+	AABB aabb;
+	Tileset(TilesetType t, glm::vec3 pos)
 	{
 		float factor = 0.8f;
 		tilesetPos = pos;
@@ -28,12 +29,29 @@ struct Tileset
 		type = t;
 		switch (type)
 		{
-		case tilesetType::shortTileset:
+		case TilesetType::shortTileset:
 			Scale = glm::vec2(5.0f, 1.6f) * factor;
-		case tilesetType::normalTileset:
+			aabb.minx = pos.x - 0.5 * Scale.x;
+			aabb.maxx = pos.x + 0.5 * Scale.x;
+			aabb.miny = pos.y - 0.5 * Scale.y;
+			aabb.maxy = pos.y + 0.5 * Scale.y;
+			break;
+		case TilesetType::normalTileset:
 			Scale = glm::vec2(7.0f, 1.6f) * factor;
-		case tilesetType::longTileset:
+			aabb.minx = pos.x - 0.5 * Scale.x;
+			aabb.maxx = pos.x + 0.5 * Scale.x;
+			aabb.miny = pos.y - 0.5 * Scale.y;
+			aabb.maxy = pos.y + 0.5 * Scale.y;
+			break;
+		case TilesetType::longTileset:
 			Scale = glm::vec2(9.0f, 1.6f) * factor;
+			aabb.minx = pos.x - 0.5 * Scale.x;
+			aabb.maxx = pos.x + 0.5 * Scale.x;
+			aabb.miny = pos.y - 0.5 * Scale.y;
+			aabb.maxy = pos.y + 0.5 * Scale.y;
+			break;
+		default:
+			break;
 		}
 	}
 };
