@@ -23,7 +23,6 @@ namespace CC3D {
 	{
 		m_Layers.emplace(m_Layers.begin() + m_LayerInsertIndex, layer);
 		m_LayerInsertIndex++;
-		layer->OnAttach();
 	}
 
 	///Push to back of list
@@ -31,7 +30,6 @@ namespace CC3D {
 	void LayerStack::PushOverlay(Layer* overlay)
 	{
 		m_Layers.emplace_back(overlay);
-		overlay->OnAttach();
 	}
 
 	/// when pop layer,we won't lose it,

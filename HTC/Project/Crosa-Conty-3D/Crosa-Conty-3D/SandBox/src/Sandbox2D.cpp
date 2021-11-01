@@ -54,11 +54,14 @@ Sandbox2D::Sandbox2D()
 
 void Sandbox2D::OnAttach()
 {
+	CC3D_PROFILE_FUNCTION();
+
 	m_CheckerboardTexture = CC3D::Texture2D::Create("assets/textures/Checkerboard.png");
 }
 
 void Sandbox2D::OnDetach()
 {
+	CC3D_PROFILE_FUNCTION();
 }
 
 void Sandbox2D::OnUpdate(CC3D::Timestep ts)

@@ -15,6 +15,8 @@ namespace CC3D {
 
 	void OpenGLContext::Init()
 	{
+		CC3D_PROFILE_FUNCTION();
+
 		///gladLoadGL();//Load GLAD so it configures OpenGL
 		glfwMakeContextCurrent(m_WindowHandle);
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
@@ -37,6 +39,8 @@ namespace CC3D {
 
 	void OpenGLContext::SwapBuffers()
 	{
+		CC3D_PROFILE_FUNCTION();
+
 		glfwSwapBuffers(m_WindowHandle);
 	}
 

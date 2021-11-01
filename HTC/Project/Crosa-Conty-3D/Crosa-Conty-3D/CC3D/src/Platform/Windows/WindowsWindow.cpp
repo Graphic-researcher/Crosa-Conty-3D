@@ -23,16 +23,22 @@ namespace CC3D {
 
 	WindowsWindow::WindowsWindow(const WindowProps& props)
 	{
+		CC3D_PROFILE_FUNCTION();
+
 		Init(props);
 	}
 
 	WindowsWindow::~WindowsWindow()
 	{
+		CC3D_PROFILE_FUNCTION();
+
 		Shutdown();
 	}
 
 	void WindowsWindow::Init(const WindowProps& props)
 	{
+		CC3D_PROFILE_FUNCTION();
+
 		m_Data.Title = props.Title;
 		m_Data.Width = props.Width;
 		m_Data.Height = props.Height;
@@ -41,16 +47,20 @@ namespace CC3D {
 
 		if (s_GLFWWindowCount == 0)
 		{
+			CC3D_PROFILE_SCOPE("glfwInit");
+
 			int success = glfwInit();
 			CC3D_CORE_ASSERT(success, "Could not initialize GLFW!");
 			glfwSetErrorCallback(GLFWErrorCallback);
 		}
 
+		{
+			CC3D_PROFILE_SCOPE("glfwCreateWindow");
 		///check Cherno's opengl series to learn more about glfw
 		///https://www.youtube.com/watch?v=W3gAzLwfIP0&list=PLlrATfBNZ98foTJPJ_Ev03o2oq3-GGOS2
-		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-		
+		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);	
 		++s_GLFWWindowCount;
+		}
 
 
 		m_Context = GraphicsContext::Create(m_Window);
@@ -151,6 +161,8 @@ namespace CC3D {
 
 	void WindowsWindow::Shutdown()
 	{
+		CC3D_PROFILE_FUNCTION();
+
 		glfwDestroyWindow(m_Window);
 		--s_GLFWWindowCount;
 
@@ -162,6 +174,8 @@ namespace CC3D {
 
 	void WindowsWindow::OnUpdate()
 	{
+		CC3D_PROFILE_FUNCTION();
+
 		glfwPollEvents();
 		m_Context->SwapBuffers();
 	}
