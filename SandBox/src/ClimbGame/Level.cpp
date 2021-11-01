@@ -1,5 +1,6 @@
 #include "Level.h"
 #include "Random.h"
+#include "iostream"
 
 void Level::Init()
 {
@@ -29,11 +30,55 @@ void Level::Init()
 		tilesets.push_back(Tileset(static_cast<TilesetType>(rand()%3+1), glm::vec3(float(rand() % 10)-5, 24.0f, 0.7f) - tilesetsOffset));
 		tilesetsOffset.y += 4.0;
 	}
-	
+	// 初始化角色位置
+	m_Player.SetPosition(glm::vec2(tilesets.at(tilesets.size() / 2+1).tilesetPos.x, tilesets.at(tilesets.size() / 2 + 1).tilesetPos.y + 2));
 }
 
 void Level::OnUpdate(CC3D::Timestep ts)
 {
+	m_Player.Movement();
+	// 碰撞检测
+	for (Tileset &t : tilesets)
+	{
+		Collision2D c = t.aabb.OnCollisionEnter(m_Player.GetAABB());
+		// 左碰撞
+		if (c.normal.x < -0.01)
+		{
+			auto v = m_Player.GetVelocity();
+			v.x = 0;
+			m_Player.SetVelocity(v);
+		}
+		// 右碰撞
+		else if (c.normal.x > 0.01)
+		{
+			auto v = m_Player.GetVelocity();
+			v.x = 0;
+			m_Player.SetVelocity(v);
+		}
+		// 上碰撞
+		else if(c.normal.y > 0.01)
+		{
+			// TODO 角色会抖动
+			auto ab = m_Player.GetAABB();
+			auto pos = m_Player.GetPosition();
+			if (ab.miny < t.aabb.maxy)
+			{
+				pos.y += t.aabb.maxy - ab.miny;
+			}
+			auto v = m_Player.GetVelocity();
+			v.y = 0 > v.y ? 0 : v.y;
+			m_Player.SetPosition(pos);
+			m_Player.SetVelocity(v);
+		}
+		// 下碰撞
+		else if (c.normal.y < -0.01)
+		{
+			auto v = m_Player.GetVelocity();
+			v.y = - 5;
+			m_Player.SetVelocity(v);
+		}
+	}
+
 	m_Player.OnUpdate(ts);
 
 	// 建筑生成
@@ -94,6 +139,11 @@ void Level::OnRender()
 	// Draw Tileset
 	for (int i = 0; i < tilesets.size(); i++)
 	{
+		CC3D::Renderer2D::DrawQuad(glm::vec3(tilesets.at(i).aabb.maxx, tilesets.at(i).aabb.maxy, 1.0f), glm::vec2(0.1f, 0.1f), glm::vec4(0.7f, 0.2f, 0.3f, 1.0f));
+		CC3D::Renderer2D::DrawQuad(glm::vec3(tilesets.at(i).aabb.maxx, tilesets.at(i).aabb.miny, 1.0f), glm::vec2(0.1f, 0.1f), glm::vec4(0.7f, 0.2f, 0.3f, 1.0f));
+		CC3D::Renderer2D::DrawQuad(glm::vec3(tilesets.at(i).aabb.minx, tilesets.at(i).aabb.maxy, 1.0f), glm::vec2(0.1f, 0.1f), glm::vec4(0.7f, 0.2f, 0.3f, 1.0f));
+		CC3D::Renderer2D::DrawQuad(glm::vec3(tilesets.at(i).aabb.minx, tilesets.at(i).aabb.miny, 1.0f), glm::vec2(0.1f, 0.1f), glm::vec4(0.7f, 0.2f, 0.3f, 1.0f));
+
 		CC3D::Renderer2D::DrawQuad(tilesets.at(i).tilesetPos, tilesets.at(i).Scale, buildingTexture.at(tilesets.at(i).type));
 	}
 

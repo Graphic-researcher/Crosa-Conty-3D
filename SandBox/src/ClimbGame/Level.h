@@ -33,22 +33,22 @@ struct Tileset
 			Scale = glm::vec2(5.0f, 1.6f) * factor;
 			aabb.minx = pos.x - 0.5 * Scale.x;
 			aabb.maxx = pos.x + 0.5 * Scale.x;
-			aabb.miny = pos.y - 0.5 * Scale.y;
-			aabb.maxy = pos.y + 0.5 * Scale.y;
+			aabb.miny = pos.y - Scale.y;
+			aabb.maxy = pos.y;
 			break;
 		case TilesetType::normalTileset:
 			Scale = glm::vec2(7.0f, 1.6f) * factor;
 			aabb.minx = pos.x - 0.5 * Scale.x;
 			aabb.maxx = pos.x + 0.5 * Scale.x;
-			aabb.miny = pos.y - 0.5 * Scale.y;
-			aabb.maxy = pos.y + 0.5 * Scale.y;
+			aabb.miny = pos.y - Scale.y;
+			aabb.maxy = pos.y;
 			break;
 		case TilesetType::longTileset:
 			Scale = glm::vec2(9.0f, 1.6f) * factor;
 			aabb.minx = pos.x - 0.5 * Scale.x;
 			aabb.maxx = pos.x + 0.5 * Scale.x;
-			aabb.miny = pos.y - 0.5 * Scale.y;
-			aabb.maxy = pos.y + 0.5 * Scale.y;
+			aabb.miny = pos.y - Scale.y;
+			aabb.maxy = pos.y;
 			break;
 		default:
 			break;

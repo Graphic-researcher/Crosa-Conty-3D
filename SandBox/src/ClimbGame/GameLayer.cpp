@@ -27,12 +27,12 @@ void GameLayer::OnUpdate(CC3D::Timestep ts)
 		m_State = GameState::GameOver;
 
 	 // 更新摄像头位置，摄像头上升
-	/*{
-		cameraSpeed += std::log(m_Time + 1) * 0.001;
+	{
+		cameraSpeed = std::log2f(m_Time + 1);
 		auto pos = m_Camera->GetPosition();
 		m_Camera->SetPosition(pos + glm::vec3(0.0f, cameraSpeed * ts, 0.0f));
 		m_Level.ChangeCameraPosition(m_Camera->GetPosition());
-	}*/
+	}
 	// TODO 判断是否超出摄像头范围
 	{
 		auto pos = m_Level.GetPlayer().GetPosition();
