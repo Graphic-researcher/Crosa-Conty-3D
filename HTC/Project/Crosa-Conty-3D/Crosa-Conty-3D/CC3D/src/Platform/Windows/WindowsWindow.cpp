@@ -1,6 +1,7 @@
 #include "cc3d_pch.h"
 #include "Platform/Windows/WindowsWindow.h"
 #include "Platform/OpenGL/OpenGLContext.h"
+#include "CC3D/Renderer/Renderer.h"
 
 #include "CC3D/Events/ApplicationEvent.h"
 #include "CC3D/Events/MouseEvent.h"
@@ -56,10 +57,14 @@ namespace CC3D {
 
 		{
 			CC3D_PROFILE_SCOPE("glfwCreateWindow");
-		///check Cherno's opengl series to learn more about glfw
-		///https://www.youtube.com/watch?v=W3gAzLwfIP0&list=PLlrATfBNZ98foTJPJ_Ev03o2oq3-GGOS2
-		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);	
-		++s_GLFWWindowCount;
+#if defined(CC3D_DEBUG)
+			if (Renderer::GetAPI() == RendererAPI::API::OpenGL)
+				glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
+#endif
+			///check Cherno's opengl series to learn more about glfw
+			///https://www.youtube.com/watch?v=W3gAzLwfIP0&list=PLlrATfBNZ98foTJPJ_Ev03o2oq3-GGOS2
+			m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
+			++s_GLFWWindowCount;
 		}
 
 
@@ -94,19 +99,19 @@ namespace CC3D {
 			{
 				case GLFW_PRESS:
 				{
-					KeyPressedEvent event(key, 0);
+					KeyPressedEvent event(static_cast<KeyCode>(key), 0);
 					data.EventCallback(event);
 					break;
 				}
 				case GLFW_RELEASE:
 				{
-					KeyReleasedEvent event(key);
+					KeyReleasedEvent event(static_cast<KeyCode>(key));
 					data.EventCallback(event);
 					break;
 				}
 				case GLFW_REPEAT:
 				{
-					KeyPressedEvent event(key, 1);
+					KeyPressedEvent event(static_cast<KeyCode>(key), 1);
 					data.EventCallback(event);
 					break;
 				}
@@ -115,17 +120,17 @@ namespace CC3D {
 
 		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-			switch (action)
-			{
+				switch (action)
+				{
 				case GLFW_PRESS:
 				{
-					MouseButtonPressedEvent event(button);
+					MouseButtonPressedEvent event(static_cast<MouseCode>(button));
 					data.EventCallback(event);
 					break;
 				}
 				case GLFW_RELEASE:
 				{
-					MouseButtonReleasedEvent event(button);
+					MouseButtonReleasedEvent event(static_cast<MouseCode>(button));
 					data.EventCallback(event);
 					break;
 				}
@@ -152,7 +157,7 @@ namespace CC3D {
 		{
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
-			KeyTypedEvent event(keycode);
+			KeyTypedEvent event(static_cast<KeyCode>(keycode));
 			data.EventCallback(event);
 		});
 	}

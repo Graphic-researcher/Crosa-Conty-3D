@@ -270,9 +270,6 @@
     <ClInclude Include="src\CC3D\Core\Log.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\CC3D\Core\MouseButtonCodes.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="src\CC3D\Core\Window.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -283,6 +280,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="src\CC3D\Debug\Instrumentor.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CC3D\Core\MouseCodes.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -18,7 +18,7 @@
     <ClInclude Include="src\CC3D\Core\KeyCodes.h" />
     <ClInclude Include="src\CC3D\Core\Layer.h" />
     <ClInclude Include="src\CC3D\Core\LayerStack.h" />
-    <ClInclude Include="src\CC3D\Core\MouseButtonCodes.h" />
+    <ClInclude Include="src\CC3D\Core\MouseCodes.h" />
     <ClInclude Include="src\CC3D\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\CC3D\Renderer\Buffer.h" />
     <ClInclude Include="src\CC3D\Renderer\GraphicsContext.h" />

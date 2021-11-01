@@ -11,7 +11,7 @@
 ///Input
 #include "CC3D/Core/Input.h"
 #include "CC3D/Core/KeyCodes.h"
-#include "CC3D/Core/MouseButtonCodes.h"
+#include "CC3D/Core/MouseCodes.h"
 //-------Render--------------
 #include "CC3D/Renderer/Renderer.h"
 #include "CC3D/Renderer/RenderCommand.h"
