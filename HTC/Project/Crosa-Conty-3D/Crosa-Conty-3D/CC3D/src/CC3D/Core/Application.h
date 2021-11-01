@@ -11,14 +11,13 @@
 ///Core
 #include "CC3D/Core/Timestep.h"
 
-
+int main(int argc, char** argv);
 namespace CC3D {
 	class Application //use  as replacement of _declspec(dllexport) 
 	{
 	public:
 		Application();
 		virtual ~Application();
-		void Run();
 		///Events
 		void OnEvent(Event& e);
 		///layers
@@ -33,6 +32,7 @@ namespace CC3D {
 		bool m_Running = true;
 		bool m_Minimized = false;
 
+		void Run();
 		///Core
 		float m_LastFrameTime = 0.0f;///for time step
 		///Window
@@ -45,6 +45,8 @@ namespace CC3D {
 		ImGuiLayer* m_ImGuiLayer;
 		///App instance
 		static Application* s_Instance;
+
+		friend int ::main(int argc, char** argv);
 	};
 	//To be defined in CLIENT
 	Application* CreateApplication();

@@ -1,5 +1,4 @@
 #pragma once
-#include<iostream>
 #ifdef CC3D_PLATFORM_WINDOWS
 
 namespace CC3D

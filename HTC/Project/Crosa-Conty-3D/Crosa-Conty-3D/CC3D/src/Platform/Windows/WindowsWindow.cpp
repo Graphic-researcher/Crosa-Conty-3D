@@ -17,10 +17,6 @@ namespace CC3D {
 		CC3D_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
 	}
 
-	Scope<Window> Window::Create(const WindowProps& props) 
-	{
-		return CreateScope<WindowsWindow>(props);
-	}
 
 	WindowsWindow::WindowsWindow(const WindowProps& props)
 	{
