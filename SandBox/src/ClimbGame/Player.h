@@ -110,7 +110,7 @@ public:
 	const AABB& GetAABB() const { return aabb; }
 
 
-	uint32_t GetScore() const { return (uint32_t)(m_Position.x + 10.0f) / 10.0f; }
+	uint32_t GetScore() const { return (uint32_t)(m_Position.y > 0 ? m_Position.y : 0); }
 private:
 	float moveSpeed = 6;
 	float jumpSpeed = 15;

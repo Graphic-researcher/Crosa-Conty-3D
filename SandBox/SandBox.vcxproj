@@ -119,6 +119,9 @@
     <ClInclude Include="src\ExampleLayer.h" />
     <ClInclude Include="src\Sandbox2D.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="..\..\..\Hazel1HourGame\Sandbox\assets\OpenSans-Regular.ttf" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

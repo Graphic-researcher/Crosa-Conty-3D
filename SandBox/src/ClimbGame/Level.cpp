@@ -24,7 +24,6 @@ void Level::Init()
 	backPos.push_back(glm::vec3(0.0f, 24.0f * 2 + 10.3f * 6, 0.1f));
 	backPos.push_back(glm::vec3(0.0f, 24.0f * 2 + 10.3f * 2, 0.1f));
 
-	Random::Init();
 	for (int i = 0; i < 12; i++)
 	{
 		tilesets.push_back(Tileset(static_cast<TilesetType>(rand()%3+1), glm::vec3(float(rand() % 10)-5, 24.0f, 0.7f) - tilesetsOffset));
@@ -155,6 +154,40 @@ void Level::OnImGuiRender()
 
 void Level::Reset()
 {
+	m_GameOver = false;
+
+	buildingTexture.clear();
+	// index 0 是大楼
+	buildingTexture.push_back(CC3D::Texture2D::Create("src/ClimbGame/ClimbGame/Textures/BackGround/near-buildings-bg.png"));
+	// 1，2，3是平台，分别是short，normal，long
+	buildingTexture.push_back(CC3D::Texture2D::Create("src/ClimbGame/ClimbGame/Textures/BackGround/tileset-short.png"));
+	buildingTexture.push_back(CC3D::Texture2D::Create("src/ClimbGame/ClimbGame/Textures/BackGround/tileset-normal.png"));
+	buildingTexture.push_back(CC3D::Texture2D::Create("src/ClimbGame/ClimbGame/Textures/BackGround/tileset-long.png"));
+
+	buildsPos.clear();
+	//buildsPos.push_back(glm::vec3(0.0f, -24.0f * 2, 0.5f));
+	buildsPos.push_back(glm::vec3(0.0f, 12.0f * 2, 0.5f));
+	buildsPos.push_back(glm::vec3(0.0f, 0.0f, 0.5f));
+	buildsPos.push_back(glm::vec3(0.0f, -12.0f * 2, 0.5f));
+	//buildsPos.push_back(glm::vec3(0.0f, 24.0f * 2, 0.5f));
+
+
+	backPos.clear();
+	backPos.push_back(glm::vec3(0.0f, 24.0f * 2 + 10.3f * 10, 0.1f));
+	backPos.push_back(glm::vec3(0.0f, 24.0f * 2 + 10.3f * 6, 0.1f));
+	backPos.push_back(glm::vec3(0.0f, 24.0f * 2 + 10.3f * 2, 0.1f));
+
+	tilesets.clear();
+	tilesetsOffset.y = 0;
+	for (int i = 0; i < 12; i++)
+	{
+		tilesets.push_back(Tileset(static_cast<TilesetType>(rand() % 3 + 1), glm::vec3(float(rand() % 10) - 5, 24.0f, 0.7f) - tilesetsOffset));
+		tilesetsOffset.y += 6.0;
+	}
+	// 初始化角色位置
+	m_Player.SetPosition(glm::vec2(tilesets.at(tilesets.size() / 2 - 2).tilesetPos.x, tilesets.at(tilesets.size() / 2 - 2).tilesetPos.y + 2));
+
+	m_Player.Reset();
 }
 
 void Level::CreatePillar(int index, float offset)
@@ -168,4 +201,5 @@ bool Level::CollisionTest()
 
 void Level::GameOver()
 {
+	m_GameOver = true;
 }

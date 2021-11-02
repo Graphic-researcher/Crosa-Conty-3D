@@ -1,8 +1,8 @@
-[22:49:51] [warning] CC3D: Initialized Log
-[22:49:51] [info] APP: Hello Crosa Conty 3D!
-[22:49:51] [info] CC3D: Creating window Crosa Conty 3D (1280, 720)
-[22:49:52] [info] CC3D: OpenGL Info:
-[22:49:52] [info] CC3D:   Vendor: NVIDIA Corporation
-[22:49:52] [info] CC3D:   Renderer: GeForce GTX 1660 Ti/PCIe/SSE2
-[22:49:52] [info] CC3D:   Version: 4.6.0 NVIDIA 462.31
-[22:49:52] [info] CC3D:   GLSL_Version: 4.60 NVIDIA
+[10:18:22] [warning] CC3D: Initialized Log
+[10:18:22] [info] APP: Hello Crosa Conty 3D!
+[10:18:22] [info] CC3D: Creating window Crosa Conty 3D (1280, 720)
+[10:18:23] [info] CC3D: OpenGL Info:
+[10:18:23] [info] CC3D:   Vendor: Intel
+[10:18:23] [info] CC3D:   Renderer: Intel(R) UHD Graphics 630
+[10:18:23] [info] CC3D:   Version: 4.6.0 - Build 27.20.100.8729
+[10:18:23] [info] CC3D:   GLSL_Version: 4.60 - Build 27.20.100.8729

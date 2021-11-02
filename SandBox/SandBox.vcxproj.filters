@@ -64,4 +64,7 @@
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="..\..\..\Hazel1HourGame\Sandbox\assets\OpenSans-Regular.ttf" />
+  </ItemGroup>
 </Project>

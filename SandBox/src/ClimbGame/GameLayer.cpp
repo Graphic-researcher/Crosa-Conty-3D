@@ -12,6 +12,9 @@ GameLayer::GameLayer()
 void GameLayer::OnAttach()
 {
 	m_Level.Init();
+
+	ImGuiIO io = ImGui::GetIO();
+	m_Font = io.Fonts->AddFontFromFileTTF("src/ClimbGame/ClimbGame/Fonts/OpenSans-Regular.ttf", 120.0f);
 }
 
 void GameLayer::OnDetach()
@@ -20,22 +23,20 @@ void GameLayer::OnDetach()
 
 void GameLayer::OnUpdate(CC3D::Timestep ts)
 {
-	m_Time += ts;
+	
 	
 	// TODO GameOver
 	if (m_Level.IsGameOver())
 		m_State = GameState::GameOver;
 
-	 // 更新摄像头位置，摄像头上升
-	{
-		cameraSpeed = std::log2f(m_Time + 1);
-		auto pos = m_Camera->GetPosition();
-		m_Camera->SetPosition(pos + glm::vec3(0.0f, cameraSpeed * ts, 0.0f));
-		m_Level.ChangeCameraPosition(m_Camera->GetPosition());
-	}
+	 
 	// TODO 判断是否超出摄像头范围
 	{
 		auto pos = m_Level.GetPlayer().GetPosition();
+		if (m_Camera->GetPosition().y - pos.y > 10)
+		{
+			m_State = GameState::GameOver;
+		}
 	}
 	
 
@@ -69,7 +70,15 @@ void GameLayer::OnUpdate(CC3D::Timestep ts)
 	{
 		case GameState::Play:
 		{
+			// 更新摄像头位置，摄像头上升
+			{
+				cameraSpeed = std::log2f(m_Time + 1);
+				auto pos = m_Camera->GetPosition();
+				m_Camera->SetPosition(pos + glm::vec3(0.0f, cameraSpeed * ts, 0.0f));
+				m_Level.ChangeCameraPosition(m_Camera->GetPosition());
+			}
 			m_Level.OnUpdate(ts);
+			m_Time += ts;
 			break;
 		}
 	}
@@ -84,6 +93,49 @@ void GameLayer::OnUpdate(CC3D::Timestep ts)
 
 void GameLayer::OnImGuiRender()
 {
+	switch (m_State)
+	{
+		case GameState::Play:// Player
+		{
+			auto pos = ImGui::GetWindowPos();
+			auto width = CC3D::Application::Get().GetWindow().GetWidth();
+			auto height = CC3D::Application::Get().GetWindow().GetHeight();
+			pos.x += width * 0.5f - 600.0f;
+			pos.y += 600.0f;
+			uint32_t playerScore = m_Level.GetPlayer().GetScore();
+			std::string scoreStr = std::string("Score: ") + std::to_string(playerScore);
+			ImGui::GetForegroundDrawList()->AddText(m_Font, 48.0f, pos, 0xffffffff, scoreStr.c_str());
+			break;
+		}
+		case GameState::MainMenu:
+		{
+			auto pos = ImGui::GetWindowPos();
+			auto width = CC3D::Application::Get().GetWindow().GetWidth();
+			auto height = CC3D::Application::Get().GetWindow().GetHeight();
+			pos.x += width * 0.5f - 300.0f;
+			pos.y += 50.0f;
+			ImGui::GetForegroundDrawList()->AddText(m_Font, 120.0f, pos, 0xffffffff, "Click to Play!");
+			break;
+		}
+		case GameState::GameOver:
+		{
+			auto pos = ImGui::GetWindowPos();
+			auto width = CC3D::Application::Get().GetWindow().GetWidth();
+			auto height = CC3D::Application::Get().GetWindow().GetHeight();
+			pos.x += width * 0.5f - 300.0f;
+			pos.y += 50.0f;
+			ImGui::GetForegroundDrawList()->AddText(m_Font, 120.0f, pos, 0xffffffff, "Click to Play!");
+
+			pos.x += 200.0f;
+			pos.y += 150.0f;
+			uint32_t playerScore = m_Level.GetPlayer().GetScore();
+			std::string scoreStr = std::string("Score: ") + std::to_string(playerScore);
+			ImGui::GetForegroundDrawList()->AddText(m_Font, 48.0f, pos, 0xffffffff, scoreStr.c_str());
+			break;
+		}
+
+	}
+
 }
 
 void GameLayer::OnEvent(CC3D::Event& e)
@@ -95,6 +147,14 @@ void GameLayer::OnEvent(CC3D::Event& e)
 
 bool GameLayer::OnMouseButtonPressed(CC3D::MouseButtonPressedEvent& e)
 {
+	if (m_State == GameState::GameOver)
+	{
+		m_Level.Reset();
+		m_Camera->SetPosition(glm::vec3(0.0, 0.0, 0.0));
+		m_Time = 0;
+	}
+
+	m_State = GameState::Play;
 	return false;
 }
 

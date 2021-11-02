@@ -129,3 +129,9 @@ void Player::OnRender()
 void Player::OnImGuiRender()
 {
 }
+
+
+void Player::Reset()
+{
+
+}
