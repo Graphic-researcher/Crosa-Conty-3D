@@ -154,7 +154,7 @@ namespace CC3D {
 	};
 }
 
-#define CC3D_PROFILE 1
+#define CC3D_PROFILE 0
 #if CC3D_PROFILE
 // Resolve which function signature macro will be used. Note that this only
 // is resolved when the (pre)compiler starts, so the syntax highlighting
