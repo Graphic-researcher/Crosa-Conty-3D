@@ -36,11 +36,10 @@ namespace CC3D {
 		void PopLayer(Layer* layer);
 		void PopOverlay(Layer* layer);
 
-		inline static Application& Get() {
+		static Application& Get() {
 			return *s_Instance;
 		}
-
-		inline Window& GetWindow() { return *m_Window; }
+		Window& GetWindow() { return *m_Window; }
 	private:
 		void Run();
 		bool OnWindowClose(WindowCloseEvent& e);

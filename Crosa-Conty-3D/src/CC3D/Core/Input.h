@@ -14,12 +14,12 @@ namespace CC3D {
 	public:
 		Input(const Input&) = delete;
 		Input& operator=(const Input&) = delete;
-		inline static bool IsKeyPressed(KeyCode keycode) { return s_Instance->IsKeyPressedImpl(keycode); }
+		static bool IsKeyPressed(KeyCode keycode) { return s_Instance->IsKeyPressedImpl(keycode); }
 
-		inline static bool isMouseButtonPressed(MouseCode button) { return s_Instance->IsMouseButtonPressedImpl(button); }
-		inline static std::pair<float, float>getMousePosition() { return s_Instance->GetMousePositionImpl(); }
-		inline static float GetMouseX() { return s_Instance->GetMouseXImpl(); }
-		inline static float GetMouseY() { return s_Instance->GetMouseYImpl(); }
+		static bool isMouseButtonPressed(MouseCode button) { return s_Instance->IsMouseButtonPressedImpl(button); }
+		static std::pair<float, float>getMousePosition() { return s_Instance->GetMousePositionImpl(); }
+		static float GetMouseX() { return s_Instance->GetMouseXImpl(); }
+		static float GetMouseY() { return s_Instance->GetMouseYImpl(); }
 
 		static Scope<Input> Create();
 	protected:
