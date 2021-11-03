@@ -76,9 +76,9 @@ namespace CC3D {
 
 	void OpenGLShader::SetFloat(const std::string& name, float value)
 	{
-			CC3D_PROFILE_FUNCTION();
+		CC3D_PROFILE_FUNCTION();
 
-			UploadUniformFloat(name, value);
+		UploadUniformFloat(name, value);
 	}
 
 	void OpenGLShader::SetFloat3(const std::string& name, const glm::vec3& value)

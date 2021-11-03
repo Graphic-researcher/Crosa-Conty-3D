@@ -99,11 +99,11 @@ void Player::OnUpdate(CC3D::Timestep ts)
 
 void Player::OnRender()
 {
-	// Draw AABB
-	CC3D::Renderer2D::DrawQuad(glm::vec3(aabb.maxx, aabb.maxy, 1.0f), glm::vec2(0.1f, 0.1f), glm::vec4(0.7f, 0.2f, 0.3f, 1.0f));
-	CC3D::Renderer2D::DrawQuad(glm::vec3(aabb.maxx, aabb.miny, 1.0f), glm::vec2(0.1f, 0.1f), glm::vec4(0.7f, 0.2f, 0.3f, 1.0f));
-	CC3D::Renderer2D::DrawQuad(glm::vec3(aabb.minx, aabb.maxy, 1.0f), glm::vec2(0.1f, 0.1f), glm::vec4(0.7f, 0.2f, 0.3f, 1.0f));
-	CC3D::Renderer2D::DrawQuad(glm::vec3(aabb.minx, aabb.miny, 1.0f), glm::vec2(0.1f, 0.1f), glm::vec4(0.7f, 0.2f, 0.3f, 1.0f));
+	//// Draw AABB
+	//CC3D::Renderer2D::DrawQuad(glm::vec3(aabb.maxx, aabb.maxy, 1.0f), glm::vec2(0.1f, 0.1f), glm::vec4(0.7f, 0.2f, 0.3f, 1.0f));
+	//CC3D::Renderer2D::DrawQuad(glm::vec3(aabb.maxx, aabb.miny, 1.0f), glm::vec2(0.1f, 0.1f), glm::vec4(0.7f, 0.2f, 0.3f, 1.0f));
+	//CC3D::Renderer2D::DrawQuad(glm::vec3(aabb.minx, aabb.maxy, 1.0f), glm::vec2(0.1f, 0.1f), glm::vec4(0.7f, 0.2f, 0.3f, 1.0f));
+	//CC3D::Renderer2D::DrawQuad(glm::vec3(aabb.minx, aabb.miny, 1.0f), glm::vec2(0.1f, 0.1f), glm::vec4(0.7f, 0.2f, 0.3f, 1.0f));
 
 	if (isIdel)
 	{

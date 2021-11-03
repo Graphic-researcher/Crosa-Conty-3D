@@ -10,8 +10,8 @@ namespace CC3D {
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::API::None:		CC3D_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-		case RendererAPI::API::OpenGL:		return CreateRef<OpenGLTexture2D>(width, height);
+			case RendererAPI::API::None:		CC3D_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+			case RendererAPI::API::OpenGL:		return CreateRef<OpenGLTexture2D>(width, height);
 		}
 
 		CC3D_CORE_ASSERT(false, "Unknown RendererAPI!");
@@ -22,8 +22,8 @@ namespace CC3D {
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::API::None:		CC3D_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-		case RendererAPI::API::OpenGL:		return CreateRef<OpenGLTexture2D>(path);
+			case RendererAPI::API::None:		CC3D_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+			case RendererAPI::API::OpenGL:		return CreateRef<OpenGLTexture2D>(path);
 		}
 
 		CC3D_CORE_ASSERT(false, "Unknown RendererAPI!");

@@ -137,10 +137,10 @@ void Level::OnRender()
 	// Draw Tileset
 	for (int i = 0; i < tilesets.size(); i++)
 	{
-		CC3D::Renderer2D::DrawQuad(glm::vec3(tilesets.at(i).aabb.maxx, tilesets.at(i).aabb.maxy, 1.0f), glm::vec2(0.1f, 0.1f), glm::vec4(0.7f, 0.2f, 0.3f, 1.0f));
+		/*CC3D::Renderer2D::DrawQuad(glm::vec3(tilesets.at(i).aabb.maxx, tilesets.at(i).aabb.maxy, 1.0f), glm::vec2(0.1f, 0.1f), glm::vec4(0.7f, 0.2f, 0.3f, 1.0f));
 		CC3D::Renderer2D::DrawQuad(glm::vec3(tilesets.at(i).aabb.maxx, tilesets.at(i).aabb.miny, 1.0f), glm::vec2(0.1f, 0.1f), glm::vec4(0.7f, 0.2f, 0.3f, 1.0f));
 		CC3D::Renderer2D::DrawQuad(glm::vec3(tilesets.at(i).aabb.minx, tilesets.at(i).aabb.maxy, 1.0f), glm::vec2(0.1f, 0.1f), glm::vec4(0.7f, 0.2f, 0.3f, 1.0f));
-		CC3D::Renderer2D::DrawQuad(glm::vec3(tilesets.at(i).aabb.minx, tilesets.at(i).aabb.miny, 1.0f), glm::vec2(0.1f, 0.1f), glm::vec4(0.7f, 0.2f, 0.3f, 1.0f));
+		CC3D::Renderer2D::DrawQuad(glm::vec3(tilesets.at(i).aabb.minx, tilesets.at(i).aabb.miny, 1.0f), glm::vec2(0.1f, 0.1f), glm::vec4(0.7f, 0.2f, 0.3f, 1.0f));*/
 
 		CC3D::Renderer2D::DrawQuad(tilesets.at(i).tilesetPos, tilesets.at(i).Scale, buildingTexture.at(tilesets.at(i).type));
 	}

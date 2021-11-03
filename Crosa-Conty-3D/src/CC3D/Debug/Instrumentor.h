@@ -168,7 +168,7 @@ namespace CC3D {
 	};
 }
 
-#define CC3D_PROFILE 1
+#define CC3D_PROFILE 0
 #if CC3D_PROFILE
 #define CC3D_PROFILE_BEGIN_SESSION(name, filepath) ::CC3D::Instrumentor::Get().BeginSession(name, filepath)
 #define CC3D_PROFILE_END_SESSION() ::CC3D::Instrumentor::Get().EndSession()
