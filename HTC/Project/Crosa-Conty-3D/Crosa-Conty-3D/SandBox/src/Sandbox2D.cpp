@@ -85,6 +85,14 @@ void Sandbox2D::TestDraw44()
 	CC3D::Renderer2D::DrawQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, { 0.2f, 0.3f, 0.8f, 1.0f });
 }
 
+void Sandbox2D::TestDraw45()
+{
+	CC3D::Renderer2D::DrawQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, { 0.8f, 0.2f, 0.3f, 1.0f });
+	CC3D::Renderer2D::DrawQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, { 0.2f, 0.3f, 0.8f, 1.0f });
+	CC3D::Renderer2D::DrawQuad({ -5.0f, -5.0f, -0.1f }, { 10.0f, 10.0f }, m_CheckerboardTexture, 10.0f);
+	CC3D::Renderer2D::DrawQuad({ -0.5f, -0.5f, 0.0f }, { 1.0f, 1.0f }, m_CheckerboardTexture, 20.0f);
+}
+
 void Sandbox2D::OnUpdate(CC3D::Timestep ts)
 {
 	CC3D_PROFILE_FUNCTION();
@@ -114,7 +122,7 @@ void Sandbox2D::OnUpdate(CC3D::Timestep ts)
 
 		PROFILE_SCOPE("Renderer Draw");
 		CC3D::Renderer2D::BeginScene(m_CameraController.GetCamera());///set view matrix
-		TestDraw44();
+		TestDraw45();
 		CC3D::Renderer2D::EndScene();
 	}
 }

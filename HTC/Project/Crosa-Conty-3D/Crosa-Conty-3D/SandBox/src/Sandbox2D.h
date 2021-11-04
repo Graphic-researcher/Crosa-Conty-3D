@@ -12,6 +12,7 @@ public:
 	virtual void OnDetach() override;
 	void TestDraw();
 	void TestDraw44();
+	void TestDraw45();
 	void OnUpdate(CC3D::Timestep ts) override;
 	virtual void OnImGuiRender() override;
 	void OnEvent(CC3D::Event& e) override;
