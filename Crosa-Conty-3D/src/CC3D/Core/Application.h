@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CC3D/Core/Core.h"
+#include "CC3D/Core/Base.h"
 #include "CC3D/Events/ApplicationEvent.h"
 
 #include "CC3D/Core/Window.h"

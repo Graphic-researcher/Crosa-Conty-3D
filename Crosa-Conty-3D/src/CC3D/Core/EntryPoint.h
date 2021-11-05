@@ -1,5 +1,5 @@
 #pragma once
-#include "CC3D/Core/Core.h"
+#include "CC3D/Core/Base.h"
 
 #ifdef  CC3D_PLATFORM_WINDOWS
 

@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "CC3D/Core/Core.h"
+#include "CC3D/Core/Base.h"
 
 namespace CC3D {
 

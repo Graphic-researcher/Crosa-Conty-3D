@@ -18,7 +18,8 @@ void Sandbox2D::OnAttach()
 {
 	CC3D_PROFILE_FUNCTION();
 
-	m_CheckerboardTexture = CC3D::Texture2D::Create("assets/textures/waifualpha.png");
+	m_WaifuTexture = CC3D::Texture2D::Create("assets/textures/waifualpha.png");
+	m_SAGATexture = CC3D::Texture2D::Create("assets/textures/72137544_p0.png");
 }
 
 void Sandbox2D::OnDetach()
@@ -53,8 +54,8 @@ void Sandbox2D::OnUpdate(CC3D::Timestep ts)
 		CC3D::Renderer2D::DrawQuad(glm::vec2(-1.0f, 0.0f), glm::vec2(0.8f, 0.8f), glm::vec4(1.0f, 1.0f, 1.0f, 0.5f));
 		CC3D::Renderer2D::DrawQuad(glm::vec2{ -1.0f, 0.0f }, glm::vec2{ 0.8f, 0.8f }, glm::vec4{ 0.8f, 0.2f, 0.3f, 1.0f });
 		CC3D::Renderer2D::DrawQuad(glm::vec2{ 0.5f, -0.5f }, glm::vec2{ 0.5f, 0.75f }, glm::vec4{ 0.2f, 0.3f, 0.8f, 1.0f });
-		CC3D::Renderer2D::DrawQuad(glm::vec3(0.0f, 0.0f, -0.1f), glm::vec2(10.0f, 10.0f), m_CheckerboardTexture,10.f);
-		CC3D::Renderer2D::DrawRotatedQuad(glm::vec3{ -2.0f, 0.0f, 0.0f }, glm::vec2{ 1.0f, 1.0f }, rotation, m_CheckerboardTexture, 20.0f);
+		CC3D::Renderer2D::DrawQuad(glm::vec3(0.0f, 0.0f, -0.1f), glm::vec2(10.0f, 10.0f), m_WaifuTexture,10.f);
+		CC3D::Renderer2D::DrawRotatedQuad(glm::vec3{ -2.0f, 0.0f, 0.0f }, glm::vec2{ 2.0f, 2.0f }, rotation, m_SAGATexture, 20.0f);
 		CC3D::Renderer2D::EndScene();
 
 		CC3D::Renderer2D::BeginScene(m_CameraController.GetCamera());

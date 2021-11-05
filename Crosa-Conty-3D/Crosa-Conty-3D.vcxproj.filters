@@ -10,7 +10,7 @@
     <ClInclude Include="src\CC3D\Core\Application.h">
       <Filter>CC3D</Filter>
     </ClInclude>
-    <ClInclude Include="src\CC3D\Core\Core.h">
+    <ClInclude Include="src\CC3D\Core\Base.h">
       <Filter>CC3D</Filter>
     </ClInclude>
     <ClInclude Include="src\CC3D\Core\EntryPoint.h">

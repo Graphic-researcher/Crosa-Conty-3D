@@ -2,7 +2,7 @@
 
 // For use by CC3D applications
 
-#include "CC3D/Core/Core.h"
+#include "CC3D/Core/Base.h"
 
 #include "CC3D/Core/Application.h"
 #include "CC3D/Core/Layer.h"
