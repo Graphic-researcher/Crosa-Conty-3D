@@ -111,6 +111,8 @@ namespace CC3D{
 	void Renderer2D::Shutdown()
 	{
 		CC3D_PROFILE_FUNCTION();
+
+		delete[] s_Data.QuadVertexBufferBase;
 	}
 	void Renderer2D::BeginScene(const OrthographicCamera& camera)
 	{
@@ -127,7 +129,7 @@ namespace CC3D{
 	void Renderer2D::EndScene()
 	{
 		CC3D_PROFILE_FUNCTION();
-		uint32_t dataSize = (uint8_t*)s_Data.QuadVertexBufferPtr - (uint8_t*)s_Data.QuadVertexBufferBase;
+		uint32_t dataSize = uint32_t((uint8_t*)s_Data.QuadVertexBufferPtr - (uint8_t*)s_Data.QuadVertexBufferBase);
 		s_Data.QuadVertexBuffer->SetData(s_Data.QuadVertexBufferBase, dataSize);
 		Flush();
 	}
