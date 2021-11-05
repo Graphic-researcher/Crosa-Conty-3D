@@ -136,6 +136,8 @@ namespace CC3D{
 
 	void Renderer2D::Flush()
 	{
+		if (s_Data.QuadIndexCount == 0)
+			return; // Nothing to draw
 		// Bind textures
 		for (uint32_t i = 0; i < s_Data.TextureSlotIndex; i++)// why here
 			s_Data.TextureSlots[i]->Bind(i);	
