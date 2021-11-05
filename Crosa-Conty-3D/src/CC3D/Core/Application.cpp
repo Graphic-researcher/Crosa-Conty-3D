@@ -82,6 +82,11 @@ namespace CC3D {
 		}
 	}
 
+	void Application::Close()
+	{
+		m_Running = false;
+	}
+
 	void Application::Run()
 	{
 		CC3D_PROFILE_FUNCTION();
