@@ -209,8 +209,6 @@ namespace CC3D{
 		if (s_Data.QuadIndexCount >= Renderer2DData::MaxIndices)
 			FlushAndReset();
 
-
-
 		float textureIndex = 0.0f;
 		for (uint32_t i = 1; i < s_Data.TextureSlotIndex; i++)
 		{
@@ -221,8 +219,10 @@ namespace CC3D{
 			}
 		}
 
-		if (textureIndex == 0.0f)
+		if (textureIndex == 0.0f)// 传入的纹理不存在，新加一个纹理
 		{
+			if (s_Data.TextureSlotIndex >= Renderer2DData::MaxTextureSlots)
+				FlushAndReset();
 			textureIndex = (float)s_Data.TextureSlotIndex;
 			s_Data.TextureSlots[s_Data.TextureSlotIndex] = texture;
 			s_Data.TextureSlotIndex++;
@@ -324,6 +324,8 @@ namespace CC3D{
 
 		if (textureIndex == 0.0f)// 传入的纹理不存在，新加一个纹理
 		{
+			if (s_Data.TextureSlotIndex >= Renderer2DData::MaxTextureSlots)
+				FlushAndReset();
 			textureIndex = (float)s_Data.TextureSlotIndex;
 			s_Data.TextureSlots[s_Data.TextureSlotIndex] = texture;
 			s_Data.TextureSlotIndex++;
