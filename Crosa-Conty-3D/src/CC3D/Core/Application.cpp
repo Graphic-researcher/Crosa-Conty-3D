@@ -75,9 +75,9 @@ namespace CC3D {
 
 		for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend();++it)
 		{
-			(*it)->OnEvent(e);
 			if (e.Handled)
 				break;
+			(*it)->OnEvent(e);
 			//CC3D_CORE_TRACE(" {0}", e);
 		}
 	}
