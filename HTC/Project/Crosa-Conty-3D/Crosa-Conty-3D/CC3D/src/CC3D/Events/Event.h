@@ -50,7 +50,7 @@ namespace CC3D {
 		virtual std::string ToString() const { return GetName(); }
 		
 
-		inline bool IsInCategory(EventCategory category)
+		bool IsInCategory(EventCategory category)
 		{
 			///ruturn 0 : not in any category at all , Otherwise it is or not in that category
 			return GetCategoryFlags() & category;
