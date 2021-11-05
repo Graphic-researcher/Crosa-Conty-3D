@@ -35,6 +35,7 @@ void Sandbox2D::OnUpdate(CC3D::Timestep ts)
 
 
 	// Render
+	CC3D::Renderer2D::ResetStats();
 	{
 		CC3D_PROFILE_SCOPE("Renderer Prepare");
 		CC3D::RenderCommand::SetClearColor(glm::vec4(0.1f, 0.1f, 0.1f, 1.0f));
@@ -55,6 +56,17 @@ void Sandbox2D::OnUpdate(CC3D::Timestep ts)
 		CC3D::Renderer2D::DrawQuad(glm::vec3(0.0f, 0.0f, -0.1f), glm::vec2(10.0f, 10.0f), m_CheckerboardTexture,10.f);
 		CC3D::Renderer2D::DrawRotatedQuad(glm::vec3{ -2.0f, 0.0f, 0.0f }, glm::vec2{ 1.0f, 1.0f }, rotation, m_CheckerboardTexture, 20.0f);
 		CC3D::Renderer2D::EndScene();
+
+		CC3D::Renderer2D::BeginScene(m_CameraController.GetCamera());
+		for (float y = -5.0f; y < 50.0f; y += 0.5f)
+		{
+			for (float x = -5.0f; x < 50.0f; x += 0.5f)
+			{
+				glm::vec4 color = glm::vec4{ (x + 5.0f) / 10.0f, 0.4f, (y + 5.0f) / 10.0f, 0.7f };
+				CC3D::Renderer2D::DrawQuad(glm::vec2{ x, y }, glm::vec2{ 0.45f, 0.45f }, color);
+			}
+		}
+		CC3D::Renderer2D::EndScene();
 	}
 }
 
@@ -63,6 +75,13 @@ void Sandbox2D::OnImGuiRender()
 	CC3D_PROFILE_FUNCTION();
 
 	ImGui::Begin("Texture");
+
+	auto stats = CC3D::Renderer2D::GetStats();
+	ImGui::Text("Renderer2D Stats:");
+	ImGui::Text("Draw Calls: %d", stats.DrawCalls);
+	ImGui::Text("Quads: %d", stats.QuadCount);
+	ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
+	ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
 
 	ImGui::Checkbox("checkbox", &TexCheck);
 
