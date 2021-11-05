@@ -34,4 +34,5 @@ bin
 bin-int
 .vs
 
-SandBox/CC3DProfile-*
+/SandBox/CC3DProfile-*.json
+/SandBox/CC3D.log
