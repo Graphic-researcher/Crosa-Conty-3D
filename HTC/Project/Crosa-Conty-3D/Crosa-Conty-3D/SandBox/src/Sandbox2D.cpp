@@ -121,6 +121,7 @@ void Sandbox2D::OnUpdate(CC3D::Timestep ts)
 	}
 
 	// Render
+	CC3D::Renderer2D::ResetStats();
 	{
 		CC3D_PROFILE_SCOPE("Renderer Prep");
 
@@ -136,17 +137,40 @@ void Sandbox2D::OnUpdate(CC3D::Timestep ts)
 		CC3D::Renderer2D::BeginScene(m_CameraController.GetCamera());///set view matrix
 		TestDraw46(ts);
 		CC3D::Renderer2D::EndScene();
+
+		CC3D::Renderer2D::BeginScene(m_CameraController.GetCamera());
+		TestDraw47();
+		CC3D::Renderer2D::EndScene();
+	}
+}
+
+void Sandbox2D::TestDraw47()
+{
+	for (float y = -5.0f; y < 5.0f; y += 0.5f)
+	{
+		for (float x = -5.0f; x < 5.0f; x += 0.5f)
+		{
+			glm::vec4 color = { (x + 5.0f) / 10.0f, 0.4f, (y + 5.0f) / 10.0f, 0.7f };
+			CC3D::Renderer2D::DrawQuad({ x, y }, { 0.45f, 0.45f }, color);
+		}
 	}
 }
 
 void Sandbox2D::OnImGuiRender()
 {
 	CC3D_PROFILE_FUNCTION();
-
-	ImGui::Begin("Settings");
-	ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
-	
 	///profiling information visualization
+	ProfileVisual();
+
+	///render status visualization
+	RenderStatusVisual();
+}
+
+void Sandbox2D::ProfileVisual()
+{
+	ImGui::Begin("Profiling");
+	ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
+
 	for (auto& result : m_ProfileResults)
 	{
 		char label[50];
@@ -155,8 +179,20 @@ void Sandbox2D::OnImGuiRender()
 		ImGui::Text(label, result.Time);
 	}
 	m_ProfileResults.clear();
-	
-	
+
+	ImGui::End();
+}
+
+void Sandbox2D::RenderStatusVisual()
+{
+	ImGui::Begin("Status");
+	ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
+	auto stats = CC3D::Renderer2D::GetStats();
+	ImGui::Text("Renderer2D Stats:");
+	ImGui::Text("Draw Calls: %d", stats.DrawCalls);
+	ImGui::Text("Quads: %d", stats.QuadCount);
+	ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
+	ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
 	ImGui::End();
 }
 
