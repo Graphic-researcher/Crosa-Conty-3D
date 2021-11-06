@@ -11,7 +11,7 @@ public:
 	virtual void OnAttach() override;
 	virtual void OnDetach() override;
 	/// <summary>
-	/// Draw Scenes from lectures
+	/// Test Rendering Scenes from lectures
 	/// </summary>
 	void TestDraw();
 	void TestDraw44();
@@ -21,8 +21,12 @@ public:
 
 	void OnUpdate(CC3D::Timestep ts) override;
 	virtual void OnImGuiRender() override;
+	/// <summary>
+	/// visualization functions using imgui
+	/// </summary>
 	void ProfileVisual();
 	void RenderStatusVisual();
+
 	void OnEvent(CC3D::Event& e) override;
 private:
 	CC3D::OrthographicCameraController m_CameraController;
