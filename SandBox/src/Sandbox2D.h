@@ -18,15 +18,6 @@ public:
 private:
 	CC3D::OrthographicCameraController m_CameraController;
 
-	// Temp
-	CC3D::Ref<CC3D::VertexArray> m_SquareVA;
-	CC3D::ShaderLibrary m_ShaderLibrary;
-
 	CC3D::Ref<CC3D::Texture2D> m_WaifuTexture;
 	CC3D::Ref<CC3D::Texture2D> m_SAGATexture;
-
-	glm::vec4 m_SquareColor = glm::vec4(0.2f, 0.3f, 0.8f, 1.0f);
-
-	// ImGui parameter
-	bool TexCheck = true;
 };

@@ -59,9 +59,9 @@ void Sandbox2D::OnUpdate(CC3D::Timestep ts)
 		CC3D::Renderer2D::EndScene();
 
 		CC3D::Renderer2D::BeginScene(m_CameraController.GetCamera());
-		for (float y = -5.0f; y < 50.0f; y += 0.5f)
+		for (float y = -5.0f; y < 500.0f; y += 0.5f)
 		{
-			for (float x = -5.0f; x < 50.0f; x += 0.5f)
+			for (float x = -5.0f; x < 500.0f; x += 0.5f)
 			{
 				glm::vec4 color = glm::vec4{ (x + 5.0f) / 10.0f, 0.4f, (y + 5.0f) / 10.0f, 0.7f };
 				CC3D::Renderer2D::DrawQuad(glm::vec2{ x, y }, glm::vec2{ 0.45f, 0.45f }, color);
@@ -76,7 +76,7 @@ void Sandbox2D::OnImGuiRender()
 	CC3D_PROFILE_FUNCTION();
 
 	// Note: Switch this to true to enable dockspace
-	static bool dockingEnabled = true;
+	static bool dockingEnabled = false;
 	if (dockingEnabled)
 	{
 		static bool dockspaceOpen = true;
@@ -132,7 +132,7 @@ void Sandbox2D::OnImGuiRender()
 				//ImGui::MenuItem("Fullscreen", NULL, &opt_fullscreen_persistant);
 
 				if (ImGui::MenuItem("Exit")) CC3D::Application::Get().Close();
-				ImGui::EndMenu();
+					ImGui::EndMenu();
 			}
 
 			ImGui::EndMenuBar();
@@ -147,7 +147,6 @@ void Sandbox2D::OnImGuiRender()
 		ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
 		ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
 
-		ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
 
 		uint32_t textureID = m_WaifuTexture->GetRendererID();
 		ImGui::Image((void*)textureID, ImVec2{ 256.0f, 256.0f });
@@ -165,8 +164,6 @@ void Sandbox2D::OnImGuiRender()
 		ImGui::Text("Quads: %d", stats.QuadCount);
 		ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
 		ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
-
-		ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
 
 		uint32_t textureID = m_WaifuTexture->GetRendererID();
 		ImGui::Image((void*)textureID, ImVec2{ 256.0f, 256.0f });

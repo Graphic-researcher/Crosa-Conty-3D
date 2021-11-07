@@ -103,11 +103,15 @@
     <ClCompile Include="src\ClimbGame\Player.cpp" />
     <ClCompile Include="src\ClimbGame\Random.cpp" />
     <ClCompile Include="src\ExampleLayer.cpp" />
+    <ClCompile Include="src\ParticleSystem\ParticleSystem.cpp" />
+    <ClCompile Include="src\ParticleSystem\ParticleSystemBox2D.cpp" />
+    <ClCompile Include="src\ParticleSystem\Random.cpp" />
     <ClCompile Include="src\Sandbox2D.cpp" />
     <ClCompile Include="src\SandboxApp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\Flat.glsl" />
+    <None Include="assets\shaders\Particles2D.glsl" />
     <None Include="assets\shaders\Texture.glsl" />
   </ItemGroup>
   <ItemGroup>
@@ -117,6 +121,9 @@
     <ClInclude Include="src\ClimbGame\Player.h" />
     <ClInclude Include="src\ClimbGame\Random.h" />
     <ClInclude Include="src\ExampleLayer.h" />
+    <ClInclude Include="src\ParticleSystem\ParticleSystem.h" />
+    <ClInclude Include="src\ParticleSystem\ParticleSystemBox2D.h" />
+    <ClInclude Include="src\ParticleSystem\Random.h" />
     <ClInclude Include="src\Sandbox2D.h" />
   </ItemGroup>
   <ItemGroup>

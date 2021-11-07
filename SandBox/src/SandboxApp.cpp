@@ -10,6 +10,7 @@
 #include "Sandbox2D.h"
 #include "ExampleLayer.h"
 #include "ClimbGame/GameLayer.h"
+#include "ParticleSystem/ParticleSystemBox2D.h"
 
 class Sandbox : public CC3D::Application
 {
@@ -17,8 +18,9 @@ public:
 	Sandbox()
 	{
 		//PushLayer(new ExampleLayer());
-		PushLayer(new Sandbox2D());
+		//PushLayer(new Sandbox2D());
 		//PushLayer(new GameLayer());
+		PushLayer(new ParticleSystemBox2D());
 	}
 
 	~Sandbox()

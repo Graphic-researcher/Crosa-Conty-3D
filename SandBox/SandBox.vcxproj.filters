@@ -36,10 +36,20 @@
     <ClCompile Include="src\ClimbGame\Random.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="src\ParticleSystem\ParticleSystemBox2D.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ParticleSystem\ParticleSystem.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ParticleSystem\Random.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\Texture.glsl" />
     <None Include="assets\shaders\Flat.glsl" />
+    <None Include="assets\shaders\Particles2D.glsl" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Sandbox2D.h">
@@ -61,6 +71,15 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="src\ClimbGame\Animator2D.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ParticleSystem\ParticleSystemBox2D.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ParticleSystem\ParticleSystem.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ParticleSystem\Random.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
