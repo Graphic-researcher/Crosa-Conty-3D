@@ -46,7 +46,18 @@
 ///linking runtime library dynamically; 
 ///defined CC3D_ENABLE_ASSERTS if CC3D_DEBUG is on.
 #ifdef CC3D_DEBUG
+	#if defined(CC3D_PLATFORM_WINDOWS)
+		#define CC3D_DEBUGBREAK() __debugbreak()
+	#elif defined(CC3D_PLATFORM_LINUX)
+		#include <signal.h>
+		#define CC3D_DEBUGBREAK() raise(SIGTRAP)
+	#else
+		#error "Platform doesn't support debugbreak yet!"
+	#endif
 	#define CC3D_ENABLE_ASSERTS
+#define CC3D_ENABLE_ASSERTS
+#else
+	#define CC3D_DEBUGBREAK()
 #endif
 
 ///check certain conditons,log message

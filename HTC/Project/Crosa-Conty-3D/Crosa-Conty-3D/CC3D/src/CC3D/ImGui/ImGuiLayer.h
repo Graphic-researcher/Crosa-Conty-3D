@@ -17,6 +17,7 @@ namespace CC3D {
 		virtual void OnAttach() override;
 		virtual void OnDetach() override;
 		///virtual void OnImGuiRender() override;
+		virtual void OnEvent(Event& e) override;
 
 
 		void Begin();///begin window rendering
