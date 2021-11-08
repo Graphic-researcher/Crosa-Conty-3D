@@ -19,8 +19,11 @@ void ParticleSystemBox2D::OnAttach()
 	CC3D_PROFILE_FUNCTION();
 
 	// Init here
+
 	m_Particle.ColorBegin = glm::vec4{ 254 / 255.0f, 212 / 255.0f, 123 / 255.0f, 1.0f };
 	m_Particle.ColorEnd = glm::vec4{ 254 / 255.0f, 109 / 255.0f, 41 / 255.0f, 1.0f };
+	//m_Particle.ColorBegin = glm::vec4{ 1.0f, 0.4f, 1.0f, 1.0f };
+	//m_Particle.ColorEnd = glm::vec4{ 0.0f, 0.4f, 0.0f, 1.0f };
 	m_Particle.SizeBegin = 0.5f, m_Particle.SizeVariation = 0.3f, m_Particle.SizeEnd = 0.0f;
 	m_Particle.LifeTime = 10.0f;
 	m_Particle.Velocity = glm::vec2{ 0.0f, 0.0f };

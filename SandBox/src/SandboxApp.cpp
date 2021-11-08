@@ -18,9 +18,9 @@ public:
 	Sandbox()
 	{
 		//PushLayer(new ExampleLayer());
-		//PushLayer(new Sandbox2D());
+		PushLayer(new Sandbox2D());
 		//PushLayer(new GameLayer());
-		PushLayer(new ParticleSystemBox2D());
+		//PushLayer(new ParticleSystemBox2D());
 	}
 
 	~Sandbox()

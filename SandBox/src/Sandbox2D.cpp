@@ -20,6 +20,11 @@ void Sandbox2D::OnAttach()
 
 	m_WaifuTexture = CC3D::Texture2D::Create("assets/textures/waifualpha.png");
 	m_SAGATexture = CC3D::Texture2D::Create("assets/textures/72137544_p0.png");
+
+	CC3D::FramebufferSpecification fbSpec;
+	fbSpec.Width = 1280;
+	fbSpec.Height = 720;
+	m_Framebuffer = CC3D::Framebuffer::Create(fbSpec);
 }
 
 void Sandbox2D::OnDetach()
@@ -39,6 +44,7 @@ void Sandbox2D::OnUpdate(CC3D::Timestep ts)
 	CC3D::Renderer2D::ResetStats();
 	{
 		CC3D_PROFILE_SCOPE("Renderer Prepare");
+		m_Framebuffer->Bind();
 		CC3D::RenderCommand::SetClearColor(glm::vec4(0.1f, 0.1f, 0.1f, 1.0f));
 		CC3D::RenderCommand::Clear();
 	}
@@ -54,20 +60,21 @@ void Sandbox2D::OnUpdate(CC3D::Timestep ts)
 		CC3D::Renderer2D::DrawQuad(glm::vec2(-1.0f, 0.0f), glm::vec2(0.8f, 0.8f), glm::vec4(1.0f, 1.0f, 1.0f, 0.5f));
 		CC3D::Renderer2D::DrawQuad(glm::vec2{ -1.0f, 0.0f }, glm::vec2{ 0.8f, 0.8f }, glm::vec4{ 0.8f, 0.2f, 0.3f, 1.0f });
 		CC3D::Renderer2D::DrawQuad(glm::vec2{ 0.5f, -0.5f }, glm::vec2{ 0.5f, 0.75f }, glm::vec4{ 0.2f, 0.3f, 0.8f, 1.0f });
-		CC3D::Renderer2D::DrawQuad(glm::vec3(0.0f, 0.0f, -0.1f), glm::vec2(10.0f, 10.0f), m_WaifuTexture,10.f);
-		CC3D::Renderer2D::DrawRotatedQuad(glm::vec3{ -2.0f, 0.0f, 0.0f }, glm::vec2{ 2.0f, 2.0f }, rotation, m_SAGATexture, 20.0f);
+		//CC3D::Renderer2D::DrawQuad(glm::vec3(0.0f, 0.0f, -0.1f), glm::vec2(10.0f, 10.0f), m_WaifuTexture,10.f);
+		CC3D::Renderer2D::DrawRotatedQuad(glm::vec3{ -2.0f, 0.0f, 0.0f }, glm::vec2{ 2.0f, 2.0f }, rotation, m_SAGATexture);
 		CC3D::Renderer2D::EndScene();
 
 		CC3D::Renderer2D::BeginScene(m_CameraController.GetCamera());
-		for (float y = -5.0f; y < 500.0f; y += 0.5f)
+		for (float y = -5.0f; y < 5.0f; y += 0.5f)
 		{
-			for (float x = -5.0f; x < 500.0f; x += 0.5f)
+			for (float x = -5.0f; x < 5.0f; x += 0.5f)
 			{
 				glm::vec4 color = glm::vec4{ (x + 5.0f) / 10.0f, 0.4f, (y + 5.0f) / 10.0f, 0.7f };
 				CC3D::Renderer2D::DrawQuad(glm::vec2{ x, y }, glm::vec2{ 0.45f, 0.45f }, color);
 			}
 		}
 		CC3D::Renderer2D::EndScene();
+		m_Framebuffer->Unbind();
 	}
 }
 
@@ -76,7 +83,7 @@ void Sandbox2D::OnImGuiRender()
 	CC3D_PROFILE_FUNCTION();
 
 	// Note: Switch this to true to enable dockspace
-	static bool dockingEnabled = false;
+	static bool dockingEnabled = true;
 	if (dockingEnabled)
 	{
 		static bool dockspaceOpen = true;
@@ -148,8 +155,8 @@ void Sandbox2D::OnImGuiRender()
 		ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
 
 
-		uint32_t textureID = m_WaifuTexture->GetRendererID();
-		ImGui::Image((void*)textureID, ImVec2{ 256.0f, 256.0f });
+		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
+		ImGui::Image((void*)textureID, ImVec2{ 1280, 720 });
 		ImGui::End();
 
 		ImGui::End();
@@ -166,7 +173,7 @@ void Sandbox2D::OnImGuiRender()
 		ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
 
 		uint32_t textureID = m_WaifuTexture->GetRendererID();
-		ImGui::Image((void*)textureID, ImVec2{ 256.0f, 256.0f });
+		ImGui::Image((void*)textureID, ImVec2{ 1280, 720 });
 		ImGui::End();
 	}
 }

@@ -173,6 +173,8 @@
     <ClInclude Include="src\CC3D\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\CC3D\Renderer\Renderer2D.h" />
     <ClInclude Include="src\CC3D\Debug\Instrumentor.h" />
+    <ClInclude Include="src\CC3D\Renderer\FrameBuffer.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFrameBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CC3D\Core\Application.cpp">
@@ -209,6 +211,8 @@
     <ClCompile Include="src\CC3D\Renderer\GraphicContext.cpp" />
     <ClCompile Include="src\CC3D\Core\Input.cpp" />
     <ClCompile Include="src\CC3D\Core\Window.cpp" />
+    <ClCompile Include="src\CC3D\Renderer\FrameBuffer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFrameBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="vendor\glm\glm\core\func_common.inl" />

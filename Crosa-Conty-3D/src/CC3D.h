@@ -14,6 +14,7 @@
 
 #include "CC3D/Renderer/Buffer.h"
 #include "CC3D/Renderer/Shader.h"
+#include "CC3D/Renderer/Framebuffer.h"
 #include "CC3D/Renderer/Texture.h"
 #include "CC3D/Renderer/VertexArray.h"
 
