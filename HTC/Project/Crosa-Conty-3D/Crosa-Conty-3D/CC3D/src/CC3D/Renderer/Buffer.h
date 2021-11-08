@@ -117,7 +117,7 @@ namespace CC3D {
 		static Ref<VertexBuffer> Create(float* vertices, uint32_t size);
 	};
 
-	// Currently Hazel only supports 32-bit index buffers
+	// Currently CC3D only supports 32-bit index buffers
 	class IndexBuffer
 	{
 	public:

@@ -16,7 +16,7 @@ namespace CC3D {
 	class Application //use  as replacement of _declspec(dllexport) 
 	{
 	public:
-		Application();
+		Application(const std::string& name = "CC3D App");
 		virtual ~Application();
 		///Events
 		void OnEvent(Event& e);
