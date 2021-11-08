@@ -19,6 +19,7 @@
     <ClInclude Include="src\CC3D\Core\Layer.h" />
     <ClInclude Include="src\CC3D\Core\LayerStack.h" />
     <ClInclude Include="src\CC3D\Core\MouseCodes.h" />
+    <ClInclude Include="src\CC3D\Renderer\Framebuffer.h" />
     <ClInclude Include="src\CC3D\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\CC3D\Renderer\Buffer.h" />
     <ClInclude Include="src\CC3D\Renderer\GraphicsContext.h" />
@@ -43,6 +44,7 @@
     <ClInclude Include="src\CC3D\Core\EntryPoint.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h" />
@@ -109,6 +111,7 @@
     <ClCompile Include="src\CC3D\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\CC3D\Core\Layer.cpp" />
     <ClCompile Include="src\CC3D\Core\LayerStack.cpp" />
+    <ClCompile Include="src\CC3D\Renderer\Framebuffer.cpp" />
     <ClCompile Include="src\CC3D\Renderer\GraphicsContext.cpp" />
     <ClCompile Include="src\CC3D\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\CC3D\Renderer\Buffer.cpp" />
@@ -128,6 +131,7 @@
     <ClCompile Include="src\CC3D\Core\Application.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp" />

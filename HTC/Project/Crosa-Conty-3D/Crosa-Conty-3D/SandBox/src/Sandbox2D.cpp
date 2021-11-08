@@ -57,6 +57,12 @@ void Sandbox2D::OnAttach()
 	CC3D_PROFILE_FUNCTION();
 
 	m_CheckerboardTexture = CC3D::Texture2D::Create("assets/textures/Checkerboard.png");
+
+	CC3D::FramebufferSpecification fbSpec;
+	fbSpec.Width = 1280;
+	fbSpec.Height = 720;
+	m_Framebuffer = CC3D::Framebuffer::Create(fbSpec);
+
 }
 
 void Sandbox2D::OnDetach()
@@ -124,8 +130,9 @@ void Sandbox2D::OnUpdate(CC3D::Timestep ts)
 	CC3D::Renderer2D::ResetStats();
 	{
 		CC3D_PROFILE_SCOPE("Renderer Prep");
-
 		PROFILE_SCOPE("Renderer Prep");
+
+		m_Framebuffer->Bind();
 		CC3D::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		CC3D::RenderCommand::Clear();
 	}
@@ -141,6 +148,7 @@ void Sandbox2D::OnUpdate(CC3D::Timestep ts)
 		CC3D::Renderer2D::BeginScene(m_CameraController.GetCamera());
 		TestDraw47();
 		CC3D::Renderer2D::EndScene();
+		m_Framebuffer->Unbind();
 	}
 }
 
@@ -234,35 +242,35 @@ void Sandbox2D::DockSpaceDemo()
 			ImGui::EndMenuBar();
 		}
 
-		ImGui::Begin("Settings");
+		ImGui::Begin("ViewPort");
 
-		auto stats = CC3D::Renderer2D::GetStats();
-		ImGui::Text("Renderer2D Stats:");
-		ImGui::Text("Draw Calls: %d", stats.DrawCalls);
-		ImGui::Text("Quads: %d", stats.QuadCount);
-		ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
-		ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
+		//auto stats = CC3D::Renderer2D::GetStats();
+		//ImGui::Text("Renderer2D Stats:");
+		//ImGui::Text("Draw Calls: %d", stats.DrawCalls);
+		//ImGui::Text("Quads: %d", stats.QuadCount);
+		//ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
+		//ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
 
-		ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
+		//ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
 
-		uint32_t textureID = m_CheckerboardTexture->GetRendererID();
-		ImGui::Image((void*)textureID, ImVec2{ 256.0f, 256.0f });
+		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
+		ImGui::Image((void*)textureID, ImVec2{ 1280, 720 });
 		ImGui::End();
 
 		ImGui::End();
 	}
 	else
 	{
-		ImGui::Begin("Settings");
+		ImGui::Begin("ViewPort");
 
-		auto stats = CC3D::Renderer2D::GetStats();
-		ImGui::Text("Renderer2D Stats:");
-		ImGui::Text("Draw Calls: %d", stats.DrawCalls);
-		ImGui::Text("Quads: %d", stats.QuadCount);
-		ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
-		ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
+		//auto stats = CC3D::Renderer2D::GetStats();
+		//ImGui::Text("Renderer2D Stats:");
+		//ImGui::Text("Draw Calls: %d", stats.DrawCalls);
+		//ImGui::Text("Quads: %d", stats.QuadCount);
+		//ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
+		//ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
 
-		ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
+		//ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
 
 		uint32_t textureID = m_CheckerboardTexture->GetRendererID();
 		ImGui::Image((void*)textureID, ImVec2{ 256.0f, 256.0f });
