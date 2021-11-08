@@ -22,6 +22,8 @@ namespace CC3D {
 		CC3D::Ref<CC3D::Texture2D> m_WaifuTexture;
 		CC3D::Ref<CC3D::Texture2D> m_SAGATexture;
 		CC3D::Ref<CC3D::Framebuffer> m_Framebuffer;
+
+		glm::vec2 m_ViewportSize = glm::vec2{ 0.0f, 0.0f };
 	};
 
 }
