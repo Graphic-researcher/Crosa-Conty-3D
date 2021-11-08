@@ -19,6 +19,8 @@ namespace CC3D {
 	private:
 		CC3D::OrthographicCameraController m_CameraController;
 
+		bool m_ViewportFocused = false, m_ViewportHovered = false;
+
 		CC3D::Ref<CC3D::Texture2D> m_WaifuTexture;
 		CC3D::Ref<CC3D::Texture2D> m_SAGATexture;
 		CC3D::Ref<CC3D::Framebuffer> m_Framebuffer;

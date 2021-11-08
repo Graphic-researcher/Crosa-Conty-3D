@@ -6,23 +6,23 @@
 
 namespace CC3D {
 
-	class HazelEditor : public Application
+	class CC3DEditor : public Application
 	{
 	public:
-		HazelEditor()
+		CC3DEditor()
 			: Application("CC3D Editor")
 		{
 			PushLayer(new EditorLayer());
 		}
 
-		~HazelEditor()
+		~CC3DEditor()
 		{
 		}
 	};
 
 	Application* CreateApplication()
 	{
-		return new HazelEditor();
+		return new CC3DEditor();
 	}
 
 }
