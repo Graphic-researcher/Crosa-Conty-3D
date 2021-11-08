@@ -21,6 +21,7 @@ public:
 
 	void OnUpdate(CC3D::Timestep ts) override;
 	virtual void OnImGuiRender() override;
+	void DockSpaceDemo();
 	/// <summary>
 	/// visualization functions using imgui
 	/// </summary>

@@ -40,10 +40,8 @@ uniform sampler2D u_Textures[32];
 
 void main()
 {
-	//color = vec4(vec3(1.0),1);
-	//color = texture(u_Texture, v_TexCoord)*u_Color;
-	//color = texture(u_Texture, v_TexCoord * u_TilingFactor) * u_Color;
-	//color = v_Color;
+	//for GPU optimize?
+	
 	vec4 texColor = v_Color;
 	switch(int(v_TexIndex))
 	{

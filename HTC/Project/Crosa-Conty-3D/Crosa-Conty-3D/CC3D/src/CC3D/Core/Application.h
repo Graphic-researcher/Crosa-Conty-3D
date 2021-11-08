@@ -28,6 +28,8 @@ namespace CC3D {
 
 		static Application& Get() { return *s_Instance; }
 
+		void Close();
+
 	private:
 		bool m_Running = true;
 		bool m_Minimized = false;
