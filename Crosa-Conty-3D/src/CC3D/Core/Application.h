@@ -25,7 +25,7 @@ namespace CC3D {
 	class Application
 	{
 	public:
-		Application();
+		Application(const std::string& name = "CC3D App");
 		virtual ~Application();
 
 		void OnEvent(Event& e);
