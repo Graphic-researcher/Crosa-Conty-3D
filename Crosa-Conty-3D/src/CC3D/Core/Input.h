@@ -12,6 +12,7 @@ namespace CC3D {
 	protected:
 		Input() = default;
 	public:
+		virtual ~Input() = default;
 		Input(const Input&) = delete;
 		Input& operator=(const Input&) = delete;
 		static bool IsKeyPressed(KeyCode keycode) { return s_Instance->IsKeyPressedImpl(keycode); }
