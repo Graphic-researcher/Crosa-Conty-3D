@@ -1,17 +1,17 @@
-#include "ParticleSystem.h"
+#include "ParticleSystem2D.h"
 #include "Random.h"
 
 #include <glm/gtx/constants.hpp>
 #include <glm/gtx/compatibility.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-ParticleSystem::ParticleSystem(uint32_t MaxParticles)
+ParticleSystem2D::ParticleSystem2D(uint32_t MaxParticles)
 	:m_PoolIndex(MaxParticles - 1)
 {
 	m_ParticlePool.resize(MaxParticles);
 }
 
-void ParticleSystem::OnUpdate(CC3D::Timestep ts)
+void ParticleSystem2D::OnUpdate(CC3D::Timestep ts)
 {
 	for (auto& particle : m_ParticlePool)
 	{
@@ -30,7 +30,7 @@ void ParticleSystem::OnUpdate(CC3D::Timestep ts)
 	}
 }
 
-void ParticleSystem::OnRender(CC3D::OrthographicCamera& camera)
+void ParticleSystem2D::OnRender(CC3D::OrthographicCamera& camera)
 {
 	CC3D::Renderer2D::BeginScene(camera);
 	for (auto& particle : m_ParticlePool)
@@ -50,9 +50,9 @@ void ParticleSystem::OnRender(CC3D::OrthographicCamera& camera)
 	CC3D::Renderer2D::EndScene();
 }
 
-void ParticleSystem::Emit(const ParticleProps& particleProps)
+void ParticleSystem2D::Emit(const ParticleProps2D& particleProps)
 {
-	Particle& particle = m_ParticlePool[m_PoolIndex];
+	Particle2D& particle = m_ParticlePool[m_PoolIndex];
 	particle.Active = true;
 	particle.Position = particleProps.Position;
 	particle.Rotation = Random::Float() * 2.0f * glm::pi<float>();

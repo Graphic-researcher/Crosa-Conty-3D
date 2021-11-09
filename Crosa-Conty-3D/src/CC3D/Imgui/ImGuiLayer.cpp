@@ -47,7 +47,7 @@ namespace CC3D
 		GLFWwindow* window = static_cast<GLFWwindow*>(app.GetWindow().GetNativeWindow());
 
 		ImGui_ImplGlfw_InitForOpenGL(window, true);
-		ImGui_ImplOpenGL3_Init("#version 460"); // TODO what this？
+		ImGui_ImplOpenGL3_Init("#version 460"); // GLAD version
 		
 	}
 	void ImGuiLayer::OnDetach()
@@ -83,11 +83,14 @@ namespace CC3D
 		CC3D_PROFILE_FUNCTION();
 
 		ImGuiIO& io = ImGui::GetIO();
+		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
 		Application& app = Application::Get();
 		io.DisplaySize = ImVec2(app.GetWindow().GetWidth(), app.GetWindow().GetHeight());
 
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+		// 这个if不进去！！！，为什么
 		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
 		{
 			GLFWwindow* backup_current_context = glfwGetCurrentContext();

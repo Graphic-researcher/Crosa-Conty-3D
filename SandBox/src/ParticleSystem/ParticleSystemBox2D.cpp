@@ -101,6 +101,8 @@ void ParticleSystemBox2D::OnImGuiRender()
 {
 	CC3D_PROFILE_FUNCTION();
 
+	ImGui::ShowDemoWindow();
+
 	// Note: Switch this to true to enable dockspace
 	static bool dockingEnabled = false;
 	if (dockingEnabled)
@@ -172,8 +174,6 @@ void ParticleSystemBox2D::OnImGuiRender()
 		ImGui::Text("Quads: %d", stats.QuadCount);
 		ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
 		ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
-
-		ImGui::End();
 
 		ImGui::End();
 	}

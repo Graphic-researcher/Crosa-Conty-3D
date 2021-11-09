@@ -153,15 +153,14 @@ namespace CC3D {
 		ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
 		ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
 
+		//ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
+
+		ImGui::End();
+
 		ImGui::End();
 
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
 		ImGui::Begin("Viewport");
-
-		m_ViewportFocused = ImGui::IsWindowFocused();
-		m_ViewportHovered = ImGui::IsWindowHovered();
-		Application::Get().GetImGuiLayer()->BlockEvents(!m_ViewportFocused || !m_ViewportHovered);
-
 		ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
 		if (m_ViewportSize != *((glm::vec2*)&viewportPanelSize))
 		{
@@ -175,7 +174,7 @@ namespace CC3D {
 		ImGui::End();
 		ImGui::PopStyleVar();
 
-		ImGui::End();
+		//ImGui::End();
 	}
 
 	void EditorLayer::OnEvent(CC3D::Event& e)

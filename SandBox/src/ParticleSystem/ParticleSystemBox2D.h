@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CC3D.h"
-#include "ParticleSystem.h"
+#include "ParticleSystem2D.h"
 
 class ParticleSystemBox2D : public CC3D::Layer
 {
@@ -18,6 +18,6 @@ public:
 
 private:
 	CC3D::OrthographicCameraController m_CameraController;
-	ParticleSystem m_ParticleSystem;
-	ParticleProps m_Particle;
+	ParticleSystem2D m_ParticleSystem;
+	ParticleProps2D m_Particle;
 };

@@ -75,6 +75,10 @@ void Sandbox2D::OnImGuiRender()
 {
 	CC3D_PROFILE_FUNCTION();
 
+
+	ImGuiIO& io = ImGui::GetIO();
+
+	ImGui::ShowDemoWindow();
 	ImGui::Begin("Settings");
 
 	auto stats = CC3D::Renderer2D::GetStats();

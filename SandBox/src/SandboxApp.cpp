@@ -1,5 +1,5 @@
 #include <CC3D.h>
-#include <CC3D-Editor/CC3DEditorApp.h>
+//#include <CC3D-Editor/CC3DEditorApp.h>
 #include "CC3D/Core/EntryPoint.h"
 #include <imgui.h>
 
@@ -12,25 +12,25 @@
 #include "ExampleLayer.h"
 #include "ClimbGame/GameLayer.h"
 #include "ParticleSystem/ParticleSystemBox2D.h"
-//
-//class Sandbox : public CC3D::Application
-//{
-//public:
-//	Sandbox()
-//	{
-//		//PushLayer(new ExampleLayer());
-//		PushLayer(new Sandbox2D());
-//		//PushLayer(new GameLayer());
-//		//PushLayer(new ParticleSystemBox2D());
-//	}
-//
-//	~Sandbox()
-//	{
-//
-//	}
-//};
 
-//CC3D::Application* CC3D::CreateApplication()
-//{
-//	return new CC3D::CC3DEditor();
-//}
+class Sandbox : public CC3D::Application
+{
+public:
+	Sandbox()
+	{
+		//PushLayer(new ExampleLayer());
+		PushLayer(new Sandbox2D());
+		//PushLayer(new GameLayer());
+		//PushLayer(new ParticleSystemBox2D());
+	}
+
+	~Sandbox()
+	{
+
+	}
+};
+
+CC3D::Application* CC3D::CreateApplication()
+{
+	return new Sandbox();
+}

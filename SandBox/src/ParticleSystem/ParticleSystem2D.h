@@ -2,7 +2,7 @@
 
 #include "CC3D.h"
 
-struct ParticleProps
+struct ParticleProps2D
 {
 	glm::vec2 Position;
 	glm::vec2 Velocity, VelocityVariation;
@@ -11,17 +11,17 @@ struct ParticleProps
 	float LifeTime = 1.0f;
 };
 
-class ParticleSystem
+class ParticleSystem2D
 {
 public:
-	ParticleSystem(uint32_t MaxParticles = 10000);
+	ParticleSystem2D(uint32_t MaxParticles = 10000);
 
 	void OnUpdate(CC3D::Timestep ts);
 	void OnRender(CC3D::OrthographicCamera& camera);
 
-	void Emit(const ParticleProps& particleProps);
+	void Emit(const ParticleProps2D& particleProps);
 private:
-	struct Particle
+	struct Particle2D
 	{
 		glm::vec2 Position;
 		glm::vec2 Velocity;
@@ -34,7 +34,7 @@ private:
 
 		bool Active = false;
 	};
-	std::vector<Particle> m_ParticlePool;
+	std::vector<Particle2D> m_ParticlePool;
 	uint32_t m_PoolIndex = 999;
 
 	CC3D::Ref<CC3D::Shader> m_ParticleShader;
