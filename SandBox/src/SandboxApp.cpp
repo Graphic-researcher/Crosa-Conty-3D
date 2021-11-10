@@ -1,5 +1,4 @@
 #include <CC3D.h>
-//#include <CC3D-Editor/CC3DEditorApp.h>
 #include "CC3D/Core/EntryPoint.h"
 #include <imgui.h>
 

@@ -172,6 +172,9 @@
     <ClInclude Include="vendor\glm\glm\gtx\verbose_operator.hpp" />
     <ClInclude Include="vendor\glm\glm\gtx\wrap.hpp" />
     <ClInclude Include="vendor\glm\glm\virtrev\xstream.hpp" />
+    <ClInclude Include="vendor\Imgui\backends\imgui_impl_glfw.h" />
+    <ClInclude Include="vendor\Imgui\backends\imgui_impl_opengl3.h" />
+    <ClInclude Include="vendor\Imgui\backends\imgui_impl_opengl3_loader.h" />
     <ClInclude Include="vendor\stb_image\stb_image.h" />
     <ClInclude Include="src\CC3D\Debug\Instrumentor.h" />
   </ItemGroup>
