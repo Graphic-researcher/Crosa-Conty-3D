@@ -21,7 +21,7 @@ int main(int argc,char** argv)
 	app->Run();
 	CC3D_PROFILE_END_SESSION();
 
-	CC3D_PROFILE_BEGIN_SESSION("Startup", "CC3DProfile-Shutdown.json");
+	CC3D_PROFILE_BEGIN_SESSION("Shutdown", "CC3DProfile-Shutdown.json");
 	delete app;
 	CC3D_PROFILE_END_SESSION();
 

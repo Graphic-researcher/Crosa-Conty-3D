@@ -29,6 +29,7 @@ namespace CC3D {
 		static Application& Get() { return *s_Instance; }
 
 		void Close();
+		ImGuiLayer* GetImGuiLayer() { return m_ImGuiLayer; }
 
 	private:
 		bool m_Running = true;

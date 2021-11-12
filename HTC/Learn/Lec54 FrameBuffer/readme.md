@@ -181,3 +181,51 @@ void Sandbox2D::DockSpaceDemo()
 ## Build and Result
 
 ![image-20211108140455778](./result.png)
+
+## Debug
+
+If you run the application we built,you will find you can use WASD to move camera but you can't zoom in or out by scrolling. Because the imgui block our event.
+
+The problem is caused by this:
+
+```c++
+//in Application.cpp
+void Application::OnEvent(Event& e)
+{
+    CC3D_PROFILE_FUNCTION();
+
+    EventDispatcher dispatcher(e);
+    dispatcher.Dispatch<WindowCloseEvent>(CC3D_BIND_EVENT_FN(Application::OnWindowClose));
+    dispatcher.Dispatch<WindowResizeEvent>(CC3D_BIND_EVENT_FN(Application::OnWindowResize));
+
+    CC3D_CORE_INFO("{0}", e);
+    for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it) {
+        if (e.Handled)
+            break;
+        (*it)->OnEvent(e);
+    }
+}
+//in ImGuiLayer.cpp
+void ImGuiLayer::OnEvent(Event& e)
+{
+    ImGuiIO& io = ImGui::GetIO();
+    e.Handled |= e.IsInCategory(EventCategoryMouse) & io.WantCaptureMouse;
+    e.Handled |= e.IsInCategory(EventCategoryKeyboard) & io.WantCaptureKeyboard;
+}
+```
+
+If imgui  layer gets an event , sth will change e.Handled. When e.Handled is true,it will break the for loop and the follow line **(*it)->OnEvent(e)** won't work.
+
+Now let's try to delete the if condition:
+
+```c++
+for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it) {
+    //if (e.Handled)
+    //    break;
+    (*it)->OnEvent(e);
+}
+```
+
+![image-20211108140455778](./Debug.gif)
+
+For further information,you can check Cherno's video: [here](https://www.youtube.com/watch?v=ETIhjdVBH-8&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=74)

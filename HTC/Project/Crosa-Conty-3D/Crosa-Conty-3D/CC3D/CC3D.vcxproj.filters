@@ -114,9 +114,6 @@
     <ClInclude Include="vendor\imgui\imstb_truetype.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="vendor\glm\common.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -396,9 +393,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\CC3D\Renderer\GraphicsContext.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CC3D\Core\input.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\CC3D\Core\Window.cpp">

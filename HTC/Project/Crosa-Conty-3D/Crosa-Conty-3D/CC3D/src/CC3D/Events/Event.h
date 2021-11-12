@@ -42,6 +42,7 @@ namespace CC3D {
 	{
 		friend class EventDispatcher;
 	public:
+		virtual ~Event() = default;
 		bool Handled = false;
 		///to be inherited
 		virtual EventType GetEventType() const = 0;

@@ -22,11 +22,12 @@ namespace CC3D {
 
 		void Begin();///begin window rendering
 		void End();///end window rendering
+		void BlockEvents(bool block) { m_BlockEvents = block; }
 
 	private:
 		float m_Time = 0.0f;
 	private:
-
+		bool m_BlockEvents = true;
 	};
 
 }
