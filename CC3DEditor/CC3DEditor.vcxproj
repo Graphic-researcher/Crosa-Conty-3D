@@ -88,19 +88,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="CC3D-Editor\CC3DEditorApp.h" />
-    <ClInclude Include="CC3D-Editor\EditorLayer.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="CC3D-Editor\EditorLayer.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Crosa-Conty-3D\Crosa-Conty-3D.vcxproj">
       <Project>{8d4c96cb-86f9-4acb-9d2e-b89e6504c2b4}</Project>
     </ProjectReference>
     <ProjectReference Include="..\Crosa-Conty-3D\vendor\Imgui\Imgui.vcxproj">
       <Project>{b6d8c255-0a39-49e5-9c58-2892436f0120}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CC3D-Editor\CC3DInputApp.cpp" />
+    <ClCompile Include="CC3D-Editor\EditorLayer.cpp" />
+    <ClCompile Include="Source.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CC3D-Editor\EditorLayer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

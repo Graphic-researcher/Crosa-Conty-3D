@@ -1,7 +1,6 @@
 #pragma once
 #include <CC3D.h>
 #include <CC3D/Core/EntryPoint.h>
-
 #include "EditorLayer.h"
 
 namespace CC3D {
@@ -26,3 +25,4 @@ namespace CC3D {
 	}
 
 }
+
