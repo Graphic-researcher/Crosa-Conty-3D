@@ -265,7 +265,7 @@ namespace CC3D {
 			}
 
 			glAttachShader(program, shader);
-			glShaderIDs[glShaderIDIndex] = shader;
+			glShaderIDs[glShaderIDIndex++] = shader;
 		}
 
 		m_RendererID = program;

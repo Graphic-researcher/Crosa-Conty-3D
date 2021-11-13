@@ -175,8 +175,6 @@
     <ClInclude Include="src\CC3D\Debug\Instrumentor.h" />
     <ClInclude Include="src\CC3D\Renderer\FrameBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLFrameBuffer.h" />
-    <ClInclude Include="src\CC3D-Editor\EditorLayer.h" />
-    <ClInclude Include="src\CC3D-Editor\CC3DEditorApp.h" />
     <ClInclude Include="vendor\Imgui\backends\imgui_impl_opengl3.h" />
     <ClInclude Include="vendor\Imgui\backends\imgui_impl_opengl3_loader.h" />
     <ClInclude Include="vendor\Imgui\backends\imgui_impl_glfw.h" />
@@ -218,7 +216,6 @@
     <ClCompile Include="src\CC3D\Core\Window.cpp" />
     <ClCompile Include="src\CC3D\Renderer\FrameBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLFrameBuffer.cpp" />
-    <ClCompile Include="src\CC3D-Editor\EditorLayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="vendor\glm\glm\core\func_common.inl" />
