@@ -96,12 +96,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CC3D-Editor\CC3DInputApp.cpp" />
-    <ClCompile Include="CC3D-Editor\EditorLayer.cpp" />
-    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="src\CC3DInputApp.cpp" />
+    <ClCompile Include="src\EditorLayer.cpp" />
+    <ClCompile Include="src\Panels\SceneHierarchyPanel.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CC3D-Editor\EditorLayer.h" />
+    <ClInclude Include="src\EditorLayer.h" />
+    <ClInclude Include="src\Panels\SceneHierarchyPanel.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
