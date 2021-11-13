@@ -30,6 +30,7 @@ namespace CC3D {
 		Entity m_SquareEntity;
 		Entity m_CameraEntity;
 		Entity m_SecondCamera;
+		Entity m_ParticleSystem;
 
 		bool m_PrimaryCamera = true;
 

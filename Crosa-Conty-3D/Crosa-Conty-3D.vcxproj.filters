@@ -185,6 +185,13 @@
     <ClInclude Include="src\CC3D\Renderer\Camera.h" />
     <ClInclude Include="src\CC3D\Scene\SceneCamera.h" />
     <ClInclude Include="src\CC3D\Scene\ScriptableEntity.h" />
+    <ClInclude Include="src\CC3D\Scene\Components\TagComponent.h" />
+    <ClInclude Include="src\CC3D\Scene\Components\TransformComponent.h" />
+    <ClInclude Include="src\CC3D\Scene\Components\SpriteRendererComponent.h" />
+    <ClInclude Include="src\CC3D\Scene\Components\CameraComponent.h" />
+    <ClInclude Include="src\CC3D\Scene\Components\NativeScriptComponent.h" />
+    <ClInclude Include="src\CC3D\Scene\Components\ParticleSystemComponent.h" />
+    <ClInclude Include="src\CC3D\Scene\Components\Random.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CC3D\Core\Application.cpp">
@@ -226,6 +233,7 @@
     <ClCompile Include="src\CC3D\Scene\Scene.cpp" />
     <ClCompile Include="src\CC3D\Scene\Entity.cpp" />
     <ClCompile Include="src\CC3D\Scene\SceneCamera.cpp" />
+    <ClCompile Include="src\CC3D\Scene\Components\Random.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="vendor\glm\glm\core\func_common.inl" />

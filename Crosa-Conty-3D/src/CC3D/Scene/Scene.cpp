@@ -77,6 +77,18 @@ namespace CC3D {
 				Renderer2D::DrawQuad(transform, sprite.Color);
 			}
 
+			auto view = m_Registry.view<TransformComponent, ParticleSystemComponent>();
+			for (auto entity : view)
+			{
+				auto [transform, particleSystem] = view.get<TransformComponent, ParticleSystemComponent>(entity);
+
+				for (int i = 0; i < 5; i++)
+					particleSystem.Emit();
+
+				particleSystem.OnUpdate(ts);
+				particleSystem.OnRender();
+			}
+
 			Renderer2D::EndScene();
 		}
 	}
