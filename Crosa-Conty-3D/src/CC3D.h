@@ -40,5 +40,6 @@
 //-------Scene System-------------
 #include "CC3D/Scene/Scene.h"
 #include "CC3D/Scene/Entity.h"
+#include "CC3D/Scene/ScriptableEntity.h"
 #include "CC3D/Scene/Components.h"
 // ------------------------------
