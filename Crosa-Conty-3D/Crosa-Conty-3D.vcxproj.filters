@@ -183,6 +183,7 @@
     <ClInclude Include="vendor\entt\include\entt.hpp" />
     <ClInclude Include="src\CC3D\Scene\Entity.h" />
     <ClInclude Include="src\CC3D\Renderer\Camera.h" />
+    <ClInclude Include="src\CC3D\Scene\SceneCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CC3D\Core\Application.cpp">
@@ -223,6 +224,7 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLFrameBuffer.cpp" />
     <ClCompile Include="src\CC3D\Scene\Scene.cpp" />
     <ClCompile Include="src\CC3D\Scene\Entity.cpp" />
+    <ClCompile Include="src\CC3D\Scene\SceneCamera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="vendor\glm\glm\core\func_common.inl" />
