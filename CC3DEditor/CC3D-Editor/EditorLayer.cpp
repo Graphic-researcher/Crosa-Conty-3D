@@ -1,18 +1,14 @@
-
 #include "EditorLayer.h"
 #include <imgui.h>
 
-#include "Platform//OpenGL/OpenGLShader.h"
-
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include <memory>
 
-#include <chrono>
 
 namespace CC3D {
+
 	EditorLayer::EditorLayer()
-		:Layer("EditorLayer"), m_CameraController(1280.0f / 720.0f, true)
+		: Layer("EditorLayer"), m_CameraController(1280.0f / 720.0f), m_SquareColor(glm::vec4{ 0.2f, 0.3f, 0.8f, 1.0f })
 	{
 	}
 
@@ -20,8 +16,6 @@ namespace CC3D {
 	{
 		CC3D_PROFILE_FUNCTION();
 
-		m_WaifuTexture = Texture2D::Create("assets/textures/waifualpha.png");
-		m_SAGATexture = Texture2D::Create("assets/textures/72137544_p0.png");
 
 		FramebufferSpecification fbSpec;
 		fbSpec.Width = 1280;
@@ -33,6 +27,7 @@ namespace CC3D {
 		// Entity
 		auto square = m_ActiveScene->CreateEntity("Green Square");
 		square.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
+
 		m_SquareEntity = square;
 
 		m_CameraEntity = m_ActiveScene->CreateEntity("Camera Entity");
@@ -59,25 +54,23 @@ namespace CC3D {
 		{
 			m_Framebuffer->Resize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 			m_CameraController.OnResize(m_ViewportSize.x, m_ViewportSize.y);
+
 			m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 		}
 
-		// Camera
-		if (m_ViewportFocused || m_ViewportHovered)
+		// Update
+		if (m_ViewportFocused)
 			m_CameraController.OnUpdate(ts);
 
 		// Render
 		Renderer2D::ResetStats();
 		m_Framebuffer->Bind();
-		RenderCommand::SetClearColor(glm::vec4(0.1f, 0.1f, 0.1f, 1.0f));
+		RenderCommand::SetClearColor(glm::vec4{ 0.1f, 0.1f, 0.1f, 1 });
 		RenderCommand::Clear();
 
-
-		Renderer2D::BeginScene(m_CameraController.GetCamera());
-
+		// Update scene
 		m_ActiveScene->OnUpdate(ts);
 
-		Renderer2D::EndScene();
 		m_Framebuffer->Unbind();
 	}
 
@@ -164,6 +157,7 @@ namespace CC3D {
 			ImGui::ColorEdit4("Square Color", glm::value_ptr(squareColor));
 			ImGui::Separator();
 		}
+
 		ImGui::DragFloat3("Camera Transform",
 			glm::value_ptr(m_CameraEntity.GetComponent<TransformComponent>().Transform[3]));
 
@@ -179,29 +173,26 @@ namespace CC3D {
 			if (ImGui::DragFloat("Second Camera Ortho Size", &orthoSize))
 				camera.SetOrthographicSize(orthoSize);
 		}
-		ImGui::End();
+
 
 		ImGui::End();
 
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
 		ImGui::Begin("Viewport");
+
 		m_ViewportFocused = ImGui::IsWindowFocused();
 		m_ViewportHovered = ImGui::IsWindowHovered();
-		Application::Get().GetImGuiLayer()->BlockEvents(!m_ViewportFocused && !m_ViewportHovered);
-		ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
-		if (m_ViewportSize != *((glm::vec2*)&viewportPanelSize) && viewportPanelSize.x > 0 && viewportPanelSize.y > 0)
-		{
-			m_Framebuffer->Resize((uint32_t)viewportPanelSize.x, (uint32_t)viewportPanelSize.y);
-			m_ViewportSize = glm::vec2{ viewportPanelSize.x, viewportPanelSize.y };
+		Application::Get().GetImGuiLayer()->BlockEvents(!m_ViewportFocused || !m_ViewportHovered);
 
-			m_CameraController.OnResize(viewportPanelSize.x, viewportPanelSize.y);
-		}
+		ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
+		m_ViewportSize = glm::vec2{ viewportPanelSize.x, viewportPanelSize.y };
+
 		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
 		ImGui::Image((void*)textureID, ImVec2{ m_ViewportSize.x, m_ViewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 		ImGui::End();
 		ImGui::PopStyleVar();
 
-		//ImGui::End();
+		ImGui::End();
 	}
 
 	void EditorLayer::OnEvent(Event& e)
