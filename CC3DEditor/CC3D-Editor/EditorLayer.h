@@ -17,13 +17,17 @@ namespace CC3D {
 		virtual void OnImGuiRender() override;
 		void OnEvent(Event& e) override;
 	private:
-		CC3D::OrthographicCameraController m_CameraController;
+		OrthographicCameraController m_CameraController;
 
 		bool m_ViewportFocused = false, m_ViewportHovered = false;
 
-		CC3D::Ref<CC3D::Texture2D> m_WaifuTexture;
-		CC3D::Ref<CC3D::Texture2D> m_SAGATexture;
-		CC3D::Ref<CC3D::Framebuffer> m_Framebuffer;
+		Ref<Texture2D> m_WaifuTexture;
+		Ref<Texture2D> m_SAGATexture;
+		Ref<Framebuffer> m_Framebuffer;
+
+		Ref<Scene> m_ActiveScene;
+		entt::entity m_SquareEntity;
+		glm::vec4 m_SquareColor = glm::vec4{ 0.2f, 0.3f, 0.8f, 1.0f };
 
 		glm::vec2 m_ViewportSize = glm::vec2{ 0.0f, 0.0f };
 	};

@@ -36,3 +36,8 @@
 #include "CC3D/Imgui/ImGuiLayer.h"
 // ------------------------------
 
+
+//-------Scene System-------------
+#include "CC3D/Scene/Scene.h"
+#include "CC3D/Scene/Components.h"
+// ------------------------------
