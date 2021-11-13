@@ -27,6 +27,11 @@ namespace CC3D {
 
 		Ref<Scene> m_ActiveScene;
 		Entity m_SquareEntity;
+		Entity m_CameraEntity;
+		Entity m_SecondCamera;
+
+		bool m_PrimaryCamera = true;
+
 		glm::vec4 m_SquareColor = glm::vec4{ 0.2f, 0.3f, 0.8f, 1.0f };
 
 		glm::vec2 m_ViewportSize = glm::vec2{ 0.0f, 0.0f };

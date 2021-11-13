@@ -222,6 +222,7 @@ namespace CC3D {
 
 #define CC3D_PROFILE_BEGIN_SESSION(name, filepath) ::CC3D::Instrumentor::Get().BeginSession(name, filepath)
 #define CC3D_PROFILE_END_SESSION() ::CC3D::Instrumentor::Get().EndSession()
+
 #define CC3D_PROFILE_SCOPE(name) constexpr auto fixedName = ::CC3D::InstrumentorUtils::CleanupOutputString(name, "__cdecl ");\
 									::CC3D::InstrumentationTimer timer##__LINE__(fixedName.Data)
 #define CC3D_PROFILE_FUNCTION() CC3D_PROFILE_SCOPE(CC3D_FUNC_SIG)

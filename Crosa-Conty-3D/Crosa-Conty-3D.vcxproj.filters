@@ -182,6 +182,7 @@
     <ClInclude Include="src\CC3D\Scene\Components.h" />
     <ClInclude Include="vendor\entt\include\entt.hpp" />
     <ClInclude Include="src\CC3D\Scene\Entity.h" />
+    <ClInclude Include="src\CC3D\Renderer\Camera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CC3D\Core\Application.cpp">

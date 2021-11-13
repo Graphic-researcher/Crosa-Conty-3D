@@ -3,6 +3,8 @@
 #include "CC3D/Renderer/OrthographicCamera.h"
 #include "CC3D/Renderer/Texture.h"
 
+#include "CC3D/Renderer/Camera.h"
+
 namespace CC3D {
 
 	class Renderer2D
@@ -11,7 +13,8 @@ namespace CC3D {
 		static void Init();
 		static void Shutdown();
 
-		static void BeginScene(const OrthographicCamera& camera);
+		static void BeginScene(const Camera& camera, const glm::mat4& transform);
+		static void BeginScene(const OrthographicCamera& camera); // TODO: Remove
 		static void EndScene();
 		static void Flush();
 
