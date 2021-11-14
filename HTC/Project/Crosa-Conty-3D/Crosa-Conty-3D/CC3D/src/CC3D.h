@@ -25,3 +25,6 @@
 //-------Render2D--------------
 #include "CC3D/Renderer/Renderer2D.h"
 //--------------------------------
+//-------ECS--------------
+#include "CC3D/Scene/Scene.h"
+#include "CC3D/Scene/Components.h"

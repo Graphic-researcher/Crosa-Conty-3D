@@ -32,6 +32,8 @@
     <ClInclude Include="src\CC3D\Renderer\Texture.h" />
     <ClInclude Include="src\CC3D\Renderer\VertexArray.h" />
     <ClInclude Include="src\CC3D\Core\Window.h" />
+    <ClInclude Include="src\CC3D\Scene\Components.h" />
+    <ClInclude Include="src\CC3D\Scene\Scene.h" />
     <ClInclude Include="src\cc3d_pch.h" />
     <ClInclude Include="src\CC3D\Events\ApplicationEvent.h" />
     <ClInclude Include="src\CC3D\Events\Event.h" />
@@ -50,6 +52,7 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
+    <ClInclude Include="vendor\entt\entt.hpp" />
     <ClInclude Include="vendor\glad\glad.h" />
     <ClInclude Include="vendor\GLFW\include\GLFW\glfw3.h" />
     <ClInclude Include="vendor\GLFW\include\GLFW\glfw3native.h" />
@@ -121,6 +124,7 @@
     <ClCompile Include="src\CC3D\Renderer\Shader.cpp" />
     <ClCompile Include="src\CC3D\Renderer\Texture.cpp" />
     <ClCompile Include="src\CC3D\Renderer\VertexArray.cpp" />
+    <ClCompile Include="src\CC3D\Scene\Scene.cpp" />
     <ClCompile Include="src\cc3d_pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>

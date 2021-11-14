@@ -288,6 +288,15 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="vendor\entt\entt.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CC3D\Scene\Components.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CC3D\Scene\Scene.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cc3d_pch.cpp">
@@ -402,6 +411,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CC3D\Scene\Scene.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
