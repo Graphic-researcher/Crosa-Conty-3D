@@ -151,8 +151,16 @@ namespace CC3D {
 			ImGui::Separator();
 		}
 
-		ImGui::DragFloat3("Camera Transform",
-			glm::value_ptr(m_CameraEntity.GetComponent<TransformComponent>().Transform[3]));
+		if (m_CameraEntity.GetComponent<CameraComponent>().Primary)
+		{
+			ImGui::DragFloat3("Camera Transform",
+				glm::value_ptr(m_CameraEntity.GetComponent<TransformComponent>().Transform[3]));
+		}
+		if (m_SecondCamera.GetComponent<CameraComponent>().Primary)
+		{
+			ImGui::DragFloat3("Second Camera Transform",
+				glm::value_ptr(m_SecondCamera.GetComponent<TransformComponent>().Transform[3]));
+		}
 
 		if (ImGui::Checkbox("Main Camera", &m_PrimaryCamera))
 		{
