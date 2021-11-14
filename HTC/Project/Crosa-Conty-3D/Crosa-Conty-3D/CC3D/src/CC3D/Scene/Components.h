@@ -1,6 +1,7 @@
 #pragma once
 
 #include <glm/glm.hpp>
+#include "CC3D/Renderer/Camera.h"
 
 namespace CC3D {
 	struct TagComponent
@@ -36,4 +37,17 @@ namespace CC3D {
 			: Color(color) {}
 	};
 
+	struct CameraComponent
+	{
+		CC3D::Camera Camera;
+		/// <summary>
+		/// "Primary" decide which camera is main camera that should render to viewport
+		/// </summary>
+		bool Primary = true; // TODO: think about moving to Scene
+
+		CameraComponent() = default;
+		CameraComponent(const CameraComponent&) = default;
+		CameraComponent(const glm::mat4& projection)
+			: Camera(projection) {}
+	};
 }

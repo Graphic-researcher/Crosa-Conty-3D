@@ -41,7 +41,7 @@ namespace CC3D {
 		auto group = m_Registry.group<TransformComponent>(entt::get<MeshComponent>);
 		for (auto entity : group)
 		{
-			auto&[transform, mesh] = group.get<TransformComponent, MeshComponent>(entity);
+			auto& [transform, mesh] = group.get<TransformComponent, MeshComponent>(entity);
 		}
 #endif
 	}
@@ -61,15 +61,38 @@ namespace CC3D {
 
 	void Scene::OnUpdate(Timestep ts)
 	{
-		auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
-		for (auto entity : group)
+		// Render 2D
+		Camera* mainCamera = nullptr;
+		glm::mat4* cameraTransform = nullptr;
 		{
-			//https://github.com/skypjack/entt/issues/96
-			//wrong E0461:
-		    //auto& [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
-			auto [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
-			Renderer2D::DrawQuad(transform, sprite.Color);
-		}
-	}
+			auto group = m_Registry.view<TransformComponent, CameraComponent>();
+			for (auto entity : group)
+			{
+				auto [transform, camera] = group.get<TransformComponent, CameraComponent>(entity);
 
-}
+				if (camera.Primary)
+				{
+					mainCamera = &camera.Camera;
+					cameraTransform = &transform.Transform;
+					break;
+				}
+			}
+		}///cameraTransform 
+
+		if (mainCamera)
+		{
+			Renderer2D::BeginScene(mainCamera->GetProjection(), *cameraTransform);
+
+			auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
+			for (auto entity : group)
+			{
+				//https://github.com/skypjack/entt/issues/96
+				//wrong E0461:
+				//auto& [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
+				auto [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
+				Renderer2D::DrawQuad(transform, sprite.Color);
+			}
+			Renderer2D::EndScene();
+		}///if (mainCamera)
+	}
+}///CC3D namespace
