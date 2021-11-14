@@ -9,6 +9,7 @@
 #include "CC3D/Core/Timestep.h"
 
 namespace CC3D {
+	class Entity;
 
 	class Scene
 	{
@@ -16,14 +17,12 @@ namespace CC3D {
 		Scene();
 		~Scene();
 
-		entt::entity CreateEntity();
-
-		// TEMP
-		entt::registry& Reg() { return m_Registry; }
+		Entity CreateEntity(const std::string& name = std::string());
 
 		void OnUpdate(Timestep ts);
 	private:
 		entt::registry m_Registry;
+		friend class Entity;
 	};
 
 }

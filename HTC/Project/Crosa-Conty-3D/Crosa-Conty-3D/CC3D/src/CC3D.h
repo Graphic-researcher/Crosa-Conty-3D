@@ -28,3 +28,5 @@
 //-------ECS--------------
 #include "CC3D/Scene/Scene.h"
 #include "CC3D/Scene/Components.h"
+#include "CC3D/Scene/Entity.h"
+

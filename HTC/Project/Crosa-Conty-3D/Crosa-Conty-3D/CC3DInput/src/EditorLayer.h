@@ -25,7 +25,7 @@ namespace CC3D {
 		Ref<Framebuffer> m_Framebuffer;
 
 		Ref<Scene> m_ActiveScene;
-		entt::entity m_SquareEntity;
+		Entity m_SquareEntity;
 
 		Ref<Texture2D> m_CheckerboardTexture;
 		glm::vec2 m_ViewportSize = { 0.0f, 0.0f };

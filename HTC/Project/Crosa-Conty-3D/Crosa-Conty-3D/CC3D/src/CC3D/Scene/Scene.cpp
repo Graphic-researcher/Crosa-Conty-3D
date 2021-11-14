@@ -1,7 +1,8 @@
 #include "cc3d_pch.h"
 #include "CC3D/Scene/Scene.h"
-
 #include "CC3D/Scene/Components.h"
+#include "CC3D/Scene/Entity.h"
+
 #include "CC3D/Renderer/Renderer2D.h"
 
 #include <glm/glm.hpp>
@@ -13,7 +14,7 @@ namespace CC3D {
 
 	}
 
-	static void OnTransformConstruct(entt::registry& registry, entt::entity entity)
+	static void OnTransformConstruct(entt::registry& registry, Entity entity)
 	{
 
 	}
@@ -21,7 +22,7 @@ namespace CC3D {
 	Scene::Scene()
 	{
 #if ENTT_EXAMPLE_CODE
-		entt::entity entity = m_Registry.create();
+		Entity entity = m_Registry.create();
 		m_Registry.emplace<TransformComponent>(entity, glm::mat4(1.0f));
 
 		m_Registry.on_construct<TransformComponent>().connect<&OnTransformConstruct>();
@@ -49,9 +50,13 @@ namespace CC3D {
 	{
 	}
 
-	entt::entity Scene::CreateEntity()
+	Entity Scene::CreateEntity(const std::string& name)
 	{
-		return m_Registry.create();
+		Entity entity = { m_Registry.create(), this };
+		entity.AddComponent<TransformComponent>();
+		auto& tag = entity.AddComponent<TagComponent>();
+		tag.Tag = name.empty() ? "Entity" : name;
+		return entity;
 	}
 
 	void Scene::OnUpdate(Timestep ts)

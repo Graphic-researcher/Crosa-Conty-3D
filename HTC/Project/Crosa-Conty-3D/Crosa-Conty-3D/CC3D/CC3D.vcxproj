@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\CC3D\Scene\Entity.h" />
     <ClInclude Include="src\CC3D\Core\Timestep.h" />
     <ClInclude Include="src\CC3D\Debug\Instrumentor.h" />
     <ClInclude Include="src\CC3D\ImGui\ImGuiLayer.h" />
@@ -107,6 +108,7 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\CC3D\Scene\Entity.cpp" />
     <ClCompile Include="src\CC3D\Core\Window.cpp" />
     <ClCompile Include="src\CC3D\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\CC3D\ImGui\ImGuiLayer.cpp" />
@@ -153,9 +155,6 @@
   <ItemGroup>
     <Text Include="vendor\glm\CMakeLists.txt" />
     <Text Include="vendor\imgui\LICENSE.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
