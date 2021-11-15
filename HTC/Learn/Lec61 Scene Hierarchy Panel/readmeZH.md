@@ -1,10 +1,10 @@
 # Lec61 Scene Hierarchy Panel
 
-tutorial : [here](https://www.youtube.com/watch?v=wziDnE8guvI&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=84)
+课程 : [here](https://www.youtube.com/watch?v=wziDnE8guvI&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=84)
 
-code version : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/02c72700a9cc2553dd1cf707ef6b3ad63ecd48c3/HTC/Project)
+代码版本 : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/tree/02c72700a9cc2553dd1cf707ef6b3ad63ecd48c3/HTC/Project)
 
-## Entity Scope
+## Entity 作用域
 
 ```c++
 operator uint32_t() const { return (uint32_t)m_EntityHandle; }
@@ -20,7 +20,7 @@ bool operator!=(const Entity& other) const
 }
 ```
 
-## Scene Scope
+## Scene 作用域
 
 ```c++
 class Scene
@@ -34,7 +34,7 @@ class Scene
 };
 ```
 
-## [**IMPORTANT**]CC3D Input  Scene Hierarchy Panel Scope
+## [**IMPORTANT**]CC3D Input  Scene Hierarchy Panel 作用域
 
 ```c++
 class SceneHierarchyPanel
@@ -106,7 +106,7 @@ void SceneHierarchyPanel::DrawEntityNode(Entity entity)
 
 ```
 
-## CC3D Input Editor Layer Scope
+## CC3D Input Editor Layer 作用域
 
 ```c++
 // Panels
@@ -123,6 +123,6 @@ void EditorLayer::OnImGuiRender()
 }
 ```
 
-## Build and Result
+## 构建和结果
 
 ![image-20211115144155044](./result.png)
