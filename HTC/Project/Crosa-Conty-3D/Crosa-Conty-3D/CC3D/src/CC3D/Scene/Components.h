@@ -2,6 +2,7 @@
 
 #include <glm/glm.hpp>
 #include "CC3D/Renderer/Camera.h"
+#include "CC3D/Scene/SceneCamera.h"
 
 namespace CC3D {
 	struct TagComponent
@@ -39,7 +40,10 @@ namespace CC3D {
 
 	struct CameraComponent
 	{
-		CC3D::Camera Camera;
+		SceneCamera Camera;
+
+		bool FixedAspectRatio = false;
+
 		/// <summary>
 		/// "Primary" decide which camera is main camera that should render to viewport
 		/// </summary>
@@ -47,7 +51,5 @@ namespace CC3D {
 
 		CameraComponent() = default;
 		CameraComponent(const CameraComponent&) = default;
-		CameraComponent(const glm::mat4& projection)
-			: Camera(projection) {}
 	};
 }
