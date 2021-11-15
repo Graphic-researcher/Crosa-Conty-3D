@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CC3D.h"
+#include "Panels/SceneHierarchyPanel.h"
 
 namespace CC3D {
 
@@ -38,6 +39,8 @@ namespace CC3D {
 
 		bool m_ViewportFocused = false, m_ViewportHovered = false;
 
+		// Panels
+		SceneHierarchyPanel m_SceneHierarchyPanel;
 	};
 
 }

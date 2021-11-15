@@ -21,9 +21,15 @@
     <ClCompile Include="src\CC3DEditorApp.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="src\Panels\SceneHierarchyPanel.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\EditorLayer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Panels\SceneHierarchyPanel.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
