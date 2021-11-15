@@ -3,6 +3,7 @@
 #include <glm/glm.hpp>
 #include "CC3D/Renderer/Camera.h"
 #include "CC3D/Scene/SceneCamera.h"
+#include "CC3D/Scene/ScriptableEntity.h"
 
 namespace CC3D {
 	struct TagComponent
@@ -51,5 +52,20 @@ namespace CC3D {
 
 		CameraComponent() = default;
 		CameraComponent(const CameraComponent&) = default;
+	};
+
+	struct NativeScriptComponent
+	{
+		ScriptableEntity* Instance = nullptr;
+
+		ScriptableEntity* (*InstantiateScript)();
+		void (*DestroyScript)(NativeScriptComponent*);
+
+		template<typename T>
+		void Bind()
+		{
+			InstantiateScript = []() { return static_cast<ScriptableEntity*>(new T()); };
+			DestroyScript = [](NativeScriptComponent* nsc) { delete nsc->Instance; nsc->Instance = nullptr; };
+		}
 	};
 }
