@@ -67,7 +67,7 @@ namespace CC3D {
 
 		if (mainCamera)
 		{
-			Renderer2D::BeginScene(mainCamera->GetProjection(), *cameraTransform);
+			Renderer2D::BeginScene(*mainCamera, *cameraTransform);
 
 			auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
 			for (auto entity : group)
@@ -77,6 +77,7 @@ namespace CC3D {
 				Renderer2D::DrawQuad(transform, sprite.Color);
 			}
 
+			// Á£×ÓÏµÍ³ 
 			auto view = m_Registry.view<TransformComponent, ParticleSystemComponent>();
 			for (auto entity : view)
 			{
