@@ -1,7 +1,7 @@
-	#pragma once
+#pragma once
+#include <functional>
 
-#include "ccpch.h"
-
+#include "CC3D/Debug/Instrumentor.h"
 #include "CC3D/Core/Base.h"
 
 namespace CC3D {

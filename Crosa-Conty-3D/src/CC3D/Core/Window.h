@@ -1,6 +1,5 @@
 #pragma once
-
-#include "ccpch.h"
+#include <sstream>
 
 #include "CC3D/Core/Base.h"
 #include "CC3D/Events/Event.h"

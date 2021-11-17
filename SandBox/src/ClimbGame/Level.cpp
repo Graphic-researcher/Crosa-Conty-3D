@@ -1,5 +1,5 @@
 #include "Level.h"
-#include "Random.h"
+#include "CC3D\Scene\Components\Random.h"
 #include "iostream"
 
 void Level::Init()

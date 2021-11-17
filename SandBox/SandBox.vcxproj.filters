@@ -33,16 +33,10 @@
     <ClCompile Include="src\ClimbGame\Player.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\ClimbGame\Random.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="src\ParticleSystem\ParticleSystemBox2D.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\ParticleSystem\ParticleSystem2D.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ParticleSystem\Random.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -67,9 +61,6 @@
     <ClInclude Include="src\ClimbGame\Player.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\ClimbGame\Random.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="src\ClimbGame\Animator2D.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -77,9 +68,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="src\ParticleSystem\ParticleSystem2D.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ParticleSystem\Random.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

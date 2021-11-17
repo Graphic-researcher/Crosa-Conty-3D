@@ -1,5 +1,5 @@
 #include "ParticleSystem2D.h"
-#include "Random.h"
+#include "CC3D/Scene/Components/Random.h"
 
 #include <glm/gtx/constants.hpp>
 #include <glm/gtx/compatibility.hpp>

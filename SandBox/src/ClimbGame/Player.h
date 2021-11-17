@@ -2,7 +2,7 @@
 
 #include <CC3D.h>
 
-#include "Random.h"
+#include "CC3D/Scene/Components/Random.h"
 
 struct AnimationClip2D
 {

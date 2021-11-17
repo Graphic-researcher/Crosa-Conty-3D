@@ -1,23 +1,15 @@
-//
-// Basic instrumentation profiler by Cherno
+#pragma once
 
-// Usage: include this header file somewhere in your code (eg. precompiled header), and then use like:
-//
-// Instrumentor::Get().BeginSession("Session Name");        // Begin session 
-// {
-//     InstrumentationTimer timer("Profiled Scope Name");   // Place code like this in scopes you'd like to include in profiling
-//     // Code
-// }
-// Instrumentor::Get().EndSession();                        // End Session
-//
-// You will probably want to macro-fy this, to switch on/off easily and use things like __FUNCSIG__ for the profile name.
-//
 #include <algorithm>
 #include <chrono>
 #include <fstream>
 #include <iomanip>
 #include <string>
 #include <thread>
+#include <mutex>
+#include <sstream>
+
+#include "CC3D/Core/Log.h"
 
 namespace CC3D {
 
@@ -26,6 +18,7 @@ namespace CC3D {
 	struct ProfileResult
 	{
 		std::string Name;
+
 		FloatingPointMicroseconds Start;
 		std::chrono::microseconds ElapsedTime;
 		std::thread::id ThreadID;
@@ -38,36 +31,36 @@ namespace CC3D {
 
 	class Instrumentor
 	{
-	private:
-		std::mutex m_Mutex;
-		InstrumentationSession* m_CurrentSession;
-		std::ofstream m_OutputStream;
 	public:
-		Instrumentor()
-			: m_CurrentSession(nullptr)
-		{
-		}
+		Instrumentor(const Instrumentor&) = delete;
+		Instrumentor(Instrumentor&&) = delete;
 
 		void BeginSession(const std::string& name, const std::string& filepath = "results.json")
 		{
 			std::lock_guard lock(m_Mutex);
-			if (m_CurrentSession) {
+			if (m_CurrentSession)
+			{
 				// If there is already a current session, then close it before beginning new one.
 				// Subsequent profiling output meant for the original session will end up in the
 				// newly opened session instead.  That's better than having badly formatted
 				// profiling output.
-				if (Log::GetCoreLogger()) { // Edge case: BeginSession() might be before Log::Init()
+				if (Log::GetCoreLogger()) // Edge case: BeginSession() might be before Log::Init()
+				{
 					CC3D_CORE_ERROR("Instrumentor::BeginSession('{0}') when session '{1}' already open.", name, m_CurrentSession->Name);
 				}
 				InternalEndSession();
 			}
 			m_OutputStream.open(filepath);
-			if (m_OutputStream.is_open()) {
+
+			if (m_OutputStream.is_open())
+			{
 				m_CurrentSession = new InstrumentationSession({ name });
 				WriteHeader();
 			}
-			else {
-				if (Log::GetCoreLogger()) { // Edge case: BeginSession() might be before Log::Init()
+			else
+			{
+				if (Log::GetCoreLogger()) // Edge case: BeginSession() might be before Log::Init()
+				{
 					CC3D_CORE_ERROR("Instrumentor could not open results file '{0}'.", filepath);
 				}
 			}
@@ -95,19 +88,28 @@ namespace CC3D {
 			json << "}";
 
 			std::lock_guard lock(m_Mutex);
-			if (m_CurrentSession) 
+			if (m_CurrentSession)
 			{
 				m_OutputStream << json.str();
 				m_OutputStream.flush();
 			}
 		}
 
-		static Instrumentor& Get() {
+		static Instrumentor& Get()
+		{
 			static Instrumentor instance;
 			return instance;
 		}
-
 	private:
+		Instrumentor()
+			: m_CurrentSession(nullptr)
+		{
+		}
+
+		~Instrumentor()
+		{
+			EndSession();
+		}
 
 		void WriteHeader()
 		{
@@ -123,9 +125,9 @@ namespace CC3D {
 
 		// Note: you must already own lock on m_Mutex before
 		// calling InternalEndSession()
-		void InternalEndSession() 
+		void InternalEndSession()
 		{
-			if (m_CurrentSession) 
+			if (m_CurrentSession)
 			{
 				WriteFooter();
 				m_OutputStream.close();
@@ -133,7 +135,10 @@ namespace CC3D {
 				m_CurrentSession = nullptr;
 			}
 		}
-
+	private:
+		std::mutex m_Mutex;
+		InstrumentationSession* m_CurrentSession;
+		std::ofstream m_OutputStream;
 	};
 
 	class InstrumentationTimer
@@ -173,7 +178,7 @@ namespace CC3D {
 		struct ChangeResult
 		{
 			char Data[N];
-	};
+		};
 
 		template <size_t N, size_t K>
 		constexpr auto CleanupOutputString(const char(&expr)[N], const char(&remove)[K])
@@ -222,9 +227,10 @@ namespace CC3D {
 
 #define CC3D_PROFILE_BEGIN_SESSION(name, filepath) ::CC3D::Instrumentor::Get().BeginSession(name, filepath)
 #define CC3D_PROFILE_END_SESSION() ::CC3D::Instrumentor::Get().EndSession()
-
-#define CC3D_PROFILE_SCOPE(name) constexpr auto fixedName = ::CC3D::InstrumentorUtils::CleanupOutputString(name, "__cdecl ");\
-									::CC3D::InstrumentationTimer timer##__LINE__(fixedName.Data)
+#define CC3D_PROFILE_SCOPE_LINE2(name, line) constexpr auto fixedName##line = ::CC3D::InstrumentorUtils::CleanupOutputString(name, "__cdecl ");\
+											   ::CC3D::InstrumentationTimer timer##line(fixedName##line.Data)
+#define CC3D_PROFILE_SCOPE_LINE(name, line) CC3D_PROFILE_SCOPE_LINE2(name, line)
+#define CC3D_PROFILE_SCOPE(name) CC3D_PROFILE_SCOPE_LINE(name, __LINE__)
 #define CC3D_PROFILE_FUNCTION() CC3D_PROFILE_SCOPE(CC3D_FUNC_SIG)
 #else
 #define CC3D_PROFILE_BEGIN_SESSION(name, filepath)

@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\CC3D\Core\PlatformDetection.h" />
     <ClInclude Include="src\CC3D\Core\Timestep.h" />
     <ClInclude Include="src\CC3D\Imgui\ImGuiLayer.h" />
     <ClInclude Include="src\CC3D\Core\Input.h" />
@@ -61,7 +62,6 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="vendor\entt\include\entt.hpp" />
     <ClInclude Include="vendor\GLAD\include\glad\glad.h" />
@@ -191,7 +191,6 @@
     <ClInclude Include="src\CC3D\Debug\Instrumentor.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\CC3D\Core\Input.cpp" />
     <ClCompile Include="src\CC3D\Core\Window.cpp" />
     <ClCompile Include="src\CC3D\Imgui\ImGuiBuild.cpp" />
     <ClCompile Include="src\CC3D\Imgui\ImGuiLayer.cpp" />
