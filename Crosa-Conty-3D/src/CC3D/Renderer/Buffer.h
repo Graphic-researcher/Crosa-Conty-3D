@@ -69,7 +69,7 @@ namespace CC3D {
 	public :
 		BufferLayout() = default;
 
-		BufferLayout(const std::initializer_list<BufferElement>& elements)//可以直接用大括号初始化
+		BufferLayout(std::initializer_list<BufferElement> elements)//可以直接用大括号初始化
 			:m_Elements(elements)
 		{
 			CalculateOffsetsAndStride();
