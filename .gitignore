@@ -89,3 +89,4 @@ install_manifest.txt
 *.clang
 
 *.ini
+HTC/asset/

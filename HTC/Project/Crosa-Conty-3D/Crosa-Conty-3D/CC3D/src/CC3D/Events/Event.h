@@ -76,7 +76,7 @@ namespace CC3D {
 			if (m_Event.GetEventType() == T::GetStaticType())
 			{
 				///call that func -> function with that event
-				m_Event.Handled = func(static_cast<T&>(m_Event));
+				m_Event.Handled |= func(static_cast<T&>(m_Event));
 				return true;
 			}
 			return false;

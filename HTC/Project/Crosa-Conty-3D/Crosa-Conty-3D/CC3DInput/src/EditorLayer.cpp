@@ -45,8 +45,8 @@ namespace CC3D {
 		public:
 			virtual void OnCreate() override
 			{
-				auto& transform = GetComponent<TransformComponent>().Transform;
-				transform[3][0] = rand() % 10 - 5.0f;
+				auto& translation = GetComponent<TransformComponent>().Translation;
+				translation.x = rand() % 10 - 5.0f;
 			}
 			 
 			virtual void OnDestroy() override
@@ -55,18 +55,19 @@ namespace CC3D {
 
 			virtual void OnUpdate(Timestep ts) override
 			{
-				auto& transform = GetComponent<TransformComponent>().Transform;
+				auto& translation = GetComponent<TransformComponent>().Translation;
 
 				float speed = 5.0f;
 
-				if (Input::IsKeyPressed(KeyCode::A))
-					transform[3][0] -= speed * ts;
-				if (Input::IsKeyPressed(KeyCode::D))
-					transform[3][0] += speed * ts;
-				if (Input::IsKeyPressed(KeyCode::W))
-					transform[3][1] += speed * ts;
-				if (Input::IsKeyPressed(KeyCode::S))
-					transform[3][1] -= speed * ts;
+				if (Input::IsKeyPressed(Key::A))
+					translation.x -= speed * ts;
+				if (Input::IsKeyPressed(Key::D))
+					translation.x += speed * ts;
+				if (Input::IsKeyPressed(Key::W))
+					translation.y += speed * ts;
+				if (Input::IsKeyPressed(Key::S))
+					translation.y -= speed * ts;
+
 			}
 		};
 
@@ -196,7 +197,7 @@ namespace CC3D {
 		if (m_CameraEntity.GetComponent<CameraComponent>().Primary)
 		{
 			ImGui::DragFloat3("Camera Transform",
-				glm::value_ptr(m_CameraEntity.GetComponent<TransformComponent>().Transform[3]));
+				glm::value_ptr(m_CameraEntity.GetComponent<TransformComponent>().Translation));
 
 			auto& camera = m_CameraEntity.GetComponent<CameraComponent>().Camera;
 			float orthoSize = camera.GetOrthographicSize();
@@ -206,7 +207,7 @@ namespace CC3D {
 		if (m_SecondCamera.GetComponent<CameraComponent>().Primary)
 		{
 			ImGui::DragFloat3("Second Camera Transform",
-				glm::value_ptr(m_SecondCamera.GetComponent<TransformComponent>().Transform[3]));
+				glm::value_ptr(m_SecondCamera.GetComponent<TransformComponent>().Translation));
 
 			auto& camera = m_SecondCamera.GetComponent<CameraComponent>().Camera;
 			float orthoSize = camera.GetOrthographicSize();
