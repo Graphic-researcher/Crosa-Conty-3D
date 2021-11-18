@@ -160,6 +160,21 @@
     <ClInclude Include="src\Panels\SceneHierarchyPanel.h" />
     <ClInclude Include="src\EditorLayer.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="assets\fonts\opensans\LICENSE.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="assets\fonts\opensans\OpenSans-Bold.ttf" />
+    <Font Include="assets\fonts\opensans\OpenSans-BoldItalic.ttf" />
+    <Font Include="assets\fonts\opensans\OpenSans-ExtraBold.ttf" />
+    <Font Include="assets\fonts\opensans\OpenSans-ExtraBoldItalic.ttf" />
+    <Font Include="assets\fonts\opensans\OpenSans-Italic.ttf" />
+    <Font Include="assets\fonts\opensans\OpenSans-Light.ttf" />
+    <Font Include="assets\fonts\opensans\OpenSans-LightItalic.ttf" />
+    <Font Include="assets\fonts\opensans\OpenSans-Regular.ttf" />
+    <Font Include="assets\fonts\opensans\OpenSans-SemiBold.ttf" />
+    <Font Include="assets\fonts\opensans\OpenSans-SemiBoldItalic.ttf" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
