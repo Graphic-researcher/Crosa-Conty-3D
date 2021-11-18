@@ -40,7 +40,7 @@ namespace CC3D {
 		auto& cc = m_SecondCamera.AddComponent<CameraComponent>();
 		cc.Primary = false;
 
-		m_ParticleSystem = m_ActiveScene->CreateEntity("Particle System");
+		//m_ParticleSystem = m_ActiveScene->CreateEntity("Particle System");
 
 		class CameraController : public ScriptableEntity
 		{
@@ -74,7 +74,7 @@ namespace CC3D {
 
 		m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
 		m_SecondCamera.AddComponent<NativeScriptComponent>().Bind<CameraController>();
-		m_ParticleSystem.AddComponent<ParticleSystemComponent>();
+		//m_ParticleSystem.AddComponent<ParticleSystemComponent>();
 		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
 	}
 
