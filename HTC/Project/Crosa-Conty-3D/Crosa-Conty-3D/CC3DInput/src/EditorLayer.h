@@ -18,6 +18,12 @@ namespace CC3D {
 		virtual void OnImGuiRender() override;
 		void OnEvent(Event& e) override;
 	private:
+		bool OnKeyPressed(KeyPressedEvent& e);
+
+		void NewScene();
+		void OpenScene();
+		void SaveSceneAs();
+	private:
 		CC3D::OrthographicCameraController m_CameraController;
 
 		// Temp

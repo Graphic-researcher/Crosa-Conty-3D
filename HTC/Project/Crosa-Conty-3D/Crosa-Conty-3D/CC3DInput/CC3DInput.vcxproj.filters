@@ -48,4 +48,7 @@
     <Font Include="assets\fonts\opensans\OpenSans-SemiBold.ttf" />
     <Font Include="assets\fonts\opensans\OpenSans-SemiBoldItalic.ttf" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\scene\readme.md" />
+  </ItemGroup>
 </Project>
