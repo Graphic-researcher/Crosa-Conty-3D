@@ -51,6 +51,7 @@
     <ClInclude Include="src\CC3D\Scene\SceneCamera.h" />
     <ClInclude Include="src\CC3D\Scene\SceneSerializer.h" />
     <ClInclude Include="src\CC3D\Scene\ScriptableEntity.h" />
+    <ClInclude Include="src\CC3D\Utils\PlatformUtils.h" />
     <ClInclude Include="src\ccpch.h" />
     <ClInclude Include="src\CC3D\Events\ApplicationEvent.h" />
     <ClInclude Include="src\CC3D\Events\Event.h" />
@@ -228,6 +229,7 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsPlatformUtils.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="vendor\GLAD\src\glad.cpp" />
     <ClCompile Include="vendor\stb_image\stb_image.cpp" />
