@@ -309,6 +309,66 @@
     <ClInclude Include="src\CC3D\Scene\ScriptableEntity.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="vendor\yaml-cpp\anchor.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\yaml-cpp\binary.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\yaml-cpp\depthguard.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\yaml-cpp\dll.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\yaml-cpp\emitfromevents.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\yaml-cpp\emitter.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\yaml-cpp\emitterdef.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\yaml-cpp\emittermanip.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\yaml-cpp\emitterstyle.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\yaml-cpp\eventhandler.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\yaml-cpp\exceptions.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\yaml-cpp\mark.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\yaml-cpp\noexcept.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\yaml-cpp\null.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\yaml-cpp\ostream_wrapper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\yaml-cpp\parser.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\yaml-cpp\stlemitter.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\yaml-cpp\traits.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\yaml-cpp\yaml.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CC3D\Scene\SceneSerializer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cc3d_pch.cpp">
@@ -432,6 +492,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\CC3D\Scene\SceneCamera.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CC3D\Scene\SceneSerializer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

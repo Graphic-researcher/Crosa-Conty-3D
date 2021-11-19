@@ -90,3 +90,4 @@ install_manifest.txt
 
 *.ini
 HTC/asset/
+*.cc3d

@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\CC3D\Scene\SceneSerializer.h" />
     <ClInclude Include="src\CC3D\Scene\SceneCamera.h" />
     <ClInclude Include="src\CC3D\Renderer\Camera.h" />
     <ClInclude Include="src\CC3D\Scene\Entity.h" />
@@ -109,8 +110,28 @@
     <ClInclude Include="vendor\spdlog\tweakme.h" />
     <ClInclude Include="vendor\spdlog\version.h" />
     <ClInclude Include="vendor\stb_image\stb_image.h" />
+    <ClInclude Include="vendor\yaml-cpp\anchor.h" />
+    <ClInclude Include="vendor\yaml-cpp\binary.h" />
+    <ClInclude Include="vendor\yaml-cpp\depthguard.h" />
+    <ClInclude Include="vendor\yaml-cpp\dll.h" />
+    <ClInclude Include="vendor\yaml-cpp\emitfromevents.h" />
+    <ClInclude Include="vendor\yaml-cpp\emitter.h" />
+    <ClInclude Include="vendor\yaml-cpp\emitterdef.h" />
+    <ClInclude Include="vendor\yaml-cpp\emittermanip.h" />
+    <ClInclude Include="vendor\yaml-cpp\emitterstyle.h" />
+    <ClInclude Include="vendor\yaml-cpp\eventhandler.h" />
+    <ClInclude Include="vendor\yaml-cpp\exceptions.h" />
+    <ClInclude Include="vendor\yaml-cpp\mark.h" />
+    <ClInclude Include="vendor\yaml-cpp\noexcept.h" />
+    <ClInclude Include="vendor\yaml-cpp\null.h" />
+    <ClInclude Include="vendor\yaml-cpp\ostream_wrapper.h" />
+    <ClInclude Include="vendor\yaml-cpp\parser.h" />
+    <ClInclude Include="vendor\yaml-cpp\stlemitter.h" />
+    <ClInclude Include="vendor\yaml-cpp\traits.h" />
+    <ClInclude Include="vendor\yaml-cpp\yaml.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\CC3D\Scene\SceneSerializer.cpp" />
     <ClCompile Include="src\CC3D\Scene\SceneCamera.cpp" />
     <ClCompile Include="src\CC3D\Scene\Entity.cpp" />
     <ClCompile Include="src\CC3D\Core\Window.cpp" />
@@ -230,7 +251,7 @@
     </PostBuildEvent>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)lib;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3d.lib;yaml-cppd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -264,7 +285,7 @@
     </PostBuildEvent>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)lib;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;yaml-cpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
