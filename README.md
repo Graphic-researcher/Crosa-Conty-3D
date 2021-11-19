@@ -27,7 +27,9 @@
 * Glad-4.6
 * Imgui-1.85
 * spdlog
-* glm 0.9.3.4
+* glm 0.9.9.8
 * stb_image 2.27
 * entt
 * yaml 0.7.0
+* ImGuizmo 1.8.3
+* 

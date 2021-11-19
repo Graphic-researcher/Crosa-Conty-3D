@@ -44,6 +44,8 @@ namespace CC3D {
 
 		glm::vec2 m_ViewportSize = glm::vec2{ 0.0f, 0.0f };
 
+		int m_GizmoType = -1;
+
 		// Panels
 		SceneHierarchyPanel m_SceneHierarchyPanel;
 	};

@@ -114,6 +114,18 @@ namespace CC3D {
 
 	}
 
+	Entity Scene::GetPrimaryCameraEntity()
+	{
+		auto view = m_Registry.view<CameraComponent>();
+		for (auto entity : view)
+		{
+			const auto& camera = view.get<CameraComponent>(entity);
+			if (camera.Primary)
+				return Entity{ entity, this };
+		}
+		return {};
+	}
+
 	// TODO 新建组件时调用的函数
 	template<typename T>
 	void Scene::OnComponentAdded(Entity entity, T& component)

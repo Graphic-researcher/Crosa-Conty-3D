@@ -1,7 +1,7 @@
 #pragma once
 
 #include <glm/glm.hpp>
-#include <glm/gtx/constants.hpp>
+#include <glm/gtc/constants.hpp>
 #include <glm/gtx/compatibility.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include "Random.h"
