@@ -85,6 +85,10 @@
     <ClInclude Include="vendor\glm\vec3.hpp" />
     <ClInclude Include="vendor\glm\vec4.hpp" />
     <ClInclude Include="vendor\glm\vector_relational.hpp" />
+    <ClInclude Include="vendor\ImGuizmo\ImCurveEdit.h" />
+    <ClInclude Include="vendor\ImGuizmo\ImGradient.h" />
+    <ClInclude Include="vendor\ImGuizmo\ImGuizmo.h" />
+    <ClInclude Include="vendor\ImGuizmo\ImSequencer.h" />
     <ClInclude Include="vendor\imgui\examples\imgui_impl_glfw.h" />
     <ClInclude Include="vendor\imgui\examples\imgui_impl_opengl3.h" />
     <ClInclude Include="vendor\imgui\examples\imgui_impl_opengl3_loader.h" />
@@ -170,6 +174,10 @@
     <ClCompile Include="src\Platform\Windows\WindowsPlatformUtils.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="vendor\glad\glad.cpp" />
+    <ClCompile Include="vendor\ImGuizmo\ImCurveEdit.cpp" />
+    <ClCompile Include="vendor\ImGuizmo\ImGradient.cpp" />
+    <ClCompile Include="vendor\ImGuizmo\ImGuizmo.cpp" />
+    <ClCompile Include="vendor\ImGuizmo\ImSequencer.cpp" />
     <ClCompile Include="vendor\imgui\examples\imgui_impl_glfw.cpp" />
     <ClCompile Include="vendor\imgui\examples\imgui_impl_opengl3.cpp" />
     <ClCompile Include="vendor\imgui\imgui.cpp" />
@@ -182,6 +190,12 @@
   <ItemGroup>
     <Text Include="vendor\glm\CMakeLists.txt" />
     <Text Include="vendor\imgui\LICENSE.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="vendor\ImGuizmo\.editorconfig" />
+    <None Include="vendor\ImGuizmo\.git" />
+    <None Include="vendor\ImGuizmo\LICENSE" />
+    <None Include="vendor\ImGuizmo\README.md" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

@@ -372,6 +372,18 @@
     <ClInclude Include="src\CC3D\Utils\PlatformUtils.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="vendor\ImGuizmo\ImCurveEdit.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\ImGuizmo\ImGradient.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\ImGuizmo\ImGuizmo.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\ImGuizmo\ImSequencer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cc3d_pch.cpp">
@@ -503,9 +515,27 @@
     <ClCompile Include="src\Platform\Windows\WindowsPlatformUtils.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="vendor\ImGuizmo\ImCurveEdit.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\ImGuizmo\ImGradient.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\ImGuizmo\ImGuizmo.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\ImGuizmo\ImSequencer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="vendor\imgui\LICENSE.txt" />
     <Text Include="vendor\glm\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="vendor\ImGuizmo\.editorconfig" />
+    <None Include="vendor\ImGuizmo\.git" />
+    <None Include="vendor\ImGuizmo\LICENSE" />
+    <None Include="vendor\ImGuizmo\README.md" />
   </ItemGroup>
 </Project>
