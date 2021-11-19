@@ -1,11 +1,8 @@
-[18:12:39] [warning] CC3D: Initialized Log
-[18:12:39] [info] APP: Hello Crosa Conty 3D!
-[18:12:39] [info] CC3D: Creating window CC3D Editor (1280, 720)
-[18:12:41] [info] CC3D: OpenGL Info:
-[18:12:41] [info] CC3D:   Vendor: Intel
-[18:12:41] [info] CC3D:   Renderer: Intel(R) UHD Graphics 630
-[18:12:41] [info] CC3D:   Version: 4.6.0 - Build 27.20.100.8729
-[18:12:41] [info] CC3D:   GLSL_Version: 4.60 - Build 27.20.100.8729
-[18:13:23] [trace] CC3D: Deserializing scene 'Untitled'
-[18:13:23] [trace] CC3D: Deserialized entity with ID = 12837192831273, name = Camera
-[18:13:23] [trace] CC3D: Deserialized entity with ID = 12837192831273, name = Sprite
+[18:19:17] [warning] CC3D: Initialized Log
+[18:19:17] [info] APP: Hello Crosa Conty 3D!
+[18:19:17] [info] CC3D: Creating window CC3D Editor (1280, 720)
+[18:19:17] [info] CC3D: OpenGL Info:
+[18:19:17] [info] CC3D:   Vendor: Intel
+[18:19:17] [info] CC3D:   Renderer: Intel(R) UHD Graphics 630
+[18:19:17] [info] CC3D:   Version: 4.6.0 - Build 27.20.100.8729
+[18:19:17] [info] CC3D:   GLSL_Version: 4.60 - Build 27.20.100.8729
