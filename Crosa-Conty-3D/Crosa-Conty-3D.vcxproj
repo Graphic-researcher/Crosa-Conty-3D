@@ -49,6 +49,7 @@
     <ClInclude Include="src\CC3D\Scene\Entity.h" />
     <ClInclude Include="src\CC3D\Scene\Scene.h" />
     <ClInclude Include="src\CC3D\Scene\SceneCamera.h" />
+    <ClInclude Include="src\CC3D\Scene\SceneSerializer.h" />
     <ClInclude Include="src\CC3D\Scene\ScriptableEntity.h" />
     <ClInclude Include="src\ccpch.h" />
     <ClInclude Include="src\CC3D\Events\ApplicationEvent.h" />
@@ -214,6 +215,7 @@
     <ClCompile Include="src\CC3D\Scene\Entity.cpp" />
     <ClCompile Include="src\CC3D\Scene\Scene.cpp" />
     <ClCompile Include="src\CC3D\Scene\SceneCamera.cpp" />
+    <ClCompile Include="src\CC3D\Scene\SceneSerializer.cpp" />
     <ClCompile Include="src\ccpch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -233,6 +235,9 @@
   <ItemGroup>
     <ProjectReference Include="vendor\Imgui\Imgui.vcxproj">
       <Project>{b6d8c255-0a39-49e5-9c58-2892436f0120}</Project>
+    </ProjectReference>
+    <ProjectReference Include="vendor\yaml-cpp\yaml-cpp.vcxproj">
+      <Project>{aa0b4fdf-6704-4dcd-ae7c-52078b63399b}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -389,7 +394,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>CC3D_DEBUG;_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\spdlog\include;$(SolutionDir)Crosa-Conty-3D\src;$(SolutionDir)Crosa-Conty-3D\vendor\GLFW\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\src;$(SolutionDir)Crosa-Conty-3D\vendor\Imgui;$(SolutionDir)Crosa-Conty-3D\vendor\glm;$(SolutionDir)Crosa-Conty-3D\vendor\stb_image;$(SolutionDir)Crosa-Conty-3D\vendor\entt\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\spdlog\include;$(SolutionDir)Crosa-Conty-3D\src;$(SolutionDir)Crosa-Conty-3D\vendor\GLFW\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\src;$(SolutionDir)Crosa-Conty-3D\vendor\Imgui;$(SolutionDir)Crosa-Conty-3D\vendor\glm;$(SolutionDir)Crosa-Conty-3D\vendor\stb_image;$(SolutionDir)Crosa-Conty-3D\vendor\entt\include;$(SolutionDir)Crosa-Conty-3D\vendor\yaml-cpp\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>ccpch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -419,7 +424,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;CC3D_PLATFORM_WINDOWS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\spdlog\include;$(SolutionDir)Crosa-Conty-3D\src;$(SolutionDir)Crosa-Conty-3D\vendor\GLFW\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\src;$(SolutionDir)Crosa-Conty-3D\vendor\Imgui;$(SolutionDir)Crosa-Conty-3D\vendor\glm;$(SolutionDir)Crosa-Conty-3D\vendor\stb_image;$(SolutionDir)Crosa-Conty-3D\vendor\entt\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\spdlog\include;$(SolutionDir)Crosa-Conty-3D\src;$(SolutionDir)Crosa-Conty-3D\vendor\GLFW\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\src;$(SolutionDir)Crosa-Conty-3D\vendor\Imgui;$(SolutionDir)Crosa-Conty-3D\vendor\glm;$(SolutionDir)Crosa-Conty-3D\vendor\stb_image;$(SolutionDir)Crosa-Conty-3D\vendor\entt\include;$(SolutionDir)Crosa-Conty-3D\vendor\yaml-cpp\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>ccpch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>

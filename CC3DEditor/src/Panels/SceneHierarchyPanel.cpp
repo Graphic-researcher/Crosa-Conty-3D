@@ -21,7 +21,7 @@ namespace CC3D {
 
 	void SceneHierarchyPanel::OnImGuiRender()
 	{
-		ImGui::ShowDemoWindow();
+		//ImGui::ShowDemoWindow();
 		ImGui::Begin("Scene Hierarchy");
 
 		// 遍历所有结点
