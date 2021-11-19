@@ -176,7 +176,7 @@ namespace CC3D {
 				if (ImGui::MenuItem("Serialize"))
 				{
 					SceneSerializer serializer(m_ActiveScene);
-					serializer.Serialize("assets/scene/example2.cc3d");//load
+					serializer.Serialize("assets/scene/example2.cc3d");//save
 				}
 
 				if (ImGui::MenuItem("Deserialize"))
