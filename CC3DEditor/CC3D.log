@@ -1,8 +1,8 @@
-[13:50:52] [warning] CC3D: Initialized Log
-[13:50:52] [info] APP: Hello Crosa Conty 3D!
-[13:50:52] [info] CC3D: Creating window CC3D Editor (1280, 720)
-[13:50:53] [info] CC3D: OpenGL Info:
-[13:50:53] [info] CC3D:   Vendor: Intel
-[13:50:53] [info] CC3D:   Renderer: Intel(R) UHD Graphics 630
-[13:50:53] [info] CC3D:   Version: 4.6.0 - Build 27.20.100.8729
-[13:50:53] [info] CC3D:   GLSL_Version: 4.60 - Build 27.20.100.8729
+[15:45:55] [warning] CC3D: Initialized Log
+[15:45:55] [info] APP: Hello Crosa Conty 3D!
+[15:45:55] [info] CC3D: Creating window CC3D Editor (1280, 720)
+[15:45:55] [info] CC3D: OpenGL Info:
+[15:45:55] [info] CC3D:   Vendor: Intel
+[15:45:55] [info] CC3D:   Renderer: Intel(R) UHD Graphics 630
+[15:45:55] [info] CC3D:   Version: 4.6.0 - Build 27.20.100.8729
+[15:45:55] [info] CC3D:   GLSL_Version: 4.60 - Build 27.20.100.8729

@@ -4,16 +4,20 @@
 
 - [x] Entry point
 - [x] Log system
-- [ ] Application layer
+- [x] Application layer
 - [x] Window layer
   - [x] inputs
   - [x] events
-- [ ] Renderer
-- [ ] Render API abstraction
-- [ ] Debugging support
-- [ ] Scripting
-- [ ] Entity-component system
+- [x] Renderer
+- [x] Render API abstraction
+- [x] Debugging support
+- [x] Scripting
+- [x] Entity-component system
 - [ ] Physics
+- [ ] Fluid Simulation
+- [ ] 3D Renderer
+- [ ] Shadow Map
+- [ ] PBR
 - [ ] File I/O,VFS
 - [ ] Build system
 
@@ -25,3 +29,5 @@
 * spdlog
 * glm 0.9.3.4
 * stb_image 2.27
+* entt
+* yaml 0.7.0
