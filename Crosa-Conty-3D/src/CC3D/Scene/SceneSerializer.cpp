@@ -61,8 +61,8 @@ namespace YAML {
 			return true;
 		}
 	};
-
 }
+
 namespace CC3D {
 
 	YAML::Emitter& operator<<(YAML::Emitter& out, const glm::vec3& v)
