@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\CC3D\Math\Math.h" />
     <ClInclude Include="src\CC3D\Scene\SceneSerializer.h" />
     <ClInclude Include="src\CC3D\Scene\SceneCamera.h" />
     <ClInclude Include="src\CC3D\Renderer\Camera.h" />
@@ -85,10 +86,7 @@
     <ClInclude Include="vendor\glm\vec3.hpp" />
     <ClInclude Include="vendor\glm\vec4.hpp" />
     <ClInclude Include="vendor\glm\vector_relational.hpp" />
-    <ClInclude Include="vendor\ImGuizmo\ImCurveEdit.h" />
-    <ClInclude Include="vendor\ImGuizmo\ImGradient.h" />
     <ClInclude Include="vendor\ImGuizmo\ImGuizmo.h" />
-    <ClInclude Include="vendor\ImGuizmo\ImSequencer.h" />
     <ClInclude Include="vendor\imgui\examples\imgui_impl_glfw.h" />
     <ClInclude Include="vendor\imgui\examples\imgui_impl_opengl3.h" />
     <ClInclude Include="vendor\imgui\examples\imgui_impl_opengl3_loader.h" />
@@ -136,6 +134,7 @@
     <ClInclude Include="vendor\yaml-cpp\yaml.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\CC3D\Math\Math.cpp" />
     <ClCompile Include="src\CC3D\Scene\SceneSerializer.cpp" />
     <ClCompile Include="src\CC3D\Scene\SceneCamera.cpp" />
     <ClCompile Include="src\CC3D\Scene\Entity.cpp" />
@@ -174,10 +173,11 @@
     <ClCompile Include="src\Platform\Windows\WindowsPlatformUtils.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="vendor\glad\glad.cpp" />
-    <ClCompile Include="vendor\ImGuizmo\ImCurveEdit.cpp" />
-    <ClCompile Include="vendor\ImGuizmo\ImGradient.cpp" />
-    <ClCompile Include="vendor\ImGuizmo\ImGuizmo.cpp" />
-    <ClCompile Include="vendor\ImGuizmo\ImSequencer.cpp" />
+    <ClCompile Include="vendor\ImGuizmo\ImGuizmo.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">cc3d_pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="vendor\imgui\examples\imgui_impl_glfw.cpp" />
     <ClCompile Include="vendor\imgui\examples\imgui_impl_opengl3.cpp" />
     <ClCompile Include="vendor\imgui\imgui.cpp" />
@@ -192,7 +192,6 @@
     <Text Include="vendor\imgui\LICENSE.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="vendor\ImGuizmo\.editorconfig" />
     <None Include="vendor\ImGuizmo\.git" />
     <None Include="vendor\ImGuizmo\LICENSE" />
     <None Include="vendor\ImGuizmo\README.md" />

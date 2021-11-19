@@ -45,6 +45,7 @@ namespace CC3D {
 
 		bool m_ViewportFocused = false, m_ViewportHovered = false;
 
+		int m_GizmoType = -1;
 		// Panels
 		SceneHierarchyPanel m_SceneHierarchyPanel;
 	};
