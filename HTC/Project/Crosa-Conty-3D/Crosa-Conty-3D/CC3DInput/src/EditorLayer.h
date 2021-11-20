@@ -2,6 +2,8 @@
 
 #include "CC3D.h"
 #include "Panels/SceneHierarchyPanel.h"
+#include "CC3D/Renderer/EditorCamera.h"
+
 
 namespace CC3D {
 
@@ -38,6 +40,7 @@ namespace CC3D {
 
 		bool m_PrimaryCamera = true;//decide main camera
 
+		EditorCamera m_EditorCamera;
 
 		Ref<Texture2D> m_CheckerboardTexture;
 		glm::vec2 m_ViewportSize = { 0.0f, 0.0f };

@@ -3,6 +3,11 @@
 ///Here is the lastest:https://github.com/skypjack/entt/tree/master/single_include/entt
 ///Otherwise you may encounter this issue.
 ///https://github.com/skypjack/entt/issues/96
+
+#include "CC3D/Core/Timestep.h"
+#include "CC3D/Renderer/EditorCamera.h"
+
+
 #include "entt/entt.hpp"
 
 
@@ -20,7 +25,9 @@ namespace CC3D {
 		Entity CreateEntity(const std::string& name = std::string());
 		void DestroyEntity(Entity entity);
 
-		void OnUpdate(Timestep ts);
+		void OnUpdateRuntime(Timestep ts);
+		void OnUpdateEditor(Timestep ts, EditorCamera& camera);
+
 		void OnViewportResize(uint32_t width, uint32_t height);
 		Entity GetPrimaryCameraEntity();
 
