@@ -26,6 +26,7 @@
     <ClInclude Include="src\CC3D\Core\MouseCodes.h" />
     <ClInclude Include="src\CC3D\Math\Math.h" />
     <ClInclude Include="src\CC3D\Renderer\Camera.h" />
+    <ClInclude Include="src\CC3D\Renderer\EditorCamera.h" />
     <ClInclude Include="src\CC3D\Renderer\FrameBuffer.h" />
     <ClInclude Include="src\CC3D\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\CC3D\Renderer\GraphicsContext.h" />
@@ -202,6 +203,7 @@
     <ClCompile Include="src\CC3D\Core\Log.cpp" />
     <ClCompile Include="src\CC3D\Core\Application.cpp" />
     <ClCompile Include="src\CC3D\Math\Math.cpp" />
+    <ClCompile Include="src\CC3D\Renderer\EditorCamera.cpp" />
     <ClCompile Include="src\CC3D\Renderer\FrameBuffer.cpp" />
     <ClCompile Include="src\CC3D\Renderer\GraphicContext.cpp" />
     <ClCompile Include="src\CC3D\Renderer\OrthographicCameraController.cpp" />

@@ -3,6 +3,8 @@
 #include <CC3D.h>
 #include "Panels/SceneHierarchyPanel.h"
 
+#include "CC3D/Renderer/EditorCamera.h"
+
 namespace CC3D {
 
 	class EditorLayer : public Layer
@@ -38,9 +40,7 @@ namespace CC3D {
 		Entity m_SecondCamera;
 		Entity m_ParticleSystem;
 
-		bool m_PrimaryCamera = true;
-
-		glm::vec4 m_SquareColor = glm::vec4{ 0.2f, 0.3f, 0.8f, 1.0f };
+		EditorCamera m_EditorCamera;
 
 		glm::vec2 m_ViewportSize = glm::vec2{ 0.0f, 0.0f };
 
