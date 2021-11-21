@@ -217,36 +217,8 @@ namespace CC3D {
 			}
 		}
 
-		ImGui::SameLine();
-		ImGui::PushItemWidth(-1);
+		
 
-		if (ImGui::Button("Add Component"))
-			ImGui::OpenPopup("AddComponent");
-
-		if (ImGui::BeginPopup("AddComponent"))
-		{
-			if (ImGui::MenuItem("Camera"))
-			{
-				if (!m_SelectionContext.HasComponent<CameraComponent>())
-					m_SelectionContext.AddComponent<CameraComponent>();
-				else
-					CC3D_CORE_WARN("This entity already has the Camera Component!");
-				ImGui::CloseCurrentPopup();
-			}
-
-			if (ImGui::MenuItem("Sprite Renderer"))
-			{
-				if (!m_SelectionContext.HasComponent<SpriteRendererComponent>())
-					m_SelectionContext.AddComponent<SpriteRendererComponent>();
-				else
-					CC3D_CORE_WARN("This entity already has the Sprite Renderer Component!");
-				ImGui::CloseCurrentPopup();
-			}
-
-			ImGui::EndPopup();
-		}
-
-		ImGui::PopItemWidth();
 
 		// TransformComponent
 		DrawComponent<TransformComponent>("Transform", entity, [](auto& component)
@@ -321,6 +293,36 @@ namespace CC3D {
 			{
 				ImGui::ColorEdit4("Color", glm::value_ptr(component.Color));
 			});
+
+		ImGui::PushItemWidth(50);
+		ImGui::NewLine();
+		
+		if (ImGui::Button("Add Component"))
+			ImGui::OpenPopup("AddComponent");
+
+		if (ImGui::BeginPopup("AddComponent"))
+		{
+			if (ImGui::MenuItem("Camera"))
+			{
+				if (!m_SelectionContext.HasComponent<CameraComponent>())
+					m_SelectionContext.AddComponent<CameraComponent>();
+				else
+					CC3D_CORE_WARN("This entity already has the Camera Component!");
+				ImGui::CloseCurrentPopup();
+			}
+
+			if (ImGui::MenuItem("Sprite Renderer"))
+			{
+				if (!m_SelectionContext.HasComponent<SpriteRendererComponent>())
+					m_SelectionContext.AddComponent<SpriteRendererComponent>();
+				else
+					CC3D_CORE_WARN("This entity already has the Sprite Renderer Component!");
+				ImGui::CloseCurrentPopup();
+			}
+
+			ImGui::EndPopup();
+		}
+		ImGui::PopItemWidth();
 	}
 
 }
