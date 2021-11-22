@@ -238,7 +238,7 @@ namespace CC3D {
 
 			m_CameraController.OnResize(viewportPanelSize.x, viewportPanelSize.y);
 		}
-		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID(1);
+		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
 		ImGui::Image(reinterpret_cast<void*>(textureID), ImVec2{ m_ViewportSize.x, m_ViewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 		
 		// Gizmos
