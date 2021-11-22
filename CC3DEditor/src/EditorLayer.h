@@ -40,6 +40,8 @@ namespace CC3D {
 		Entity m_SecondCamera;
 		Entity m_ParticleSystem;
 
+		Entity m_HoveredEntity;
+
 		EditorCamera m_EditorCamera;
 
 		glm::vec2 m_ViewportSize = glm::vec2{ 0.0f, 0.0f };
