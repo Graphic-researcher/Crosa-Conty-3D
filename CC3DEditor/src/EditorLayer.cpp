@@ -27,6 +27,7 @@ namespace CC3D {
 		m_WaifuTexture = Texture2D::Create("assets/textures/waifualpha.png");
 		m_SAGATexture = Texture2D::Create("assets/textures/72137544_p0.png");
 		FramebufferSpecification fbSpec;
+		fbSpec.Attachments = { FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::Depth };
 		fbSpec.Width = 1280;
 		fbSpec.Height = 720;
 		m_Framebuffer = Framebuffer::Create(fbSpec);
@@ -226,7 +227,8 @@ namespace CC3D {
 		m_ViewportSize = glm::vec2{ viewportPanelSize.x, viewportPanelSize.y };
 
 		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
-		ImGui::Image((void*)textureID, ImVec2{ m_ViewportSize.x, m_ViewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+		uint32_t depthTexture = m_Framebuffer->GetDepthAttachmentRendererID();
+		ImGui::Image((void*)depthTexture, ImVec2{ m_ViewportSize.x, m_ViewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 
 		// Gizmos
 		Entity selectedEntity = m_SceneHierarchyPanel.GetSelectedEntity();
