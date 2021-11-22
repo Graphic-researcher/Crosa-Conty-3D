@@ -1,11 +1,9 @@
-[20:50:40] [warning] CC3D: Initialized Log
-[20:50:40] [info] APP: Hello Crosa Conty 3D!
-[20:50:40] [info] CC3D: Creating window CC3D Editor (1280, 720)
-[20:50:41] [info] CC3D: OpenGL Info:
-[20:50:41] [info] CC3D:   Vendor: NVIDIA Corporation
-[20:50:41] [info] CC3D:   Renderer: GeForce GTX 1660 Ti/PCIe/SSE2
-[20:50:41] [info] CC3D:   Version: 4.6.0 NVIDIA 462.31
-[20:50:41] [info] CC3D:   GLSL_Version: 4.60 NVIDIA
-[20:50:46] [trace] CC3D: Deserializing scene 'Untitled'
-[20:50:46] [trace] CC3D: Deserialized entity with ID = 12837192831273, name = Camera
-[20:50:46] [trace] CC3D: Deserialized entity with ID = 12837192831273, name = Sprite
+[21:25:52] [warning] CC3D: Initialized Log
+[21:25:52] [info] APP: Hello Crosa Conty 3D!
+[21:25:52] [info] CC3D: Creating window CC3D Editor (1280, 720)
+[21:25:53] [info] CC3D: OpenGL Info:
+[21:25:53] [info] CC3D:   Vendor: NVIDIA Corporation
+[21:25:53] [info] CC3D:   Renderer: GeForce GTX 1660 Ti/PCIe/SSE2
+[21:25:53] [info] CC3D:   Version: 4.6.0 NVIDIA 462.31
+[21:25:53] [info] CC3D:   GLSL_Version: 4.60 NVIDIA
+[21:25:54] [error] CC3D: Assertion Failed: attachmentIndex bigger than m_ColorAttachments.size()
