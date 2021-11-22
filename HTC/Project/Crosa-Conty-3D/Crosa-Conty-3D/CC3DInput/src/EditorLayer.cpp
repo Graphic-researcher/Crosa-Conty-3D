@@ -121,6 +121,9 @@ namespace CC3D {
 
 		Renderer2D::BeginScene(m_CameraController.GetCamera());
 
+		// Clear our entity ID attachment to -10
+		m_Framebuffer->ClearAttachment(1, -10);
+
 		// Update scene
 		m_ActiveScene->OnUpdateEditor(ts, m_EditorCamera);
 		///Waiting for run time update implementation
