@@ -36,8 +36,9 @@ namespace CC3D
 		//io.BackendFlags |= ImGuiBackendFlags_HasMouseCursors;
 		//io.BackendFlags |= ImGuiBackendFlags_HasSetMousePos;
 
-		io.Fonts->AddFontFromFileTTF("Assets/fonts/arialbd.ttf", 18.0f);
-		io.FontDefault = io.Fonts->AddFontFromFileTTF("Assets/fonts/arial.ttf", 18.0f);
+		float fontSize = 18.0f;// *2.0f;
+		io.Fonts->AddFontFromFileTTF("Assets/fonts/arialbd.ttf", fontSize);
+		io.FontDefault = io.Fonts->AddFontFromFileTTF("Assets/fonts/arial.ttf", fontSize);
 
 		ImGui::StyleColorsLight();
 
@@ -145,8 +146,8 @@ namespace CC3D
 
 		// Buttons
 		colors[ImGuiCol_Button] = ImVec4{ 0.114f, 0.212f, 0.478f, 0.4f };
-		colors[ImGuiCol_ButtonHovered] = ImVec4{ 0.114f, 0.212f, 0.478f, 0.769f };
-		colors[ImGuiCol_ButtonActive] = ImVec4{ 0.114f, 0.212f, 0.478f, 0.859f };
+		colors[ImGuiCol_ButtonHovered] = ImVec4{ 0.114f, 0.212f, 0.478f, 0.475f };
+		colors[ImGuiCol_ButtonActive] = ImVec4{ 0.114f, 0.212f, 0.478f, 0.675f };
 
 		//// Tabs
 		//colors[ImGuiCol_Tab] = ImVec4{ 0.15f, 0.1505f, 0.151f, 1.0f };

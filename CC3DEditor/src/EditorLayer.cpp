@@ -87,7 +87,7 @@ namespace CC3D {
 		//m_ParticleSystem.AddComponent<ParticleSystemComponent>();
 #endif
 		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
-
+		m_ContentBrowserPanel.OnAttach();
 	}
 
 	void EditorLayer::OnDetach()
