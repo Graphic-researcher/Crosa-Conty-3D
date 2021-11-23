@@ -2,6 +2,7 @@
 
 #include <CC3D.h>
 #include "Panels/SceneHierarchyPanel.h"
+#include "Panels/ContentBrowserPanel.h"
 
 #include "CC3D/Renderer/EditorCamera.h"
 
@@ -51,6 +52,7 @@ namespace CC3D {
 
 		// Panels
 		SceneHierarchyPanel m_SceneHierarchyPanel;
+		ContentBrowserPanel m_ContentBrowserPanel;
 	};
 
 }

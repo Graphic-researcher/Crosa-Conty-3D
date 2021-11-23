@@ -1,11 +1,8 @@
-[19:44:28] [warning] CC3D: Initialized Log
-[19:44:28] [info] APP: Hello Crosa Conty 3D!
-[19:44:28] [info] CC3D: Creating window CC3D Editor (1280, 720)
-[19:44:28] [info] CC3D: OpenGL Info:
-[19:44:28] [info] CC3D:   Vendor: NVIDIA Corporation
-[19:44:28] [info] CC3D:   Renderer: GeForce GTX 1660 Ti/PCIe/SSE2
-[19:44:28] [info] CC3D:   Version: 4.6.0 NVIDIA 462.31
-[19:44:28] [info] CC3D:   GLSL_Version: 4.60 NVIDIA
-[19:44:33] [trace] CC3D: Deserializing scene 'Untitled'
-[19:44:33] [trace] CC3D: Deserialized entity with ID = 12837192831273, name = Camera
-[19:44:33] [trace] CC3D: Deserialized entity with ID = 12837192831273, name = Sprite
+[20:03:38] [warning] CC3D: Initialized Log
+[20:03:38] [info] APP: Hello Crosa Conty 3D!
+[20:03:38] [info] CC3D: Creating window CC3D Editor (1280, 720)
+[20:03:39] [info] CC3D: OpenGL Info:
+[20:03:39] [info] CC3D:   Vendor: NVIDIA Corporation
+[20:03:39] [info] CC3D:   Renderer: GeForce GTX 1660 Ti/PCIe/SSE2
+[20:03:39] [info] CC3D:   Version: 4.6.0 NVIDIA 462.31
+[20:03:39] [info] CC3D:   GLSL_Version: 4.60 NVIDIA
