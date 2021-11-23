@@ -21,6 +21,12 @@
 - [ ] File I/O,VFS
 - [ ] Build system
 
+
+
+
+
+如果想要设置打开时就读取的话，回去看重构shader那个commit记录
+
 ### Dependances
 
 * GLFW-3.3.4
@@ -32,4 +38,3 @@
 * entt
 * yaml 0.7.0
 * ImGuizmo 1.8.3
-* 

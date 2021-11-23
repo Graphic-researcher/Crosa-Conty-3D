@@ -30,6 +30,7 @@ namespace CC3D {
 
 	void SceneCamera::SetViewportSize(uint32_t width, uint32_t height)
 	{
+		CC3D_CORE_ASSERT(width > 0 && height > 0, "Width and Height must bigger than 0");
 		m_AspectRatio = (float)width / (float)height;
 		RecalculateProjection();
 	}

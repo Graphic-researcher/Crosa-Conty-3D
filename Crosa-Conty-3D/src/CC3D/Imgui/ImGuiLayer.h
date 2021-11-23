@@ -27,6 +27,5 @@ namespace CC3D
 		void SetWarmThemeColors();
 	private:
 		bool m_BlockEvents = false;
-		float m_Time = 0.0f;
 	};
 }
