@@ -38,6 +38,8 @@ namespace CC3D {
 		Entity m_CameraEntity;
 		Entity m_SecondCamera;
 
+		Entity m_HoveredEntity;
+
 		bool m_PrimaryCamera = true;//decide main camera
 
 		EditorCamera m_EditorCamera;
