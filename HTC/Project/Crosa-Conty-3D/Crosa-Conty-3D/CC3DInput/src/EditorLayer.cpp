@@ -227,6 +227,7 @@ namespace CC3D {
 		}
 
 		m_SceneHierarchyPanel.OnImGuiRender();
+		m_ContentBrowserPanel.OnImGuiRender();
 
 		ImGui::Begin("Stats");
 
@@ -369,16 +370,20 @@ namespace CC3D {
 		}
 		// Gizmos
 		case Key::Q:
-			m_GizmoType = -1;
+			if (!ImGuizmo::IsUsing())
+				m_GizmoType = -1;
 			break;
 		case Key::W:
-			m_GizmoType = ImGuizmo::OPERATION::TRANSLATE;
+			if (!ImGuizmo::IsUsing())
+				m_GizmoType = ImGuizmo::OPERATION::TRANSLATE;
 			break;
 		case Key::E:
-			m_GizmoType = ImGuizmo::OPERATION::ROTATE;
+			if (!ImGuizmo::IsUsing())
+				m_GizmoType = ImGuizmo::OPERATION::ROTATE;
 			break;
 		case Key::R:
-			m_GizmoType = ImGuizmo::OPERATION::SCALE;
+			if (!ImGuizmo::IsUsing())
+				m_GizmoType = ImGuizmo::OPERATION::SCALE;
 			break;
 		}
 
