@@ -38,6 +38,7 @@ namespace CC3D {
 	{
 		m_DirectoryIcon = Texture2D::Create("Resources/Icons/FolderIcon.png");
 		m_FileIcon = Texture2D::Create("Resources/Icons/FileIcon.png");
+		m_PictureIcon = Texture2D::Create("Resources/Icons/PictureIcon.png");
 	}
 
 	void ContentBrowserPanel::OnAttach()
@@ -49,7 +50,10 @@ namespace CC3D {
 			if (Utils::IsImageByTail(directory.path()))
 			{
 				Ref<Texture2D> image = Texture2D::Create(directory.path().u8string());
-				m_Images.emplace(directory.path().u8string(),image);
+				if(image->IsLoaded())
+					m_Images.emplace(directory.path().u8string(),image);
+				else
+					m_Images.emplace(directory.path().u8string(), m_PictureIcon);
 			}
 		}
 
