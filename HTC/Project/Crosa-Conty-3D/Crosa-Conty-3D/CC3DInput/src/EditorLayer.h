@@ -25,6 +25,7 @@ namespace CC3D {
 		bool OnMouseButtonPressed(MouseButtonPressedEvent& e);
 
 		void NewScene();
+		void OpenScene(const std::filesystem::path& path);
 		void OpenScene();
 		void SaveSceneAs();
 	private:
