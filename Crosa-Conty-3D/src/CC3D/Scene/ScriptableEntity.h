@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Entity.h"
+#include "CC3D/Scene/Entity.h"
 
 namespace CC3D {
 

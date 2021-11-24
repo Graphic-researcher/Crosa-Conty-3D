@@ -1,10 +1,11 @@
 #pragma once
 
 #include "CC3D/Core/UUID.h"
-#include "CC3D/Scene/Scene.h"
+#include "Scene.h"
 #include "CC3D/Scene/Components/IDComponent.h"
+#include "CC3D/Scene/Components/TagComponent.h"
 
-#include <entt.hpp>
+#include "entt.hpp"
 
 namespace CC3D {
 
@@ -18,10 +19,17 @@ namespace CC3D {
 		template<typename T, typename... Args>
 		T& AddComponent(Args&&... args)
 		{
-			// TODO 把Assert改为error
 			CC3D_CORE_ASSERT(!HasComponent<T>(), "Entity already has component!");
 			T& component = m_Scene->m_Registry.emplace<T>(m_EntityHandle, std::forward<Args>(args)...);
-			m_Scene->OnComponentAdded<T>(*this, component);//创建组件时调用的函数
+			m_Scene->OnComponentAdded<T>(*this, component);
+			return component;
+		}
+
+		template<typename T, typename... Args>
+		T& AddOrReplaceComponent(Args&&... args)
+		{
+			T& component = m_Scene->m_Registry.emplace_or_replace<T>(m_EntityHandle, std::forward<Args>(args)...);
+			m_Scene->OnComponentAdded<T>(*this, component);
 			return component;
 		}
 
@@ -35,7 +43,6 @@ namespace CC3D {
 		template<typename T>
 		bool HasComponent()
 		{
-			// new feature of the entt replaced 'has'
 			return m_Scene->m_Registry.any_of<T>(m_EntityHandle);
 		}
 
@@ -49,7 +56,9 @@ namespace CC3D {
 		operator bool() const { return m_EntityHandle != entt::null; }
 		operator entt::entity() const { return m_EntityHandle; }
 		operator uint32_t() const { return (uint32_t)m_EntityHandle; }
+
 		UUID GetUUID() { return GetComponent<IDComponent>().ID; }
+		const std::string& GetName() { return GetComponent<TagComponent>().Tag; }
 
 		bool operator==(const Entity& other) const
 		{

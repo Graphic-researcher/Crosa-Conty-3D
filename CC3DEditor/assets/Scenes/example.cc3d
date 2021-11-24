@@ -1,6 +1,6 @@
 Scene: Untitled
 Entities:
-  - Entity: 12837192831273
+  - Entity: 6121890683549120087
     TagComponent:
       Tag: Camera
     TransformComponent:
@@ -18,12 +18,41 @@ Entities:
         OrthographicFar: 1
       Primary: true
       FixedAspectRatio: false
-  - Entity: 12837192831273
+  - Entity: 2908813746345309765
     TagComponent:
-      Tag: Sprite
+      Tag: floor
+    TransformComponent:
+      Translation: [0, -1.89999998, 0]
+      Rotation: [0, 0, 0]
+      Scale: [12.6999998, 0.699999988, 1]
+    SpriteRendererComponent:
+      Color: [1, 1, 1, 1]
+    Rigidbody2DComponent:
+      BodyType: Static
+      FixedRotation: false
+    BoxCollider2DComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      RestitutionThreshold: 0.5
+  - Entity: 2496901153465691939
+    TagComponent:
+      Tag: Cube
     TransformComponent:
       Translation: [0, 0, 0]
       Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
+      Scale: [2.0999999, 0.475006193, 1]
     SpriteRendererComponent:
-      Color: [1, 0.216216207, 0.216216207, 1]
+      Color: [1, 1, 1, 1]
+    Rigidbody2DComponent:
+      BodyType: Dynamic
+      FixedRotation: false
+    BoxCollider2DComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      RestitutionThreshold: 0.5

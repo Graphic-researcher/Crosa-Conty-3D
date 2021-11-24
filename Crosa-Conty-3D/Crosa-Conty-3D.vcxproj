@@ -26,6 +26,7 @@
     <ClInclude Include="src\CC3D\Core\EntryPoint.h" />
     <ClInclude Include="src\CC3D\Core\MouseCodes.h" />
     <ClInclude Include="src\CC3D\Math\Math.h" />
+    <ClInclude Include="src\CC3D\Model\Model.h" />
     <ClInclude Include="src\CC3D\Renderer\Camera.h" />
     <ClInclude Include="src\CC3D\Renderer\EditorCamera.h" />
     <ClInclude Include="src\CC3D\Renderer\FrameBuffer.h" />
@@ -208,6 +209,7 @@
     <ClCompile Include="src\CC3D\Core\Log.cpp" />
     <ClCompile Include="src\CC3D\Core\Application.cpp" />
     <ClCompile Include="src\CC3D\Math\Math.cpp" />
+    <ClCompile Include="src\CC3D\Model\Model.cpp" />
     <ClCompile Include="src\CC3D\Renderer\EditorCamera.cpp" />
     <ClCompile Include="src\CC3D\Renderer\FrameBuffer.cpp" />
     <ClCompile Include="src\CC3D\Renderer\GraphicContext.cpp" />
@@ -411,7 +413,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>ccpch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\spdlog\include;$(SolutionDir)Crosa-Conty-3D\src;$(SolutionDir)Crosa-Conty-3D\vendor\GLFW\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\src;$(SolutionDir)Crosa-Conty-3D\vendor\Imgui;$(SolutionDir)Crosa-Conty-3D\vendor\glm;$(SolutionDir)Crosa-Conty-3D\vendor\entt\include;$(SolutionDir)Crosa-Conty-3D\vendor\ImGuizmo;$(SolutionDir)Crosa-Conty-3D\vendor\yaml-cpp\include;$(SolutionDir)Crosa-Conty-3D\vendor\stb_image;$(SolutionDir)Crosa-Conty-3D\vendor\Box2D\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\spdlog\include;$(SolutionDir)Crosa-Conty-3D\src;$(SolutionDir)Crosa-Conty-3D\vendor\GLFW\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\src;$(SolutionDir)Crosa-Conty-3D\vendor\Imgui;$(SolutionDir)Crosa-Conty-3D\vendor\glm;$(SolutionDir)Crosa-Conty-3D\vendor\entt\include;$(SolutionDir)Crosa-Conty-3D\vendor\ImGuizmo;$(SolutionDir)Crosa-Conty-3D\vendor\yaml-cpp\include;$(SolutionDir)Crosa-Conty-3D\vendor\stb_image;$(SolutionDir)Crosa-Conty-3D\vendor\Box2D\include;$(SolutionDir)Crosa-Conty-3D\vendor\Assimp\include;$(SolutionDir)Crosa-Conty-3D\vendor\Assimp\code</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -424,10 +426,10 @@
       </Command>
     </PostBuildEvent>
     <Lib>
-      <AdditionalDependencies>ImGui.lib;OpenGL32.Lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp-vc142-mtd.lib;ImGui.lib;OpenGL32.Lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\GLFW\lib-vc2019;$(SolutionDir)bin\$(Configuration)-$(Platform)\ImGui;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\GLFW\lib-vc2019;$(SolutionDir)bin\$(Configuration)-$(Platform)\ImGui;$(SolutionDir)\Crosa-Conty-3D\vendor\assimp\out\build\$(Platform)-$(Configuration)\code;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -441,7 +443,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>ccpch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\spdlog\include;$(SolutionDir)Crosa-Conty-3D\src;$(SolutionDir)Crosa-Conty-3D\vendor\GLFW\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\src;$(SolutionDir)Crosa-Conty-3D\vendor\Imgui;$(SolutionDir)Crosa-Conty-3D\vendor\glm;$(SolutionDir)Crosa-Conty-3D\vendor\entt\include;$(SolutionDir)Crosa-Conty-3D\vendor\ImGuizmo;$(SolutionDir)Crosa-Conty-3D\vendor\yaml-cpp\include;$(SolutionDir)Crosa-Conty-3D\vendor\stb_image;$(SolutionDir)Crosa-Conty-3D\vendor\Box2D\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\spdlog\include;$(SolutionDir)Crosa-Conty-3D\src;$(SolutionDir)Crosa-Conty-3D\vendor\GLFW\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\src;$(SolutionDir)Crosa-Conty-3D\vendor\Imgui;$(SolutionDir)Crosa-Conty-3D\vendor\glm;$(SolutionDir)Crosa-Conty-3D\vendor\entt\include;$(SolutionDir)Crosa-Conty-3D\vendor\ImGuizmo;$(SolutionDir)Crosa-Conty-3D\vendor\yaml-cpp\include;$(SolutionDir)Crosa-Conty-3D\vendor\stb_image;$(SolutionDir)Crosa-Conty-3D\vendor\Box2D\include;$(SolutionDir)Crosa-Conty-3D\vendor\assimp\include;$(SolutionDir)Crosa-Conty-3D\vendor\assimp\code;$(SolutionDir)\Crosa-Conty-3D\vendor\assimp\out\build\$(Platform)-$(Configuration)\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -456,8 +458,8 @@
       </Command>
     </PostBuildEvent>
     <Lib>
-      <AdditionalDependencies>ImGui.lib;OpenGL32.Lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\GLFW\lib-vc2019;$(SolutionDir)bin\$(Configuration)-$(Platform)\ImGui;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>assimp-vc142-mt.lib;ImGui.lib;OpenGL32.Lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\GLFW\lib-vc2019;$(SolutionDir)bin\$(Configuration)-$(Platform)\ImGui;$(SolutionDir)\Crosa-Conty-3D\vendor\assimp\out\build\$(Platform)-$(Configuration)\code;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
