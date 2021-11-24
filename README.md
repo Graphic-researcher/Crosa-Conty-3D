@@ -41,3 +41,6 @@
 
 [图标库](https://www.iconfont.cn/collections/detail?spm=a313x.7781069.1998910419.dc64b3430&cid=14950)
 
+bugs：
+
+现在图标的纹理和拖拽到实体上的的纹理可能id不一样
