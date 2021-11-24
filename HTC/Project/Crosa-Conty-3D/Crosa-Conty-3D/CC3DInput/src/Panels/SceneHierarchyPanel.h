@@ -1,4 +1,5 @@
 #pragma once
+#include <filesystem>
 
 #include "CC3D/Core/Core.h"
 #include "CC3D/Core/Log.h"
