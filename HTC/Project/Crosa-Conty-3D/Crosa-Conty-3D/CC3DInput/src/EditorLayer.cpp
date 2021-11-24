@@ -427,12 +427,29 @@ namespace CC3D {
 
 	void EditorLayer::OpenScene(const std::filesystem::path& path)
 	{
-		m_ActiveScene = CreateRef<Scene>();
-		m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
-		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
+		if (path.extension().string() != ".cc3d")
+		{
+			CC3D_WARN("Could not load {0} - not a scene file", path.filename().string());
+			return;
+		}
 
-		SceneSerializer serializer(m_ActiveScene);
-		serializer.Deserialize(path.string());
+		//manipulation:
+		Ref<Scene> newScene = CreateRef<Scene>();
+		newScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
+		SceneSerializer serializer(newScene);
+		if (serializer.Deserialize(path.string()))
+		{
+			m_ActiveScene = newScene;
+			m_SceneHierarchyPanel.SetContext(m_ActiveScene);
+		}
+
+		//orgin:
+		//m_ActiveScene = CreateRef<Scene>();
+		//m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
+		//m_SceneHierarchyPanel.SetContext(m_ActiveScene);
+
+		//SceneSerializer serializer1(m_ActiveScene);
+		//serializer1.Deserialize(path.string());
 	}
 
 	void EditorLayer::SaveSceneAs()
