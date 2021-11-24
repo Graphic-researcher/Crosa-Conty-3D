@@ -2,10 +2,10 @@
 
 #include "CC3D/Core/Timestep.h"
 #include "CC3D/Renderer/EditorCamera.h"
-
+#include "CC3D/Core/UUID.h"
 #include "entt.hpp"
 
-
+class b2World;
 
 namespace CC3D {
 
@@ -18,7 +18,11 @@ namespace CC3D {
 		~Scene();
 
 		Entity CreateEntity(const std::string& name = std::string());
+		Entity CreateEntityWithUUID(UUID uuid, const std::string& name = std::string());
 		void DestroyEntity(Entity entity);
+
+		void OnRuntimeStart();
+		void OnRuntimeStop();
 
 		void OnUpdateRuntime(Timestep ts);
 		void OnUpdateEditor(Timestep ts, EditorCamera& camera);
@@ -31,6 +35,9 @@ namespace CC3D {
 	private:
 		entt::registry m_Registry;
 		uint32_t m_ViewportWidth = 0, m_ViewportHeight = 0;
+
+		// physics
+		b2World* m_PhysicsWorld = nullptr;
 
 		friend class Entity;
 		friend class SceneSerializer;

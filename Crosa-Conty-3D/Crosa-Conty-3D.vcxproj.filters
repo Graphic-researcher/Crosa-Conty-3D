@@ -196,6 +196,10 @@
     <ClInclude Include="src\CC3D\Utils\PlatformUtils.h" />
     <ClInclude Include="src\CC3D\Math\Math.h" />
     <ClInclude Include="src\CC3D\Renderer\EditorCamera.h" />
+    <ClInclude Include="src\CC3D\Scene\Components\Rigidbody2DComponent.h" />
+    <ClInclude Include="src\CC3D\Scene\Components\BoxCollider2DComponent.h" />
+    <ClInclude Include="src\CC3D\Core\UUID.h" />
+    <ClInclude Include="src\CC3D\Scene\Components\IDComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CC3D\Core\Application.cpp">
@@ -241,6 +245,7 @@
     <ClCompile Include="src\Platform\Windows\WindowsPlatformUtils.cpp" />
     <ClCompile Include="src\CC3D\Math\Math.cpp" />
     <ClCompile Include="src\CC3D\Renderer\EditorCamera.cpp" />
+    <ClCompile Include="src\CC3D\Core\UUID.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="vendor\glm\glm\core\func_common.inl" />

@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="src\CC3D\Core\PlatformDetection.h" />
     <ClInclude Include="src\CC3D\Core\Timestep.h" />
+    <ClInclude Include="src\CC3D\Core\UUID.h" />
     <ClInclude Include="src\CC3D\Imgui\ImGuiLayer.h" />
     <ClInclude Include="src\CC3D\Core\Input.h" />
     <ClInclude Include="src\CC3D\Core\KeyCodes.h" />
@@ -41,10 +42,13 @@
     <ClInclude Include="src\CC3D\Renderer\VertexArray.h" />
     <ClInclude Include="src\CC3D\Core\Window.h" />
     <ClInclude Include="src\CC3D\Scene\Components.h" />
+    <ClInclude Include="src\CC3D\Scene\Components\BoxCollider2DComponent.h" />
     <ClInclude Include="src\CC3D\Scene\Components\CameraComponent.h" />
+    <ClInclude Include="src\CC3D\Scene\Components\IDComponent.h" />
     <ClInclude Include="src\CC3D\Scene\Components\NativeScriptComponent.h" />
     <ClInclude Include="src\CC3D\Scene\Components\ParticleSystemComponent.h" />
     <ClInclude Include="src\CC3D\Scene\Components\Random.h" />
+    <ClInclude Include="src\CC3D\Scene\Components\Rigidbody2DComponent.h" />
     <ClInclude Include="src\CC3D\Scene\Components\SpriteRendererComponent.h" />
     <ClInclude Include="src\CC3D\Scene\Components\TagComponent.h" />
     <ClInclude Include="src\CC3D\Scene\Components\TransformComponent.h" />
@@ -195,6 +199,7 @@
     <ClInclude Include="src\CC3D\Debug\Instrumentor.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\CC3D\Core\UUID.cpp" />
     <ClCompile Include="src\CC3D\Core\Window.cpp" />
     <ClCompile Include="src\CC3D\Imgui\ImGuiBuild.cpp" />
     <ClCompile Include="src\CC3D\Imgui\ImGuiLayer.cpp" />
@@ -406,7 +411,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>ccpch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\spdlog\include;$(SolutionDir)Crosa-Conty-3D\src;$(SolutionDir)Crosa-Conty-3D\vendor\GLFW\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\src;$(SolutionDir)Crosa-Conty-3D\vendor\Imgui;$(SolutionDir)Crosa-Conty-3D\vendor\glm;$(SolutionDir)Crosa-Conty-3D\vendor\entt\include;$(SolutionDir)Crosa-Conty-3D\vendor\ImGuizmo;$(SolutionDir)Crosa-Conty-3D\vendor\yaml-cpp\include;$(SolutionDir)Crosa-Conty-3D\vendor\stb_image</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\spdlog\include;$(SolutionDir)Crosa-Conty-3D\src;$(SolutionDir)Crosa-Conty-3D\vendor\GLFW\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\src;$(SolutionDir)Crosa-Conty-3D\vendor\Imgui;$(SolutionDir)Crosa-Conty-3D\vendor\glm;$(SolutionDir)Crosa-Conty-3D\vendor\entt\include;$(SolutionDir)Crosa-Conty-3D\vendor\ImGuizmo;$(SolutionDir)Crosa-Conty-3D\vendor\yaml-cpp\include;$(SolutionDir)Crosa-Conty-3D\vendor\stb_image;$(SolutionDir)Crosa-Conty-3D\vendor\Box2D\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -436,7 +441,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>ccpch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\spdlog\include;$(SolutionDir)Crosa-Conty-3D\src;$(SolutionDir)Crosa-Conty-3D\vendor\GLFW\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\src;$(SolutionDir)Crosa-Conty-3D\vendor\Imgui;$(SolutionDir)Crosa-Conty-3D\vendor\glm;$(SolutionDir)Crosa-Conty-3D\vendor\entt\include;$(SolutionDir)Crosa-Conty-3D\vendor\ImGuizmo;$(SolutionDir)Crosa-Conty-3D\vendor\yaml-cpp\include;$(SolutionDir)Crosa-Conty-3D\vendor\stb_image</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\spdlog\include;$(SolutionDir)Crosa-Conty-3D\src;$(SolutionDir)Crosa-Conty-3D\vendor\GLFW\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\src;$(SolutionDir)Crosa-Conty-3D\vendor\Imgui;$(SolutionDir)Crosa-Conty-3D\vendor\glm;$(SolutionDir)Crosa-Conty-3D\vendor\entt\include;$(SolutionDir)Crosa-Conty-3D\vendor\ImGuizmo;$(SolutionDir)Crosa-Conty-3D\vendor\yaml-cpp\include;$(SolutionDir)Crosa-Conty-3D\vendor\stb_image;$(SolutionDir)Crosa-Conty-3D\vendor\Box2D\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

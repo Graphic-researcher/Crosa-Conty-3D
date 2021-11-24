@@ -292,7 +292,7 @@ namespace CC3D {
 			}
 			ImGui::EndDragDropTarget();
 		}
-		// Gizmos
+		// Gizmos TODO 在开始场景后取消显示
 		Entity selectedEntity = m_SceneHierarchyPanel.GetSelectedEntity();
 		if (selectedEntity && m_GizmoType != -1)
 		{
@@ -465,23 +465,9 @@ namespace CC3D {
 	{
 		std::string filepath = FileDialogs::OpenFile("CC3D Scene (*.cc3d)\0*.cc3d\0");
 		if (!filepath.empty())
-		{
-			m_ActiveScene = CreateRef<Scene>();
-			m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
-			m_SceneHierarchyPanel.SetContext(m_ActiveScene);
-
-			SceneSerializer serializer(m_ActiveScene);
-			serializer.Deserialize(filepath);
-		}
-	}
-
-	void EditorLayer::SaveSceneAs()
-	{
-		std::string filepath = FileDialogs::SaveFile("CC3D Scene (*.cc3d)\0*.cc3d\0");
-		if (!filepath.empty())
 			OpenScene(filepath);
-
 	}
+
 	void EditorLayer::OpenScene(const std::filesystem::path& path)
 	{
 		if (path.extension().string() != ".cc3d")
@@ -500,14 +486,26 @@ namespace CC3D {
 		}
 	}
 
+	void EditorLayer::SaveSceneAs()
+	{
+		std::string filepath = FileDialogs::SaveFile("CC3D Scene (*.cc3d)\0*.cc3d\0");
+		if (!filepath.empty())
+		{
+			SceneSerializer serializer(m_ActiveScene);
+			serializer.Serialize(filepath);
+		}
+	}
+
 	void EditorLayer::OnScenePlay()
 	{
 		m_SceneState = SceneState::Play;
+		m_ActiveScene->OnRuntimeStart();
 	}
 
 	void EditorLayer::OnSceneStop()
 	{
 		m_SceneState = SceneState::Edit;
+		m_ActiveScene->OnRuntimeStop();
 
 	}
 

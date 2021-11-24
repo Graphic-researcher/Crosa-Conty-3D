@@ -1,0 +1,95 @@
+﻿  b2_broad_phase.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\collision\b2_broad_phase.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_broad_phase.h': No such file or directory
+  b2_chain_shape.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\collision\b2_chain_shape.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_chain_shape.h': No such file or directory
+  b2_circle_shape.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\collision\b2_circle_shape.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_circle_shape.h': No such file or directory
+  b2_collide_circle.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\collision\b2_collide_circle.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_collision.h': No such file or directory
+  b2_collide_edge.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\collision\b2_collide_edge.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_collision.h': No such file or directory
+  b2_collide_polygon.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\collision\b2_collide_polygon.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_collision.h': No such file or directory
+  b2_collision.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\collision\b2_collision.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_collision.h': No such file or directory
+  b2_distance.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\collision\b2_distance.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_circle_shape.h': No such file or directory
+  b2_dynamic_tree.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\collision\b2_dynamic_tree.cpp(22,10): fatal error C1083: Cannot open include file: 'box2d/b2_dynamic_tree.h': No such file or directory
+  b2_edge_shape.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\collision\b2_edge_shape.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_edge_shape.h': No such file or directory
+  b2_polygon_shape.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\collision\b2_polygon_shape.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_polygon_shape.h': No such file or directory
+  b2_time_of_impact.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\collision\b2_time_of_impact.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_collision.h': No such file or directory
+  b2_block_allocator.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\common\b2_block_allocator.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_block_allocator.h': No such file or directory
+  b2_draw.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\common\b2_draw.cpp(22,10): fatal error C1083: Cannot open include file: 'box2d/b2_draw.h': No such file or directory
+  b2_math.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\common\b2_math.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_math.h': No such file or directory
+  b2_settings.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\common\b2_settings.cpp(25,10): fatal error C1083: Cannot open include file: 'box2d/b2_settings.h': No such file or directory
+  b2_stack_allocator.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\common\b2_stack_allocator.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_stack_allocator.h': No such file or directory
+  b2_timer.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\common\b2_timer.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_timer.h': No such file or directory
+  b2_body.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\dynamics\b2_body.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_body.h': No such file or directory
+  b2_chain_circle_contact.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\dynamics\b2_chain_circle_contact.h(26,10): fatal error C1083: Cannot open include file: 'box2d/b2_contact.h': No such file or directory
+  Generating Code...
+  Compiling...
+  b2_chain_polygon_contact.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\dynamics\b2_chain_polygon_contact.h(26,10): fatal error C1083: Cannot open include file: 'box2d/b2_contact.h': No such file or directory
+  b2_circle_contact.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\dynamics\b2_circle_contact.h(26,10): fatal error C1083: Cannot open include file: 'box2d/b2_contact.h': No such file or directory
+  b2_contact.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\dynamics\b2_chain_circle_contact.h(26,10): fatal error C1083: Cannot open include file: 'box2d/b2_contact.h': No such file or directory
+  b2_contact_manager.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\dynamics\b2_contact_manager.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_body.h': No such file or directory
+  b2_contact_solver.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\dynamics\b2_contact_solver.h(26,10): fatal error C1083: Cannot open include file: 'box2d/b2_collision.h': No such file or directory
+  b2_distance_joint.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\dynamics\b2_distance_joint.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_body.h': No such file or directory
+  b2_edge_circle_contact.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\dynamics\b2_edge_circle_contact.h(26,10): fatal error C1083: Cannot open include file: 'box2d/b2_contact.h': No such file or directory
+  b2_edge_polygon_contact.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\dynamics\b2_edge_polygon_contact.h(26,10): fatal error C1083: Cannot open include file: 'box2d/b2_contact.h': No such file or directory
+  b2_fixture.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\dynamics\b2_fixture.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_fixture.h': No such file or directory
+  b2_friction_joint.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\dynamics\b2_friction_joint.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_friction_joint.h': No such file or directory
+  b2_gear_joint.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\dynamics\b2_gear_joint.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_gear_joint.h': No such file or directory
+  b2_island.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\dynamics\b2_island.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_body.h': No such file or directory
+  b2_joint.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\dynamics\b2_joint.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_block_allocator.h': No such file or directory
+  b2_motor_joint.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\dynamics\b2_motor_joint.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_body.h': No such file or directory
+  b2_mouse_joint.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\dynamics\b2_mouse_joint.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_body.h': No such file or directory
+  b2_polygon_circle_contact.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\dynamics\b2_polygon_circle_contact.h(26,10): fatal error C1083: Cannot open include file: 'box2d/b2_contact.h': No such file or directory
+  b2_polygon_contact.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\dynamics\b2_polygon_contact.h(26,10): fatal error C1083: Cannot open include file: 'box2d/b2_contact.h': No such file or directory
+  b2_prismatic_joint.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\dynamics\b2_prismatic_joint.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_body.h': No such file or directory
+  b2_pulley_joint.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\dynamics\b2_pulley_joint.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_body.h': No such file or directory
+  b2_revolute_joint.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\dynamics\b2_revolute_joint.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_body.h': No such file or directory
+  Generating Code...
+  Compiling...
+  b2_weld_joint.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\dynamics\b2_weld_joint.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_body.h': No such file or directory
+  b2_wheel_joint.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\dynamics\b2_wheel_joint.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_body.h': No such file or directory
+  b2_world.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\dynamics\b2_contact_solver.h(26,10): fatal error C1083: Cannot open include file: 'box2d/b2_collision.h': No such file or directory
+  b2_world_callbacks.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\dynamics\b2_world_callbacks.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_fixture.h': No such file or directory
+  b2_rope.cpp
+D:\github\myProjects\Crosa-Conty-3D\Crosa-Conty-3D\vendor\Box2D\src\rope\b2_rope.cpp(23,10): fatal error C1083: Cannot open include file: 'box2d/b2_draw.h': No such file or directory
+  Generating Code...

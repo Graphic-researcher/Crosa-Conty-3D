@@ -91,6 +91,9 @@
     <ProjectReference Include="..\Crosa-Conty-3D\Crosa-Conty-3D.vcxproj">
       <Project>{8d4c96cb-86f9-4acb-9d2e-b89e6504c2b4}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\Crosa-Conty-3D\vendor\Box2D\Box2D.vcxproj">
+      <Project>{ee0aa4f6-5bbc-4d10-89eb-5ab4496056a1}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\Crosa-Conty-3D\vendor\Imgui\Imgui.vcxproj">
       <Project>{b6d8c255-0a39-49e5-9c58-2892436f0120}</Project>
     </ProjectReference>
