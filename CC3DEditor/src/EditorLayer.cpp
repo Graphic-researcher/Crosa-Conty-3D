@@ -24,17 +24,25 @@ namespace CC3D {
 
 	void EditorLayer::OnAttach()
 	{
-		
+
 		CC3D_PROFILE_FUNCTION();
 		// UI Icon
 		m_IconPlay = Texture2D::Create("Resources/Icons/PlayIcon.png");
 		m_IconStop = Texture2D::Create("Resources/Icons/StopIcon.png");
 
+		// Scene Framebuffer
 		FramebufferSpecification fbSpec;
 		fbSpec.Attachments = { FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::RED_INTEGER, FramebufferTextureFormat::Depth };
 		fbSpec.Width = 1280;
 		fbSpec.Height = 720;
 		m_Framebuffer = Framebuffer::Create(fbSpec);
+
+		// Game Framebuffer
+		FramebufferSpecification gameFbSpec;
+		gameFbSpec.Attachments = { FramebufferTextureFormat::RGBA8 };
+		gameFbSpec.Width = 1280;
+		gameFbSpec.Height = 720;
+		m_GameFramebuffer = Framebuffer::Create(gameFbSpec);
 
 		m_EditorScene = CreateRef<Scene>();
 		m_EditorCamera = EditorCamera(30.0f, 1.778f, 0.1f, 1000.0f);
@@ -42,6 +50,7 @@ namespace CC3D {
 		m_SceneHierarchyPanel.SetContext(m_EditorScene);
 		m_ActiveScene = m_EditorScene;
 		m_ContentBrowserPanel.OnAttach();
+		m_GameViewportPanel.SetFramebuffer(m_GameFramebuffer);
 	}
 
 	void EditorLayer::OnDetach()
@@ -53,7 +62,7 @@ namespace CC3D {
 	{
 		CC3D_PROFILE_FUNCTION();
 
-		// Resize
+		// Scene Resize
 		if (FramebufferSpecification spec = m_Framebuffer->GetSpecification();
 			m_ViewportSize.x > 0.0f && m_ViewportSize.y > 0.0f && // zero sized framebuffer is invalid
 			(spec.Width != m_ViewportSize.x || spec.Height != m_ViewportSize.y))
@@ -67,27 +76,75 @@ namespace CC3D {
 		m_EditorCamera.OnUpdate(ts);
 		// Render
 		Renderer2D::ResetStats();
-		m_Framebuffer->Bind();
-		RenderCommand::SetClearColor(glm::vec4{ 0.1f, 0.1f, 0.1f, 1 });
-		RenderCommand::Clear();
-
-		// Clear our entity ID attachment to -1
-		m_Framebuffer->ClearAttachment(1, -1);
+		
 
 		// Update scene
 		switch (m_SceneState)
 		{
 		case SceneState::Edit:
 		{
-
-			m_EditorCamera.OnUpdate(ts);
-
+			// Scene viewport
+			m_Framebuffer->Bind();
+			RenderCommand::SetClearColor(glm::vec4{ 0.1f, 0.1f, 0.1f, 1 });
+			RenderCommand::Clear();
+			// Clear our entity ID attachment to -1
+			m_Framebuffer->ClearAttachment(1, -1);
 			m_ActiveScene->OnUpdateEditor(ts, m_EditorCamera);
+
+			auto [mx, my] = ImGui::GetMousePos();
+			mx -= m_ViewportBounds[0].x;
+			my -= m_ViewportBounds[0].y;
+			glm::vec2 viewportSize = m_ViewportBounds[1] - m_ViewportBounds[0];
+			my = viewportSize.y - my;
+			int mouseX = (int)mx;
+			int mouseY = (int)my;
+
+			if (mouseX >= 0 && mouseY >= 0 && mouseX < (int)viewportSize.x && mouseY < (int)viewportSize.y)
+			{
+				int pixelData = m_Framebuffer->ReadPixel(1, mouseX, mouseY);
+				m_HoveredEntity = pixelData == -1 ? Entity() : Entity((entt::entity)pixelData, m_ActiveScene.get());
+			}
+
+			m_Framebuffer->Unbind();
+
+			m_GameFramebuffer->Bind();
+			RenderCommand::SetClearColor(glm::vec4{ 0.1f, 0.1f, 0.1f, 1 });
+			RenderCommand::Clear();
+			m_ActiveScene->OnUpdateEditor(ts);
+			m_GameFramebuffer->Unbind();
+
 			break;
 		}
 		case SceneState::Play:
 		{
+			m_GameFramebuffer->Bind();
+			RenderCommand::SetClearColor(glm::vec4{ 0.1f, 0.1f, 0.1f, 1 });
+			RenderCommand::Clear();
 			m_ActiveScene->OnUpdateRuntime(ts);
+			m_GameFramebuffer->Unbind();
+
+			// Scene viewport
+			m_Framebuffer->Bind();
+			RenderCommand::SetClearColor(glm::vec4{ 0.1f, 0.1f, 0.1f, 1 });
+			RenderCommand::Clear();
+			// Clear our entity ID attachment to -1
+			m_Framebuffer->ClearAttachment(1, -1);
+			m_ActiveScene->OnUpdateEditor(ts, m_EditorCamera);
+			auto [mx, my] = ImGui::GetMousePos();
+			mx -= m_ViewportBounds[0].x;
+			my -= m_ViewportBounds[0].y;
+			glm::vec2 viewportSize = m_ViewportBounds[1] - m_ViewportBounds[0];
+			my = viewportSize.y - my;
+			int mouseX = (int)mx;
+			int mouseY = (int)my;
+
+			if (mouseX >= 0 && mouseY >= 0 && mouseX < (int)viewportSize.x && mouseY < (int)viewportSize.y)
+			{
+				int pixelData = m_Framebuffer->ReadPixel(1, mouseX, mouseY);
+				m_HoveredEntity = pixelData == -1 ? Entity() : Entity((entt::entity)pixelData, m_ActiveScene.get());
+			}
+
+			m_Framebuffer->Unbind();
 			break;
 		}
 		// TODO Pause
@@ -95,21 +152,6 @@ namespace CC3D {
 			break;
 		}
 
-		auto [mx, my] = ImGui::GetMousePos();
-		mx -= m_ViewportBounds[0].x;
-		my -= m_ViewportBounds[0].y;
-		glm::vec2 viewportSize = m_ViewportBounds[1] - m_ViewportBounds[0];
-		my = viewportSize.y - my;
-		int mouseX = (int)mx;
-		int mouseY = (int)my;
-
-		if (mouseX >= 0 && mouseY >= 0 && mouseX < (int)viewportSize.x && mouseY < (int)viewportSize.y)
-		{
-			int pixelData = m_Framebuffer->ReadPixel(1, mouseX, mouseY);
-			m_HoveredEntity = pixelData == -1 ? Entity() : Entity((entt::entity)pixelData, m_ActiveScene.get());
-		}
-
-		m_Framebuffer->Unbind();
 	}
 
 	void EditorLayer::OnImGuiRender()
@@ -187,9 +229,11 @@ namespace CC3D {
 
 			ImGui::EndMenuBar();
 		}
+		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
 		// Panels--------------------------------------------------
 		m_SceneHierarchyPanel.OnImGuiRender();
 		m_ContentBrowserPanel.OnImGuiRender();
+		m_GameViewportPanel.OnImGuiRender();
 		// --------------------------------------------------------
 		ImGui::Begin("Stats");
 
@@ -208,7 +252,6 @@ namespace CC3D {
 
 		ImGui::End();
 
-		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
 		ImGui::Begin("Viewport");
 		auto viewportMinRegion = ImGui::GetWindowContentRegionMin();
 		auto viewportMaxRegion = ImGui::GetWindowContentRegionMax();

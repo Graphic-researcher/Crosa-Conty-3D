@@ -3,6 +3,7 @@
 #include <CC3D.h>
 #include "Panels/SceneHierarchyPanel.h"
 #include "Panels/ContentBrowserPanel.h"
+#include "Panels/GameViewportPanel.h"
 
 #include "CC3D/Renderer/EditorCamera.h"
 
@@ -43,6 +44,7 @@ namespace CC3D {
 		bool m_ViewportFocused = false, m_ViewportHovered = false;
 
 		Ref<Framebuffer> m_Framebuffer;
+		Ref<Framebuffer> m_GameFramebuffer;
 
 		Ref<Scene> m_ActiveScene;
 		Ref<Scene> m_EditorScene;
@@ -55,6 +57,10 @@ namespace CC3D {
 
 		glm::vec2 m_ViewportSize = glm::vec2{ 0.0f, 0.0f };
 		glm::vec2 m_ViewportBounds[2];
+
+		glm::vec2 m_GameViewportSize = glm::vec2{ 0.0f, 0.0f };
+		glm::vec2 m_GameViewportBounds[2];
+
 		int m_GizmoType = -1;
 
 		enum class SceneState
@@ -66,6 +72,7 @@ namespace CC3D {
 		// Panels
 		SceneHierarchyPanel m_SceneHierarchyPanel;
 		ContentBrowserPanel m_ContentBrowserPanel;
+		GameViewportPanel m_GameViewportPanel;
 
 		// Editor resources
 		Ref<Texture2D> m_IconPlay, m_IconStop;

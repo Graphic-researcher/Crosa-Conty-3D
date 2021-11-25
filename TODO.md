@@ -1,6 +1,12 @@
 - [ ] SceneViewPort
 
-  1. 新增一个Scene视图窗口，
+  - [ ] 新增一个Scene视图窗口，
+  - [ ] 1. FrameBuffer是怎么读取的，在FrameBuffer里
+    2. framebuffer的工作方式是读取当前帧缓存区的图片，那么如何读取两个不同角度的图片
+    3. 分两次绘制
+
+  - [ ] 把Gizmos改为点击就开启
+  - [ ] 把读取两个frameBuffer都放在scene里
 
 - [ ] RendererQueue
 

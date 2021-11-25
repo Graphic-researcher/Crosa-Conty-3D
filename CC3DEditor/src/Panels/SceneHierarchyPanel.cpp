@@ -26,7 +26,7 @@ namespace CC3D {
 
 	void SceneHierarchyPanel::OnImGuiRender()
 	{
-		ImGui::ShowDemoWindow();
+		//ImGui::ShowDemoWindow();
 		ImGui::Begin("Scene Hierarchy");
 
 		if (m_Context)

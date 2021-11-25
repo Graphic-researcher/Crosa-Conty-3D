@@ -102,7 +102,6 @@ namespace CC3D {
 
 			// °´Å¥±³¾°Í¸Ã÷
 			ImGui::PushStyleColor(ImGuiCol_Button, { 0,0,0,0 });
-			CC3D_WARN(icon->GetRendererID());
 			ImGui::ImageButton((ImTextureID)icon->GetRendererID(), { thumbnailSize, thumbnailSize }, { 0, 1 }, { 1, 0 });
 			ImGui::PopStyleColor();
 			//-------------------------
