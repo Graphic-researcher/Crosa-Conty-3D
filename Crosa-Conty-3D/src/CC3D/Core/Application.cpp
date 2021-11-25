@@ -7,7 +7,6 @@
 
 #include "CC3D/Core/Input.h"
 
-#include "CC3D/Model/Model.h"
 
 namespace CC3D {
 	
@@ -27,8 +26,7 @@ namespace CC3D {
 		
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
-		Assimp::Importer importer;
-		const aiScene* scene = importer.ReadFile("D:/database/原神模型/lisha/丽莎/丽莎.pmx", aiProcess_Triangulate | aiProcess_FlipUVs);
+
 	}
 
 	Application::~Application()
