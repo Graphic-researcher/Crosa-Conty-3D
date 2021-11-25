@@ -1,3 +1,7 @@
+- [ ] SceneViewPort
+
+  1. 新增一个Scene视图窗口，
+
 - [ ] RendererQueue
 
   渲染队列，参考UNITY可编程渲染管线的DarwRenderer
@@ -7,7 +11,8 @@
   1. 删除引擎中没有用的文件
      1. 删除了正交相机OrthogonalCamera
   2. 先封装类RenderContext存储所有renderer
-     1. 架构上，RenderContext比Rendercommend更高级
+     1. 把Renderer该名为Context
+     2. 架构上，RenderContext比Rendercommend更高级
   3. 基础类Renderer，所有Renderer都继承此类
 
   

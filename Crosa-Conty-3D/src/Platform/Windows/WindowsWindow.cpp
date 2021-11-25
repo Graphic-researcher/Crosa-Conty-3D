@@ -7,7 +7,7 @@
 #include "CC3D/Events/MouseEvent.h"
 #include "CC3D/Events/KeyEvent.h"
 
-#include "CC3D/Renderer/Renderer.h"
+#include "CC3D/Renderer/RenderContext.h"
 
 #include "Platform/OpenGL/OpenGLContext.h"
 
@@ -55,7 +55,7 @@ namespace CC3D {
 		{
 			CC3D_PROFILE_SCOPE("glfwCreateWindow");
 #if defined(CC3D_DEBUG)
-			if (Renderer::GetAPI() == RendererAPI::API::OpenGL)
+			if (RenderContext::GetAPI() == RendererAPI::API::OpenGL)
 				glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
 #endif
 			m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);

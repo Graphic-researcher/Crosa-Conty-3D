@@ -3,7 +3,7 @@
 
 #include "CC3D/Events/ApplicationEvent.h"
 
-#include "CC3D/Renderer/Renderer.h"
+#include "CC3D/Renderer/RenderContext.h"
 
 #include "CC3D/Core/Input.h"
 
@@ -22,7 +22,7 @@ namespace CC3D {
 		m_Window = Window::Create(WindowProps(name));
 		m_Window->SetEventCallback(CC3D_BIND_EVENT_FN(Application::OnEvent));
 
-		CC3D::Renderer::Init();
+		CC3D::RenderContext::Init();
 		
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
@@ -33,7 +33,7 @@ namespace CC3D {
 	{
 		CC3D_PROFILE_FUNCTION();
 
-		Renderer::Shutdown();
+		RenderContext::Shutdown();
 	}
 
 
@@ -142,7 +142,7 @@ namespace CC3D {
 		}
 
 		m_Minimized = false;
-		Renderer::OnWindowResize(e.GetWidth(), e.GetHeight());
+		RenderContext::OnWindowResize(e.GetWidth(), e.GetHeight());
 
 		return false;
 	}
