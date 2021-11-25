@@ -15,3 +15,6 @@
 #include "CC3D/Scene/Components/BoxCollider2DComponent.h"
 #include "CC3D/Scene/Components/Rigidbody2DComponent.h"
 
+// Renderer
+#include "CC3D/Scene/Components/MeshRendererComponent.h"
+#include "CC3D/Scene/Components/MaterialComponent.h"
