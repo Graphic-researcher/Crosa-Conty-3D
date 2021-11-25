@@ -6,6 +6,7 @@
 
 #include "CC3D/Core/Timestep.h"
 #include "CC3D/Renderer/EditorCamera.h"
+#include "CC3D/Core/UUID.h"
 
 #include "entt/entt.hpp"
 
@@ -21,6 +22,8 @@ namespace CC3D {
 		~Scene();
 
 		Entity CreateEntity(const std::string& name = std::string());
+		Entity CreateEntityWithUUID(UUID uuid, const std::string& name = std::string());
+
 		void DestroyEntity(Entity entity);
 
 		void OnRuntimeStart();

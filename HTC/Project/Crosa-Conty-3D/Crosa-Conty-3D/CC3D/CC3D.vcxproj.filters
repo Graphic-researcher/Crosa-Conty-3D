@@ -501,6 +501,9 @@
     <ClInclude Include="vendor\box2d\box2d.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="src\CC3D\Core\UUID.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cc3d_pch.cpp">
@@ -639,6 +642,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\CC3D\Renderer\EditorCamera.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CC3D\Core\UUID.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

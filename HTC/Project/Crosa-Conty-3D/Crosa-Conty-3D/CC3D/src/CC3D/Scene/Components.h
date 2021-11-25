@@ -1,18 +1,24 @@
 #pragma once
 
+#include "CC3D/Renderer/Camera.h"
+#include "CC3D/Scene/SceneCamera.h"
+#include "CC3D/Core/UUID.h"
+#include "CC3D/Renderer/Texture.h"
+
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/quaternion.hpp>
 
-
-#include "CC3D/Renderer/Camera.h"
-#include "CC3D/Scene/SceneCamera.h"
-#include "CC3D/Scene/ScriptableEntity.h"
-#include "CC3D/Renderer/Texture.h"
-
-
 namespace CC3D {
+	struct IDComponent
+	{
+		UUID ID;
+
+		IDComponent() = default;
+		IDComponent(const IDComponent&) = default;
+	};
+
 	struct TagComponent
 	{
 		std::string Tag;
@@ -70,6 +76,9 @@ namespace CC3D {
 		CameraComponent() = default;
 		CameraComponent(const CameraComponent&) = default;
 	};
+
+	// Forward declaration
+	class ScriptableEntity;
 
 	struct NativeScriptComponent
 	{

@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\CC3D\Core\UUID.h" />
     <ClInclude Include="src\CC3D\Renderer\EditorCamera.h" />
     <ClInclude Include="src\CC3D\Math\Math.h" />
     <ClInclude Include="src\CC3D\Scene\SceneSerializer.h" />
@@ -175,6 +176,7 @@
     <ClInclude Include="vendor\yaml-cpp\yaml.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\CC3D\Core\UUID.cpp" />
     <ClCompile Include="src\CC3D\Renderer\EditorCamera.cpp" />
     <ClCompile Include="src\CC3D\Math\Math.cpp" />
     <ClCompile Include="src\CC3D\Scene\SceneSerializer.cpp" />
