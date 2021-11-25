@@ -178,6 +178,7 @@
     <Font Include="assets\fonts\opensans\OpenSans-SemiBoldItalic.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="assets\scene\Physics2D.cc3d" />
     <None Include="assets\scene\readme.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
