@@ -1,16 +1,17 @@
 #include "ccpch.h"
-#include "CC3D/Renderer/Renderer.h"
-
-#include "Platform/OpenGL/OpenGLShader.h"
+#include "CC3D/Renderer/RenderContext.h"
 #include "CC3D/Renderer/Renderer2D.h"
 
+
+#include "CC3D/Scene/SceneCamera.h"
+#include "Platform/OpenGL/OpenGLShader.h"
 #include <glm/gtc/matrix_transform.hpp>
 
 namespace CC3D {
 
-	Scope<Renderer::SceneData> Renderer::s_SceneData = CreateScope<Renderer::SceneData>();
+	Scope<RenderContext::SceneData> RenderContext::s_SceneData = CreateScope<RenderContext::SceneData>();
 
-	void Renderer::Init()
+	void RenderContext::Init()
 	{
 		CC3D_PROFILE_FUNCTION();
 
@@ -18,27 +19,27 @@ namespace CC3D {
 		Renderer2D::Init();
 	}
 
-	void Renderer::Shutdown()
+	void RenderContext::Shutdown()
 	{
 		Renderer2D::Shutdown();
 	}
 
-	void Renderer::OnWindowResize(uint32_t width, uint32_t height)
+	void RenderContext::OnWindowResize(uint32_t width, uint32_t height)
 	{
 		RenderCommand::SetViewport(0, 0, width, height);
 	}
 
-	void Renderer::BeginScene(SceneCamera& camera)
+	void RenderContext::BeginScene(SceneCamera& camera)
 	{
 		s_SceneData->ViewProjectionMatrix = camera.GetProjection();
 
 	}
 
-	void Renderer::EndScene()
+	void RenderContext::EndScene()
 	{
 	}
 
-	void Renderer::Submit(const Ref<Shader>& shader, const Ref<VertexArray>& vertexArray, const glm::mat4& transform)
+	void RenderContext::Submit(const Ref<Shader>& shader, const Ref<VertexArray>& vertexArray, const glm::mat4& transform)
 	{
 		shader->Bind();
 		// dynamic_cast for shared_ptr that properly respects the reference count control block

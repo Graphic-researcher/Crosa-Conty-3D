@@ -14,7 +14,7 @@
 #include "CC3D/Renderer/Buffer.h"
 #include "CC3D/Renderer/VertexArray.h"
 
-#include "CC3D/Renderer/OrthographicCamera.h"
+
 
 #include "GLFW/glfw3.h"
 

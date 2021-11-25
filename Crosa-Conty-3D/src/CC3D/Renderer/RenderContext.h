@@ -1,11 +1,11 @@
 #pragma once
 
-#include "CC3D/Renderer/RenderCommand.h"
 #include "CC3D/Scene/SceneCamera.h"
+#include "CC3D/Renderer/RenderCommand.h"
 #include "CC3D/Renderer/Shader.h"
 
 namespace CC3D {
-	class Renderer
+	class RenderContext
 	{
 	public:
 		static void Init();
@@ -26,7 +26,7 @@ namespace CC3D {
 			glm::mat4 ViewProjectionMatrix;
 		};
 
-		static Scope<Renderer::SceneData> s_SceneData;
+		static Scope<RenderContext::SceneData> s_SceneData;
 	};
 
 }

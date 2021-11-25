@@ -142,15 +142,6 @@ namespace CC3D{
 		StartBatch();
 	}
 
-	void Renderer2D::BeginScene(const OrthographicCamera& camera)
-	{
-		CC3D_PROFILE_FUNCTION();
-
-		s_Data.TextureShader->Bind();
-		s_Data.TextureShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
-
-		StartBatch();
-	}
 	void Renderer2D::EndScene()
 	{
 		CC3D_PROFILE_FUNCTION();

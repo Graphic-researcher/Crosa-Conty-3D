@@ -39,7 +39,6 @@ namespace CC3D {
 		// UI Panels
 		void UI_Toolbar();
 	private:
-		OrthographicCameraController m_CameraController;
 
 		bool m_ViewportFocused = false, m_ViewportHovered = false;
 

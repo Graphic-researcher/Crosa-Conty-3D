@@ -18,8 +18,6 @@
 #include "CC3D/Renderer/Texture.h"
 #include "CC3D/Renderer/VertexArray.h"
 
-#include "CC3D/Renderer/OrthographicCamera.h"
-#include "CC3D/Renderer/OrthographicCameraController.h"
 // ----------------------------
 
 // -------Log System-------------
