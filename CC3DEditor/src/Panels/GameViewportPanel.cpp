@@ -23,13 +23,7 @@ void CC3D::GameViewportPanel::SetContext(const Ref<Scene>& context)
 
 void CC3D::GameViewportPanel::OnImGuiRender()
 {
-	//Game Resize
-	if (FramebufferSpecification gameSpec = m_Framebuffer->GetSpecification();
-		m_GameViewportSize.x > 0.0f && m_GameViewportSize.y > 0.0f && // zero sized framebuffer is invalid
-		(gameSpec.Width != m_GameViewportSize.x || gameSpec.Height != m_GameViewportSize.y))
-	{
-		m_Framebuffer->Resize((uint32_t)m_GameViewportSize.x, (uint32_t)m_GameViewportSize.y);
-	}
+	
 
 	ImGui::Begin("Game Viewport");
 	auto gameViewportMinRegion = ImGui::GetWindowContentRegionMin();

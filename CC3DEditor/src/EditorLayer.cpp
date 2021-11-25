@@ -72,6 +72,14 @@ namespace CC3D {
 			m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 		}
 
+		//Game viewport Resize
+		if (FramebufferSpecification gameSpec = m_Framebuffer->GetSpecification();
+			m_GameViewportSize.x > 0.0f && m_GameViewportSize.y > 0.0f && // zero sized framebuffer is invalid
+			(gameSpec.Width != m_GameViewportSize.x || gameSpec.Height != m_GameViewportSize.y))
+		{
+			m_Framebuffer->Resize((uint32_t)m_GameViewportSize.x, (uint32_t)m_GameViewportSize.y);
+		}
+
 
 		m_EditorCamera.OnUpdate(ts);
 		// Render
@@ -79,6 +87,7 @@ namespace CC3D {
 		
 
 		// Update scene
+		// TODO clean these code
 		switch (m_SceneState)
 		{
 		case SceneState::Edit:

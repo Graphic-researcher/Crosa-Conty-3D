@@ -1,10 +1,14 @@
-[18:27:39] [warning] CC3D: Initialized Log
-[18:27:39] [info] APP: Hello Crosa Conty 3D!
-[18:27:39] [info] CC3D: Creating window CC3D Editor (1280, 720)
-[18:27:40] [info] CC3D: OpenGL Info:
-[18:27:40] [info] CC3D:   Vendor: NVIDIA Corporation
-[18:27:40] [info] CC3D:   Renderer: GeForce GTX 1660 Ti/PCIe/SSE2
-[18:27:40] [info] CC3D:   Version: 4.6.0 NVIDIA 462.31
-[18:27:40] [info] CC3D:   GLSL_Version: 4.60 NVIDIA
-[18:27:40] [error] CC3D: Failed to load image!: assets\textures\124.png
-[18:27:41] [error] CC3D: Program/shader state performance warning: Vertex shader in program 1 is being recompiled based on GL state.
+[18:57:17] [warning] CC3D: Initialized Log
+[18:57:17] [info] APP: Hello Crosa Conty 3D!
+[18:57:17] [info] CC3D: Creating window CC3D Editor (1280, 720)
+[18:57:18] [info] CC3D: OpenGL Info:
+[18:57:18] [info] CC3D:   Vendor: NVIDIA Corporation
+[18:57:18] [info] CC3D:   Renderer: GeForce GTX 1660 Ti/PCIe/SSE2
+[18:57:18] [info] CC3D:   Version: 4.6.0 NVIDIA 462.31
+[18:57:18] [info] CC3D:   GLSL_Version: 4.60 NVIDIA
+[18:57:18] [error] CC3D: Failed to load image!: assets\textures\124.png
+[18:57:19] [error] CC3D: Program/shader state performance warning: Vertex shader in program 1 is being recompiled based on GL state.
+[18:57:51] [trace] CC3D: Deserializing scene 'Untitled'
+[18:57:51] [trace] CC3D: Deserialized entity with ID = 6121890683549120087, name = Camera
+[18:57:51] [trace] CC3D: Deserialized entity with ID = 2908813746345309765, name = floor
+[18:57:51] [trace] CC3D: Deserialized entity with ID = 2496901153465691939, name = Cube
