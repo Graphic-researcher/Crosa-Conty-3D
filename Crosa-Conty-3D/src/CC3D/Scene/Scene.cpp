@@ -102,6 +102,7 @@ namespace CC3D {
 		entity.AddComponent<IDComponent>(uuid);
 		entity.AddComponent<TransformComponent>();
 		auto& tag = entity.AddComponent<TagComponent>();
+		// TODO 重名时重命名
 		tag.Tag = name.empty() ? "Entity" : name;
 		return entity;
 	}
