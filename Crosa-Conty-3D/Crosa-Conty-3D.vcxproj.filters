@@ -198,10 +198,12 @@
     <ClInclude Include="src\CC3D\Scene\Components\BoxCollider2DComponent.h" />
     <ClInclude Include="src\CC3D\Core\UUID.h" />
     <ClInclude Include="src\CC3D\Scene\Components\IDComponent.h" />
-    <ClInclude Include="src\CC3D\Model\Model.h" />
+    <ClInclude Include="src\CC3D\Renderer\Model.h" />
     <ClInclude Include="src\CC3D\Renderer\RenderContext.h" />
     <ClInclude Include="src\CC3D\Scene\Components\MeshRendererComponent.h" />
     <ClInclude Include="src\CC3D\Scene\Components\MaterialComponent.h" />
+    <ClInclude Include="src\CC3D\Renderer\Mesh.h" />
+    <ClInclude Include="vendor\tiny_obj_loader\tiny_obj_loader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CC3D\Core\Application.cpp">
@@ -246,8 +248,9 @@
     <ClCompile Include="src\CC3D\Math\Math.cpp" />
     <ClCompile Include="src\CC3D\Renderer\EditorCamera.cpp" />
     <ClCompile Include="src\CC3D\Core\UUID.cpp" />
-    <ClCompile Include="src\CC3D\Model\Model.cpp" />
+    <ClCompile Include="src\CC3D\Renderer\Model.cpp" />
     <ClCompile Include="src\CC3D\Renderer\RenderContext.cpp" />
+    <ClCompile Include="src\CC3D\Renderer\Mesh.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="vendor\glm\glm\core\func_common.inl" />
