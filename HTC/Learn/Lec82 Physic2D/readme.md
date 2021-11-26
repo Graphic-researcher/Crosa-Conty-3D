@@ -318,7 +318,7 @@ void SceneHierarchyPanel::DrawComponents(Entity entity)
     DrawComponent<BoxCollider2DComponent>("Box Collider 2D", entity, [](auto& component)
     {
         ImGui::DragFloat2("Offset", glm::value_ptr(component.Offset));
-        ImGui::DragFloat2("Size", glm::value_ptr(component.Offset));
+        ImGui::DragFloat2("Size", glm::value_ptr(component.Size));
         ImGui::DragFloat("Density", &component.Density, 0.01f, 0.0f, 1.0f);
         ImGui::DragFloat("Friction", &component.Friction, 0.01f, 0.0f, 1.0f);
         ImGui::DragFloat("Restitution", &component.Restitution, 0.01f, 0.0f, 1.0f);
