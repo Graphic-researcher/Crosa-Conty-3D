@@ -1,19 +1,10 @@
-[17:05:55] [warning] CC3D: Initialized Log
-[17:05:55] [info] APP: Hello Crosa Conty 3D!
-[17:05:55] [info] CC3D: Creating window CC3D Editor (1280, 720)
-[17:05:56] [info] CC3D: OpenGL Info:
-[17:05:56] [info] CC3D:   Vendor: Intel
-[17:05:56] [info] CC3D:   Renderer: Intel(R) UHD Graphics 630
-[17:05:56] [info] CC3D:   Version: 4.6.0 - Build 27.20.100.8729
-[17:05:56] [info] CC3D:   GLSL_Version: 4.60 - Build 27.20.100.8729
-[17:05:56] [error] CC3D: Failed to load image!: assets\textures\124.png
-[17:06:00] [trace] CC3D: Deserializing scene 'Untitled'
-[17:06:00] [trace] CC3D: Deserialized entity with ID = 6048346989890304675, name = Cube
-[17:06:00] [trace] CC3D: Deserialized entity with ID = 9412473809713781823, name = Cube
-[17:06:00] [trace] CC3D: Deserialized entity with ID = 3032108287437418104, name = floor
-[17:06:00] [trace] CC3D: Deserialized entity with ID = 13846869343133882586, name = Cube
-[17:06:00] [trace] CC3D: Deserialized entity with ID = 12939249222242814868, name = Cube
-[17:06:00] [trace] CC3D: Deserialized entity with ID = 2496901153465691939, name = Cube
-[17:06:00] [trace] CC3D: Deserialized entity with ID = 2908813746345309765, name = floor
-[17:06:00] [trace] CC3D: Deserialized entity with ID = 6121890683549120087, name = Camera
-[17:06:00] [error] CC3D: API_ID_RECOMPILE_FRAGMENT_SHADER performance warning has been generated. Fragment shader recompiled due to state change.
+[22:31:14] [warning] CC3D: Initialized Log
+[22:31:14] [info] APP: Hello Crosa Conty 3D!
+[22:31:14] [info] CC3D: Creating window CC3D Editor (1280, 720)
+[22:31:15] [info] CC3D: OpenGL Info:
+[22:31:15] [info] CC3D:   Vendor: NVIDIA Corporation
+[22:31:15] [info] CC3D:   Renderer: GeForce GTX 1660 Ti/PCIe/SSE2
+[22:31:15] [info] CC3D:   Version: 4.6.0 NVIDIA 462.31
+[22:31:15] [info] CC3D:   GLSL_Version: 4.60 NVIDIA
+[22:31:15] [error] CC3D: Failed to load image!: assets\textures\124.png
+[22:31:15] [error] CC3D: Program/shader state performance warning: Vertex shader in program 1 is being recompiled based on GL state.

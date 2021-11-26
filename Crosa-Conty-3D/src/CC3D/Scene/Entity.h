@@ -5,6 +5,7 @@
 #include "CC3D/Scene/Components/IDComponent.h"
 #include "CC3D/Scene/Components/TagComponent.h"
 
+
 #include "entt.hpp"
 
 namespace CC3D {
@@ -59,6 +60,8 @@ namespace CC3D {
 
 		UUID GetUUID() { return GetComponent<IDComponent>().ID; }
 		const std::string& GetName() { return GetComponent<TagComponent>().Tag; }
+		void AddSubEntity(Entity& other);
+		
 
 		bool operator==(const Entity& other) const
 		{

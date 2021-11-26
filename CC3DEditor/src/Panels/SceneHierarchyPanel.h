@@ -24,6 +24,10 @@ namespace CC3D {
 	private:
 		Ref<Scene> m_Context;
 		Entity m_SelectionContext;
+
+		// Temp
+		Entity sprite;
+		Entity subSprite;
 	};
 
 }

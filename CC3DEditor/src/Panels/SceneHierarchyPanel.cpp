@@ -35,7 +35,10 @@ namespace CC3D {
 			m_Context->m_Registry.each([&](auto entityID)
 				{
 					Entity entity{ entityID , m_Context.get() };
-					DrawEntityNode(entity);
+					const auto& s = sprite.GetComponent<TransformComponent>();
+					const auto& sub = subSprite.GetComponent<TransformComponent>();
+					if(!entity.GetComponent<TransformComponent>().parent)
+						DrawEntityNode(entity);
 				});
 
 			// µ¥»÷±³¾°
@@ -48,12 +51,22 @@ namespace CC3D {
 			{
 				if (ImGui::MenuItem("Create Empty Entity"))
 					m_Context->CreateEntity("Empty Entity");
+				if (ImGui::MenuItem("Create Sprite"))
+				{
+					sprite = m_Context->CreateSpriteEntity("Sprite");
+					subSprite = m_Context->CreateSpriteEntity("subSprite");
+					sprite.AddSubEntity(subSprite);
+				}
+					
+				
 
 				ImGui::EndPopup();
 			}
 		}
 
 		ImGui::End();
+			
+		
 
 		ImGui::Begin("Properties");
 		if (m_SelectionContext)
@@ -93,11 +106,16 @@ namespace CC3D {
 		if (opened)
 		{
 			ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_SpanAvailWidth;
-			bool opened = ImGui::TreeNodeEx((void*)9817239, flags, tag.c_str());
-			if (opened)
-				ImGui::TreePop();
+			
+			if (entity.GetComponent<TransformComponent>().child)
+			{
+				Entity subEntity = *(entity.GetComponent<TransformComponent>().child);
+				DrawEntityNode(subEntity);
+			}
 			ImGui::TreePop();
 		}
+
+		// TODO Add drag
 		if (entityDeleted)
 		{
 			m_Context->DestroyEntity(entity);

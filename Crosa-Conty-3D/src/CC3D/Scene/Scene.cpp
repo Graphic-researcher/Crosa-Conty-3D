@@ -107,6 +107,23 @@ namespace CC3D {
 		return entity;
 	}
 
+	Entity Scene::CreateSpriteEntity(const std::string& name)
+	{
+		return CreateSpriteEntityWithUUID(UUID(), name);
+	}
+
+	Entity Scene::CreateSpriteEntityWithUUID(UUID uuid, const std::string& name)
+	{
+		Entity entity = { m_Registry.create(), this };
+		entity.AddComponent<IDComponent>(uuid);
+		entity.AddComponent<TransformComponent>();
+		entity.AddComponent<SpriteRendererComponent>();
+		auto& tag = entity.AddComponent<TagComponent>();
+		// TODO 重名时重命名
+		tag.Tag = name.empty() ? "Entity" : name;
+		return entity;
+	}
+
 	void Scene::DestroyEntity(Entity entity)
 	{
 		m_Registry.destroy(entity);//Entity中有entt:entity的重载
@@ -125,7 +142,7 @@ namespace CC3D {
 
 			b2BodyDef bodyDef;
 			bodyDef.type = Rigidbody2DTypeToBox2DBody(rb2d.Type);
-			bodyDef.position.Set(transform.Translation.x, transform.Translation.y);
+			bodyDef.position.Set(transform.GlobalTranform.x, transform.GlobalTranform.y);
 			bodyDef.angle = transform.Rotation.z;
 
 			b2Body* body = m_PhysicsWorld->CreateBody(&bodyDef);
@@ -191,8 +208,8 @@ namespace CC3D {
 
 				b2Body* body = (b2Body*)rb2d.RuntimeBody;
 				const auto& position = body->GetPosition();
-				transform.Translation.x = position.x;
-				transform.Translation.y = position.y;
+				transform.GlobalTranform.x = position.x;
+				transform.GlobalTranform.y = position.y;
 				transform.Rotation.z = body->GetAngle();
 			}
 		}
@@ -212,7 +229,7 @@ namespace CC3D {
 				if (camera.Primary)
 				{
 					mainCamera = &camera.Camera;
-					cameraTransform = transform.GetTransform();
+					cameraTransform = transform.GetGlobalTransform();
 					break;
 				}
 			}
@@ -226,8 +243,7 @@ namespace CC3D {
 			for (auto entity : group)
 			{
 				auto [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
-
-				Renderer2D::DrawSprite(transform.GetTransform(), sprite, (int)entity);
+				Renderer2D::DrawSprite(transform.GetGlobalTransform(), sprite, (int)entity);
 			}
 
 			//// 粒子系统 
@@ -256,7 +272,7 @@ namespace CC3D {
 		{
 			auto [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
 
-			Renderer2D::DrawSprite(transform.GetTransform(), sprite, (int)entity);
+			Renderer2D::DrawSprite(transform.GetGlobalTransform(), sprite, (int)entity);
 		}
 
 		Renderer2D::EndScene();
@@ -276,7 +292,7 @@ namespace CC3D {
 				if (camera.Primary)
 				{
 					mainCamera = &camera.Camera;
-					cameraTransform = transform.GetTransform();
+					cameraTransform = transform.GetGlobalTransform();
 					break;
 				}
 			}
@@ -291,7 +307,7 @@ namespace CC3D {
 			{
 				auto [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
 
-				Renderer2D::DrawSprite(transform.GetTransform(), sprite, (int)entity);
+				Renderer2D::DrawSprite(transform.GetGlobalTransform(), sprite, (int)entity);
 			}
 
 			Renderer2D::EndScene();

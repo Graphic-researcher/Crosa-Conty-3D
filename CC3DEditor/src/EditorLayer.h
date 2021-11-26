@@ -76,6 +76,8 @@ namespace CC3D {
 
 		// Editor resources
 		Ref<Texture2D> m_IconPlay, m_IconStop;
+
+		
 	};
 
 }

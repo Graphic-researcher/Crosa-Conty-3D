@@ -310,7 +310,7 @@ namespace CC3D {
 
 			// Entity transform
 			auto& tc = selectedEntity.GetComponent<TransformComponent>();
-			glm::mat4 transform = tc.GetTransform();
+			glm::mat4 transform = tc.GetGlobalTransform();// Global transform
 
 			// Snapping
 			bool snap = Input::IsKeyPressed(Key::LeftControl);
@@ -331,7 +331,7 @@ namespace CC3D {
 				Math::DecomposeTransform(transform, translation, rotation, scale);
 
 				glm::vec3 deltaRotation = rotation - tc.Rotation;
-				tc.Translation = translation;
+				tc.GlobalTranform = translation;
 				tc.Rotation += deltaRotation;
 				tc.Scale = scale;
 			}
