@@ -4,7 +4,7 @@ Entities:
     TagComponent:
       Tag: UUID_Test
     TransformComponent:
-      Translation: [-0.814516306, 0.378524184, 0]
+      Translation: [-0.810902596, 0.353454977, 0]
       Rotation: [0, 0, 0.143164173]
       Scale: [0.509999871, 0.509999871, 0.50999999]
     SpriteRendererComponent:
@@ -41,7 +41,7 @@ Entities:
     TagComponent:
       Tag: Sprite
     TransformComponent:
-      Translation: [-0.757355928, 1.81021488, 0.0225147791]
+      Translation: [-1.44479311, -0.648722291, 0.0225147791]
       Rotation: [0, 0, 0.0863992497]
       Scale: [0.361159921, 0.375567764, 0.848135769]
     SpriteRendererComponent:
