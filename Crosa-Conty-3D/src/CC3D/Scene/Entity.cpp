@@ -7,10 +7,11 @@ namespace CC3D {
 		: m_EntityHandle(handle), m_Scene(scene)
 	{
 	}
-	void Entity::AddSubEntity(Entity& other)
+	void Entity::AddSubEntity(Entity other)
 	{
-		other.GetComponent<TransformComponent>().parent = this;
-		this->GetComponent<TransformComponent>().child = &other;
+		// Entity 是通过entt的神秘id老寻址的，所以不需要用指针，用指针反而会出错
+		other.GetComponent<TransformComponent>().parent = *this;
+		this->GetComponent<TransformComponent>().child.push_back(other);
 	}
 
 }

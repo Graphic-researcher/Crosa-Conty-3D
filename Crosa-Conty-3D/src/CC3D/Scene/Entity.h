@@ -16,6 +16,7 @@ namespace CC3D {
 		Entity() = default;
 		Entity(entt::entity handle, Scene* scene);
 		Entity(const Entity& other) = default;
+		~Entity() = default;
 
 		template<typename T, typename... Args>
 		T& AddComponent(Args&&... args)
@@ -60,7 +61,8 @@ namespace CC3D {
 
 		UUID GetUUID() { return GetComponent<IDComponent>().ID; }
 		const std::string& GetName() { return GetComponent<TagComponent>().Tag; }
-		void AddSubEntity(Entity& other);
+		void AddSubEntity(Entity other);
+		entt::entity GetEntityHandle() { return m_EntityHandle; }
 		
 
 		bool operator==(const Entity& other) const

@@ -3,6 +3,8 @@
 #include <filesystem>
 #include <map>
 #include "CC3D/Renderer/Texture.h"
+#include "CC3D/Renderer/Model.h"
+
 namespace CC3D {
 
 	class ContentBrowserPanel
@@ -20,7 +22,7 @@ namespace CC3D {
 		Ref<Texture2D> m_PictureIcon;
 		std::map<std::string, Ref<Texture2D>> m_Images;
 		// TODO ƒ£–Õ‘§¿¿Õº
-		std::map<std::string, Ref<Texture2D>> m_Models;
+		std::map<std::string, Model> m_Models;
 	};
 
 }

@@ -4,7 +4,7 @@
 
 namespace CC3D
 {
-    namespace Utile
+    namespace Utils
     {
 
     }

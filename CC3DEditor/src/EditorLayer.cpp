@@ -330,8 +330,8 @@ namespace CC3D {
 				glm::vec3 translation, rotation, scale;
 				Math::DecomposeTransform(transform, translation, rotation, scale);
 
-				glm::vec3 deltaRotation = rotation - tc.Rotation;
-				tc.GlobalTranform = translation;
+				glm::vec3 deltaRotation = rotation - tc.GlobalRotation;
+				tc.Translation = translation;
 				tc.Rotation += deltaRotation;
 				tc.Scale = scale;
 			}

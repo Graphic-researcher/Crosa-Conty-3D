@@ -28,6 +28,7 @@ namespace CC3D {
 		// Temp
 		Entity sprite;
 		Entity subSprite;
+		Entity s;
 	};
 
 }

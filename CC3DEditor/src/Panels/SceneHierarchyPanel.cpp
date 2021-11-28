@@ -35,8 +35,6 @@ namespace CC3D {
 			m_Context->m_Registry.each([&](auto entityID)
 				{
 					Entity entity{ entityID , m_Context.get() };
-					const auto& s = sprite.GetComponent<TransformComponent>();
-					const auto& sub = subSprite.GetComponent<TransformComponent>();
 					if(!entity.GetComponent<TransformComponent>().parent)
 						DrawEntityNode(entity);
 				});
@@ -53,12 +51,15 @@ namespace CC3D {
 					m_Context->CreateEntity("Empty Entity");
 				if (ImGui::MenuItem("Create Sprite"))
 				{
-					sprite = m_Context->CreateSpriteEntity("Sprite");
-					subSprite = m_Context->CreateSpriteEntity("subSprite");
-					sprite.AddSubEntity(subSprite);
+					//这里必须使用不会销毁的指针
+					// entt 不是通过指针来寻找实体的
+					Entity sprite = m_Context->CreateEntity("Sprite");
+					sprite.AddComponent<SpriteRendererComponent>();
+					Entity s = m_Context->CreateEntity("subSprite");
+					Entity s1 = m_Context->CreateEntity("subSprite1");
+					sprite.AddSubEntity(s);
+					sprite.AddSubEntity(s1);
 				}
-					
-				
 
 				ImGui::EndPopup();
 			}
@@ -107,10 +108,13 @@ namespace CC3D {
 		{
 			ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_SpanAvailWidth;
 			
-			if (entity.GetComponent<TransformComponent>().child)
+			if (!entity.GetComponent<TransformComponent>().child.empty())
 			{
-				Entity subEntity = *(entity.GetComponent<TransformComponent>().child);
-				DrawEntityNode(subEntity);
+				for (int i = 0; i < entity.GetComponent<TransformComponent>().child.size(); i++)
+				{
+					Entity subEntity = entity.GetComponent<TransformComponent>().child[i];
+					DrawEntityNode(subEntity);
+				}
 			}
 			ImGui::TreePop();
 		}

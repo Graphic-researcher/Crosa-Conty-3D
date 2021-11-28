@@ -1,22 +1,12 @@
 #pragma once
 #include <vector>
+#include "CC3D/Renderer/Mesh.h"
+
 namespace CC3D {
 
 	struct MeshRendererComponent
 	{
-		struct TriVertex
-		{
-			glm::vec3 Position;
-			glm::vec3 Normal;
-			glm::vec4 Color;
-			glm::vec2 TexCoord;
-			float TexIndex;
-			float TilingFactor;
-
-			// TODO Editor-only
-			int EntityID;
-		};
-		std::vector<TriVertex> vertices;
+		Mesh mesh;
 		MeshRendererComponent() = default;
 		MeshRendererComponent(const MeshRendererComponent&) = default;
 	};

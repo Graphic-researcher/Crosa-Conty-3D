@@ -161,7 +161,8 @@ namespace CC3D {
 			out << YAML::BeginMap; // TransformComponent
 
 			auto& tc = entity.GetComponent<TransformComponent>();
-			out << YAML::Key << "Translation" << YAML::Value << tc.GlobalTranform;
+			out << YAML::Key << "Parent" << YAML::Value << tc.parent.GetUUID();
+			out << YAML::Key << "Translation" << YAML::Value << tc.Translation;
 			out << YAML::Key << "Rotation" << YAML::Value << tc.Rotation;
 			out << YAML::Key << "Scale" << YAML::Value << tc.Scale;
 
@@ -301,9 +302,9 @@ namespace CC3D {
 				{
 					// Entities always have transforms
 					auto& tc = deserializedEntity.GetComponent<TransformComponent>();
-					tc.GlobalTranform = transformComponent["Translation"].as<glm::vec3>();
-					tc.Rotation = transformComponent["Rotation"].as<glm::vec3>();
-					tc.Scale = transformComponent["Scale"].as<glm::vec3>();
+					tc.GlobalTranslation = transformComponent["Translation"].as<glm::vec3>();
+					tc.GlobalRotation = transformComponent["Rotation"].as<glm::vec3>();
+					tc.GlobalScale = transformComponent["Scale"].as<glm::vec3>();
 				}
 
 				auto cameraComponent = entity["CameraComponent"];

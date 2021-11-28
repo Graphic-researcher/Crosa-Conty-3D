@@ -10,7 +10,7 @@ namespace CC3D {
 
 	namespace Utils
 	{
-		bool IsImageByTail(const std::wstring& path)
+		bool IsImageByTail(const std::string& path)
 		{
 			std::wstring file_exten;
 			size_t pos = path.rfind(L'.');
@@ -31,6 +31,10 @@ namespace CC3D {
 				return true;
 			return false;
 		}
+		bool isModelByAssimp(const std::string& path)
+		{
+
+		}
 	}
 
 	ContentBrowserPanel::ContentBrowserPanel()
@@ -47,7 +51,7 @@ namespace CC3D {
 		// TODO 进度条
 		for (auto const& directory : std::filesystem::recursive_directory_iterator{ m_CurrentDirectory })
 		{
-			if (Utils::IsImageByTail(directory.path()))
+			if (Utils::IsImageByTail(directory.path().u8string()))
 			{
 				Ref<Texture2D> image = Texture2D::Create(directory.path().u8string());
 				if(image->IsLoaded())
@@ -95,7 +99,7 @@ namespace CC3D {
 			Ref<Texture2D> icon;
 			if (directoryEntry.is_directory())							// 文件夹
 				icon = m_DirectoryIcon;
-			else if (Utils::IsImageByTail(directoryEntry.path()))		// 图片
+			else if (Utils::IsImageByTail(directoryEntry.path().u8string()))		// 图片
 				icon = m_Images[directoryEntry.path().u8string()];
 			else                                                        // 其他
 				icon = directoryEntry.is_directory() ? m_DirectoryIcon : m_FileIcon;

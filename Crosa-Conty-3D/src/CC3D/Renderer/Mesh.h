@@ -2,13 +2,6 @@
 #include "CC3D/Renderer/Texture.h"
 #include "CC3D/Renderer/Shader.h"
 
-#include <string>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <assimp/Importer.hpp>
-#include <assimp/scene.h>
-#include <assimp/postprocess.h>
-
 namespace CC3D
 {
 #define MAX_BONE_INFLUENCE 4
@@ -34,7 +27,7 @@ namespace CC3D
         Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices);
         ~Mesh() = default;
 
-    public://TODO move to private
+    public://TODO move to private 
         std::vector<Vertex>       vertices;
         std::vector<unsigned int> indices;
   

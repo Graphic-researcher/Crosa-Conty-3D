@@ -60,12 +60,13 @@
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;CC3D_PLATFORM_WINDOWS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\ImGuizmo;$(SolutionDir)Crosa-Conty-3D\vendor\spdlog\include;$(SolutionDir)Crosa-Conty-3D\src;$(SolutionDir)Crosa-Conty-3D\vendor\GLFW\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\src;$(SolutionDir)Crosa-Conty-3D\vendor\Imgui;$(SolutionDir)Crosa-Conty-3D\vendor\glm;$(SolutionDir)Crosa-Conty-3D\vendor\entt\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\ImGuizmo;$(SolutionDir)Crosa-Conty-3D\vendor\spdlog\include;$(SolutionDir)Crosa-Conty-3D\src;$(SolutionDir)Crosa-Conty-3D\vendor\GLFW\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\src;$(SolutionDir)Crosa-Conty-3D\vendor\Imgui;$(SolutionDir)Crosa-Conty-3D\vendor\glm;$(SolutionDir)Crosa-Conty-3D\vendor\entt\include;$(SolutionDir)Crosa-Conty-3D\vendor\stb_image;$(SolutionDir)Crosa-Conty-3D\vendor</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);</AdditionalDependencies>
+      <AdditionalDependencies>assimp.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\assimp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -77,14 +78,15 @@
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\ImGuizmo;$(SolutionDir)Crosa-Conty-3D\vendor\spdlog\include;$(SolutionDir)Crosa-Conty-3D\src;$(SolutionDir)Crosa-Conty-3D\vendor\GLFW\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\src;$(SolutionDir)Crosa-Conty-3D\vendor\Imgui;$(SolutionDir)Crosa-Conty-3D\vendor\glm;$(SolutionDir)Crosa-Conty-3D\vendor\entt\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\ImGuizmo;$(SolutionDir)Crosa-Conty-3D\vendor\spdlog\include;$(SolutionDir)Crosa-Conty-3D\src;$(SolutionDir)Crosa-Conty-3D\vendor\GLFW\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\include;$(SolutionDir)Crosa-Conty-3D\vendor\GLAD\src;$(SolutionDir)Crosa-Conty-3D\vendor\Imgui;$(SolutionDir)Crosa-Conty-3D\vendor\glm;$(SolutionDir)Crosa-Conty-3D\vendor\entt\include;$(SolutionDir)Crosa-Conty-3D\vendor\stb_image;$(SolutionDir)Crosa-Conty-3D\vendor</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Crosa-Conty-3D\vendor\assimp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

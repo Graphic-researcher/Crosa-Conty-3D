@@ -1,4 +1,4 @@
-- [ ] SceneViewPort
+- [x] SceneViewPort
 
   - [x] 新增一个Scene视图窗口，
   - [x] 1. FrameBuffer是怎么读取的，在FrameBuffer里
@@ -26,9 +26,8 @@
 - [ ] MeshRender
 
 - [ ] 1. 我需要的是顶点的数据，一个mesh，然后
-  2. 可能并不需要模型类
-  3. 在mesh中存储点的数据，然后放到Renerer里渲染
-  4. 材质是材质，mesh是mesh，两个类
+  2. 在mesh中存储点的数据，然后放到Renerer里渲染
+  3. 材质是材质，mesh是mesh，两个类
   5. 子实体系统
      1. 需要把物体的位置改为globalTranform
   
@@ -47,6 +46,10 @@
 - [ ] PBR
 
 - [ ] Fluid
+
+- [ ] 当Asset文件夹内容变更时，重新加载
+
+- [ ] 自己编译一个assimp库
 
 - [ ] Bloom
 
