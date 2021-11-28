@@ -2,6 +2,7 @@
 #include "ContentBrowserPanel.h"
 
 #include <imgui.h>
+#include <assimp/Importer.hpp>
 
 namespace CC3D {
 	// Once we have projects, change this
@@ -10,30 +11,23 @@ namespace CC3D {
 
 	namespace Utils
 	{
-		bool IsImageByTail(const std::string& path)
+		bool IsImageByTail(std::filesystem::path path)
 		{
-			std::wstring file_exten;
-			size_t pos = path.rfind(L'.');
-			if (pos == std::wstring::npos)
-				return false;
-			file_exten = path.substr(pos, std::wstring::npos);
-			//把file_exten转小写
-			for (size_t u = 0; u < file_exten.length(); u++)
-			{
-				if (file_exten[u] >= L'A' && file_exten[u] <= 'Z')
-				{
-					file_exten[u] += L'a' - L'A';
-				}
-			}
-			if (file_exten == L".jpg" || file_exten == L".tif"
-				|| file_exten == L".png" || file_exten == L".bmp"
-				|| file_exten == L".gif" || file_exten == L".ico")
+			std::string file_exten = path.extension().u8string();
+		
+			if (file_exten == ".jpg" || file_exten == ".tif"
+				|| file_exten == ".png" || file_exten == ".bmp"
+				|| file_exten == ".gif" || file_exten == ".ico")
 				return true;
 			return false;
 		}
-		bool isModelByAssimp(const std::string& path)
+		bool isModelByExtension(std::filesystem::path path)
 		{
+			std::string file_exten = path.extension().u8string();
 
+			if (file_exten == ".obj" || file_exten == ".fbx")
+				return true;
+			return false;
 		}
 	}
 
@@ -47,17 +41,24 @@ namespace CC3D {
 
 	void ContentBrowserPanel::OnAttach()
 	{
-		// 遍历所有文件夹，读取图片索引
+		
 		// TODO 进度条
 		for (auto const& directory : std::filesystem::recursive_directory_iterator{ m_CurrentDirectory })
 		{
-			if (Utils::IsImageByTail(directory.path().u8string()))
+			// 遍历所有文件夹，读取图片索引
+			if (Utils::IsImageByTail(directory.path()))
 			{
 				Ref<Texture2D> image = Texture2D::Create(directory.path().u8string());
 				if(image->IsLoaded())
 					m_Images.emplace(directory.path().u8string(),image);
 				else
 					m_Images.emplace(directory.path().u8string(), m_PictureIcon);
+			}
+			if (Utils::isModelByExtension(directory.path()))
+			{
+				// TODO 模型的预览图
+				Model model(directory.path().u8string());
+				m_Models.emplace(directory.path().u8string(), model);
 			}
 		}
 
