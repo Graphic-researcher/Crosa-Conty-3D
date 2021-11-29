@@ -123,6 +123,7 @@ namespace CC3D {
 		m_VertexBuffers.push_back(vertexBuffer);
 	}
 
+
 	void OpenGLVertexArray::SetIndexBuffer(const Ref<IndexBuffer>& indexBuffer)
 	{
 		CC3D_PROFILE_FUNCTION();

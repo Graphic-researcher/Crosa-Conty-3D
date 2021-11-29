@@ -180,6 +180,20 @@
   <ItemGroup>
     <None Include="assets\scene\Physics2D.cc3d" />
     <None Include="assets\scene\readme.md" />
+    <None Include="assets\shaders\environment\background.glsl" />
+    <None Include="assets\shaders\environment\brdf.glsl" />
+    <None Include="assets\shaders\environment\default.glsl" />
+    <None Include="assets\shaders\environment\equirectangular.glsl" />
+    <None Include="assets\shaders\environment\grid.glsl" />
+    <None Include="assets\shaders\environment\irradiance.glsl" />
+    <None Include="assets\shaders\environment\prefilter.glsl" />
+    <None Include="assets\shaders\FlatColor.glsl" />
+    <None Include="assets\shaders\material\default.glsl" />
+    <None Include="assets\shaders\material\emission.glsl" />
+    <None Include="assets\shaders\material\geo_texture.glsl" />
+    <None Include="assets\shaders\material\pbr.glsl" />
+    <None Include="assets\shaders\material\phong.glsl" />
+    <None Include="assets\shaders\Texture.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

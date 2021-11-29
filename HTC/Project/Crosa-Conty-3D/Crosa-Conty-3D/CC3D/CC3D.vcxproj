@@ -12,6 +12,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\CC3D\Core\UUID.h" />
+    <ClInclude Include="src\CC3D\Renderer\3Ddev\effect.h" />
+    <ClInclude Include="src\CC3D\Renderer\3Ddev\light.h" />
+    <ClInclude Include="src\CC3D\Renderer\3Ddev\material.h" />
+    <ClInclude Include="src\CC3D\Renderer\3Ddev\mesh.h" />
+    <ClInclude Include="src\CC3D\Renderer\3Ddev\Platform\opengl_effect.h" />
+    <ClInclude Include="src\CC3D\Renderer\3Ddev\primitive.h" />
+    <ClInclude Include="src\CC3D\Renderer\3Ddev\tinyobjloader\tiny_obj_loader.h" />
     <ClInclude Include="src\CC3D\Renderer\EditorCamera.h" />
     <ClInclude Include="src\CC3D\Math\Math.h" />
     <ClInclude Include="src\CC3D\Scene\SceneSerializer.h" />
@@ -177,6 +184,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CC3D\Core\UUID.cpp" />
+    <ClCompile Include="src\CC3D\Renderer\3Ddev\effect.cpp" />
+    <ClCompile Include="src\CC3D\Renderer\3Ddev\mesh.cpp" />
+    <ClCompile Include="src\CC3D\Renderer\3Ddev\Platform\opengl_effect.cpp" />
+    <ClCompile Include="src\CC3D\Renderer\3Ddev\tinyobjloader\tiny_obj_loader.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="src\CC3D\Renderer\EditorCamera.cpp" />
     <ClCompile Include="src\CC3D\Math\Math.cpp" />
     <ClCompile Include="src\CC3D\Scene\SceneSerializer.cpp" />
@@ -198,11 +211,14 @@
     <ClCompile Include="src\CC3D\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\CC3D\Renderer\Shader.cpp" />
     <ClCompile Include="src\CC3D\Renderer\Texture.cpp" />
-    <ClCompile Include="src\CC3D\Renderer\VertexArray.cpp" />
+    <ClCompile Include="src\CC3D\Renderer\VertexArray.cpp">
+      <ShowIncludes Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ShowIncludes>
+    </ClCompile>
     <ClCompile Include="src\CC3D\Scene\Scene.cpp" />
     <ClCompile Include="src\cc3d_pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <ShowIncludes Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ShowIncludes>
     </ClCompile>
     <ClCompile Include="src\CC3D\Core\Log.cpp" />
     <ClCompile Include="src\CC3D\Core\Application.cpp" />
