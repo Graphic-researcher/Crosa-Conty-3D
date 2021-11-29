@@ -24,6 +24,22 @@ namespace CC3D {
 	Scene::Scene()
 	{
 		m_DefaultShader = Shader::Create((std::string("assets/shaders/environment/default.glsl")));
+
+		//temp:
+		//entt::entity entityIndex = m_Registry.create();
+		//Entity entity = { entityIndex, this };
+		//entity.AddComponent<TransformComponent>();
+		//auto& tag = entity.AddComponent<TagComponent>();
+		//tag.Tag = "scene";
+		//entity.AddComponent<SpriteRendererComponent>();
+		//auto& mat =entity.AddComponent<MaterialComponent>();
+		//mat.SetMaterialType(MaterialType::Material_None);
+		//auto& mesh = entity.AddComponent<MeshComponent>();
+		////mesh.Reload(MeshType::Cube);
+
+		//Ref<TriMesh> Mesh = CreateRef<TriMesh>(MeshType::Sphere);
+		////Mesh->Create(MeshType::Cube);
+		//mesh.Mesh = Mesh;
 	}
 
 	Scene::~Scene()
@@ -240,6 +256,10 @@ namespace CC3D {
 
 	void Scene::OnUpdateEditor(Timestep ts, EditorCamera& camera)
 	{
+		//TODO: 3D Dev
+		//RenderObject(camera, nullptr);
+
+
 		Renderer2D::BeginScene(camera);
 
 		auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
@@ -250,11 +270,11 @@ namespace CC3D {
 			Renderer2D::DrawSprite(transform.GetTransform(), sprite, (int)entity);
 		}
 
-		Renderer2D::EndScene();
 
 		//TODO: 3D Dev
 		RenderObject(camera,nullptr);
 
+		Renderer2D::EndScene();
 	}
 
 	void Scene::OnViewportResize(uint32_t width, uint32_t height)
@@ -303,6 +323,7 @@ namespace CC3D {
 	{
 		RenderLight(camera);
 		auto group = m_Registry.view<TransformComponent>();
+		//auto group = m_Registry.group<TagComponent, TransformComponent>(entt::get<>);
 
 		for (auto entity : group)
 		{
@@ -402,7 +423,11 @@ namespace CC3D {
 	}
 
 	template<>
-	void Scene::OnComponentAdded<BoxCollider2DComponent>(Entity entity, BoxCollider2DComponent& component)
+	void Scene::OnComponentAdded<MaterialComponent>(Entity entity, MaterialComponent& component)
+	{
+	}	
+	template<>
+	void Scene::OnComponentAdded<MeshComponent>(Entity entity, MeshComponent& component)
 	{
 	}
 }///CC3D namespace

@@ -30,7 +30,7 @@ namespace CC3D
 
 	struct Material
 	{
-		Ref<Shader> m_Shader = Shader::Create("assets/shader/material/default.glsl");
+		Ref<Shader> m_Shader = Shader::Create("assets/shaders/material/default.glsl");
 		Material() = default;
 		virtual ~Material() {}
 		virtual void Bind(const Ref<Cubemap>& envMap = nullptr) { m_Shader->Bind(); };
@@ -52,7 +52,7 @@ namespace CC3D
 
 	struct EmissionMaterial :public Material
 	{
-		Ref<Shader> m_Shader = Shader::Create("assets/shader/material/emission.glsl");
+		Ref<Shader> m_Shader = Shader::Create("assets/shaders/material/emission.glsl");
 		glm::vec3 EmissionColor{ 1.0f };
 		float Intensity = 1.0f;
 		EmissionMaterial() = default;

@@ -17,6 +17,10 @@ namespace CC3D {
 		virtual void OnAttach() override;
 		virtual void OnDetach() override;
 
+		//Test Data
+		void EntityTest1();
+		void EntityTest2();
+
 		void OnUpdate(Timestep ts) override;
 		virtual void OnImGuiRender() override;
 		void OnEvent(Event& e) override;

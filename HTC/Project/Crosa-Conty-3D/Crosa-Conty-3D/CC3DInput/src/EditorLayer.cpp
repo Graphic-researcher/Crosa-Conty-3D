@@ -9,7 +9,7 @@
 #include "CC3D/Scene/SceneSerializer.h"
 #include "CC3D/Utils/PlatformUtils.h"
 #include "CC3D/Math/Math.h"
-
+#include "CC3D/Scene/ScriptableEntity.h"
 namespace CC3D {
 	extern const std::filesystem::path g_AssetPath;
 
@@ -39,56 +39,99 @@ namespace CC3D {
 
 
 		// Entity
-		//auto square = m_ActiveScene->CreateEntity("Green Square");
+		EntityTest1();
+		//EntityTest2();
+		
+		m_EditorScene = m_ActiveScene;
+		m_SceneHierarchyPanel.SetContext(m_EditorScene);
+	}
+
+	void EditorLayer::EntityTest1()
+	{
+		auto square = m_ActiveScene->CreateEntity("Green Square");
+		square.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
+
+		auto redSquare = m_ActiveScene->CreateEntity("Red Square");
+		redSquare.AddComponent<SpriteRendererComponent>(glm::vec4{ 1.0f, 0.0f, 0.0f, 1.0f });
+
+		m_SquareEntity = square;
+
+		m_CameraEntity = m_ActiveScene->CreateEntity("Camera Entity");
+		m_CameraEntity.AddComponent<CameraComponent>();
+
+		m_SecondCamera = m_ActiveScene->CreateEntity("Clip-Space Entity");
+		auto& cc = m_SecondCamera.AddComponent<CameraComponent>();
+		cc.Primary = false;
+
+		class CameraController : public ScriptableEntity
+		{
+		public:
+			virtual void OnCreate() override
+			{
+				auto& translation = GetComponent<TransformComponent>().Translation;
+				translation.x = rand() % 10 - 5.0f;
+			}
+
+			virtual void OnDestroy() override
+			{
+			}
+
+			virtual void OnUpdate(Timestep ts) override
+			{
+				auto& translation = GetComponent<TransformComponent>().Translation;
+
+				float speed = 5.0f;
+
+				if (Input::IsKeyPressed(Key::A))
+					translation.x -= speed * ts;
+				if (Input::IsKeyPressed(Key::D))
+					translation.x += speed * ts;
+				if (Input::IsKeyPressed(Key::W))
+					translation.y += speed * ts;
+				if (Input::IsKeyPressed(Key::S))
+					translation.y -= speed * ts;
+
+			}
+		};
+
+		m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
+		m_SecondCamera.AddComponent<NativeScriptComponent>().Bind<CameraController>();
+	}
+
+	void EditorLayer::EntityTest2()
+	{
+		auto square = m_ActiveScene->CreateEntity("Cube");
 		//square.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
+		square.AddComponent<MeshComponent>(MeshType::Cube);
 
-		//auto redSquare = m_ActiveScene->CreateEntity("Red Square");
-		//redSquare.AddComponent<SpriteRendererComponent>(glm::vec4{ 1.0f, 0.0f, 0.0f, 1.0f });
+		
+	//entt::entity entityIndex = m_Registry.create();
+	//Entity entity = { entityIndex, this };
+	//entity.AddComponent<TransformComponent>();
+	//auto& tag = entity.AddComponent<TagComponent>();
+	//tag.Tag = "scene";
+	//entity.AddComponent<SpriteRendererComponent>();
+	//auto& mat =entity.AddComponent<MaterialComponent>();
+	//mat.SetMaterialType(MaterialType::Material_None);
+	//auto& mesh = entity.AddComponent<MeshComponent>();
+	////mesh.Reload(MeshType::Cube);
 
-		//m_SquareEntity = square;
+	//Ref<TriMesh> Mesh = CreateRef<TriMesh>(MeshType::Sphere);
+	////Mesh->Create(MeshType::Cube);
+	//mesh.Mesh = Mesh;
+
+		auto redSquare = m_ActiveScene->CreateEntity("Red Square");
+		redSquare.AddComponent<SpriteRendererComponent>(glm::vec4{ 1.0f, 0.0f, 0.0f, 1.0f });
+
+		m_SquareEntity = square;
 
 		//m_CameraEntity = m_ActiveScene->CreateEntity("Camera Entity");
 		//m_CameraEntity.AddComponent<CameraComponent>();
 
 		//m_SecondCamera = m_ActiveScene->CreateEntity("Clip-Space Entity");
 		//auto& cc = m_SecondCamera.AddComponent<CameraComponent>();
-		//cc.Primary = false;
 
-		//class CameraController : public ScriptableEntity
-		//{
-		//public:
-		//	virtual void OnCreate() override
-		//	{
-		//		auto& translation = GetComponent<TransformComponent>().Translation;
-		//		translation.x = rand() % 10 - 5.0f;
-		//	}
-		//	 
-		//	virtual void OnDestroy() override
-		//	{
-		//	}
 
-		//	virtual void OnUpdate(Timestep ts) override
-		//	{
-		//		auto& translation = GetComponent<TransformComponent>().Translation;
-
-		//		float speed = 5.0f;
-
-		//		if (Input::IsKeyPressed(Key::A))
-		//			translation.x -= speed * ts;
-		//		if (Input::IsKeyPressed(Key::D))
-		//			translation.x += speed * ts;
-		//		if (Input::IsKeyPressed(Key::W))
-		//			translation.y += speed * ts;
-		//		if (Input::IsKeyPressed(Key::S))
-		//			translation.y -= speed * ts;
-
-		//	}
-		//};
-
-		//m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
-		//m_SecondCamera.AddComponent<NativeScriptComponent>().Bind<CameraController>();	
-		m_EditorScene = m_ActiveScene;
-		m_SceneHierarchyPanel.SetContext(m_EditorScene);
 	}
 
 	void EditorLayer::OnDetach()
