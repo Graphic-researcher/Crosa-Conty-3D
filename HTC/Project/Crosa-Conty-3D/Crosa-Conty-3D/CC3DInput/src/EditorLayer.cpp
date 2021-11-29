@@ -39,8 +39,8 @@ namespace CC3D {
 
 
 		// Entity
-		EntityTest1();
-		//EntityTest2();
+		//EntityTest1();
+		EntityTest2();
 		
 		m_EditorScene = m_ActiveScene;
 		m_SceneHierarchyPanel.SetContext(m_EditorScene);
@@ -100,11 +100,12 @@ namespace CC3D {
 
 	void EditorLayer::EntityTest2()
 	{
-		auto square = m_ActiveScene->CreateEntity("Cube");
+		auto square = m_ActiveScene->CreateEntity("Sphere");
 		//square.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
-		square.AddComponent<MeshComponent>(MeshType::Cube);
-
-		
+		square.AddComponent<MeshComponent>();
+		//square.RemoveComponent<MeshComponent>();
+		auto square2 = m_ActiveScene->CreateEntity("Cube");
+		square2.AddComponent<MeshComponent>(MeshType::Cube);
 	//entt::entity entityIndex = m_Registry.create();
 	//Entity entity = { entityIndex, this };
 	//entity.AddComponent<TransformComponent>();
@@ -119,19 +120,6 @@ namespace CC3D {
 	//Ref<TriMesh> Mesh = CreateRef<TriMesh>(MeshType::Sphere);
 	////Mesh->Create(MeshType::Cube);
 	//mesh.Mesh = Mesh;
-
-		auto redSquare = m_ActiveScene->CreateEntity("Red Square");
-		redSquare.AddComponent<SpriteRendererComponent>(glm::vec4{ 1.0f, 0.0f, 0.0f, 1.0f });
-
-		m_SquareEntity = square;
-
-		//m_CameraEntity = m_ActiveScene->CreateEntity("Camera Entity");
-		//m_CameraEntity.AddComponent<CameraComponent>();
-
-		//m_SecondCamera = m_ActiveScene->CreateEntity("Clip-Space Entity");
-		//auto& cc = m_SecondCamera.AddComponent<CameraComponent>();
-
-
 	}
 
 	void EditorLayer::OnDetach()
@@ -155,7 +143,7 @@ namespace CC3D {
 		}
 
 		// Render
-		Renderer2D::ResetStats();
+		//Renderer2D::ResetStats();
 		m_Framebuffer->Bind();
 		RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		RenderCommand::Clear();
@@ -286,22 +274,22 @@ namespace CC3D {
 		m_SceneHierarchyPanel.OnImGuiRender();
 		m_ContentBrowserPanel.OnImGuiRender();
 
-		ImGui::Begin("Stats");
+		//ImGui::Begin("Stats");
 
-		std::string name = "Select Entity";
-		if (m_HoveredEntity)
-			name = m_HoveredEntity.GetComponent<TagComponent>().Tag;
-		ImGui::Text("Hovered Entity: %s", name.c_str());
+		//std::string name = "Select Entity";
+		//if (m_HoveredEntity)
+		//	name = m_HoveredEntity.GetComponent<TagComponent>().Tag;
+		//ImGui::Text("Hovered Entity: %s", name.c_str());
 
 
-		auto stats = Renderer2D::GetStats();
-		ImGui::Text("Renderer2D Stats:");
-		ImGui::Text("Draw Calls: %d", stats.DrawCalls);
-		ImGui::Text("Quads: %d", stats.QuadCount);
-		ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
-		ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
+		//auto stats = Renderer2D::GetStats();
+		//ImGui::Text("Renderer2D Stats:");
+		//ImGui::Text("Draw Calls: %d", stats.DrawCalls);
+		//ImGui::Text("Quads: %d", stats.QuadCount);
+		//ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
+		//ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
 
-		ImGui::End();
+//		ImGui::End();
 
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
 		ImGui::Begin("Viewport");
