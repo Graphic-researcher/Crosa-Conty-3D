@@ -1,4 +1,7 @@
 #include "cc3d_pch.h"
+
+//3D Render Dev:
+
 #include "CC3D/Scene/Scene.h"
 #include "CC3D/Scene/Components.h"
 #include "CC3D/Scene/Entity.h"
@@ -7,6 +10,8 @@
 #include "CC3D/Renderer/Renderer2D.h"
 
 #include <glm/glm.hpp>
+
+
 
 // Box2D
 #include "box2d/b2_world.h"
@@ -18,7 +23,7 @@
 namespace CC3D {
 	Scene::Scene()
 	{
-
+		m_DefaultShader = Shader::Create((std::string("assets/shaders/environment/default.glsl")));
 	}
 
 	Scene::~Scene()
@@ -246,6 +251,10 @@ namespace CC3D {
 		}
 
 		Renderer2D::EndScene();
+
+		//TODO: 3D Dev
+		RenderObject(camera,nullptr);
+
 	}
 
 	void Scene::OnViewportResize(uint32_t width, uint32_t height)
@@ -288,6 +297,67 @@ namespace CC3D {
 		}
 		return {};
 	}
+
+
+	void Scene::RenderObject(EditorCamera& camera, const Ref<Cubemap>& envMap)
+	{
+		RenderLight(camera);
+		auto group = m_Registry.view<TransformComponent>();
+
+		for (auto entity : group)
+		{
+			auto transform = group.get<TransformComponent>(entity);
+			if (m_Registry.any_of<MaterialComponent>(entity) && !m_LineMode)
+			{
+				m_Registry.get<MaterialComponent>(entity).Bind();
+				auto& material = m_Registry.get<MaterialComponent>(entity);
+				material.Bind(envMap);
+				material.Set(camera, transform.GetTransform());
+			}
+			else
+			{
+				m_DefaultShader->Bind();
+				m_DefaultShader->SetMat4("u_ViewProjection", camera.GetViewProjection());
+				m_DefaultShader->SetMat4("u_Transform", transform.GetTransform());
+			}
+
+			if (m_Registry.any_of<MeshComponent>(entity))
+			{
+				auto& mesh = m_Registry.get<MeshComponent>(entity);
+				mesh.Mesh->Draw(m_LineMode);
+			}
+		}
+
+	}
+
+	//TODO:3D Render Dev:
+	void Scene::RenderLight(const EditorCamera& camera)
+	{
+		auto group = m_Registry.view<TransformComponent>();
+
+		for (auto material : group)
+		{
+			if (m_Registry.any_of<MaterialComponent>(material))
+			{
+				std::vector<uint32_t> index(5);
+				m_Registry.get<MaterialComponent>(material).ResetLight();
+				for (auto light : group)
+				{
+					if (m_Registry.any_of<LightComponent>(light))
+					{
+						m_Registry.get<MaterialComponent>(material).AddLight(m_Registry.get<LightComponent>(light).Type);
+						auto& shader = m_Registry.get<MaterialComponent>(material).GetShader();
+						auto& position = m_Registry.get<TransformComponent>(light).Translation;
+						m_Registry.get<LightComponent>(light).Bind(shader, position, index[static_cast<uint32_t>(m_Registry.get<LightComponent>(light).Type)]);
+						index[static_cast<uint32_t>(m_Registry.get<LightComponent>(light).Type)]++;
+					}
+				}
+			}
+		}
+	}
+
+
+
 
 	template<typename T>
 	void Scene::OnComponentAdded(Entity entity, T& component)

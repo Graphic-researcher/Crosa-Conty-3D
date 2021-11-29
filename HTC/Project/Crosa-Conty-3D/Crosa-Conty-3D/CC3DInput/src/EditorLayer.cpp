@@ -22,7 +22,7 @@ namespace CC3D {
 	{
 		CC3D_PROFILE_FUNCTION();
 
-		m_CheckerboardTexture = Texture2D::Create("assets/textures/Checkerboard.png");
+		//m_CheckerboardTexture = Texture2D::Create("assets/textures/Checkerboard.png");
 		m_IconPlay = Texture2D::Create("Resources/Icons/PlayButton.png");
 		m_IconStop = Texture2D::Create("Resources/Icons/StopButton.png");
 
@@ -239,6 +239,7 @@ namespace CC3D {
 			ImGui::EndMenuBar();
 		}
 
+		//TODO : Add Editor Camera Inspector - Like Chaf maincameralayer Catch m_EditorCamera and put it into it
 		m_SceneHierarchyPanel.OnImGuiRender();
 		m_ContentBrowserPanel.OnImGuiRender();
 

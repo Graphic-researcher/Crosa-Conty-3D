@@ -27,8 +27,7 @@ namespace CC3D
 		switch (type)
 		{
 		case CC3D::MeshType::None:
-			//CC3D_CORE_ASSERT(false, "MeshType::None is unsupported mesh type!");
-			printf("MeshType::None is unsupported mesh type!\n");//temp
+			CC3D_CORE_ASSERT(false, "MeshType::None is unsupported mesh type!");
 			return;
 		case CC3D::MeshType::Plane:
 			CreatePlane(sample);
