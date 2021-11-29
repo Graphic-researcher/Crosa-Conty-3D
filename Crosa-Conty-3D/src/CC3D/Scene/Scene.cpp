@@ -107,13 +107,56 @@ namespace CC3D {
 		return entity;
 	}
 
+	Entity Scene::FindEntityByUUID(UUID uuid)
+	{
+		Entity entity;
+		m_Registry.each([&](auto entityID)
+			{
+				Entity e = { entityID, this };
+				UUID id = e.GetUUID();
+				if (id == uuid)
+				{
+					entity = e;
+					return e;
+				}
+				if (!e)
+				{
+					CC3D_CORE_WARN("Can't find Entity with UUID:{0}", uuid);
+					return Entity();
+				}
+			});
+		return entity;
+	}
+
 	void Scene::DestroyEntity(Entity entity)
 	{
-		if (entity.GetComponent<TransformComponent>().child.empty())
+		if (entity.GetComponent<TransformComponent>().children.empty())
+		{
+			Entity parent = entity.GetComponent<TransformComponent>().parent;
+
+			if (parent)
+			{
+				std::map<UUID,Entity>& children = parent.GetComponent<TransformComponent>().children;
+				children.erase(entity.GetUUID());
+			}
+
 			m_Registry.destroy(entity);//Entity中有entt:entity的重载
-		else
-			for (int i = 0; i < entity.GetComponent<TransformComponent>().child.size(); i++)
-				DestroyEntity(entity.GetComponent<TransformComponent>().child[i]);
+		}
+			
+		else {
+			for (auto e : entity.GetComponent<TransformComponent>().children)
+			{
+				// TODO 
+				size_t size = entity.GetComponent<TransformComponent>().children.size();
+
+				DestroyEntity(e.second);
+
+				if (entity.GetComponent<TransformComponent>().children.size() != size)
+					break;
+			}
+			m_Registry.destroy(entity);
+		}
+				
 	}
 
 

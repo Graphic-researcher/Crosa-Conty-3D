@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CC3D/Scene/Entity.h"
+#include "CC3D/Math/Math.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -20,7 +21,7 @@ namespace CC3D {
 		glm::vec3 GlobalScale = glm::vec3{ 1.0f, 1.0f, 1.0f }; // TODO GlobalScale
 
 		Entity parent;
-		std::vector<Entity> child;
+		std::map<UUID,Entity> children;
 
 		TransformComponent() = default;
 		TransformComponent(const TransformComponent&) = default;
@@ -39,24 +40,17 @@ namespace CC3D {
 			else
 			{
 				Entity p = this->parent;
-				GlobalTranslation = Translation;
-				GlobalRotation = Rotation;
-				GlobalScale = Scale;
 				glm::mat4 Local2Global = glm::mat4(1.0f);
 
 				while (p) 
 				{
-					// TODO Change to Matrix perform
-					GlobalTranslation += p.GetComponent<TransformComponent>().Translation;
-					GlobalRotation += p.GetComponent<TransformComponent>().Rotation;
-					GlobalScale *= p.GetComponent<TransformComponent>().Scale;
-					//glm::mat4 transform = p->GetComponent<TransformComponent>().GetLocalTransform();
-					//Local2Global = transform * Local2Global;
+					glm::mat4 transform = p.GetComponent<TransformComponent>().GetLocalTransform();
+					Local2Global =  Local2Global * transform;
 					p = p.GetComponent<TransformComponent>().parent;
 				}
-	/*			GlobalTranslation = Local2Global * glm::vec4(GlobalTranslation, 0.0f);
-				GlobalRotation = Local2Global * glm::vec4(GlobalRotation, 0.0f);
-				GlobalScale = Local2Global * glm::vec4(GlobalScale, 0.0f);*/
+				// TODO 优化性能
+				Local2Global *= GetLocalTransform();
+				Math::DecomposeTransform(Local2Global, GlobalTranslation, GlobalRotation, GlobalScale);
 			}
 
 			

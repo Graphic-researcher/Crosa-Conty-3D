@@ -1,0 +1,32 @@
+Scene: Untitled
+Entities:
+  - Entity: 17692512712977707925
+    TagComponent:
+      Tag: subSprite1
+    TransformComponent:
+      Parent: 18080991867320750700
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+  - Entity: 15577098351356379665
+    TagComponent:
+      Tag: subSprite
+    TransformComponent:
+      Parent: 18080991867320750700
+      Translation: [1.70000005, 0, 0]
+      Rotation: [-0.0261799395, 0, 0]
+      Scale: [1, 1, 1]
+    SpriteRendererComponent:
+      Color: [1, 1, 1, 1]
+  - Entity: 18080991867320750700
+    TagComponent:
+      Tag: Sprite
+    TransformComponent:
+      Children:
+        - 15577098351356379665
+        - 17692512712977707925
+      Translation: [0, 0, 0]
+      Rotation: [0, -0.879645944, 0]
+      Scale: [1, 1, 1]
+    SpriteRendererComponent:
+      Color: [1, 1, 1, 1]

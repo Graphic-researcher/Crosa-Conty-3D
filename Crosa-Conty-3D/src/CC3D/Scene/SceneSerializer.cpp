@@ -84,6 +84,7 @@ namespace YAML {
 			return true;
 		}
 	};
+
 }
 
 namespace CC3D {
@@ -161,7 +162,18 @@ namespace CC3D {
 			out << YAML::BeginMap; // TransformComponent
 
 			auto& tc = entity.GetComponent<TransformComponent>();
-			out << YAML::Key << "Parent" << YAML::Value << tc.parent.GetUUID();
+
+			if (tc.parent)
+				out << YAML::Key << "Parent" << YAML::Value << tc.parent.GetUUID();
+
+			if (!tc.children.empty())
+			{
+				out << YAML::Key << "Children"<< YAML::BeginSeq;
+				for (auto e : tc.children)
+					out << e.second.GetUUID();
+				out << YAML::EndSeq;
+			}
+			
 			out << YAML::Key << "Translation" << YAML::Value << tc.Translation;
 			out << YAML::Key << "Rotation" << YAML::Value << tc.Rotation;
 			out << YAML::Key << "Scale" << YAML::Value << tc.Scale;
@@ -248,6 +260,7 @@ namespace CC3D {
 				if (!entity)
 					return;
 
+				CC3D_CORE_TRACE("Serializing Entity:"+entity.GetComponent<TagComponent>().Tag);
 				SerializeEntity(out, entity);
 			});
 		out << YAML::EndSeq;
@@ -284,6 +297,7 @@ namespace CC3D {
 		auto entities = data["Entities"];
 		if (entities)
 		{
+			// others
 			for (auto entity : entities)
 			{
 				uint64_t uuid = entity["Entity"].as<uint64_t>();
@@ -296,16 +310,6 @@ namespace CC3D {
 				CC3D_CORE_TRACE("Deserialized entity with ID = {0}, name = {1}", uuid, name);
 
 				Entity deserializedEntity = m_Scene->CreateEntityWithUUID(uuid, name);
-
-				auto transformComponent = entity["TransformComponent"];
-				if (transformComponent)
-				{
-					// Entities always have transforms
-					auto& tc = deserializedEntity.GetComponent<TransformComponent>();
-					tc.GlobalTranslation = transformComponent["Translation"].as<glm::vec3>();
-					tc.GlobalRotation = transformComponent["Rotation"].as<glm::vec3>();
-					tc.GlobalScale = transformComponent["Scale"].as<glm::vec3>();
-				}
 
 				auto cameraComponent = entity["CameraComponent"];
 				if (cameraComponent)
@@ -352,6 +356,35 @@ namespace CC3D {
 					bc2d.Friction = boxCollider2DComponent["Friction"].as<float>();
 					bc2d.Restitution = boxCollider2DComponent["Restitution"].as<float>();
 					bc2d.RestitutionThreshold = boxCollider2DComponent["RestitutionThreshold"].as<float>();
+				}
+			}
+
+			// tranform is especial because it save relationship between Entity
+			for (auto entity : entities)
+			{
+				uint64_t uuid = entity["Entity"].as<uint64_t>();
+				Entity deserializedEntity = m_Scene->FindEntityByUUID(uuid);
+				CC3D_CORE_ASSERT(deserializedEntity, "Can't serialize entity without UUID");
+
+				auto transformComponent = entity["TransformComponent"];
+				if (transformComponent)
+				{
+					// Entities always have transforms
+					auto& tc = deserializedEntity.GetComponent<TransformComponent>();
+
+					if (transformComponent["Parent"].IsDefined())
+						tc.parent = m_Scene->FindEntityByUUID(transformComponent["Parent"].as<uint64_t>());
+
+					for (auto child : transformComponent["Children"])
+					{
+						uint64_t childID = child.as<uint64_t>();
+						Entity c = m_Scene->FindEntityByUUID(childID);
+						tc.children.emplace(childID, c);
+					}
+
+					tc.Translation = transformComponent["Translation"].as<glm::vec3>();
+					tc.Rotation = transformComponent["Rotation"].as<glm::vec3>();
+					tc.Scale = transformComponent["Scale"].as<glm::vec3>();
 				}
 			}
 		}

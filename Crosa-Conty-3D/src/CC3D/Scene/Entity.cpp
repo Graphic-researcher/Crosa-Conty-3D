@@ -11,7 +11,7 @@ namespace CC3D {
 	{
 		// Entity 是通过entt的神秘id老寻址的，所以不需要用指针，用指针反而会出错
 		other.GetComponent<TransformComponent>().parent = *this;
-		this->GetComponent<TransformComponent>().child.push_back(other);
+		this->GetComponent<TransformComponent>().children.emplace(other.GetUUID(),other);
 	}
 
 }

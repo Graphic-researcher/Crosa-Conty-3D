@@ -108,17 +108,22 @@ namespace CC3D {
 		{
 			ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_SpanAvailWidth;
 			
-			if (!entity.GetComponent<TransformComponent>().child.empty())
+			if (!entity.GetComponent<TransformComponent>().children.empty())
 			{
-				for (int i = 0; i < entity.GetComponent<TransformComponent>().child.size(); i++)
+				for (auto e : entity.GetComponent<TransformComponent>().children)
 				{
-					Entity subEntity = entity.GetComponent<TransformComponent>().child[i];
-					DrawEntityNode(subEntity);
+					// 判断child前后是否删除子实体 TODO
+					size_t size = entity.GetComponent<TransformComponent>().children.size();
+
+					DrawEntityNode(e.second);
+
+					if (entity.GetComponent<TransformComponent>().children.size() != size)
+						break;
 				}
 			}
 			ImGui::TreePop();
 		}
-
+		
 		// TODO Add drag
 		if (entityDeleted)
 		{
