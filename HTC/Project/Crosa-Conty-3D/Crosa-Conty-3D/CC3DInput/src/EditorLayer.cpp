@@ -106,6 +106,9 @@ namespace CC3D {
 		//square.RemoveComponent<MeshComponent>();
 		auto square2 = m_ActiveScene->CreateEntity("Cube");
 		square2.AddComponent<MeshComponent>(MeshType::Cube);
+
+		auto square3 = m_ActiveScene->CreateEntity("Plane");
+		square3.AddComponent<MeshComponent>(MeshType::Plane);
 	//entt::entity entityIndex = m_Registry.create();
 	//Entity entity = { entityIndex, this };
 	//entity.AddComponent<TransformComponent>();
