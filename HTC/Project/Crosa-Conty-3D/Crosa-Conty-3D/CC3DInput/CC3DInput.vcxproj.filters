@@ -61,7 +61,6 @@
     <None Include="assets\shaders\Texture.glsl" />
     <None Include="assets\shaders\material\default.glsl" />
     <None Include="assets\shaders\material\emission.glsl" />
-    <None Include="assets\shaders\material\geo_texture.glsl" />
     <None Include="assets\shaders\material\pbr.glsl" />
     <None Include="assets\shaders\material\phong.glsl" />
     <None Include="assets\shaders\environment\background.glsl" />

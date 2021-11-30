@@ -114,6 +114,14 @@ namespace CC3D {
 		std::string str = "assets/Meshes/cessna.obj";
 		Ref<TriMesh> m_Mesh = CreateRef<TriMesh>(str);
 		square4.AddComponent<MeshComponent>(m_Mesh);
+		square4.AddComponent<MaterialComponent>();
+
+		m_SquareEntity = m_ActiveScene->CreateEntity("Car2");
+		str = "assets/Meshes/cow-nonormals.obj";
+		Ref<TriMesh> m_Mesh2 = CreateRef<TriMesh>();
+		m_Mesh2 = m_Mesh2->Create(str);
+		m_SquareEntity.AddComponent<MeshComponent>(m_Mesh2);
+		m_SquareEntity.AddComponent<MaterialComponent>();
 	}
 
 	void EditorLayer::OnDetach()
@@ -179,7 +187,7 @@ namespace CC3D {
 		{
 			int pixelData = m_Framebuffer->ReadPixel(1, mouseX, mouseY);
 			m_HoveredEntity = pixelData == -10 ? Entity() : Entity((entt::entity)pixelData, m_ActiveScene.get());
-			CC3D_CORE_WARN("Pixel data = {0}", pixelData);
+			//CC3D_CORE_WARN("Pixel data = {0}", pixelData);
 		}
 
 		m_Framebuffer->Unbind();

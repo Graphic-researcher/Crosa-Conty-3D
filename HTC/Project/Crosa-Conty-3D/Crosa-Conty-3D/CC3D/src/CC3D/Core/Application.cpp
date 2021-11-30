@@ -99,7 +99,7 @@ namespace CC3D {
 		dispatcher.Dispatch<WindowCloseEvent>(CC3D_BIND_EVENT_FN(Application::OnWindowClose));
 		dispatcher.Dispatch<WindowResizeEvent>(CC3D_BIND_EVENT_FN(Application::OnWindowResize));
 
-		CC3D_CORE_INFO("{0}", e);
+		//CC3D_CORE_INFO("{0}", e);
 		for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it) {
 			if (e.Handled)
 				break;
