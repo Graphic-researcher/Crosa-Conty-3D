@@ -104,7 +104,7 @@ namespace CC3D {
 		//square.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
 		square.AddComponent<MeshComponent>();
 		square.AddComponent<MaterialComponent>(MaterialType::Material_Emission);
-		auto& lightType = square.AddComponent<LightComponent>();
+		auto lightType = square.AddComponent<LightComponent>();
 		lightType.SetType(LightType::LightType_SpotLight);
 		//square.RemoveComponent<MeshComponent>();
 		auto square2 = m_ActiveScene->CreateEntity("Cube");
@@ -115,10 +115,14 @@ namespace CC3D {
 		square3.AddComponent<MeshComponent>(MeshType::Plane);
 
 		auto square4 = m_ActiveScene->CreateEntity("Car");
-		std::string str = "assets/Meshes/cessna.obj";
+		std::string str = "assets/Meshes/alfa147_combine.obj";
 		Ref<TriMesh> m_Mesh = CreateRef<TriMesh>(str);
 		square4.AddComponent<MeshComponent>(m_Mesh);
-		square4.AddComponent<MaterialComponent>(MaterialType::Material_Phong);
+		auto mat = square4.AddComponent<MaterialComponent>(MaterialType::Material_Phong);
+		m_CheckerboardTexture = Texture2D::Create("assets/textures/Checkerboard.png");
+		auto phongMaterial = CastRef<PhongMaterial>(mat.MaterialSrc);
+		phongMaterial->DiffuseTexture = m_CheckerboardTexture;
+		phongMaterial->Bind();
 
 		m_SquareEntity = m_ActiveScene->CreateEntity("Cow");
 		str = "assets/Meshes/cow-nonormals.obj";

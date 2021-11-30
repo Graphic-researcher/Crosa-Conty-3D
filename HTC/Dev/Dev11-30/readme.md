@@ -208,9 +208,15 @@ void EditorLayer::EntityTest2()
 
 ![spotlight](spotlight.PNG)
 
+### Texture Loading
 
+code version : here
 
+```
 
+```
+
+![image-20211130212633331](TexLoad.png)
 
 
 
