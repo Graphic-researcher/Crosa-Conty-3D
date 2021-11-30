@@ -11,6 +11,7 @@ namespace CC3D
 
 	Model::Model(std::string const& path)
 	{
+        meshes = CreateRef<MeshTree>();
 		loadModel(path);
 	}
 	void Model::loadModel(std::string const& path)
@@ -28,9 +29,9 @@ namespace CC3D
         m_Path = path.substr(0, path.find_last_of('/'));
 
         // process ASSIMP's root node recursively
-        processNode(scene->mRootNode, scene);
+        processNode(scene->mRootNode, scene, meshes);
     }
-    void Model::processNode(aiNode* node, const aiScene* scene)
+    void Model::processNode(aiNode* node, const aiScene* scene, Ref<MeshTree> currentMeshes)
     {
         // process each mesh located at the current node
         for (unsigned int i = 0; i < node->mNumMeshes; i++)
@@ -38,12 +39,15 @@ namespace CC3D
             // the node object only contains indices to index the actual objects in the scene. 
             // the scene contains all the data, node is just to keep stuff organized (like relations between nodes).
             aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
-            meshes.push_back(processMesh(mesh, scene));
+            meshes->AddMesh(processMesh(mesh, scene));
+            //meshes.push_back(processMesh(mesh, scene));
         }
         // after we've processed all of the meshes (if any) we then recursively process each of the children nodes
         for (unsigned int i = 0; i < node->mNumChildren; i++)
         {
-            processNode(node->mChildren[i], scene);
+            Ref<MeshTree> child = CreateRef<MeshTree>();     
+            processNode(node->mChildren[i], scene, child);
+            meshes->AddSubMesh(child);
         }
 
     }

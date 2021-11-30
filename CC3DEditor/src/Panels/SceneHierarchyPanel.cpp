@@ -49,20 +49,39 @@ namespace CC3D {
 			{
 				if (ImGui::MenuItem("Create Empty Entity"))
 					m_Context->CreateEntity("Empty Entity");
-				if (ImGui::MenuItem("Create Sprite"))
+				if (ImGui::MenuItem("Create Sprite(tranform test)"))
 				{
-					//这里必须使用不会销毁的指针
+					// 这里必须使用不会销毁的指针
 					// entt 不是通过指针来寻找实体的
 					Entity sprite = m_Context->CreateEntity("Sprite");
 					sprite.AddComponent<SpriteRendererComponent>();
 					Entity s = m_Context->CreateEntity("subSprite");
 					Entity s1 = m_Context->CreateEntity("subSprite1");
+					s.AddSubEntity(s1);
 					sprite.AddSubEntity(s);
 					sprite.AddSubEntity(s1);
 				}
 
 				ImGui::EndPopup();
 			}
+
+			//const wchar_t* path = (const wchar_t*)payload->Data;
+			//std::filesystem::path texturePath = std::filesystem::path(g_AssetPath) / path;
+			//Ref<Texture2D> texture = Texture2D::Create(texturePath.string());
+			//if (texture->IsLoaded())
+			//	component.Texture = texture;
+			//else
+			//	CC3D_WARN("Could not load texture {0}", texturePath.filename().string());
+
+			//if (ImGui::BeginDragDropTarget())
+			//{
+			//	if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("CONTENT_BROWSER_ITEM"))
+			//	{
+			//		const wchar_t* path = (const wchar_t*)payload->Data;
+			//		OpenScene(std::filesystem::path(g_AssetPath) / path);
+			//	}
+			//	ImGui::EndDragDropTarget();
+			//}
 		}
 
 		ImGui::End();

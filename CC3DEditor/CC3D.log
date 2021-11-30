@@ -1,50 +1,10 @@
-[22:08:42] [warning] CC3D: Initialized Log
-[22:08:42] [info] APP: Hello Crosa Conty 3D!
-[22:08:42] [info] CC3D: Creating window CC3D Editor (1280, 720)
-[22:08:42] [info] CC3D: OpenGL Info:
-[22:08:42] [info] CC3D:   Vendor: NVIDIA Corporation
-[22:08:42] [info] CC3D:   Renderer: GeForce GTX 1660 Ti/PCIe/SSE2
-[22:08:42] [info] CC3D:   Version: 4.6.0 NVIDIA 462.31
-[22:08:42] [info] CC3D:   GLSL_Version: 4.60 NVIDIA
-[22:08:43] [error] CC3D: Failed to load image!: assets\textures\124.png
-[22:08:43] [error] CC3D: Program/shader state performance warning: Vertex shader in program 1 is being recompiled based on GL state.
-[22:08:47] [trace] CC3D: Deserializing scene 'Untitled'
-[22:08:47] [trace] CC3D: Deserialized entity with ID = 17692512712977707925, name = subSprite1
-[22:08:47] [trace] CC3D: Deserialized entity with ID = 15577098351356379665, name = subSprite
-[22:08:47] [trace] CC3D: Deserialized entity with ID = 18080991867320750700, name = Sprite
-[22:09:27] [trace] CC3D: Serializing Entity:Sprite
-[22:09:27] [trace] CC3D: Serializing Entity:subSprite
-[22:09:27] [trace] CC3D: Serializing Entity:subSprite1
-[22:09:28] [trace] CC3D: Serializing Entity:Sprite
-[22:09:28] [trace] CC3D: Serializing Entity:subSprite
-[22:09:28] [trace] CC3D: Serializing Entity:subSprite1
-[22:09:29] [trace] CC3D: Serializing Entity:Sprite
-[22:09:29] [trace] CC3D: Serializing Entity:subSprite
-[22:09:29] [trace] CC3D: Serializing Entity:subSprite1
-[22:09:30] [trace] CC3D: Serializing Entity:Sprite
-[22:09:30] [trace] CC3D: Serializing Entity:subSprite
-[22:09:30] [trace] CC3D: Serializing Entity:subSprite1
-[22:09:31] [trace] CC3D: Deserializing scene 'Untitled'
-[22:09:31] [trace] CC3D: Deserialized entity with ID = 18080991867320750700, name = Sprite
-[22:09:31] [trace] CC3D: Deserialized entity with ID = 15577098351356379665, name = subSprite
-[22:09:31] [trace] CC3D: Deserialized entity with ID = 17692512712977707925, name = subSprite1
-[22:09:32] [trace] CC3D: Deserializing scene 'Untitled'
-[22:09:32] [trace] CC3D: Deserialized entity with ID = 18080991867320750700, name = Sprite
-[22:09:32] [trace] CC3D: Deserialized entity with ID = 15577098351356379665, name = subSprite
-[22:09:32] [trace] CC3D: Deserialized entity with ID = 17692512712977707925, name = subSprite1
-[22:09:32] [trace] CC3D: Deserializing scene 'Untitled'
-[22:09:32] [trace] CC3D: Deserialized entity with ID = 18080991867320750700, name = Sprite
-[22:09:32] [trace] CC3D: Deserialized entity with ID = 15577098351356379665, name = subSprite
-[22:09:32] [trace] CC3D: Deserialized entity with ID = 17692512712977707925, name = subSprite1
-[22:09:33] [trace] CC3D: Deserializing scene 'Untitled'
-[22:09:33] [trace] CC3D: Deserialized entity with ID = 18080991867320750700, name = Sprite
-[22:09:33] [trace] CC3D: Deserialized entity with ID = 15577098351356379665, name = subSprite
-[22:09:33] [trace] CC3D: Deserialized entity with ID = 17692512712977707925, name = subSprite1
-[22:09:34] [trace] CC3D: Deserializing scene 'Untitled'
-[22:09:35] [trace] CC3D: Deserializing scene 'Untitled'
-[22:09:35] [trace] CC3D: Deserialized entity with ID = 18080991867320750700, name = Sprite
-[22:09:35] [trace] CC3D: Deserialized entity with ID = 15577098351356379665, name = subSprite
-[22:09:35] [trace] CC3D: Deserialized entity with ID = 17692512712977707925, name = subSprite1
-[22:09:36] [trace] CC3D: Serializing Entity:subSprite1
-[22:09:36] [trace] CC3D: Serializing Entity:subSprite
-[22:09:36] [trace] CC3D: Serializing Entity:Sprite
+[21:28:26] [warning] CC3D: Initialized Log
+[21:28:26] [info] APP: Hello Crosa Conty 3D!
+[21:28:26] [info] CC3D: Creating window CC3D Editor (1280, 720)
+[21:28:27] [info] CC3D: OpenGL Info:
+[21:28:27] [info] CC3D:   Vendor: NVIDIA Corporation
+[21:28:27] [info] CC3D:   Renderer: GeForce GTX 1660 Ti/PCIe/SSE2
+[21:28:27] [info] CC3D:   Version: 4.6.0 NVIDIA 462.31
+[21:28:27] [info] CC3D:   GLSL_Version: 4.60 NVIDIA
+[21:28:27] [error] CC3D: Failed to load image!: assets\textures\124.png
+[21:28:27] [error] CC3D: Program/shader state performance warning: Vertex shader in program 1 is being recompiled based on GL state.

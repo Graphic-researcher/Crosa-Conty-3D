@@ -24,6 +24,7 @@ namespace CC3D
 
     class Mesh {
     public:
+        Mesh() = default;
         Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices);
         ~Mesh() = default;
 
