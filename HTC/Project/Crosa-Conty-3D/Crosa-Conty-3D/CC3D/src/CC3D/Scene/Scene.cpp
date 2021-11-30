@@ -431,4 +431,8 @@ namespace CC3D {
 	void Scene::OnComponentAdded<MeshComponent>(Entity entity, MeshComponent& component)
 	{
 	}
+	template<>
+	void Scene::OnComponentAdded<LightComponent>(Entity entity, LightComponent& component)
+	{
+	}
 }///CC3D namespace

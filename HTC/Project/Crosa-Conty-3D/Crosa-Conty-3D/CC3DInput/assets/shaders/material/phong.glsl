@@ -1,5 +1,5 @@
 #type vertex
-#version 330 core
+#version 450 
 
 layout(location = 0) in vec3 a_Position;
 layout(location = 1) in vec2 a_TexCoord;
@@ -22,15 +22,19 @@ uniform mat4 u_Transform;
 uniform vec3 u_ViewPos;
 uniform float u_HeightScale;
 uniform Material u_Material;
+uniform int a_EntityID;
 
 out vec2 v_TexCoords;
 out vec3 v_Normal;
 out vec3 v_FragPos;
 out mat3 TBN;
 out vec3 v_ViewPos;
+out flat int v_EntityID;
 
 void main()
 {    
+
+	v_EntityID = a_EntityID;
     //TBN
     vec3 T=normalize(vec3(u_Transform*vec4(a_Tangent,0.0)));
     vec3 B=normalize(vec3(u_Transform*vec4(a_Bitangent,0.0)));
@@ -52,15 +56,17 @@ void main()
 }
 
 #type fragment
-#version 330 core
+#version 450 
 
 layout(location = 0) out vec4 FragColor;
+layout(location = 1) out int color1;
 
 in vec2 v_TexCoords;
 in vec3 v_Normal;
 in vec3 v_FragPos;
 in vec3 v_ViewPos;
 in mat3 TBN;
+in flat int v_EntityID;
 
 struct Material
 {
@@ -243,4 +249,5 @@ void main()
         result+=CalculateSpotLight(u_SpotLight[i]);
     }
     FragColor=vec4(result*u_Material.color,1.0);
+	color1 = v_EntityID;
 }

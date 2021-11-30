@@ -1,5 +1,5 @@
 #type vertex
-#version 330 core
+#version 450 
 
 layout(location = 0) in vec3 a_Position;
 layout(location = 1) in vec2 a_TexCoord;
@@ -24,13 +24,18 @@ uniform mat4 u_ViewProjection;
 uniform mat4 u_Transform;
 uniform float u_HeightScale;
 uniform Material u_Material;
+uniform int a_EntityID;
 
 out vec2 v_TexCoords;
 out vec3 v_Normal;
 out vec3 v_FragPos;
+out flat int v_EntityID;
 
 void main()
 {    
+
+	v_EntityID = a_EntityID;
+    
     float height=texture(u_Material.displacementMap,a_TexCoord).r;
     height=u_HeightScale*height;
 
@@ -42,13 +47,15 @@ void main()
 
 
 #type fragment
-#version 330 core
+#version 450
 
 layout(location = 0) out vec4 FragColor;
+layout(location = 1) out int color1;
 
 in vec2 v_TexCoords;
 in vec3 v_Normal;
 in vec3 v_FragPos;
+in flat int v_EntityID;
 
 struct Material
 {
@@ -337,4 +344,5 @@ void main()
     color=pow(color,vec3(1.0/2.2));
 
     FragColor=vec4(color,1.0);
+	color1 = v_EntityID;
 }
