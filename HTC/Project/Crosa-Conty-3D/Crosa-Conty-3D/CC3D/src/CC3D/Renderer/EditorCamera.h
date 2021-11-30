@@ -54,6 +54,7 @@ namespace CC3D {
 
 		glm::mat4 m_ViewMatrix;
 		glm::vec3 m_Position = { 0.0f, 0.0f, 0.0f };
+		glm::vec3 m_Position_Offset = { 0.0f, 0.0f, 0.0f };
 		glm::vec3 m_FocalPoint = { 0.0f, 0.0f, 0.0f };
 
 		glm::vec2 m_InitialMousePosition = { 0.0f, 0.0f };
@@ -62,6 +63,9 @@ namespace CC3D {
 		float m_Pitch = 0.0f, m_Yaw = 0.0f;
 
 		float m_ViewportWidth = 1280, m_ViewportHeight = 720;
+
+		//New Paras:
+		float m_Speed = 10.0f;
 	};
 
 }

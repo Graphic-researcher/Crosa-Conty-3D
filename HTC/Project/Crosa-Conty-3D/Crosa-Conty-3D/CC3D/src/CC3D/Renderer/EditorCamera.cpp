@@ -1,6 +1,6 @@
 #include "cc3d_pch.h"
 #include "CC3D/Renderer/EditorCamera.h"
-
+#include "CC3D/Core/Application.h"
 #include "CC3D/Core/Input.h"
 #include "CC3D/Core/KeyCodes.h"
 #include "CC3D/Core/MouseCodes.h"
@@ -30,7 +30,7 @@ namespace CC3D {
 		m_Position = CalculatePosition();
 
 		glm::quat orientation = GetOrientation();
-		m_ViewMatrix = glm::translate(glm::mat4(1.0f), m_Position) * glm::toMat4(orientation);
+		m_ViewMatrix = glm::translate(glm::mat4(1.0f), m_Position + m_Position_Offset) * glm::toMat4(orientation);
 		m_ViewMatrix = glm::inverse(m_ViewMatrix);
 	}
 
@@ -73,6 +73,22 @@ namespace CC3D {
 				MouseRotate(delta);
 			else if (Input::IsMouseButtonPressed(Mouse::ButtonRight))
 				MouseZoom(delta.y);
+
+			//new paras:
+			glm::vec3 Position = m_Position_Offset;
+			if (Input::IsKeyPressed(KeyCode::Right))
+				Position -= m_Speed * ts * GetRightDirection();
+			if (Input::IsKeyPressed(KeyCode::Left))
+				Position += m_Speed * ts * GetRightDirection();
+			if (Input::IsKeyPressed(KeyCode::Up))
+				Position += m_Speed * ts * GetForwardDirection();
+			if (Input::IsKeyPressed(KeyCode::Down))
+				Position -= m_Speed * ts * GetForwardDirection();
+			if (Input::IsKeyPressed(KeyCode::N))
+				Position += m_Speed * ts * GetUpDirection();
+			if (Input::IsKeyPressed(KeyCode::M))
+				Position -= m_Speed * ts * GetUpDirection();
+			m_Position_Offset = Position;
 		}
 
 		UpdateView();

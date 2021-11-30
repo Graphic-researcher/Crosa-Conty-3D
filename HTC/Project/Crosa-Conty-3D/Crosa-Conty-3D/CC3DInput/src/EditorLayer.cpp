@@ -45,7 +45,7 @@ namespace CC3D {
 		m_EditorScene = m_ActiveScene;
 		m_SceneHierarchyPanel.SetContext(m_EditorScene);
 	}
-
+#pragma region Entity Test , You can delete them after everything works well
 	void EditorLayer::EntityTest1()
 	{
 		auto square = m_ActiveScene->CreateEntity("Green Square");
@@ -132,7 +132,7 @@ namespace CC3D {
 		auto CookTorranceMaterial = CastRef<CookTorranceBRDF>(mat3.MaterialSrc);
 		CookTorranceMaterial->AlbedoTexture = m_CheckerboardTexture;
 	}
-
+#pragma endregion
 	void EditorLayer::OnDetach()
 	{
 		CC3D_PROFILE_FUNCTION();
