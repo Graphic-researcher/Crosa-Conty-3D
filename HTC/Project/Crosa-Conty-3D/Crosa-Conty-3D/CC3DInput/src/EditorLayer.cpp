@@ -122,14 +122,15 @@ namespace CC3D {
 		m_CheckerboardTexture = Texture2D::Create("assets/textures/Checkerboard.png");
 		auto phongMaterial = CastRef<PhongMaterial>(mat.MaterialSrc);
 		phongMaterial->DiffuseTexture = m_CheckerboardTexture;
-		phongMaterial->Bind();
 
 		m_SquareEntity = m_ActiveScene->CreateEntity("Cow");
-		str = "assets/Meshes/cow-nonormals.obj";
+		str = "assets/Meshes/HiPolySphere.obj";
 		Ref<TriMesh> m_Mesh2 = CreateRef<TriMesh>();
 		m_Mesh2 = m_Mesh2->Create(str);
 		m_SquareEntity.AddComponent<MeshComponent>(m_Mesh2);
-		m_SquareEntity.AddComponent<MaterialComponent>(MaterialType::Material_Cook_Torrance);
+		auto mat3 = m_SquareEntity.AddComponent<MaterialComponent>(MaterialType::Material_Cook_Torrance);
+		auto CookTorranceMaterial = CastRef<CookTorranceBRDF>(mat3.MaterialSrc);
+		CookTorranceMaterial->AlbedoTexture = m_CheckerboardTexture;
 	}
 
 	void EditorLayer::OnDetach()

@@ -210,10 +210,29 @@ void EditorLayer::EntityTest2()
 
 ### Texture Loading
 
-code version : here
+code version : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/commit/553b553a2d5a28841bdd7909c5062ae62b8297af)
 
-```
+```c++
+void EditorLayer::EntityTest2()
+{
+	//...
 
+    auto square4 = m_ActiveScene->CreateEntity("Car");
+    std::string str = "assets/Meshes/alfa147_combine.obj";
+    Ref<TriMesh> m_Mesh = CreateRef<TriMesh>(str);
+    square4.AddComponent<MeshComponent>(m_Mesh);
+    auto mat = square4.AddComponent<MaterialComponent>(MaterialType::Material_Phong);
+    m_CheckerboardTexture = Texture2D::Create("assets/textures/Checkerboard.png");
+    auto phongMaterial = CastRef<PhongMaterial>(mat.MaterialSrc);
+    phongMaterial->DiffuseTexture = m_CheckerboardTexture;
+
+    m_SquareEntity = m_ActiveScene->CreateEntity("Cow");
+    str = "assets/Meshes/cow-nonormals.obj";
+    Ref<TriMesh> m_Mesh2 = CreateRef<TriMesh>();
+    m_Mesh2 = m_Mesh2->Create(str);
+    m_SquareEntity.AddComponent<MeshComponent>(m_Mesh2);
+    m_SquareEntity.AddComponent<MaterialComponent>(MaterialType::Material_Cook_Torrance);
+}
 ```
 
 ![image-20211130212633331](TexLoad.png)
