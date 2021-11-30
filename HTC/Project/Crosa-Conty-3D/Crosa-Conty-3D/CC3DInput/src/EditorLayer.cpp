@@ -276,23 +276,17 @@ namespace CC3D {
 		m_SceneHierarchyPanel.OnImGuiRender();
 		m_ContentBrowserPanel.OnImGuiRender();
 
-		//ImGui::Begin("Stats");
+		StatusVisual();
 
-		//std::string name = "Select Entity";
-		//if (m_HoveredEntity)
-		//	name = m_HoveredEntity.GetComponent<TagComponent>().Tag;
-		//ImGui::Text("Hovered Entity: %s", name.c_str());
+		ViewPortUI();
 
+		UI_Toolbar();
 
-		//auto stats = Renderer2D::GetStats();
-		//ImGui::Text("Renderer2D Stats:");
-		//ImGui::Text("Draw Calls: %d", stats.DrawCalls);
-		//ImGui::Text("Quads: %d", stats.QuadCount);
-		//ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
-		//ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
+		ImGui::End();//dockspace end
+	}
 
-//		ImGui::End();
-
+	void EditorLayer::ViewPortUI()
+	{
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
 		ImGui::Begin("Viewport");
 
@@ -313,7 +307,7 @@ namespace CC3D {
 
 		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
 		ImGui::Image(reinterpret_cast<void*>(textureID), ImVec2{ m_ViewportSize.x, m_ViewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
-	
+
 		if (ImGui::BeginDragDropTarget())
 		{
 			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("CONTENT_BROWSER_ITEM"))
@@ -341,7 +335,7 @@ namespace CC3D {
 			// const glm::mat4& cameraProjection = camera.GetProjection();
 			// glm::mat4 cameraView = glm::inverse(cameraEntity.GetComponent<TransformComponent>().GetTransform());
 
-		    // Editor camera
+			// Editor camera
 			const glm::mat4& cameraProjection = m_EditorCamera.GetProjection();
 			glm::mat4 cameraView = m_EditorCamera.GetViewMatrix();
 
@@ -353,7 +347,7 @@ namespace CC3D {
 			// Snapping
 			bool snap = Input::IsKeyPressed(Key::LeftControl);
 			float snapValue = 0.5f; // Snap to 0.5m for translation/scale
-			// Snap to 45 degrees for rotation
+									// Snap to 45 degrees for rotation
 			if (m_GizmoType == ImGuizmo::OPERATION::ROTATE)
 				snapValue = 45.0f;
 
@@ -374,11 +368,27 @@ namespace CC3D {
 				tc.Scale = scale;
 			}
 		}
-		
+
 		ImGui::End();
 		ImGui::PopStyleVar();
+	}
 
-		UI_Toolbar();
+	void EditorLayer::StatusVisual()
+	{
+		ImGui::Begin("Stats");
+
+		std::string name = "Select Entity";
+		if (m_HoveredEntity)
+			name = m_HoveredEntity.GetComponent<TagComponent>().Tag;
+		ImGui::Text("Hovered Entity: %s", name.c_str());
+
+
+		//auto stats = Renderer2D::GetStats();
+		//ImGui::Text("Renderer2D Stats:");
+		//ImGui::Text("Draw Calls: %d", stats.DrawCalls);
+		//ImGui::Text("Quads: %d", stats.QuadCount);
+		//ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
+		//ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
 
 		ImGui::End();
 	}

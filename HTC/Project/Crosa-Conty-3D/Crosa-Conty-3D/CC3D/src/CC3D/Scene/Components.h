@@ -264,30 +264,35 @@ namespace CC3D {
 			}
 		}
 
-		void Set(EditorCamera& camera, const glm::mat4& transform)
+		void Set(EditorCamera& camera, const glm::mat4& transform,int entity)
 		{
 			switch (Type)
 			{
 			case MaterialType::Material_None:
 				MaterialSrc->m_Shader->SetMat4("u_ViewProjection", camera.GetViewProjection());
 				MaterialSrc->m_Shader->SetMat4("u_Transform", transform);
+				MaterialSrc->m_Shader->SetInt("a_EntityID", entity);
+
 				return;
 			case MaterialType::Material_Emission:
 			{
 				CastRef<EmissionMaterial>(MaterialSrc)->m_Shader->SetMat4("u_ViewProjection", camera.GetViewProjection());
 				CastRef<EmissionMaterial>(MaterialSrc)->m_Shader->SetMat4("u_Transform", transform);
 				CastRef<EmissionMaterial>(MaterialSrc)->m_Shader->SetFloat3("u_ViewPos", camera.GetPosition());
+				CastRef<EmissionMaterial>(MaterialSrc)->m_Shader->SetInt("a_EntityID", entity);
 				return;
 			}
 			case MaterialType::Material_Phong:
 				CastRef<PhongMaterial>(MaterialSrc)->m_Shader->SetMat4("u_ViewProjection", camera.GetViewProjection());
 				CastRef<PhongMaterial>(MaterialSrc)->m_Shader->SetMat4("u_Transform", transform);
 				CastRef<PhongMaterial>(MaterialSrc)->m_Shader->SetFloat3("u_ViewPos", camera.GetPosition());
+				CastRef<PhongMaterial>(MaterialSrc)->m_Shader->SetInt("a_EntityID", entity);
 				return;
 			case MaterialType::Material_Cook_Torrance:
 				CastRef<CookTorranceBRDF>(MaterialSrc)->m_Shader->SetMat4("u_ViewProjection", camera.GetViewProjection());
 				CastRef<CookTorranceBRDF>(MaterialSrc)->m_Shader->SetMat4("u_Transform", transform);
 				CastRef<CookTorranceBRDF>(MaterialSrc)->m_Shader->SetFloat3("u_ViewPos", camera.GetPosition());
+				CastRef<CookTorranceBRDF>(MaterialSrc)->m_Shader->SetInt("a_EntityID", entity);
 				return;
 			default:
 				break;

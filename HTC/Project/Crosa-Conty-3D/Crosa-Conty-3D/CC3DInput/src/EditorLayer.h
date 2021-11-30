@@ -23,6 +23,8 @@ namespace CC3D {
 
 		void OnUpdate(Timestep ts) override;
 		virtual void OnImGuiRender() override;
+		void ViewPortUI();
+		void StatusVisual();
 		void OnEvent(Event& e) override;
 	private:
 		bool OnKeyPressed(KeyPressedEvent& e);

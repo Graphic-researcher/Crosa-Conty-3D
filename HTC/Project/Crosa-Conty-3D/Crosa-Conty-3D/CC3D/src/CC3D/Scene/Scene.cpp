@@ -333,7 +333,7 @@ namespace CC3D {
 				m_Registry.get<MaterialComponent>(entity).Bind();
 				auto& material = m_Registry.get<MaterialComponent>(entity);
 				material.Bind(envMap);
-				material.Set(camera, transform.GetTransform());
+				material.Set(camera, transform.GetTransform(), (int)entity);
 			}
 			else
 			{

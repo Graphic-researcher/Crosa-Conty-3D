@@ -67,7 +67,7 @@ namespace CC3D
 
 	struct PhongMaterial :public Material
 	{
-		Ref<Shader> m_Shader = Shader::Create("assets/shader/material/phong.glsl");
+		Ref<Shader> m_Shader = Shader::Create("assets/shaders/material/phong.glsl");
 		Ref<Texture2D> DiffuseTexture = nullptr;
 		Ref<Texture2D> SpecularTexture = nullptr;
 		Ref<Texture2D> NormalTexture = nullptr;
@@ -106,7 +106,7 @@ namespace CC3D
 
 	struct CookTorranceBRDF :public Material
 	{
-		Ref<Shader> m_Shader = Shader::Create("assets/shader/material/pbr.glsl");
+		Ref<Shader> m_Shader = Shader::Create("assets/shaders/material/pbr.glsl");
 		Ref<Texture2D> AlbedoTexture = nullptr;
 		Ref<Texture2D> NormalTexture = nullptr;
 		Ref<Texture2D> MetallicTexture = nullptr;
