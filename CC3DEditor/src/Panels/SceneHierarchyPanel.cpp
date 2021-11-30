@@ -1,13 +1,13 @@
 #include "SceneHierarchyPanel.h"
 
-#include <imgui.h>
-#include <imgui_internal.h>
-
-#include <glm/gtc/type_ptr.hpp>
-
 #include "CC3D/Scene/Components.h"
+#include "CC3D/Renderer/Model.h"
+
 #include <cstring>
 #include <filesystem>
+#include <imgui.h>
+#include <imgui_internal.h>
+#include <glm/gtc/type_ptr.hpp>
 
 namespace CC3D {
 
@@ -28,6 +28,22 @@ namespace CC3D {
 	{
 		//ImGui::ShowDemoWindow();
 		ImGui::Begin("Scene Hierarchy");
+
+#pragma region DragModel
+		ImGuiID id = ImGui::GetCurrentWindow()->ID;
+		ImRect rect = ImGui::GetCurrentWindow()->Rect();
+		if (ImGui::BeginDragDropTargetCustom(rect, id))
+		{
+			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("CONTENT_BROWSER_ITEM"))
+			{
+				const wchar_t* path = (const wchar_t*)payload->Data;
+				std::filesystem::path modelPath = std::filesystem::path(g_AssetPath) / path;
+				Model model(modelPath.string());
+				CC3D_TRACE("Load Model");
+			}
+			ImGui::EndDragDropTarget();
+		}
+#pragma endregion
 
 		if (m_Context)
 		{
@@ -64,25 +80,10 @@ namespace CC3D {
 
 				ImGui::EndPopup();
 			}
-
-			//const wchar_t* path = (const wchar_t*)payload->Data;
-			//std::filesystem::path texturePath = std::filesystem::path(g_AssetPath) / path;
-			//Ref<Texture2D> texture = Texture2D::Create(texturePath.string());
-			//if (texture->IsLoaded())
-			//	component.Texture = texture;
-			//else
-			//	CC3D_WARN("Could not load texture {0}", texturePath.filename().string());
-
-			//if (ImGui::BeginDragDropTarget())
-			//{
-			//	if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("CONTENT_BROWSER_ITEM"))
-			//	{
-			//		const wchar_t* path = (const wchar_t*)payload->Data;
-			//		OpenScene(std::filesystem::path(g_AssetPath) / path);
-			//	}
-			//	ImGui::EndDragDropTarget();
-			//}
 		}
+
+
+		
 
 		ImGui::End();
 			
