@@ -50,6 +50,7 @@ namespace CC3D
         Ref<MeshTree> meshes;
         //std::vector<Mesh>    meshes;
 
+        operator bool() const { return meshes->m_Meshes.size() > 0 ? true : false; }
     private:
         void loadModel(std::string const& path);
         void processNode(aiNode* node, const aiScene* scene, Ref<MeshTree> currentMeshes);

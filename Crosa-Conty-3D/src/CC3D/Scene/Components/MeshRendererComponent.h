@@ -6,8 +6,9 @@ namespace CC3D {
 
 	struct MeshRendererComponent
 	{
-		Mesh mesh;
+		std::vector<Mesh> m_Meshes;
 		MeshRendererComponent() = default;
 		MeshRendererComponent(const MeshRendererComponent&) = default;
+		MeshRendererComponent(std::vector<Mesh>& meshes) :m_Meshes(meshes) {}
 	};
 }

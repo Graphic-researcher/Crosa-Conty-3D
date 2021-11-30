@@ -435,4 +435,9 @@ namespace CC3D {
 	{
 	}
 
+	template<>
+	void Scene::OnComponentAdded<MeshRendererComponent>(Entity entity, MeshRendererComponent& component)
+	{
+	}
+
 }

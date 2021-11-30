@@ -1,7 +1,7 @@
 #include "SceneHierarchyPanel.h"
 
-#include "CC3D/Scene/Components.h"
 #include "CC3D/Renderer/Model.h"
+#include "CC3D/Scene/Components.h"
 
 #include <cstring>
 #include <filesystem>
@@ -30,6 +30,7 @@ namespace CC3D {
 		ImGui::Begin("Scene Hierarchy");
 
 #pragma region DragModel
+		// using BeginDragDropTarget can only drag to items of Scene Hierarchy
 		ImGuiID id = ImGui::GetCurrentWindow()->ID;
 		ImRect rect = ImGui::GetCurrentWindow()->Rect();
 		if (ImGui::BeginDragDropTargetCustom(rect, id))
@@ -39,7 +40,16 @@ namespace CC3D {
 				const wchar_t* path = (const wchar_t*)payload->Data;
 				std::filesystem::path modelPath = std::filesystem::path(g_AssetPath) / path;
 				Model model(modelPath.string());
-				CC3D_TRACE("Load Model");
+				if (model)
+				{
+					CC3D_TRACE("Successed Load Model");
+					Entity entity = m_Context->CreateEntity("Model loading test");
+					// TODO ¶à²ã¼¶¸ömesh 
+				//while (model.meshes->HasChild())
+				//{
+					entity.AddComponent<MeshRendererComponent>(model.meshes->m_Meshes);
+					//}
+				}		
 			}
 			ImGui::EndDragDropTarget();
 		}
@@ -72,6 +82,7 @@ namespace CC3D {
 					Entity sprite = m_Context->CreateEntity("Sprite");
 					sprite.AddComponent<SpriteRendererComponent>();
 					Entity s = m_Context->CreateEntity("subSprite");
+					s.AddComponent<SpriteRendererComponent>();
 					Entity s1 = m_Context->CreateEntity("subSprite1");
 					s.AddSubEntity(s1);
 					sprite.AddSubEntity(s);
@@ -403,6 +414,11 @@ namespace CC3D {
 				ImGui::DragFloat("Restitution Threshold", &component.RestitutionThreshold, 0.01f, 0.0f);
 			});
 
+		DrawComponent<MeshRendererComponent>("Mesh Renderer", entity, [](auto& component)
+			{
+				ImGui::Text("Mesh Renderer");
+			});
+
 		ImGui::PushItemWidth(50);
 		ImGui::NewLine();
 		
@@ -447,7 +463,14 @@ namespace CC3D {
 				}
 			}
 
-
+			if (!m_SelectionContext.HasComponent<MeshRendererComponent>())
+			{
+				if (ImGui::MenuItem("Mesh Renderer"))
+				{
+					m_SelectionContext.AddComponent<MeshRendererComponent>();
+					ImGui::CloseCurrentPopup();
+				}
+			}
 
 			ImGui::EndPopup();
 		}

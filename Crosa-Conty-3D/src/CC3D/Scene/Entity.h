@@ -4,6 +4,7 @@
 #include "Scene.h"
 #include "CC3D/Scene/Components/IDComponent.h"
 #include "CC3D/Scene/Components/TagComponent.h"
+#include "CC3D/Scene/Components/MeshRendererComponent.h"
 
 
 #include "entt.hpp"
