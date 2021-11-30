@@ -4,7 +4,7 @@
 
 solve Select Entity Problem
 
-Test Material Light Mesh Shader Component to see if it works well
+Test Material Light Mesh Texture Shader Component to see if it works well
 
 If have enough time ,  draw a component ui
 
@@ -183,4 +183,26 @@ void EditorLayer::EntityTest2()
 ![image-20211130155636265](materialtest.png)
 
 ![MaterialTest](MaterialTest.gif)
+
+### Light Test
+
+code version : here
+
+```c++
+void EditorLayer::EntityTest2()
+{
+    auto square = m_ActiveScene->CreateEntity("Light");
+    //square.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
+    square.AddComponent<MeshComponent>();
+    square.AddComponent<MaterialComponent>(MaterialType::Material_Emission);
+    auto& lightType = square.AddComponent<LightComponent>();
+    lightType.SetType(LightType::LightType_SpotLight);
+    //square.RemoveComponent<MeshComponent>();
+    auto square2 = m_ActiveScene->CreateEntity("Cube");
+    square2.AddComponent<MeshComponent>(MeshType::Cube);
+    square2.AddComponent<LightComponent>();
+
+	//...
+}
+```
 

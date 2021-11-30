@@ -321,7 +321,7 @@ namespace CC3D {
 	struct MeshComponent
 	{
 		Ref<TriMesh> Mesh = CreateRef<TriMesh>();
-		MeshComponent():Mesh(TriMesh::Create(MeshType::Sphere, 1)) {}
+		MeshComponent() = default;
 		MeshComponent(const MeshComponent&) = default;
 		MeshComponent(const Ref<TriMesh>& mesh)
 			: Mesh(mesh) {}
