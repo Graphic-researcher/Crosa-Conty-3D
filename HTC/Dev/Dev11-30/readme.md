@@ -237,9 +237,70 @@ void EditorLayer::EntityTest2()
 
 ![image-20211130212633331](TexLoad.png)
 
+### New Editor Camera Structure
 
+code version : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/commit/04de0101538fbd74c609b01c00f6a9e1d3485558)
 
+```c++
+class EditorCamera : public Camera
+{
+    public:
 
+    void OnUpdate(Timestep ts);
+    void OnEvent(Event& e);
+    //...
+    glm::vec3 m_Position = { 0.0f, 0.0f, 0.0f };
+    //New Paras:
+    glm::vec3 m_Position_Offset = { 0.0f, 0.0f, 0.0f };
+    float m_Speed = 10.0f;
+};
+void EditorCamera::OnUpdate(Timestep ts)
+{
+    if (Input::IsKeyPressed(Key::LeftAlt))
+    {
+        const glm::vec2& mouse{ Input::GetMouseX(), Input::GetMouseY() };
+        glm::vec2 delta = (mouse - m_InitialMousePosition) * 0.003f;
+        m_InitialMousePosition = mouse;
+
+        if (Input::IsMouseButtonPressed(Mouse::ButtonMiddle))
+            MousePan(delta);
+        else if (Input::IsMouseButtonPressed(Mouse::ButtonLeft))
+            MouseRotate(delta);
+        else if (Input::IsMouseButtonPressed(Mouse::ButtonRight))
+            MouseZoom(delta.y);
+
+        //new paras:
+        glm::vec3 Position = m_Position_Offset;
+        if (Input::IsKeyPressed(KeyCode::Right))
+            Position -= m_Speed * ts * GetRightDirection();
+        if (Input::IsKeyPressed(KeyCode::Left))
+            Position += m_Speed * ts * GetRightDirection();
+        if (Input::IsKeyPressed(KeyCode::Up))
+            Position += m_Speed * ts * GetForwardDirection();
+        if (Input::IsKeyPressed(KeyCode::Down))
+            Position -= m_Speed * ts * GetForwardDirection();
+        if (Input::IsKeyPressed(KeyCode::N))
+            Position += m_Speed * ts * GetUpDirection();
+        if (Input::IsKeyPressed(KeyCode::M))
+            Position -= m_Speed * ts * GetUpDirection();
+        m_Position_Offset = Position;
+    }
+
+    UpdateView();
+}
+void EditorCamera::UpdateView()
+{
+    // m_Yaw = m_Pitch = 0.0f; // Lock the camera's rotation
+    m_Position = CalculatePosition();
+
+    glm::quat orientation = GetOrientation();
+    //Add the offset
+    m_ViewMatrix = glm::translate(glm::mat4(1.0f), m_Position + m_Position_Offset) * glm::toMat4(orientation);
+    m_ViewMatrix = glm::inverse(m_ViewMatrix);
+}
+```
+
+![EditorCam](EditorCam.gif)
 
 
 
