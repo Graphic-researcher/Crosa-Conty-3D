@@ -186,7 +186,7 @@ void EditorLayer::EntityTest2()
 
 ### Light Test
 
-code version : here
+code version : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/commit/d5d699ecab53ff39044241b773e58eefe1108346)
 
 ```c++
 void EditorLayer::EntityTest2()
@@ -205,4 +205,24 @@ void EditorLayer::EntityTest2()
 	//...
 }
 ```
+
+![spotlight](spotlight.PNG)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
