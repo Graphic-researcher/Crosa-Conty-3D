@@ -23,7 +23,7 @@
 namespace CC3D {
 	Scene::Scene()
 	{
-		m_DefaultShader = Shader::Create((std::string("assets/shaders/environment/default.glsl")));
+		m_DefaultShader = Shader::Create((std::string("assets/shaders/material/default.glsl")));
 
 		//temp:
 		//entt::entity entityIndex = m_Registry.create();
@@ -340,6 +340,7 @@ namespace CC3D {
 				m_DefaultShader->Bind();
 				m_DefaultShader->SetMat4("u_ViewProjection", camera.GetViewProjection());
 				m_DefaultShader->SetMat4("u_Transform", transform.GetTransform());
+				m_DefaultShader->SetInt("a_EntityID",(int)entity);
 			}
 
 			if (m_Registry.any_of<MeshComponent>(entity))

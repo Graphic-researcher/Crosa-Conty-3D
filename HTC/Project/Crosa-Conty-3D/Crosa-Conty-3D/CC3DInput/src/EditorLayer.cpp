@@ -179,7 +179,7 @@ namespace CC3D {
 		{
 			int pixelData = m_Framebuffer->ReadPixel(1, mouseX, mouseY);
 			m_HoveredEntity = pixelData == -10 ? Entity() : Entity((entt::entity)pixelData, m_ActiveScene.get());
-			//CC3D_CORE_WARN("Pixel data = {0}", pixelData);
+			CC3D_CORE_WARN("Pixel data = {0}", pixelData);
 		}
 
 		m_Framebuffer->Unbind();
@@ -486,7 +486,7 @@ namespace CC3D {
 			if (m_ViewportHovered && !ImGuizmo::IsOver() && !Input::IsKeyPressed(Key::LeftAlt))
 			{
 				//TODO : Get select entity function back!
-				//m_SceneHierarchyPanel.SetSelectedEntity(m_HoveredEntity);
+				m_SceneHierarchyPanel.SetSelectedEntity(m_HoveredEntity);
 			}
 		}
 		return false;

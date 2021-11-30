@@ -37,4 +37,4 @@ void EditorLayer::EntityTest2()
 }
 ```
 
-![image-20211130092116022](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20211130092116022.png)
+![modelLoad](modelLoad.png)
