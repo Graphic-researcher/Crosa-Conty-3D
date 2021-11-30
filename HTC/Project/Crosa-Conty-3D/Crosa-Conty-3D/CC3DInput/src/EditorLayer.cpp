@@ -196,7 +196,7 @@ namespace CC3D {
 	void EditorLayer::OnImGuiRender()
 	{
 		CC3D_PROFILE_FUNCTION();
-
+#pragma region DockSpace Preparation
 		// Note: Switch this to true to enable dockspace
 		static bool dockspaceOpen = true;
 		static bool opt_fullscreen_persistant = true;
@@ -249,6 +249,9 @@ namespace CC3D {
 
 		style.WindowMinSize.x = minWinSizeX;
 
+#pragma endregion
+
+#pragma region File Operation
 		if (ImGui::BeginMenuBar())
 		{
 			if (ImGui::BeginMenu("File"))
@@ -271,7 +274,7 @@ namespace CC3D {
 
 			ImGui::EndMenuBar();
 		}
-
+#pragma endregion
 		//TODO : Add Editor Camera Inspector - Like Chaf maincameralayer Catch m_EditorCamera and put it into it
 		m_SceneHierarchyPanel.OnImGuiRender();
 		m_ContentBrowserPanel.OnImGuiRender();
