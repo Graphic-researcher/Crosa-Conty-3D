@@ -493,7 +493,10 @@ namespace CC3D {
 		if (e.GetMouseButton() == Mouse::ButtonLeft)
 		{
 			if (m_ViewportHovered && !ImGuizmo::IsOver() && !Input::IsKeyPressed(Key::LeftAlt))
-				m_SceneHierarchyPanel.SetSelectedEntity(m_HoveredEntity);
+			{
+				//TODO : Get select entity function back!
+				//m_SceneHierarchyPanel.SetSelectedEntity(m_HoveredEntity);
+			}
 		}
 		return false;
 	}
