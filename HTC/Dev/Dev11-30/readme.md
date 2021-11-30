@@ -146,3 +146,41 @@ Add this uniform variable:
 m_DefaultShader->SetInt("a_EntityID",(int)entity);
 ```
 
+### Material Test
+
+code version : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/commit/082e8fb289ab5c86e9b394dd5c099c5573e79253)
+
+```c++
+void EditorLayer::EntityTest2()
+{
+    auto square = m_ActiveScene->CreateEntity("Sphere");
+    //square.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
+    square.AddComponent<MeshComponent>();
+    square.AddComponent<MaterialComponent>(MaterialType::Material_Emission);
+    //square.RemoveComponent<MeshComponent>();
+    auto square2 = m_ActiveScene->CreateEntity("Cube");
+    square2.AddComponent<MeshComponent>(MeshType::Cube);
+    square2.AddComponent<LightComponent>();
+
+    auto square3 = m_ActiveScene->CreateEntity("Plane");
+    square3.AddComponent<MeshComponent>(MeshType::Plane);
+
+    auto square4 = m_ActiveScene->CreateEntity("Car");
+    std::string str = "assets/Meshes/cessna.obj";
+    Ref<TriMesh> m_Mesh = CreateRef<TriMesh>(str);
+    square4.AddComponent<MeshComponent>(m_Mesh);
+    square4.AddComponent<MaterialComponent>(MaterialType::Material_Phong);
+
+    m_SquareEntity = m_ActiveScene->CreateEntity("Cow");
+    str = "assets/Meshes/cow-nonormals.obj";
+    Ref<TriMesh> m_Mesh2 = CreateRef<TriMesh>();
+    m_Mesh2 = m_Mesh2->Create(str);
+    m_SquareEntity.AddComponent<MeshComponent>(m_Mesh2);
+    m_SquareEntity.AddComponent<MaterialComponent>(MaterialType::Material_Cook_Torrance);
+}
+```
+
+![image-20211130155636265](materialtest.png)
+
+![MaterialTest](MaterialTest.gif)
+
