@@ -325,6 +325,7 @@ namespace CC3D {
 			// TODO 判断是否应该批 渲染
 			// TODO Material
 			// TODO GetGlobalTranform is expensive
+			glm::mat4 m = transform.GetGlobalTransform();
 			Renderer::DrawMesh(transform.GetGlobalTransform(), mesh, material, (int)entity);
 		}
 		Renderer::EndScene();

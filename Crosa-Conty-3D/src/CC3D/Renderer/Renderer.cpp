@@ -35,6 +35,8 @@ namespace CC3D
 		Ref<Shader> TextureShader;
 		Ref<Texture2D> WhiteTexture;
 
+		std::vector<uint32_t> TriIndices;
+
 		uint32_t TriIndexCount = 0;
 		TriVertex* TriVertexBufferBase = nullptr;
 		TriVertex* TriVertexBufferPtr = nullptr;
@@ -71,25 +73,25 @@ namespace CC3D
 		s_Data.TriVertexBufferBase = new TriVertex[s_Data.MaxVertices];
 
 
-		uint32_t* TriIndices = new uint32_t[s_Data.MaxIndices];
+		//uint32_t* TriIndices = new uint32_t[s_Data.MaxIndices];
 
-		uint32_t offset = 0;
-		for (uint32_t i = 0; i < s_Data.MaxIndices; i += 6)
-		{
-			TriIndices[i + 0] = offset + 0;
-			TriIndices[i + 1] = offset + 1;
-			TriIndices[i + 2] = offset + 2;
+		//uint32_t offset = 0;
+		//for (uint32_t i = 0; i < s_Data.MaxIndices; i += 6)
+		//{
+		//	TriIndices[i + 0] = offset + 0;
+		//	TriIndices[i + 1] = offset + 1;
+		//	TriIndices[i + 2] = offset + 2;
 
-			TriIndices[i + 3] = offset + 2;
-			TriIndices[i + 4] = offset + 3;
-			TriIndices[i + 5] = offset + 0;
+		//	TriIndices[i + 3] = offset + 2;
+		//	TriIndices[i + 4] = offset + 3;
+		//	TriIndices[i + 5] = offset + 0;
 
-			offset += 4;// +4 是因为本质上是画4个点
-		}
+		//	offset += 4;// +4 是因为本质上是画4个点
+		//}
 
-		Ref<IndexBuffer> TriIB = IndexBuffer::Create(TriIndices, s_Data.MaxIndices);
-		s_Data.TriVertexArray->SetIndexBuffer(TriIB);
-		delete[] TriIndices;
+		//Ref<IndexBuffer> TriIB = IndexBuffer::Create(TriIndices, s_Data.MaxIndices);
+		//s_Data.TriVertexArray->SetIndexBuffer(TriIB);
+		//delete[] TriIndices;
 
 		s_Data.WhiteTexture = Texture2D::Create(1, 1);
 		uint32_t whiteTextureData = 0xffff00ff;
@@ -155,6 +157,15 @@ namespace CC3D
 		// Bind textures
 		for (uint32_t i = 0; i < s_Data.TextureSlotIndex; i++)// why here
 			s_Data.TextureSlots[i]->Bind(i);
+
+		// Create index buffer
+		Ref<IndexBuffer> TriIB = IndexBuffer::Create(s_Data.TriIndices.data(), s_Data.TriIndices.size());
+		s_Data.TriVertexArray->SetIndexBuffer(TriIB);
+		//std::vector<uint32_t> in = s_Data.TriIndices;
+		s_Data.TriIndices.clear();
+
+		
+
 		RenderCommand::DrawIndexed(s_Data.TriVertexArray, s_Data.TriIndexCount);
 		s_Data.Stats.DrawCalls++;
 	}
@@ -213,13 +224,28 @@ namespace CC3D
 
 		const float textureIndex = 0.0f; // White Texture
 		const float tilingFactor = 1.0f;
-		std::vector<Mesh>& meshes = src.m_Meshes;
+		std::vector<Mesh> meshes = src.m_Meshes;
 		for (size_t i = 0; i < meshes.size(); i++)
 		{
-			const size_t TriVertexCount = meshes[i].vertices.size();
 			if (s_Data.TriIndexCount >= RendererData::MaxIndices)
 				NextBatch();
 
+			// 不能直接加在后面，因为这样会导致indexbuffer出错，新的模型的indexbuffer是重新开始的
+			if (s_Data.TriIndices.size() > 0)
+			{
+				uint32_t offset = *std::max_element(s_Data.TriIndices.begin(), s_Data.TriIndices.end());
+				for (uint32_t& index : meshes[i].indices)
+				{
+					index += offset + 1;
+				}
+
+				s_Data.TriIndices.insert(s_Data.TriIndices.end(), meshes[i].indices.begin(), meshes[i].indices.end());
+			}
+			else
+				s_Data.TriIndices.insert(s_Data.TriIndices.end(), meshes[i].indices.begin(), meshes[i].indices.end());
+			
+
+			const size_t TriVertexCount = meshes[i].vertices.size();
 			for (size_t j = 0; j < TriVertexCount; j++)
 			{
 				// TODO multiple Textures
