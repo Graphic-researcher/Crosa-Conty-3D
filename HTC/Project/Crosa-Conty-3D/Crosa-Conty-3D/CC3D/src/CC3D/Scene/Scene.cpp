@@ -24,22 +24,6 @@ namespace CC3D {
 	Scene::Scene()
 	{
 		m_DefaultShader = Shader::Create((std::string("assets/shaders/material/default.glsl")));
-
-		//temp:
-		//entt::entity entityIndex = m_Registry.create();
-		//Entity entity = { entityIndex, this };
-		//entity.AddComponent<TransformComponent>();
-		//auto& tag = entity.AddComponent<TagComponent>();
-		//tag.Tag = "scene";
-		//entity.AddComponent<SpriteRendererComponent>();
-		//auto& mat =entity.AddComponent<MaterialComponent>();
-		//mat.SetMaterialType(MaterialType::Material_None);
-		//auto& mesh = entity.AddComponent<MeshComponent>();
-		////mesh.Reload(MeshType::Cube);
-
-		//Ref<TriMesh> Mesh = CreateRef<TriMesh>(MeshType::Sphere);
-		////Mesh->Create(MeshType::Cube);
-		//mesh.Mesh = Mesh;
 	}
 
 	Scene::~Scene()
