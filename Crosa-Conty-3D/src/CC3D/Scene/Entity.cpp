@@ -10,7 +10,14 @@ namespace CC3D {
 	void Entity::AddSubEntity(Entity other)
 	{
 		// Entity 是通过entt的神秘id老寻址的，所以不需要用指针，用指针反而会出错
-		other.GetComponent<TransformComponent>().parent = *this;
+		if(!other.GetComponent<TransformComponent>().parent)
+			other.GetComponent<TransformComponent>().parent = *this;
+		else
+		{
+			Entity parent = other.GetComponent<TransformComponent>().parent;
+			parent.GetComponent<TransformComponent>().children.erase(other.GetUUID());
+			other.GetComponent<TransformComponent>().parent = *this;
+		}
 		this->GetComponent<TransformComponent>().children.emplace(other.GetUUID(),other);
 	}
 

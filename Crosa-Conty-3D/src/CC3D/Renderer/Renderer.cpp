@@ -4,55 +4,23 @@
 #include "CC3D/Renderer/VertexArray.h"
 #include "CC3D/Renderer/Shader.h"
 #include "CC3D/Renderer/RenderCommand.h"
-//
-//#include <glm/gtc/matrix_transform.hpp>
-//
-//namespace CC3D {
-//
-//	Scope<Renderer::SceneData> Renderer::s_SceneData = CreateScope<Renderer::SceneData>();
-//
-//	void Renderer::Init()
-//	{
-//		CC3D_PROFILE_FUNCTION();
-//
-//		RenderCommand::Init();
-//		Renderer2D::Init();
-//	}
-//
-//	void Renderer::Shutdown()
-//	{
-//		Renderer2D::Shutdown();
-//	}
-//
-//	void Renderer::OnWindowResize(uint32_t width, uint32_t height)
-//	{
-//		RenderCommand::SetViewport(0, 0, width, height);
-//	}
-//
-//	void Renderer::BeginScene(SceneCamera& camera)
-//	{
-//		s_SceneData->ViewProjectionMatrix = camera.GetProjection();
-//
-//	}
-//
-//	void Renderer::EndScene()
-//	{
-//	}
-//
-//	void Renderer::Submit(const Ref<Shader>& shader, const Ref<VertexArray>& vertexArray, const glm::mat4& transform)
-//	{
-//		shader->Bind();
-//		// dynamic_cast for shared_ptr that properly respects the reference count control block
-//		std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUniformMat4("u_ViewProjection", s_SceneData->ViewProjectionMatrix);
-//		std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUniformMat4("u_Transform", transform);
-//
-//		vertexArray->Bind();
-//		RenderCommand::DrawIndexed(vertexArray);
-//	}
-//}
 namespace CC3D
 {
-	struct TriVertex;
+	// TODO 区分普通渲染和batch rendering
+	struct TriVertex
+	{
+		glm::vec3 Position;
+		glm::vec3 Normal;
+		glm::vec3 Tangent;
+		glm::vec3 Bitangent;
+		glm::vec4 Color;
+		glm::vec2 TexCoord;
+		float TexIndex;
+		float TilingFactor;
+
+		// Editor-only
+		int EntityID;
+	};
 
 	struct RendererData
 	{
@@ -63,6 +31,7 @@ namespace CC3D
 
 		Ref<VertexArray> TriVertexArray;
 		Ref<VertexBuffer> TriVertexBuffer;
+		// TODO material
 		Ref<Shader> TextureShader;
 		Ref<Texture2D> WhiteTexture;
 
@@ -73,7 +42,6 @@ namespace CC3D
 		std::array<Ref<Texture2D>, MaxTextureSlots> TextureSlots;// TODO 添加超过32个纹理的警告提示
 		uint32_t TextureSlotIndex = 1; // 0 = white texture
 
-		glm::vec4 TriVertexPositions[4];
 		Renderer::Statistics Stats;
 	};
 
@@ -81,14 +49,101 @@ namespace CC3D
 
 	void Renderer::Init()
 	{
-		
+		CC3D_PROFILE_FUNCTION();
+
+		s_Data.TriVertexArray = VertexArray::Create();
+
+
+		s_Data.TriVertexBuffer = VertexBuffer::Create(s_Data.MaxVertices * sizeof(TriVertex));
+		s_Data.TriVertexBuffer->SetLayout({
+			{ ShaderDataType::Float3, "a_Position"		},
+			{ ShaderDataType::Float3, "a_Normal"		},
+			{ ShaderDataType::Float3, "a_Tangent"		},
+			{ ShaderDataType::Float3, "a_Bitangent"		},
+
+			{ ShaderDataType::Float4, "a_Color"			},
+			{ ShaderDataType::Float2, "a_TexCoord"		},
+			{ ShaderDataType::Float,  "a_TexIndex"		},
+			{ ShaderDataType::Float,  "a_TilingFactor"	},
+			{ ShaderDataType::Int,    "a_EntityID"		}
+			});
+		s_Data.TriVertexArray->AddVertexBuffer(s_Data.TriVertexBuffer);
+		s_Data.TriVertexBufferBase = new TriVertex[s_Data.MaxVertices];
+
+
+		uint32_t* TriIndices = new uint32_t[s_Data.MaxIndices];
+
+		uint32_t offset = 0;
+		for (uint32_t i = 0; i < s_Data.MaxIndices; i += 6)
+		{
+			TriIndices[i + 0] = offset + 0;
+			TriIndices[i + 1] = offset + 1;
+			TriIndices[i + 2] = offset + 2;
+
+			TriIndices[i + 3] = offset + 2;
+			TriIndices[i + 4] = offset + 3;
+			TriIndices[i + 5] = offset + 0;
+
+			offset += 4;// +4 是因为本质上是画4个点
+		}
+
+		Ref<IndexBuffer> TriIB = IndexBuffer::Create(TriIndices, s_Data.MaxIndices);
+		s_Data.TriVertexArray->SetIndexBuffer(TriIB);
+		delete[] TriIndices;
+
+		s_Data.WhiteTexture = Texture2D::Create(1, 1);
+		uint32_t whiteTextureData = 0xffff00ff;
+		s_Data.WhiteTexture->SetData(&whiteTextureData, sizeof(uint32_t));
+
+		int32_t samplers[s_Data.MaxTextureSlots];
+		for (uint32_t i = 0; i < s_Data.MaxTextureSlots; i++)
+			samplers[i] = i;
+
+		// TODO 3d Model default shader
+		s_Data.TextureShader = Shader::Create("assets/shaders/Phong.glsl");
+		s_Data.TextureShader->Bind();
+		s_Data.TextureShader->SetIntArray("u_Textures", samplers, s_Data.MaxTextureSlots);
+
+		// Set first texture slot to 0
+		s_Data.TextureSlots[0] = s_Data.WhiteTexture;
+
 	}
 	void Renderer::Shutdown()
 	{
+		CC3D_PROFILE_FUNCTION();
 
+		delete[] s_Data.TriVertexBufferBase;
 	}
 
+	void Renderer::BeginScene(const Camera& camera, const glm::mat4& transform)
+	{
+		CC3D_PROFILE_FUNCTION();
 
+		glm::mat4 viewProj = camera.GetProjection() * glm::inverse(transform);
+
+		s_Data.TextureShader->Bind();
+		s_Data.TextureShader->SetMat4("u_ViewProjection", viewProj);
+
+		StartBatch();
+	}
+
+	void Renderer::BeginScene(const EditorCamera& camera)
+	{
+		CC3D_PROFILE_FUNCTION();
+
+		glm::mat4 viewProj = camera.GetViewProjection();
+
+		s_Data.TextureShader->Bind();
+		s_Data.TextureShader->SetMat4("u_ViewProjection", viewProj);
+
+		StartBatch();
+	}
+
+	void Renderer::EndScene()
+	{
+		CC3D_PROFILE_FUNCTION();
+		Flush();
+	}
 
 	void Renderer::Flush()
 	{
@@ -107,6 +162,87 @@ namespace CC3D
 	void Renderer::DrawMesh(const glm::mat4& transform, MeshRendererComponent& src, int entityID)
 	{
 		//TriVertex vertex = MeshRendererComponent src
+	}
+
+	void Renderer::DrawRenderer(const glm::mat4& transform, MeshRendererComponent& src, MaterialComponent& material, int entityID)
+	{
+		
+		/*const std::vector<Mesh>& meshes = src.m_Meshes;
+		std::vector<uint32_t> indecies;
+
+		Ref<VertexArray> vertexArray = VertexArray::Create();
+
+		size_t size = meshes.size();
+		for (size_t i = 0; i < size; i++)
+		{
+			indecies.insert(indecies.end(),meshes[i].indices.begin(), meshes[i].indices.end());
+			Ref<VertexBuffer> m_VertexBuffers = VertexBuffer::Create(meshes[i].vertices.size() * sizeof(Vertex));
+			m_VertexBuffers->SetLayout({
+				{ ShaderDataType::Float3, "a_Position"		},
+				{ ShaderDataType::Float3, "a_Normal"		},
+				{ ShaderDataType::Float3, "a_Tangent"		},
+				{ ShaderDataType::Float3, "a_Bitangent"		},
+
+				{ ShaderDataType::Float4, "a_Color"			},
+				{ ShaderDataType::Float2, "a_TexCoord"		},
+				{ ShaderDataType::Float,  "a_TexIndex"		},
+				{ ShaderDataType::Float,  "a_TilingFactor"	},
+				{ ShaderDataType::Int,    "a_EntityID"		}
+				});
+			m_VertexBuffers->SetData(meshes[i].vertices.data(), meshes[i].vertices.size() * sizeof(Vertex));
+			vertexArray->AddVertexBuffer(m_VertexBuffers);
+		}
+
+		Ref<IndexBuffer> indexBuffer = IndexBuffer::Create(indecies.data(), indecies.size());
+		vertexArray->SetIndexBuffer(indexBuffer);
+
+		Ref<Shader> shader = Shader::Create("assets/shaders/Phong.glsl");
+
+		glm::mat4 viewProj = camera.GetProjection() * glm::inverse(transform);
+
+		s_Data.TextureShader->Bind();
+		s_Data.TextureShader->SetMat4("u_ViewProjection", viewProj);
+
+		RenderCommand::DrawIndexed(vertexArray, indecies.size());*/
+	}
+
+	void Renderer::DrawMesh(const glm::mat4& transform, MeshRendererComponent& src, MaterialComponent& material, int entityID)
+	{
+		//TODO default Material
+		CC3D_PROFILE_FUNCTION();
+
+		const float textureIndex = 0.0f; // White Texture
+		const float tilingFactor = 1.0f;
+		std::vector<Mesh>& meshes = src.m_Meshes;
+		for (size_t i = 0; i < meshes.size(); i++)
+		{
+			const size_t TriVertexCount = meshes[i].vertices.size();
+			if (s_Data.TriIndexCount >= RendererData::MaxIndices)
+				NextBatch();
+
+			for (size_t j = 0; j < TriVertexCount; j++)
+			{
+				// TODO multiple Textures
+				s_Data.TriVertexBufferPtr->Position = glm::vec3(transform * glm::vec4(meshes[i].vertices[j].Position, 1));
+				glm::vec3 p = s_Data.TriVertexBufferPtr->Position;
+				s_Data.TriVertexBufferPtr->Normal = meshes[i].vertices[j].Normal;//把世界坐标的法向量传进去
+				s_Data.TriVertexBufferPtr->Tangent = meshes[i].vertices[j].Tangent;
+				s_Data.TriVertexBufferPtr->Bitangent = meshes[i].vertices[j].Bitangent;
+
+				s_Data.TriVertexBufferPtr->Color = material.Color;
+				s_Data.TriVertexBufferPtr->TexCoord = meshes[i].vertices[j].TexCoords;
+				s_Data.TriVertexBufferPtr->TexIndex = textureIndex;
+				s_Data.TriVertexBufferPtr->TilingFactor = tilingFactor;
+				s_Data.TriVertexBufferPtr->EntityID = entityID;
+				s_Data.TriVertexBufferPtr++;
+			}
+
+			// TODO 计数
+			s_Data.TriIndexCount += meshes[i].indices.size();
+
+			s_Data.Stats.TriangleCount += meshes[i].indices.size() / 3;
+
+		}
 	}
 
 	void Renderer::ResetStats()

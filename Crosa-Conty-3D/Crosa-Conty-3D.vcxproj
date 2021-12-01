@@ -26,6 +26,7 @@
     <ClInclude Include="src\CC3D\Core\EntryPoint.h" />
     <ClInclude Include="src\CC3D\Core\MouseCodes.h" />
     <ClInclude Include="src\CC3D\Math\Math.h" />
+    <ClInclude Include="src\CC3D\Renderer\Material.h" />
     <ClInclude Include="src\CC3D\Renderer\Mesh.h" />
     <ClInclude Include="src\CC3D\Renderer\Model.h" />
     <ClInclude Include="src\CC3D\Renderer\Camera.h" />
@@ -212,6 +213,7 @@
     <ClCompile Include="src\CC3D\Core\Log.cpp" />
     <ClCompile Include="src\CC3D\Core\Application.cpp" />
     <ClCompile Include="src\CC3D\Math\Math.cpp" />
+    <ClCompile Include="src\CC3D\Renderer\Material.cpp" />
     <ClCompile Include="src\CC3D\Renderer\Mesh.cpp" />
     <ClCompile Include="src\CC3D\Renderer\Model.cpp" />
     <ClCompile Include="src\CC3D\Renderer\EditorCamera.cpp" />

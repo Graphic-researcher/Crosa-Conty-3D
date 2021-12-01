@@ -55,7 +55,7 @@ namespace CC3D
     {
         // data to fill
         std::vector<Vertex> vertices;
-        std::vector<unsigned int> indices;
+        std::vector<uint32_t> indices;
         //std::vector<Texture> textures;
 
         // walk through each of the mesh's vertices

@@ -48,6 +48,7 @@ namespace CC3D {
 				//while (model.meshes->HasChild())
 				//{
 					entity.AddComponent<MeshRendererComponent>(model.meshes->m_Meshes);
+					entity.AddComponent<MaterialComponent>();
 					//}
 				}		
 			}

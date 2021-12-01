@@ -119,7 +119,7 @@ namespace CC3D {
 			m_GameFramebuffer->Bind();
 			RenderCommand::SetClearColor(glm::vec4{ 0.1f, 0.1f, 0.1f, 1 });
 			RenderCommand::Clear();
-			m_ActiveScene->OnUpdateEditor(ts);
+			m_ActiveScene->OnUpdateGame(ts);
 			m_GameFramebuffer->Unbind();
 
 			break;

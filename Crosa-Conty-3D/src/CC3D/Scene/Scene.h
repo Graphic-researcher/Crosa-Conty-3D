@@ -31,8 +31,9 @@ namespace CC3D {
 
 		void OnUpdateRuntime(Timestep ts);
 
-		void OnUpdateEditor(Timestep ts);//Game´°¿Ú
+		void OnUpdateGame(Timestep ts);//Game´°¿Ú
 		void OnUpdateEditor(Timestep ts, EditorCamera& camera);
+
 		void OnViewportResize(uint32_t width, uint32_t height);
 
 		void DuplicateEntity(Entity entity);

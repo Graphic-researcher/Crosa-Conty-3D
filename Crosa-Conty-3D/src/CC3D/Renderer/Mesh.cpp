@@ -8,7 +8,7 @@
 
 namespace CC3D
 {
-	Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices)
+	Mesh::Mesh(std::vector<Vertex> vertices, std::vector<uint32_t> indices)
 	{
 		this->vertices = vertices;
 		this->indices = indices;

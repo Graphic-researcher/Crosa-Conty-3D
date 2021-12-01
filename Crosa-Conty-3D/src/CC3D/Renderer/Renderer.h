@@ -22,7 +22,13 @@ namespace CC3D {
 		static void Flush();// ÖØÐÂ¿ªÆô
 
 		// Primitives
+		// For Batch rendering
+		static void DrawMesh(const glm::mat4& transform, MeshRendererComponent& src, MaterialComponent& material, int entityID);
 		static void DrawMesh(const glm::mat4& transform, MeshRendererComponent& src, int entityID);
+
+		// Draw Renderer
+		// TODO all renderer extend from Renderer
+		static void DrawRenderer(const glm::mat4& transform, MeshRendererComponent& src, MaterialComponent& material, int entityID);
 
 		// Stats
 		struct Statistics

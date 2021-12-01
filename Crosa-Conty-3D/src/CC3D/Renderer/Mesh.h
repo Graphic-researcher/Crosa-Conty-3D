@@ -29,8 +29,9 @@ namespace CC3D
         ~Mesh() = default;
 
     public://TODO move to private 
+
         std::vector<Vertex>       vertices;
-        std::vector<unsigned int> indices;
+        std::vector<uint32_t> indices; //TODO remove
   
     private:
     };

@@ -87,6 +87,7 @@ namespace CC3D {
 		CopyComponent<NativeScriptComponent>(dstSceneRegistry, srcSceneRegistry, enttMap);
 		CopyComponent<Rigidbody2DComponent>(dstSceneRegistry, srcSceneRegistry, enttMap);
 		CopyComponent<BoxCollider2DComponent>(dstSceneRegistry, srcSceneRegistry, enttMap);
+		CopyComponent<MeshRendererComponent>(dstSceneRegistry, srcSceneRegistry, enttMap);
 
 		return newScene;
 	}
@@ -152,9 +153,13 @@ namespace CC3D {
 				DestroyEntity(e.second);
 
 				if (entity.GetComponent<TransformComponent>().children.size() != size)
+				{
+					DestroyEntity(entity);
 					break;
+				}
+					
 			}
-			m_Registry.destroy(entity);
+			//m_Registry.destroy(entity);
 		}
 				
 	}
@@ -296,20 +301,49 @@ namespace CC3D {
 
 	void Scene::OnUpdateEditor(Timestep ts, EditorCamera& camera)
 	{
+#pragma region Batch Renderer2D
 		Renderer2D::BeginScene(camera);
-
-		auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
-		for (auto entity : group)
+		// group 是侵入式的，会生成一个group，这样很快，但是需要更小心的操作
+		auto Renderer2DGroup = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
+		for (auto entity : Renderer2DGroup)
 		{
-			auto [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
+			auto [transform, sprite] = Renderer2DGroup.get<TransformComponent, SpriteRendererComponent>(entity);
 
+			// TODO GetGlobalTranform is expensive
 			Renderer2D::DrawSprite(transform.GetGlobalTransform(), sprite, (int)entity);
 		}
-
 		Renderer2D::EndScene();
+#pragma endregion
+#pragma region Batch Renderer
+		// TODO carefully use grounp and view
+		Renderer::BeginScene(camera);// rename to BeginBatch Rendering
+		
+		auto RendererView = m_Registry.view<TransformComponent, MeshRendererComponent, MaterialComponent>();
+		for (auto entity : RendererView)
+		{
+			auto [transform, mesh, material] = RendererView.get<TransformComponent, MeshRendererComponent, MaterialComponent>(entity);
+			// TODO 判断是否应该批 渲染
+			// TODO Material
+			// TODO GetGlobalTranform is expensive
+			Renderer::DrawMesh(transform.GetGlobalTransform(), mesh, material, (int)entity);
+		}
+		Renderer::EndScene();
+#pragma endregion TODO need complete
+
+#pragma region Renderer
+		//auto RendererView = m_Registry.view<TransformComponent, MeshRendererComponent, MaterialComponent>();
+		//for (auto entity : RendererView)
+		//{
+		//	auto [transform, mesh, material] = RendererView.get<TransformComponent, MeshRendererComponent, MaterialComponent>(entity);
+		//	// TODO Material
+		//	// TODO GetGlobalTranform is expensive
+		//	Renderer::DrawRenderer(transform.GetGlobalTransform(), mesh, material, (int)entity);
+		//}
+#pragma endregion	TODO need complete
+		
 	}
 
-	void Scene::OnUpdateEditor(Timestep ts)
+	void Scene::OnUpdateGame(Timestep ts)
 	{
 		// Render 2D
 		Camera* mainCamera = nullptr;
@@ -437,6 +471,11 @@ namespace CC3D {
 
 	template<>
 	void Scene::OnComponentAdded<MeshRendererComponent>(Entity entity, MeshRendererComponent& component)
+	{
+	}
+	
+	template<>
+	void Scene::OnComponentAdded<MaterialComponent>(Entity entity, MaterialComponent& component)
 	{
 	}
 
