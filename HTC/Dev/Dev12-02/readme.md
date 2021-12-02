@@ -236,3 +236,5 @@ static void ShowSetTexture(CC3D::Ref<CC3D::Texture2D>& Texture, const std::strin
 TODO
 
 ## Light Component
+
+The purpose of convention is according to the benefit of protecting biodiversity , sustainable to use the proportion and share resource fairly;
