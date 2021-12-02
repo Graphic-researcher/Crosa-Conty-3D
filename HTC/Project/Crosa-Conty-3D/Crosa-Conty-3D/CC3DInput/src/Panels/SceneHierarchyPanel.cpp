@@ -322,7 +322,7 @@ namespace CC3D {
 		DrawComponent<CameraComponent>("Camera", entity, [](auto& component)
 		{
 			auto& camera = component.Camera;
-
+		
 			ImGui::Checkbox("Primary", &component.Primary);
 
 			const char* projectionTypeStrings[] = { "Perspective", "Orthographic" };
@@ -377,7 +377,7 @@ namespace CC3D {
 				ImGui::Checkbox("Fixed Aspect Ratio", &component.FixedAspectRatio);
 			}
 		});
-
+		
 		DrawComponent<SpriteRendererComponent>("Sprite Renderer", entity, [](auto& component)
 		{
 			static float thumbnailSize = 128.0f;
@@ -410,41 +410,6 @@ namespace CC3D {
 
 
 			ImGui::DragFloat("Tiling Factor", &component.TilingFactor, 0.1f, 0.0f, 100.0f);
-
-		});
-
-		DrawComponent<MeshComponent>("Mesh Component", entity, [](auto& component)
-		{
-			//static float thumbnailSize = 128.0f;
-
-			//ImGui::ColorEdit4("Color", glm::value_ptr(component.Color));
-			//if (nullptr != component.Texture)
-			//{
-			//	ImGui::ImageButton((ImTextureID)component.Texture->GetRendererID(), { thumbnailSize, thumbnailSize }, { 0, 1 }, { 1, 0 });
-			//}
-			//else
-			//{
-			//	ImGui::Button("Texture", ImVec2(100.0f, 0.0f));
-			//}
-
-			//if (ImGui::BeginDragDropTarget())
-			//{
-			//	if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("CONTENT_BROWSER_ITEM"))
-			//	{
-			//		const wchar_t* path = (const wchar_t*)payload->Data;
-			//		std::filesystem::path texturePath = std::filesystem::path(g_AssetPath) / path;
-			//		Ref<Texture2D> texture = Texture2D::Create(texturePath.string());
-			//		if (texture->IsLoaded())
-			//			component.Texture = texture;
-			//		else
-			//			CC3D_WARN("Could not load texture {0}", texturePath.filename().string());
-			//	}
-			//	ImGui::EndDragDropTarget();
-			//}
-
-
-
-			//ImGui::DragFloat("Tiling Factor", &component.TilingFactor, 0.1f, 0.0f, 100.0f);
 
 		});
 
@@ -492,6 +457,75 @@ namespace CC3D {
 			ImGui::DragFloat("Friction", &component.Friction, 0.01f, 0.0f, 1.0f);
 			ImGui::DragFloat("Restitution", &component.Restitution, 0.01f, 0.0f, 1.0f);
 			ImGui::DragFloat("Restitution Threshold", &component.RestitutionThreshold, 0.01f, 0.0f);
+		});
+
+		DrawComponent<MeshComponent>("Mesh Component", entity, [](auto& component)
+		{
+			std::unordered_map<MeshType, std::string> KeyMap =
+			{
+				{MeshType::None, "None"},
+				{MeshType::Plane, "Plane"},
+				{MeshType::Cube, "Cube"},
+				{MeshType::Sphere, "Sphere"},
+				{MeshType::Model, "Model"},
+			};
+
+			if (ImGui::Button("Set"))
+			{
+				ImGui::OpenPopup("Set");
+			}
+			if (ImGui::BeginPopup("Set"))
+			{
+				for (auto item : KeyMap)
+				{
+					if (ImGui::BeginMenu(item.second.c_str()))
+					{
+						if (item.first != MeshType::None && item.first != MeshType::Model)
+						{
+							static int sample = 1;
+							ImGui::SliderInt("sample", &sample, 1, 30);
+							if (ImGui::Button("OK"))
+							{
+								component.Reload(item.first, sample);
+							}
+						}
+						ImGui::EndMenu();//if BeginMenu(item.second.c_str())
+					}
+				}
+				ImGui::EndPopup();//if BeginPopup("Set")
+			}
+
+			//static float thumbnailSize = 128.0f;
+
+			//ImGui::ColorEdit4("Color", glm::value_ptr(component.Color));
+			//if (nullptr != component.Texture)
+			//{
+			//	ImGui::ImageButton((ImTextureID)component.Texture->GetRendererID(), { thumbnailSize, thumbnailSize }, { 0, 1 }, { 1, 0 });
+			//}
+			//else
+			//{
+			//	ImGui::Button("Texture", ImVec2(100.0f, 0.0f));
+			//}
+
+			//if (ImGui::BeginDragDropTarget())
+			//{
+			//	if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("CONTENT_BROWSER_ITEM"))
+			//	{
+			//		const wchar_t* path = (const wchar_t*)payload->Data;
+			//		std::filesystem::path texturePath = std::filesystem::path(g_AssetPath) / path;
+			//		Ref<Texture2D> texture = Texture2D::Create(texturePath.string());
+			//		if (texture->IsLoaded())
+			//			component.Texture = texture;
+			//		else
+			//			CC3D_WARN("Could not load texture {0}", texturePath.filename().string());
+			//	}
+			//	ImGui::EndDragDropTarget();
+			//}
+
+
+
+			//ImGui::DragFloat("Tiling Factor", &component.TilingFactor, 0.1f, 0.0f, 100.0f);
+
 		});
 
 	}//draw component end

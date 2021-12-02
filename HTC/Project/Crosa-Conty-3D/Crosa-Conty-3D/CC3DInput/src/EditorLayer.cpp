@@ -115,7 +115,7 @@ namespace CC3D {
 		square3.AddComponent<MeshComponent>(MeshType::Plane);
 
 		auto square4 = m_ActiveScene->CreateEntity("Car");
-		std::string str = "assets/Meshes/alfa147_combine.obj";
+		std::string str = "assets/Meshes/HiPolyCube.obj";
 		Ref<TriMesh> m_Mesh = CreateRef<TriMesh>(str);
 		square4.AddComponent<MeshComponent>(m_Mesh);
 		auto mat = square4.AddComponent<MaterialComponent>(MaterialType::Material_Phong);
