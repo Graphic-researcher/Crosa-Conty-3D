@@ -445,30 +445,34 @@ namespace CC3D {
 				material.ResetType();
 			switch (material.Type)
 			{
-			case MaterialType::Material_Emission:
-			{
-				ImGui::ColorEdit3("Emission Color", (float*)(&CastRef<EmissionMaterial>(material.MaterialSrc)->EmissionColor));
-				ImGui::SliderFloat("Intensity", (float*)(&CastRef<EmissionMaterial>(material.MaterialSrc)->Intensity), 0.0f, 1.0f);
-				break;
-			}
-			case MaterialType::Material_Phong:
-			{
-				ImGui::ColorEdit3("Color", (float*)(&CastRef<PhongMaterial>(material.MaterialSrc)->Color));
-				ImGui::DragFloat("Shininess", (float*)(&CastRef<PhongMaterial>(material.MaterialSrc)->Shininess));
-				ImGui::Separator();
-				Ref<Texture2D>& DiffuseTexture = CastRef<PhongMaterial>(material.MaterialSrc)->DiffuseTexture;
-				ShowSetTexture(DiffuseTexture,"Diffuse");
-				ImGui::Separator();
-				Ref<Texture2D>& SpecularTexture = CastRef<PhongMaterial>(material.MaterialSrc)->SpecularTexture;
-				ShowSetTexture(SpecularTexture, "Specular");
-				ImGui::Separator();
-				Ref<Texture2D>& NormalTexture = CastRef<PhongMaterial>(material.MaterialSrc)->NormalTexture;
-				ShowSetTexture(NormalTexture, "Normal");
-				ImGui::Separator();
-				Ref<Texture2D>& DisplacementTexture = CastRef<PhongMaterial>(material.MaterialSrc)->DisplacementTexture;
-				ShowSetTexture(DisplacementTexture, "Displacement");
-				ImGui::DragFloat("Height Scale", &CastRef<PhongMaterial>(material.MaterialSrc)->HeightScale, 0.01f);
-			}
+				case MaterialType::Material_Emission:
+				{
+					ImGui::ColorEdit3("Emission Color", (float*)(&CastRef<EmissionMaterial>(material.MaterialSrc)->EmissionColor));
+					ImGui::SliderFloat("Intensity", (float*)(&CastRef<EmissionMaterial>(material.MaterialSrc)->Intensity), 0.0f, 1.0f);
+					break;
+				}
+				case MaterialType::Material_Phong:
+				{
+					ImGui::ColorEdit3("Color", (float*)(&CastRef<PhongMaterial>(material.MaterialSrc)->Color));
+					ImGui::DragFloat("Shininess", (float*)(&CastRef<PhongMaterial>(material.MaterialSrc)->Shininess));
+					ImGui::Separator();
+					Ref<Texture2D>& DiffuseTexture = CastRef<PhongMaterial>(material.MaterialSrc)->DiffuseTexture;
+					ShowSetTexture(DiffuseTexture,"Diffuse");
+					ImGui::Separator();
+					Ref<Texture2D>& SpecularTexture = CastRef<PhongMaterial>(material.MaterialSrc)->SpecularTexture;
+					ShowSetTexture(SpecularTexture, "Specular");
+					ImGui::Separator();
+					Ref<Texture2D>& NormalTexture = CastRef<PhongMaterial>(material.MaterialSrc)->NormalTexture;
+					ShowSetTexture(NormalTexture, "Normal");
+					ImGui::Separator();
+					Ref<Texture2D>& DisplacementTexture = CastRef<PhongMaterial>(material.MaterialSrc)->DisplacementTexture;
+					ShowSetTexture(DisplacementTexture, "Displacement");
+					ImGui::DragFloat("Height Scale", &CastRef<PhongMaterial>(material.MaterialSrc)->HeightScale, 0.01f);
+				}
+				case MaterialType::Material_Cook_Torrance:
+				{
+
+				}
 				default:
 					break;
 			}
