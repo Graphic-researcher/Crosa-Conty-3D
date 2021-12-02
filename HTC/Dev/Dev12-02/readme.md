@@ -146,8 +146,93 @@ ImGui::Text(("Has Normal: " + BoolString(component.Mesh->HasNormal())).c_str());
 
 ## Material Component
 
+### Emission & Phong
 
+```c++
+DrawComponent<MaterialComponent>("Material Component", entity, [](auto& component)
+{
+	const char* materialItems[] = { "None", "Emisson", "Phong", "Cook Torrance BRDF" };
+	auto type = component.Type;
+	auto& material = component;
+	ImGui::Combo("Material Type", (int*)(&material.Type), materialItems, IM_ARRAYSIZE(materialItems));
+	if (type != material.Type)//initialize
+		material.ResetType();
+	switch (material.Type)
+	{
+	case MaterialType::Material_Emission:
+	{
+		ImGui::ColorEdit3("Emission Color", (float*)(&CastRef<EmissionMaterial>(material.MaterialSrc)->EmissionColor));
+		ImGui::SliderFloat("Intensity", (float*)(&CastRef<EmissionMaterial>(material.MaterialSrc)->Intensity), 0.0f, 1.0f);
+		break;
+	}
+	case MaterialType::Material_Phong:
+	{
+		ImGui::ColorEdit3("Color", (float*)(&CastRef<PhongMaterial>(material.MaterialSrc)->Color));
+		ImGui::DragFloat("Shininess", (float*)(&CastRef<PhongMaterial>(material.MaterialSrc)->Shininess));
+		ImGui::Separator();
+		Ref<Texture2D>& DiffuseTexture = CastRef<PhongMaterial>(material.MaterialSrc)->DiffuseTexture;
+		ShowSetTexture(DiffuseTexture, "Diffuse");
+		ImGui::Separator();
+		Ref<Texture2D>& SpecularTexture = CastRef<PhongMaterial>(material.MaterialSrc)->SpecularTexture;
+		ShowSetTexture(SpecularTexture, "Specular");
+		ImGui::Separator();
+		Ref<Texture2D>& NormalTexture = CastRef<PhongMaterial>(material.MaterialSrc)->NormalTexture;
+		ShowSetTexture(NormalTexture, "Normal");
+		ImGui::Separator();
+		Ref<Texture2D>& DisplacementTexture = CastRef<PhongMaterial>(material.MaterialSrc)->DisplacementTexture;
+		ShowSetTexture(DisplacementTexture, "Displacement");
+		ImGui::DragFloat("Height Scale", &CastRef<PhongMaterial>(material.MaterialSrc)->HeightScale, 0.01f);
+	}
+	default:
+		break;
+	}
+
+});
+static void ShowSetTexture(CC3D::Ref<CC3D::Texture2D>& Texture, const std::string& textureName)
+{
+    ImGui::Text((textureName + " Texture").c_str());
+
+    static float thumbnailSize = 128.0f;
+
+    if (nullptr != Texture)
+    {
+        ImGui::ImageButton((ImTextureID)Texture->GetRendererID(), { thumbnailSize, thumbnailSize }, { 0, 1 }, { 1, 0 });
+    }
+    else
+    {
+        ImGui::Button(textureName.c_str(), ImVec2(100.0f, 0.0f));
+    }
+
+    if (ImGui::BeginDragDropTarget())
+    {
+        if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("CONTENT_BROWSER_ITEM"))
+        {
+            const wchar_t* path = (const wchar_t*)payload->Data;
+            std::filesystem::path texturePath = std::filesystem::path(g_AssetPath) / path;
+            Ref<Texture2D> texture = Texture2D::Create(texturePath.string());
+            if (texture->IsLoaded())
+                Texture = texture;
+            else
+                CC3D_WARN("Could not load texture {0}", texturePath.filename().string());
+        }
+        ImGui::EndDragDropTarget();
+    }
+    std::string btn = textureName + " Reset";
+    if (ImGui::Button(btn.c_str(), ImVec2(100.0f, 0.0f)))
+    {
+        Texture = Texture2D::Create(1, 1);
+        uint32_t data = 0xffffffff;
+        Texture->SetData(&data, sizeof(uint32_t));
+    }
+}
+```
 
 ![image-20211202140604138](mat1.png)
+
+![Mat2](Mat2.gif)
+
+### PBR
+
+TODO
 
 ## Light Component
