@@ -12,6 +12,34 @@ namespace CC3D {
 
 	static std::string BoolString(bool x) { if (x)return "true"; return "false"; }
 
+	static void ShowSetTexture(CC3D::Ref<CC3D::Texture2D>& Texture, const std::string& textureName)
+	{
+		static float thumbnailSize = 128.0f;
+
+		if (nullptr != Texture)
+		{
+			ImGui::ImageButton((ImTextureID)Texture->GetRendererID(), { thumbnailSize, thumbnailSize }, { 0, 1 }, { 1, 0 });
+		}
+		else
+		{
+			ImGui::Button(textureName.c_str(), ImVec2(100.0f, 0.0f));
+		}
+
+		if (ImGui::BeginDragDropTarget())
+		{
+			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("CONTENT_BROWSER_ITEM"))
+			{
+				const wchar_t* path = (const wchar_t*)payload->Data;
+				std::filesystem::path texturePath = std::filesystem::path(g_AssetPath) / path;
+				Ref<Texture2D> texture = Texture2D::Create(texturePath.string());
+				if (texture->IsLoaded())
+					Texture = texture;
+				else
+					CC3D_WARN("Could not load texture {0}", texturePath.filename().string());
+			}
+			ImGui::EndDragDropTarget();
+		}
+	}
 	SceneHierarchyPanel::SceneHierarchyPanel(const Ref<Scene>& context)
 	{
 		SetContext(context);
@@ -218,6 +246,8 @@ namespace CC3D {
 		}
 	}
 
+
+
 	void SceneHierarchyPanel::DrawComponents(Entity entity)
 	{
 		if (entity.HasComponent<TagComponent>())
@@ -382,32 +412,12 @@ namespace CC3D {
 		
 		DrawComponent<SpriteRendererComponent>("Sprite Renderer", entity, [](auto& component)
 		{
-			static float thumbnailSize = 128.0f;
 
 			ImGui::ColorEdit4("Color", glm::value_ptr(component.Color));
-			if (nullptr!=component.Texture)
-			{
-				ImGui::ImageButton((ImTextureID)component.Texture->GetRendererID(),{ thumbnailSize, thumbnailSize }, { 0, 1 }, { 1, 0 });
-			}
-			else
-			{
-				ImGui::Button("Texture", ImVec2(100.0f, 0.0f));
-			}
+			std::string textureName = "Texture";
+			Ref<Texture2D>& Texture = component.Texture;
 
-			if (ImGui::BeginDragDropTarget())
-			{
-				if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("CONTENT_BROWSER_ITEM"))
-				{
-					const wchar_t* path = (const wchar_t*)payload->Data;
-					std::filesystem::path texturePath = std::filesystem::path(g_AssetPath) / path;
-					Ref<Texture2D> texture = Texture2D::Create(texturePath.string());
-					if (texture->IsLoaded())
-						component.Texture = texture;
-					else
-						CC3D_WARN("Could not load texture {0}", texturePath.filename().string());
-				}
-				ImGui::EndDragDropTarget();
-			}
+			ShowSetTexture(Texture, textureName);
 
 
 
@@ -418,6 +428,31 @@ namespace CC3D {
 
 		DrawComponent<MaterialComponent>("Material Component", entity, [](auto& component)
 		{
+			const char* materialItems[] = { "None", "Emisson", "Phong", "Cook Torrance BRDF" };
+			auto type = component.Type;
+			auto& material = component;
+			ImGui::Combo("Material Type", (int*)(&material.Type), materialItems, IM_ARRAYSIZE(materialItems));
+			if (type != material.Type)//initialize
+				material.ResetType();
+			switch (material.Type)
+			{
+			case MaterialType::Material_Emission:
+			{
+				ImGui::ColorEdit3("Emission Color", (float*)(&CastRef<EmissionMaterial>(material.MaterialSrc)->EmissionColor));
+				ImGui::SliderFloat("Intensity", (float*)(&CastRef<EmissionMaterial>(material.MaterialSrc)->Intensity), 0.0f, 1.0f);
+				break;
+			}
+			case MaterialType::Material_Phong:
+			{
+				ImGui::ColorEdit3("Color", (float*)(&CastRef<PhongMaterial>(material.MaterialSrc)->Color));
+				ImGui::DragFloat("Shininess", (float*)(&CastRef<PhongMaterial>(material.MaterialSrc)->Shininess));
+				ImGui::Separator();
+				Ref<Texture2D>& DiffuseTexture = CastRef<PhongMaterial>(material.MaterialSrc)->DiffuseTexture;
+				ShowSetTexture(DiffuseTexture,"Diffuse");
+				}
+				default:
+					break;
+			}
 
 		});
 
