@@ -14,6 +14,8 @@ namespace CC3D {
 
 	static void ShowSetTexture(CC3D::Ref<CC3D::Texture2D>& Texture, const std::string& textureName)
 	{
+		ImGui::Text((textureName + " Texture").c_str());
+
 		static float thumbnailSize = 128.0f;
 
 		if (nullptr != Texture)
@@ -449,7 +451,17 @@ namespace CC3D {
 				ImGui::Separator();
 				Ref<Texture2D>& DiffuseTexture = CastRef<PhongMaterial>(material.MaterialSrc)->DiffuseTexture;
 				ShowSetTexture(DiffuseTexture,"Diffuse");
-				}
+				ImGui::Separator();
+				Ref<Texture2D>& SpecularTexture = CastRef<PhongMaterial>(material.MaterialSrc)->SpecularTexture;
+				ShowSetTexture(SpecularTexture, "Specular");
+				ImGui::Separator();
+				Ref<Texture2D>& NormalTexture = CastRef<PhongMaterial>(material.MaterialSrc)->NormalTexture;
+				ShowSetTexture(NormalTexture, "Normal");
+				ImGui::Separator();
+				Ref<Texture2D>& DisplacementTexture = CastRef<PhongMaterial>(material.MaterialSrc)->DisplacementTexture;
+				ShowSetTexture(DisplacementTexture, "Displacement");
+				ImGui::DragFloat("Height Scale", &CastRef<PhongMaterial>(material.MaterialSrc)->HeightScale, 0.01f);
+			}
 				default:
 					break;
 			}
