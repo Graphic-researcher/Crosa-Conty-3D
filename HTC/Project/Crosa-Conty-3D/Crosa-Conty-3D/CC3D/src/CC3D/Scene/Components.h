@@ -341,6 +341,7 @@ namespace CC3D {
 			Mesh.reset();
 			Mesh = TriMesh::Create(type, sample);
 		}
+		bool isShowModel = false;//show Model Loading Button
 	};
 
 	struct LightComponent
