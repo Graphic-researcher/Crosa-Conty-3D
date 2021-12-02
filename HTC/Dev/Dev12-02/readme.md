@@ -130,6 +130,20 @@ DrawComponent<MeshComponent>("Mesh Component", entity, [](auto& component)
 
 ![Mesh2](Mesh2.gif)
 
+Show Mesh information :
+
+```c++
+///Mesh Information:
+ImGui::Text(("Mesh Type: " + KeyMap[component.Mesh->GetMeshType()]).c_str());
+ImGui::Text(("Path: " + component.Mesh->GetPathName()).c_str());
+ImGui::Text(("Vertices Number: " + std::to_string(component.Mesh->GetVerticesNum())).c_str());
+ImGui::Text(("Triangle Number: " + std::to_string(component.Mesh->GetTriangleNum())).c_str());
+ImGui::Text(("Has TexCoord: " + BoolString(component.Mesh->HasTexCoord())).c_str());
+ImGui::Text(("Has Normal: " + BoolString(component.Mesh->HasNormal())).c_str());
+```
+
+![image-20211202121922868](mesh.png)
+
 ## Material Component
 
 

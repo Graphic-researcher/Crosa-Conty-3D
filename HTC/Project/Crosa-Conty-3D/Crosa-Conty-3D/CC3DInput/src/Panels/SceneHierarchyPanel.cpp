@@ -10,6 +10,8 @@
 namespace CC3D {
 	extern const std::filesystem::path g_AssetPath;
 
+	static std::string BoolString(bool x) { if (x)return "true"; return "false"; }
+
 	SceneHierarchyPanel::SceneHierarchyPanel(const Ref<Scene>& context)
 	{
 		SetContext(context);
@@ -534,6 +536,14 @@ namespace CC3D {
 					ImGui::EndDragDropTarget();
 				}
 			}
+
+			///Mesh Information:
+			ImGui::Text(("Mesh Type: " + KeyMap[component.Mesh->GetMeshType()]).c_str());
+			ImGui::Text(("Path: " + component.Mesh->GetPathName()).c_str());
+			ImGui::Text(("Vertices Number: " + std::to_string(component.Mesh->GetVerticesNum())).c_str());
+			ImGui::Text(("Triangle Number: " + std::to_string(component.Mesh->GetTriangleNum())).c_str());
+			ImGui::Text(("Has TexCoord: " + BoolString(component.Mesh->HasTexCoord())).c_str());
+			ImGui::Text(("Has Normal: " + BoolString(component.Mesh->HasNormal())).c_str());
 		});
 
 	}//draw component end
