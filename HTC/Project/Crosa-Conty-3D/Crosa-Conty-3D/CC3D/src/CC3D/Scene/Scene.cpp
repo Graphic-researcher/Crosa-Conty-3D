@@ -24,6 +24,9 @@ namespace CC3D {
 	Scene::Scene()
 	{
 		m_DefaultShader = Shader::Create((std::string("assets/shaders/material/default.glsl")));
+		//m_Cubemap->Create();
+		std::string path = "assets/HDR/winter_sky_1k.hdr";
+		m_Cubemap = m_Cubemap->Create(path);
 	}
 
 	Scene::~Scene()
@@ -241,24 +244,22 @@ namespace CC3D {
 	void Scene::OnUpdateEditor(Timestep ts, EditorCamera& camera)
 	{
 		//TODO: 3D Dev
-		//RenderObject(camera, nullptr);
+		//RenderObject(camera, m_Cubemap);
 
 
-		Renderer2D::BeginScene(camera);
+		//Renderer2D::BeginScene(camera);
 
-		auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
-		for (auto entity : group)
-		{
-			auto [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
+		//auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
+		//for (auto entity : group)
+		//{
+		//	auto [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
 
-			Renderer2D::DrawSprite(transform.GetTransform(), sprite, (int)entity);
-		}
-
+		//	Renderer2D::DrawSprite(transform.GetTransform(), sprite, (int)entity);
+		//}
 
 		//TODO: 3D Dev
-		RenderObject(camera, nullptr);
-
-		Renderer2D::EndScene();
+		RenderObject(camera, m_Cubemap);
+		//Renderer2D::EndScene();
 	}
 
 	void Scene::OnViewportResize(uint32_t width, uint32_t height)

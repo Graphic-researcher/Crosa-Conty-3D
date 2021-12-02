@@ -9,11 +9,11 @@ namespace CC3D
 	OpenGLCubemap::OpenGLCubemap(const std::string& path)
 	{
 		m_Texture = Texture2D::Create(path);//TODO:Add hdr loading...
-		m_EquirectangularToCubemapShader = Shader::Create("assets/shader/environment/equirectangular.glsl");
-		m_BackgroundShader = Shader::Create("assets/shader/environment/background.glsl");
-		m_IrradianceShader = Shader::Create("assets/shader/environment/irradiance.glsl");
-		m_PrefilterShader = Shader::Create("assets/shader/environment/prefilter.glsl");
-		m_BRDFShader = Shader::Create("assets/shader/environment/brdf.glsl");
+		m_EquirectangularToCubemapShader = Shader::Create("assets/shaders/environment/equirectangular.glsl");
+		m_BackgroundShader = Shader::Create("assets/shaders/environment/background.glsl");
+		m_IrradianceShader = Shader::Create("assets/shaders/environment/irradiance.glsl");
+		m_PrefilterShader = Shader::Create("assets/shaders/environment/prefilter.glsl");
+		m_BRDFShader = Shader::Create("assets/shaders/environment/brdf.glsl");
 
 		GenCube();
 		GenQuad();
@@ -24,12 +24,13 @@ namespace CC3D
 	{
 		m_Texture = Texture2D::Create(1, 1);
 		uint32_t defaultData = 0x00000000;
+		//uint32_t defaultData = 0xffffffff;
 		m_Texture->SetData(&defaultData, sizeof(uint32_t));
-		m_EquirectangularToCubemapShader = Shader::Create("assets/shader/environment/equirectangular.glsl");
-		m_BackgroundShader = Shader::Create("assets/shader/environment/background.glsl");
-		m_IrradianceShader = Shader::Create("assets/shader/environment/irradiance.glsl");
-		m_PrefilterShader = Shader::Create("assets/shader/environment/prefilter.glsl");
-		m_BRDFShader = Shader::Create("assets/shader/environment/brdf.glsl");
+		m_EquirectangularToCubemapShader = Shader::Create("assets/shaders/environment/equirectangular.glsl");
+		m_BackgroundShader = Shader::Create("assets/shaders/environment/background.glsl");
+		m_IrradianceShader = Shader::Create("assets/shaders/environment/irradiance.glsl");
+		m_PrefilterShader = Shader::Create("assets/shaders/environment/prefilter.glsl");
+		m_BRDFShader = Shader::Create("assets/shaders/environment/brdf.glsl");
 
 		GenCube();
 		GenQuad();

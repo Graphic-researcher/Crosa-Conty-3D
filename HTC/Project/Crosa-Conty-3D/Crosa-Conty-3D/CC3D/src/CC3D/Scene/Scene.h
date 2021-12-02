@@ -45,7 +45,8 @@ namespace CC3D {
 		//TODO:3D Render Dev
 		void RenderObject(EditorCamera& camera, const Ref<Cubemap>& envMap);
 		void RenderLight(const EditorCamera& camera);
-
+		//Environement:
+		Ref<Cubemap> m_Cubemap = nullptr;
 	private:
 		template<typename T>
 		void OnComponentAdded(Entity entity, T& component);

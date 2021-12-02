@@ -100,6 +100,8 @@ namespace CC3D {
 
 	void EditorLayer::EntityTest2()
 	{
+
+
 		auto square = m_ActiveScene->CreateEntity("Light");
 		//square.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
 		square.AddComponent<MeshComponent>();
@@ -181,8 +183,6 @@ namespace CC3D {
 				break;
 			}
 		}
-		///Waiting for run time update implementation
-		//m_ActiveScene->OnUpdateRuntime(ts);
 
 		auto [mx, my] = ImGui::GetMousePos();
 		mx -= m_ViewportBounds[0].x;
@@ -198,6 +198,9 @@ namespace CC3D {
 			m_HoveredEntity = pixelData == -10 ? Entity() : Entity((entt::entity)pixelData, m_ActiveScene.get());
 			//CC3D_CORE_WARN("Pixel data = {0}", pixelData);
 		}
+
+		//TODO : TEMP TO REMOVE
+		m_ActiveScene->m_Cubemap->BindCubeMap(m_EditorCamera);
 
 		m_Framebuffer->Unbind();
 	}
