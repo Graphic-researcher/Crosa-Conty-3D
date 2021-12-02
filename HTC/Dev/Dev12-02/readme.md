@@ -237,4 +237,53 @@ TODO
 
 ## Light Component
 
-The purpose of convention is according to the benefit of protecting biodiversity , sustainable to use the proportion and share resource fairly;
+```c++
+DrawComponent<LightComponent>("Light Component", entity, [&entity](auto& component)
+{
+	///transform:
+	auto transform = entity.GetComponent<TransformComponent>();
+	glm::vec3 rotation = glm::degrees(transform.Rotation);
+
+	const char* lightItems[] = { "None", "Basic", "DIrLight", "PointLight", "SpotLight" };
+	auto Type = component.Type;
+	auto& light = component;
+	ImGui::Combo("Light Type", (int*)(&light.Type), lightItems, IM_ARRAYSIZE(lightItems));
+	if (Type != light.Type)
+	{
+		light.ResetType();
+	}
+	switch (light.Type)
+	{
+	case LightType::LightType_None:
+		break;
+	case LightType::LightType_Basic:
+		ImGui::ColorEdit3("Color", (float*)(&CastRef<Light>(light.LightSrc)->Color));
+		ImGui::DragFloat("Intensity", (float*)(&CastRef<Light>(light.LightSrc)->Intensity), 0.1f);
+		break;
+	case LightType::LightType_DirLight:
+		ImGui::ColorEdit3("Color", (float*)(&CastRef<DirLight>(light.LightSrc)->Color));
+		ImGui::DragFloat("Intensity", (float*)(&CastRef<DirLight>(light.LightSrc)->Intensity), 0.1f, 0.0f);
+		//ImGui::DragFloat3("Direction", (float*)(&CastRef<DirLight>(light.LightSrc)->Direction), 0.1f);
+		CastRef<DirLight>(light.LightSrc)->Direction = rotation;
+		break;
+	case LightType::LightType_PointLight:
+		ImGui::ColorEdit3("Color", (float*)(&CastRef<PointLight>(light.LightSrc)->Color));
+		ImGui::DragFloat("Intensity", (float*)(&CastRef<PointLight>(light.LightSrc)->Intensity), 0.1f, 0.0f);
+		ImGui::DragFloat("constant", (float*)(&CastRef<PointLight>(light.LightSrc)->Constant), 0.01f, 0.0f);
+		ImGui::DragFloat("linear", (float*)(&CastRef<PointLight>(light.LightSrc)->Linear), 0.01f, 0.0f);
+		ImGui::DragFloat("quadratic", (float*)(&CastRef<PointLight>(light.LightSrc)->Quadratic), 0.01f, 0.0f);
+		break;
+	case LightType::LightType_SpotLight:
+		ImGui::ColorEdit3("Color", (float*)(&CastRef<SpotLight>(light.LightSrc)->Color));
+		ImGui::DragFloat("Intensity", (float*)(&CastRef<SpotLight>(light.LightSrc)->Intensity), 0.1f, 0.0f);
+		//ImGui::DragFloat3("Direction", (float*)(&CastRef<SpotLight>(light.LightSrc)->Direction), 0.1f, 0.0f);
+		CastRef<SpotLight>(light.LightSrc)->Direction = rotation;
+		ImGui::DragFloat("CutOff", (float*)(&CastRef<SpotLight>(light.LightSrc)->CutOff), 0.01f, 0.0f);
+		ImGui::DragFloat("OuterCutOff", (float*)(&CastRef<SpotLight>(light.LightSrc)->OuterCutOff), 0.01f, 0.0f);
+	default:
+		break;c++
+	}
+});
+```
+
+![Mat3](Mat3.gif)
