@@ -12,6 +12,30 @@
 namespace CC3D {
 
 	extern const std::filesystem::path g_AssetPath;
+	extern std::map<std::string, Ref<Texture2D>> g_AssetImages;
+	extern std::map<std::string, Model> g_AssetModels; // TODO 模型预览图
+
+	namespace Utils {
+		void AttachModel(Ref<MeshTree>& meshTree, Entity entity, Ref<Scene>& context)
+		{
+
+			if (meshTree->HasMesh())
+			{
+				entity.AddComponent<MeshRendererComponent>(meshTree->m_Meshes);
+				entity.AddComponent<MaterialComponent>();
+			}	
+			if (meshTree->HasChild())
+			{
+				for (size_t i = 0; i < meshTree->m_Children.size(); i++)
+				{
+					Entity subEntity = context->CreateEntity("Mesh Entity");
+					AttachModel(meshTree->m_Children[i], subEntity, context);
+					entity.AddSubEntity(subEntity);
+				}
+			}
+		}
+	}
+
 
 	SceneHierarchyPanel::SceneHierarchyPanel(const Ref<Scene>& context)
 	{
@@ -39,17 +63,12 @@ namespace CC3D {
 			{
 				const wchar_t* path = (const wchar_t*)payload->Data;
 				std::filesystem::path modelPath = std::filesystem::path(g_AssetPath) / path;
-				Model model(modelPath.string());
+				Model& model = g_AssetModels[modelPath.string()];
 				if (model)
 				{
 					CC3D_TRACE("Successed Load Model");
 					Entity entity = m_Context->CreateEntity("Model loading test");
-					// TODO 多层级个mesh 
-				//while (model.meshes->HasChild())
-				//{
-					entity.AddComponent<MeshRendererComponent>(model.meshes->m_Meshes);
-					entity.AddComponent<MaterialComponent>();
-					//}
+					Utils::AttachModel(model.meshTree, entity, m_Context);
 				}		
 			}
 			ImGui::EndDragDropTarget();
@@ -92,15 +111,10 @@ namespace CC3D {
 
 				ImGui::EndPopup();
 			}
-		}
-
-
-		
+		}	
 
 		ImGui::End();
 			
-		
-
 		ImGui::Begin("Properties");
 		if (m_SelectionContext)
 		{
@@ -417,7 +431,7 @@ namespace CC3D {
 
 		DrawComponent<MeshRendererComponent>("Mesh Renderer", entity, [](auto& component)
 			{
-				ImGui::Text("Mesh Renderer");
+				ImGui::Text("Mesh Number: %d", component.MeshNum);
 			});
 
 		ImGui::PushItemWidth(50);

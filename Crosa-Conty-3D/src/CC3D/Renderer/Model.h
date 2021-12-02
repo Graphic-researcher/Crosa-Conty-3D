@@ -21,6 +21,7 @@ namespace CC3D
         std::vector<Mesh> m_Meshes;
         MeshTree* m_Parent = nullptr;
         std::vector<Ref<MeshTree>> m_Children;
+
         MeshTree() = default;
         MeshTree(Mesh mesh) { m_Meshes.push_back(mesh); }
         MeshTree(MeshTree* parent, Mesh mesh) :m_Parent(parent) { m_Meshes.push_back(mesh); }
@@ -39,27 +40,33 @@ namespace CC3D
         {
             return  m_Children.size() > 0 ? true : false;
         }
+        bool HasMesh()
+        {
+            return m_Meshes.size() > 0 ? true : false;
+        }
     };
 
     class Model
     {
     public:
+        Model() = default;
         Model(std::string const& path);
 
     public://TODO move to private
-        Ref<MeshTree> meshes;
+        Ref<MeshTree> meshTree;
         //std::vector<Mesh>    meshes;
 
-        operator bool() const { return meshes->m_Meshes.size() > 0 ? true : false; }
+        operator bool() const { return isLoaded; }
     private:
-        void loadModel(std::string const& path);
-        void processNode(aiNode* node, const aiScene* scene, Ref<MeshTree> currentMeshes);
+        void loadModel(std::string const& path);// TODO ∂¡»°√˚◊÷
+        void processNode(aiNode* node, const aiScene* scene, Ref<MeshTree>& currentMeshes);
         Mesh processMesh(aiMesh* mesh, const aiScene* scene);
 
     private:
         std::string m_Path;
         // TODO ‘§¿¿Õº 
         Ref<Texture2D> preView;
+        bool isLoaded = false;
     };
 
 

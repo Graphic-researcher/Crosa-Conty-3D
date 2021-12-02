@@ -18,3 +18,4 @@
 // Renderer
 #include "CC3D/Scene/Components/MeshRendererComponent.h"
 #include "CC3D/Scene/Components/MaterialComponent.h"
+#include "CC3D/Scene/Components/LightComponent.h"

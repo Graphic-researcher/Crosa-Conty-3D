@@ -6,7 +6,7 @@ namespace CC3D {
 
 	struct MaterialComponent
 	{
-		Material material;
+		Ref<Material> material;
 		glm::vec4 Color{ 1.0f, 1.0f, 1.0f, 1.0f };
 
 		MaterialComponent() = default;

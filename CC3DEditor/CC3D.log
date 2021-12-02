@@ -1,12 +1,12 @@
-[19:53:52] [warning] CC3D: Initialized Log
-[19:53:52] [info] APP: Hello Crosa Conty 3D!
-[19:53:52] [info] CC3D: Creating window CC3D Editor (1280, 720)
-[19:53:55] [info] CC3D: OpenGL Info:
-[19:53:55] [info] CC3D:   Vendor: NVIDIA Corporation
-[19:53:55] [info] CC3D:   Renderer: GeForce GTX 1660 Ti/PCIe/SSE2
-[19:53:55] [info] CC3D:   Version: 4.6.0 NVIDIA 462.31
-[19:53:55] [info] CC3D:   GLSL_Version: 4.60 NVIDIA
-[19:53:55] [error] CC3D: Failed to load image!: assets\textures\124.png
-[19:53:55] [error] CC3D: Program/shader state performance warning: Vertex shader in program 2 is being recompiled based on GL state.
-[19:53:59] [trace] APP: Successed Load Model
-[19:54:00] [trace] APP: Successed Load Model
+[15:35:53] [warning] CC3D: Initialized Log
+[15:35:53] [info] APP: Hello Crosa Conty 3D!
+[15:35:53] [info] CC3D: Creating window CC3D Editor (1280, 720)
+[15:35:54] [info] CC3D: OpenGL Info:
+[15:35:54] [info] CC3D:   Vendor: Intel
+[15:35:54] [info] CC3D:   Renderer: Intel(R) UHD Graphics 630
+[15:35:54] [info] CC3D:   Version: 4.6.0 - Build 27.20.100.8729
+[15:35:54] [info] CC3D:   GLSL_Version: 4.60 - Build 27.20.100.8729
+[15:35:54] [error] CC3D: Failed to load image!: assets\textures\124.png
+[15:36:00] [trace] APP: Successed Load Model
+[15:36:00] [error] CC3D: API_ID_RECOMPILE_FRAGMENT_SHADER performance warning has been generated. Fragment shader recompiled due to state change.
+[15:36:04] [trace] APP: Successed Load Model

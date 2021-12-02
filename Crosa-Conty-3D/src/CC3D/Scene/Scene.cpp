@@ -304,42 +304,52 @@ namespace CC3D {
 #pragma region Batch Renderer2D
 		Renderer2D::BeginScene(camera);
 		// group 是侵入式的，会生成一个group，这样很快，但是需要更小心的操作
-		auto Renderer2DGroup = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
-		for (auto entity : Renderer2DGroup)
+		auto Renderer2DView = m_Registry.view<TagComponent, TransformComponent, SpriteRendererComponent>();
+			m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
+		for (auto entity : Renderer2DView)
 		{
-			auto [transform, sprite] = Renderer2DGroup.get<TransformComponent, SpriteRendererComponent>(entity);
+			auto [tag, transform, sprite] = Renderer2DView.get<TagComponent, TransformComponent, SpriteRendererComponent>(entity);
 
 			// TODO GetGlobalTranform is expensive
-			Renderer2D::DrawSprite(transform.GetGlobalTransform(), sprite, (int)entity);
+			if(tag.IsStatic)
+				Renderer2D::DrawSprite(transform.GetGlobalTransform(), sprite, (int)entity);
 		}
 		Renderer2D::EndScene();
 #pragma endregion
 #pragma region Batch Renderer
 		// TODO carefully use grounp and view
 		Renderer::BeginScene(camera);// rename to BeginBatch Rendering
-		
-		auto RendererView = m_Registry.view<TransformComponent, MeshRendererComponent, MaterialComponent>();
+		auto RendererView = m_Registry.view<TagComponent, TransformComponent, MeshRendererComponent, MaterialComponent>();
 		for (auto entity : RendererView)
 		{
-			auto [transform, mesh, material] = RendererView.get<TransformComponent, MeshRendererComponent, MaterialComponent>(entity);
+			auto [tag, transform, mesh, material] = RendererView.get<TagComponent, TransformComponent, MeshRendererComponent, MaterialComponent>(entity);
 			// TODO 判断是否应该批 渲染
 			// TODO Material
 			// TODO GetGlobalTranform is expensive
-			glm::mat4 m = transform.GetGlobalTransform();
-			Renderer::DrawMesh(transform.GetGlobalTransform(), mesh, material, (int)entity);
+
+			auto LightGroup = m_Registry.group<TransformComponent>(entt::get<LightComponent>);
+			uint32_t lightslot = 0;
+			for (auto entity : LightGroup)
+			{
+				auto [light, lightPos] = LightGroup.get<LightComponent, TransformComponent>(entity);
+				light.Bind(material.material, lightPos.GlobalTranslation, lightslot++);
+			}
+			if(tag.IsStatic)
+				Renderer::DrawMesh(transform.GetGlobalTransform(), mesh, material, (int)entity);
 		}
 		Renderer::EndScene();
 #pragma endregion TODO need complete
 
 #pragma region Renderer
-		//auto RendererView = m_Registry.view<TransformComponent, MeshRendererComponent, MaterialComponent>();
-		//for (auto entity : RendererView)
-		//{
-		//	auto [transform, mesh, material] = RendererView.get<TransformComponent, MeshRendererComponent, MaterialComponent>(entity);
-		//	// TODO Material
-		//	// TODO GetGlobalTranform is expensive
-		//	Renderer::DrawRenderer(transform.GetGlobalTransform(), mesh, material, (int)entity);
-		//}
+		auto RendererView = m_Registry.view<TagComponent, TransformComponent, MeshRendererComponent, MaterialComponent>();
+		for (auto entity : RendererView)
+		{
+			auto [tag, transform, mesh, material] = RendererView.get<TagComponent, TransformComponent, MeshRendererComponent, MaterialComponent>(entity);
+			// TODO Material
+			// TODO GetGlobalTranform is expensive
+			if(!tag.IsStatic)
+				Renderer::DrawRenderer(transform.GetGlobalTransform(), mesh, material, (int)entity);
+		}
 #pragma endregion	TODO need complete
 		
 	}

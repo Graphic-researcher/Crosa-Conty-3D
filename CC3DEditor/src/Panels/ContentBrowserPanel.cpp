@@ -8,6 +8,9 @@ namespace CC3D {
 	// Once we have projects, change this
 	// filesystem https://en.cppreference.com/w/cpp/filesystem
 	extern const std::filesystem::path g_AssetPath = "assets";
+	extern std::map<std::string, Ref<Texture2D>> g_AssetImages = {};
+	extern std::map<std::string, Model> g_AssetModels = {}; // TODO 模型预览图
+
 
 	namespace Utils
 	{
@@ -50,15 +53,15 @@ namespace CC3D {
 			{
 				Ref<Texture2D> image = Texture2D::Create(directory.path().u8string());
 				if(image->IsLoaded())
-					m_Images.emplace(directory.path().u8string(),image);
+					g_AssetImages.emplace(directory.path().u8string(),image);
 				else
-					m_Images.emplace(directory.path().u8string(), m_PictureIcon);
+					g_AssetImages.emplace(directory.path().u8string(), m_PictureIcon);
 			}
 			if (Utils::isModelByExtension(directory.path()))
 			{
 				// TODO 模型的预览图
 				Model model(directory.path().u8string());
-				m_Models.emplace(directory.path().u8string(), model);
+				g_AssetModels.emplace(directory.path().u8string(), model);
 			}
 		}
 
@@ -101,7 +104,7 @@ namespace CC3D {
 			if (directoryEntry.is_directory())							// 文件夹
 				icon = m_DirectoryIcon;
 			else if (Utils::IsImageByTail(directoryEntry.path().u8string()))		// 图片
-				icon = m_Images[directoryEntry.path().u8string()];
+				icon = g_AssetImages[directoryEntry.path().u8string()];
 			else                                                        // 其他
 				icon = directoryEntry.is_directory() ? m_DirectoryIcon : m_FileIcon;
 

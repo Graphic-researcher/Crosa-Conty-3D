@@ -16,6 +16,8 @@
 namespace CC3D {
 
 	extern const std::filesystem::path g_AssetPath;
+	extern std::map<std::string, Ref<Texture2D>> g_AssetImages;
+	extern std::map<std::string, Model> g_AssetModels; // TODO ƒ£–Õ‘§¿¿Õº
 
 	EditorLayer::EditorLayer()
 		: Layer("EditorLayer")
