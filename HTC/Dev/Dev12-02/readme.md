@@ -148,4 +148,6 @@ ImGui::Text(("Has Normal: " + BoolString(component.Mesh->HasNormal())).c_str());
 
 
 
+![image-20211202140604138](mat1.png)
+
 ## Light Component

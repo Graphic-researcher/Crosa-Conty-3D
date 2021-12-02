@@ -41,6 +41,13 @@ namespace CC3D {
 			}
 			ImGui::EndDragDropTarget();
 		}
+		std::string btn = textureName + " Reset";
+		if (ImGui::Button(btn.c_str(), ImVec2(100.0f, 0.0f)))
+		{
+			Texture = Texture2D::Create(1, 1);
+			uint32_t data = 0xffffffff;
+			Texture->SetData(&data, sizeof(uint32_t));
+		}
 	}
 	SceneHierarchyPanel::SceneHierarchyPanel(const Ref<Scene>& context)
 	{
