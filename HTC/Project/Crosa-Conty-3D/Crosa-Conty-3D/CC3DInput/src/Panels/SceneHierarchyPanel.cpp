@@ -520,7 +520,16 @@ namespace CC3D {
 					{
 						const wchar_t* path = (const wchar_t*)payload->Data;
 						std::filesystem::path ModelPath = std::filesystem::path(g_AssetPath) / path;
-						component.Reload(ModelPath.string());
+						std::string str = ModelPath.string();
+						std::string suffix = str.substr(str.find_last_of('.') + 1);
+						if (suffix!="obj")
+						{
+							CC3D_ERROR("Can't load file");
+						}
+						else
+						{
+							component.Reload(str);
+						}
 					}
 					ImGui::EndDragDropTarget();
 				}
