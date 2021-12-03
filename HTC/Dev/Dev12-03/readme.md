@@ -47,6 +47,8 @@ But the entity object disappeared (I guess that because the lost of depth)
 
 refer : [here](https://learnopengl.com/Advanced-OpenGL/Cubemaps)
 
+code version : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/commit/5e2709e19ae2926cd0086a23c678a2de0bc96b26)
+
 **learnopengl start**
 
 Rendering the skybox is easy now that we have a cubemap texture, we simply bind the cubemap texture and the skybox sampler is automatically filled with the skybox cubemap. To draw the skybox we're going to draw it as the first object in the scene and disable depth writing. This way the skybox will always be drawn at the background of all the other objects since the unit cube is most likely smaller than the rest of the scene.
