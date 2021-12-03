@@ -37,7 +37,7 @@ namespace CC3D {
 
 		m_ActiveScene = CreateRef<Scene>();
 		//m_Cubemap->Create();
-		std::string path = "assets/HDR/newport_loft.hdr";
+		std::string path = "assets/HDR/winter_sky_1k.hdr";
 		m_ActiveScene->m_Cubemap = Cubemap::Create(path);
 		m_EditorCamera = EditorCamera(10.0f, 1.1f, 0.1f, 1000.0f);
 
