@@ -16,6 +16,7 @@ namespace CC3D {
 	EditorLayer::EditorLayer()
 		: Layer("EditorLayer"), m_CameraController(1280.0f / 720.0f), m_SquareColor({ 0.2f, 0.3f, 0.8f, 1.0f })
 	{
+
 	}
 
 	void EditorLayer::OnAttach()
@@ -28,13 +29,16 @@ namespace CC3D {
 
 		FramebufferSpecification fbSpec;
 		//fbSpec.Attachments = { FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::Depth };
-		fbSpec.Attachments = { FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::RED_INTEGER, FramebufferTextureFormat::Depth };
+		fbSpec.Attachments = { FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::RED_INTEGER, FramebufferTextureFormat::Depth };//cant load hdr
+		//fbSpec.Attachments = { FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::RED_INTEGER};//could load hdr
 		fbSpec.Width = 1280;
 		fbSpec.Height = 720;
 		m_Framebuffer = Framebuffer::Create(fbSpec);
 
 		m_ActiveScene = CreateRef<Scene>();
-		
+		//m_Cubemap->Create();
+		std::string path = "assets/HDR/newport_loft.hdr";
+		m_ActiveScene->m_Cubemap = Cubemap::Create(path);
 		m_EditorCamera = EditorCamera(10.0f, 1.1f, 0.1f, 1000.0f);
 
 
@@ -142,6 +146,7 @@ namespace CC3D {
 
 	void EditorLayer::OnUpdate(Timestep ts)
 	{
+
 		CC3D_PROFILE_FUNCTION();
 
 		// Resize
@@ -173,8 +178,9 @@ namespace CC3D {
 					m_CameraController.OnUpdate(ts);
 
 				m_EditorCamera.OnUpdate(ts);
-
+				//TODO : TEMP TO REMOVE
 				m_ActiveScene->OnUpdateEditor(ts, m_EditorCamera);
+				m_ActiveScene->m_Cubemap->BindCubeMap(m_EditorCamera);
 				break;
 			}
 			case SceneState::Play:
@@ -198,10 +204,6 @@ namespace CC3D {
 			m_HoveredEntity = pixelData == -10 ? Entity() : Entity((entt::entity)pixelData, m_ActiveScene.get());
 			//CC3D_CORE_WARN("Pixel data = {0}", pixelData);
 		}
-
-		//TODO : TEMP TO REMOVE
-		m_ActiveScene->m_Cubemap->BindCubeMap(m_EditorCamera);
-
 		m_Framebuffer->Unbind();
 	}
 

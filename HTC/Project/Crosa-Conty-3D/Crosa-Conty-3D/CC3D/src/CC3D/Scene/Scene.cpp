@@ -24,9 +24,6 @@ namespace CC3D {
 	Scene::Scene()
 	{
 		m_DefaultShader = Shader::Create((std::string("assets/shaders/material/default.glsl")));
-		//m_Cubemap->Create();
-		std::string path = "assets/HDR/winter_sky_1k.hdr";
-		m_Cubemap = m_Cubemap->Create(path);
 	}
 
 	Scene::~Scene()
