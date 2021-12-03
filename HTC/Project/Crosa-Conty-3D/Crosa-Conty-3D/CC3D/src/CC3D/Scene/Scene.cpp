@@ -241,22 +241,22 @@ namespace CC3D {
 	void Scene::OnUpdateEditor(Timestep ts, EditorCamera& camera)
 	{
 		//TODO: 3D Dev
-		//RenderObject(camera, m_Cubemap);
+		RenderObject(camera, m_Cubemap);
 
+		
+		//Renderer2D::BeginScene(camera);
 
-		Renderer2D::BeginScene(camera);
+		//auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
+		//for (auto entity : group)
+		//{
+		//	auto [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
 
-		auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
-		for (auto entity : group)
-		{
-			auto [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
-
-			Renderer2D::DrawSprite(transform.GetTransform(), sprite, (int)entity);
-		}
-				Renderer2D::EndScene();
+		//	Renderer2D::DrawSprite(transform.GetTransform(), sprite, (int)entity);
+		//}
+		//Renderer2D::EndScene();
 
 		//TODO: 3D Dev
-		RenderObject(camera, m_Cubemap);
+		//RenderObject(camera, m_Cubemap);
 		//RenderObject(camera, nullptr);
 
 

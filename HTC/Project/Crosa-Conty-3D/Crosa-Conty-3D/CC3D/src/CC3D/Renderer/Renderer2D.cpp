@@ -5,7 +5,7 @@
 #include "CC3D/Renderer/Shader.h"
 #include "CC3D/Renderer/RenderCommand.h"
 #include <glm/gtc/matrix_transform.hpp>
-
+#include <glad/glad.h>
 
 namespace CC3D {
 
