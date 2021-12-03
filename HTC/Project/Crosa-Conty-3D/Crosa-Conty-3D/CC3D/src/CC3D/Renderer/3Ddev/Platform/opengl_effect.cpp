@@ -47,11 +47,16 @@ namespace CC3D
 
 	void OpenGLCubemap::BindCubeMap(EditorCamera& camera, uint32_t slot) const
 	{
+		glClear(GL_DEPTH_BUFFER_BIT);
+		glDisable(GL_DEPTH_TEST);
+		glDepthMask(GL_FALSE);
 		m_BackgroundShader->Bind();
 		m_BackgroundShader->SetMat4("projection", camera.GetProjectionMatrix());
 		m_BackgroundShader->SetMat4("view", camera.GetViewMatrix());
 		glBindTextureUnit(slot, m_CubemapID);
 		RenderCube();
+		glEnable(GL_DEPTH_TEST);
+		glDepthMask(GL_TRUE);
 	}
 
 	void OpenGLCubemap::BindIrradianceMap(uint32_t slot) const

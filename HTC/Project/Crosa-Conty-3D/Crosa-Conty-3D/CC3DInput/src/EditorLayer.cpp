@@ -179,8 +179,8 @@ namespace CC3D {
 
 				m_EditorCamera.OnUpdate(ts);
 				//TODO : TEMP TO REMOVE
-				m_ActiveScene->OnUpdateEditor(ts, m_EditorCamera);
 				m_ActiveScene->m_Cubemap->BindCubeMap(m_EditorCamera);
+				m_ActiveScene->OnUpdateEditor(ts, m_EditorCamera);
 				break;
 			}
 			case SceneState::Play:

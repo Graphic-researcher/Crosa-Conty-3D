@@ -244,19 +244,22 @@ namespace CC3D {
 		//RenderObject(camera, m_Cubemap);
 
 
-		//Renderer2D::BeginScene(camera);
+		Renderer2D::BeginScene(camera);
 
-		//auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
-		//for (auto entity : group)
-		//{
-		//	auto [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
+		auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
+		for (auto entity : group)
+		{
+			auto [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
 
-		//	Renderer2D::DrawSprite(transform.GetTransform(), sprite, (int)entity);
-		//}
+			Renderer2D::DrawSprite(transform.GetTransform(), sprite, (int)entity);
+		}
+				Renderer2D::EndScene();
 
 		//TODO: 3D Dev
 		RenderObject(camera, m_Cubemap);
-		//Renderer2D::EndScene();
+		//RenderObject(camera, nullptr);
+
+
 	}
 
 	void Scene::OnViewportResize(uint32_t width, uint32_t height)
@@ -310,6 +313,10 @@ namespace CC3D {
 		for (auto entity : group)
 		{
 			auto transform = group.get<TransformComponent>(entity);
+			if (m_Registry.any_of<SpriteRendererComponent>(entity))
+			{
+				continue;
+			}
 			if (m_Registry.any_of<MaterialComponent>(entity) && !m_LineMode)
 			{
 				m_Registry.get<MaterialComponent>(entity).Bind();
