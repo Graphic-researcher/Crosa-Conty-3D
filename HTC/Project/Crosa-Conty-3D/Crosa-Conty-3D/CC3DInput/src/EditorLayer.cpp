@@ -43,7 +43,7 @@ namespace CC3D {
 
 		// Entity
 		//EntityTest1();
-		EntityTest2();
+		//EntityTest2();
 		
 		m_EditorScene = m_ActiveScene;
 		m_SceneHierarchyPanel.SetContext(m_EditorScene);

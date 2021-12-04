@@ -114,6 +114,10 @@ case MaterialType::Material_Cook_Torrance:
 
 ![image-20211204135420171](pbr.png)
 
+![image-20211204144136178](DAVID.png)
+
+<video src="PBR2.webm"></video>
+
 ## A bug Report
 
 Because of the selection of entity mode is using OpenGL RED_INTEGER draw mode. We recognize the entity through the integer value pass through the shader . 
@@ -152,3 +156,28 @@ That means we only select a part of object not the whole object and then we dele
 ![image-20211204140419914](b2.png)
 
 I would try to solve it if I assure that is problem and find method.  
+
+## Attention
+
+The texture we load must be internal format
+
+![image-20211204145345981](property.png)
+
+```c++
+///channel check
+GLenum internalFormat = 0, dataFormat = 0;
+if (channels == 4)
+{
+    internalFormat = GL_RGBA8;
+    dataFormat = GL_RGBA;
+}
+else if (channels == 3)
+{
+    internalFormat = GL_RGB8;
+    dataFormat = GL_RGB;
+}
+m_InternalFormat = internalFormat;
+m_DataFormat = dataFormat;
+CC3D_CORE_ASSERT(internalFormat & dataFormat, "Format not supported!");
+```
+
