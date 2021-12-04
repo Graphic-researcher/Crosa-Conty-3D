@@ -291,19 +291,7 @@ namespace CC3D {
 #pragma endregion
 
 #pragma region Enviorment(SkyBox) Loading
-		ImGui::Begin("Environment");
-		Ref<Texture2D>& HDRTexture = m_ActiveScene->m_Cubemap->GetTexture();
-		//ShowSetTexture(HDRTexture, "HDR");
-		FlagWithPath f = ShowSetTexture(HDRTexture, "HDR");
-		if (f.flag)
-		{			
-			m_ActiveScene->m_Cubemap = Cubemap::Create(f.path);
-		}
-		else if(f.resetFlag)
-		{
-			m_ActiveScene->m_Cubemap = Cubemap::Create();
-		}
-		ImGui::End();
+		EnvironmentLoad();
 #pragma endregion
 
 
@@ -319,6 +307,22 @@ namespace CC3D {
 		UI_Toolbar();
 
 		ImGui::End();//dockspace end
+	}
+
+	void EditorLayer::EnvironmentLoad()
+	{
+		ImGui::Begin("Environment");
+		Ref<Texture2D>& HDRTexture = m_ActiveScene->m_Cubemap->GetTexture();
+		FlagWithPath f = ShowSetTexture(HDRTexture, "HDR");
+		if (f.flag)
+		{
+			m_ActiveScene->m_Cubemap = Cubemap::Create(f.path);
+		}
+		else if (f.resetFlag)
+		{
+			m_ActiveScene->m_Cubemap = Cubemap::Create();
+		}
+		ImGui::End();
 	}
 
 	void EditorLayer::ViewPortUI()

@@ -10,9 +10,9 @@ namespace CC3D {
 
 	struct FlagWithPath
 	{
-		bool flag;
-		std::string path;
-		bool resetFlag = false;
+		bool flag;//is drag a new texture
+		std::string path;//texture path
+		bool resetFlag = false;//is reset texture
 	};
 
 	class SceneHierarchyPanel
