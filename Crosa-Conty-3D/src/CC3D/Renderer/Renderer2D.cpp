@@ -167,6 +167,10 @@ namespace CC3D{
 		s_Data.QuadVertexArray->Bind();// importent
 		RenderCommand::DrawIndexed(s_Data.QuadVertexArray, s_Data.QuadIndexCount);
 		s_Data.Stats.DrawCalls++;
+
+		s_Data.QuadVertexArray->Unbind();
+		s_Data.QuadVertexBuffer->Unbind();
+		s_Data.TextureShader->Unbind();
 	}
 
 	void Renderer2D::NextBatch()

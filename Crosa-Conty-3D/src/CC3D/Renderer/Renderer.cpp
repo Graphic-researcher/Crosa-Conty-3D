@@ -44,7 +44,6 @@ namespace CC3D
 	{
 		CC3D_PROFILE_FUNCTION();
 		glm::mat4 viewProj = camera.GetProjection() * glm::inverse(transform);
-
 		m_SceneData->ViewProjectionMatrix = camera.GetProjection() * glm::inverse(transform);
 	}
 
@@ -53,7 +52,6 @@ namespace CC3D
 		CC3D_PROFILE_FUNCTION();
 		glm::mat4 viewProj = camera.GetViewProjection();
 		m_SceneData->ViewProjectionMatrix = viewProj;
-
 	}
 
 	void Renderer::EndScene()
@@ -63,6 +61,8 @@ namespace CC3D
 
 	void Renderer::DrawRenderer(const glm::mat4& transform, MeshRendererComponent& src, MaterialComponent& material, int entityID)
 	{
+		material.material->Bind();// shader 要先bind再设置
+		material.material->shader->SetMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
 		const float textureIndex = 1.0f; // White Texture
 		const float tilingFactor = 1.0f;
 		std::vector<Mesh>& meshes = src.m_Meshes;
@@ -112,53 +112,13 @@ namespace CC3D
 		vertexArray->SetIndexBuffer(indexBuffer);
 
 		
-		//material.material->shader->SetMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
-		//material.material->Bind();
+		
 		vertexArray->Bind();
 		RenderCommand::DrawIndexed(vertexArray, indecies.size());
+		material.material->shader->Unbind();
+
 		//vertexArray.reset();
 	}
-
-	//void Renderer::DrawMesh(const glm::mat4& transform, MeshRendererComponent& src, MaterialComponent& material, int entityID)
-	//{
-	//	//TODO default Material
-	//	CC3D_PROFILE_FUNCTION();
-
-	//	const float textureIndex = 0.0f; // White Texture
-	//	const float tilingFactor = 1.0f;
-	//	std::vector<Mesh> meshes = src.m_Meshes;
-	//	for (size_t i = 0; i < meshes.size(); i++)
-	//	{
-	//		if (s_Data.TriIndexCount >= RendererData::MaxIndices)
-	//			NextBatch();
-
-	//		// 不能直接加在后面，因为这样会导致indexbuffer出错，新的模型的indexbuffer是重新开始的
-	//		Utils::ConnectIndices(s_Data.TriIndices, meshes[i].indices);
-
-	//		const size_t TriVertexCount = meshes[i].vertices.size();
-	//		for (size_t j = 0; j < TriVertexCount; j++)
-	//		{
-	//			// TODO multiple Textures
-	//			s_Data.TriVertexBufferPtr->Position = glm::vec3(transform * glm::vec4(meshes[i].vertices[j].Position, 1));
-	//			s_Data.TriVertexBufferPtr->Normal = meshes[i].vertices[j].Normal;//把世界坐标的法向量传进去
-	//			s_Data.TriVertexBufferPtr->Tangent = meshes[i].vertices[j].Tangent;
-	//			s_Data.TriVertexBufferPtr->Bitangent = meshes[i].vertices[j].Bitangent;
-
-	//			s_Data.TriVertexBufferPtr->Color = material.Color;
-	//			s_Data.TriVertexBufferPtr->TexCoord = meshes[i].vertices[j].TexCoords;
-	//			s_Data.TriVertexBufferPtr->TexIndex = textureIndex;
-	//			s_Data.TriVertexBufferPtr->TilingFactor = tilingFactor;
-	//			s_Data.TriVertexBufferPtr->EntityID = entityID;
-	//			s_Data.TriVertexBufferPtr++;
-	//		}
-
-	//		// TODO 计数
-	//		s_Data.TriIndexCount += meshes[i].indices.size();
-
-	//		s_Data.Stats.TriangleCount += meshes[i].indices.size() / 3;
-
-	//	}
-	//}
 
 
 }

@@ -315,20 +315,13 @@ namespace CC3D {
 		}
 		Renderer2D::EndScene();
 #pragma endregion
-#pragma region Renderer
+#pragma region BatchRenderer
 		// TODO carefully use grounp and view
 		BatchRenderer::BeginScene(camera);// rename to BeginBatch Rendering
-
-		
-
 		auto BatchRendererView = m_Registry.view<TagComponent, TransformComponent, MeshRendererComponent, MaterialComponent>();
 		for (auto entity : BatchRendererView)
 		{
 			auto [tag, transform, mesh, material] = BatchRendererView.get<TagComponent, TransformComponent, MeshRendererComponent, MaterialComponent>(entity);
-			// TODO 判断是否应该批 渲染
-			// TODO Material
-			// TODO GetGlobalTranform is expensive
-
 			auto LightView = m_Registry.view<TransformComponent, LightComponent>();
 			uint32_t lightslot = 0;
 			for (auto entity : LightView)
@@ -343,6 +336,7 @@ namespace CC3D {
 #pragma endregion TODO need complete
 
 #pragma region Renderer
+		Renderer::BeginScene(camera);
 		auto RendererView = m_Registry.view<TagComponent, TransformComponent, MeshRendererComponent, MaterialComponent>();
 		for (auto entity : RendererView)
 		{
@@ -352,6 +346,7 @@ namespace CC3D {
 			if (!tag.IsStatic)
 				Renderer::DrawRenderer(transform.GetGlobalTransform(), mesh, material, (int)entity);
 		}
+		Renderer::EndScene();
 #pragma endregion	TODO need complete
 		
 	}

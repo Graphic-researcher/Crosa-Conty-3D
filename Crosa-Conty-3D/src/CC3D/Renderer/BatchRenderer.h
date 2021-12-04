@@ -26,10 +26,6 @@ namespace CC3D {
 		static void DrawMesh(const glm::mat4& transform, MeshRendererComponent& src, MaterialComponent& material, int entityID);
 		static void DrawMesh(const glm::mat4& transform, MeshRendererComponent& src, int entityID);
 
-		// Draw Renderer
-		// TODO all renderer extend from Renderer
-		static void DrawRenderer(const glm::mat4& transform, MeshRendererComponent& src, MaterialComponent& material, int entityID);
-
 		// Stats
 		struct Statistics
 		{
@@ -43,12 +39,6 @@ namespace CC3D {
 		static Statistics GetStats();
 	private:
 
-		struct SceneData
-		{
-			glm::mat4 ViewProjectionMatrix;
-		};
-
-		static SceneData* m_SceneData;
 		static void StartBatch();
 		static void NextBatch();
 	};

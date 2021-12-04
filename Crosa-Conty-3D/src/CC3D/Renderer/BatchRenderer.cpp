@@ -25,7 +25,6 @@ namespace CC3D
 				former.insert(former.end(), later.begin(), later.end());
 		}
 	}
-	BatchRenderer::SceneData* BatchRenderer::m_SceneData = new BatchRenderer::SceneData;
 	// TODO 区分普通渲染和batch rendering
 	struct TriVertex
 	{
@@ -119,28 +118,22 @@ namespace CC3D
 	void BatchRenderer::BeginScene(const Camera& camera, const glm::mat4& transform)
 	{
 		CC3D_PROFILE_FUNCTION();
-#pragma region BatchRendering
+
 		glm::mat4 viewProj = camera.GetProjection() * glm::inverse(transform);
 
 		s_Data.TextureShader->Bind();
 		s_Data.TextureShader->SetMat4("u_ViewProjection", viewProj);
-#pragma endregion
-
-		m_SceneData->ViewProjectionMatrix = camera.GetProjection() * glm::inverse(transform);
-
 		StartBatch();
 	}
 
 	void BatchRenderer::BeginScene(const EditorCamera& camera)
 	{
 		CC3D_PROFILE_FUNCTION();
-#pragma region BatchRendering
+
 		glm::mat4 viewProj = camera.GetViewProjection();
 
 		s_Data.TextureShader->Bind();
 		s_Data.TextureShader->SetMat4("u_ViewProjection", viewProj);
-#pragma endregion
-		m_SceneData->ViewProjectionMatrix = viewProj;
 
 		StartBatch();
 	}
@@ -178,64 +171,6 @@ namespace CC3D
 	void BatchRenderer::DrawMesh(const glm::mat4& transform, MeshRendererComponent& src, int entityID)
 	{
 		//TriVertex vertex = MeshRendererComponent src
-	}
-
-	void BatchRenderer::DrawRenderer(const glm::mat4& transform, MeshRendererComponent& src, MaterialComponent& material, int entityID)
-	{
-		const float textureIndex = 1.0f; // White Texture
-		const float tilingFactor = 1.0f;
-		std::vector<Mesh>& meshes = src.m_Meshes;
-		std::vector<uint32_t> indecies;
-		Ref<VertexArray> vertexArray = VertexArray::Create();
-		size_t size = meshes.size();
-		for (size_t i = 0; i < size; i++)
-		{
-			const size_t TriVertexCount = meshes[i].vertices.size();
-
-			Utils::ConnectIndices(indecies, meshes[i].indices);
-
-			Ref<VertexBuffer> m_VertexBuffers = VertexBuffer::Create(TriVertexCount * sizeof(TriVertex));
-			m_VertexBuffers->SetLayout({
-				{ ShaderDataType::Float3, "a_Position"		},
-				{ ShaderDataType::Float3, "a_Normal"		},
-				{ ShaderDataType::Float3, "a_Tangent"		},
-				{ ShaderDataType::Float3, "a_Bitangent"		},
-
-				{ ShaderDataType::Float4, "a_Color"			},
-				{ ShaderDataType::Float2, "a_TexCoord"		},
-				{ ShaderDataType::Float,  "a_TexIndex"		},
-				{ ShaderDataType::Float,  "a_TilingFactor"	},
-				{ ShaderDataType::Int,    "a_EntityID"		}
-				});
-			TriVertex* TriVertexBuffer = new TriVertex[TriVertexCount];
-			for (size_t j = 0; j < TriVertexCount; j++)
-			{
-				TriVertexBuffer[j].Position = glm::vec3(transform * glm::vec4(meshes[i].vertices[j].Position, 1));
-				TriVertexBuffer[j].Normal = meshes[i].vertices[j].Normal;//把世界坐标的法向量传进去
-				TriVertexBuffer[j].Tangent = meshes[i].vertices[j].Tangent;
-				TriVertexBuffer[j].Bitangent = meshes[i].vertices[j].Bitangent;
-
-				TriVertexBuffer[j].Color = material.Color;
-				TriVertexBuffer[j].TexCoord = meshes[i].vertices[j].TexCoords;
-				TriVertexBuffer[j].TexIndex = textureIndex;
-				TriVertexBuffer[j].TilingFactor = tilingFactor;
-				TriVertexBuffer[j].EntityID = entityID;
-			}
-
-			m_VertexBuffers->SetData(TriVertexBuffer, TriVertexCount * sizeof(TriVertex));
-			delete[] TriVertexBuffer;
-			vertexArray->AddVertexBuffer(m_VertexBuffers);
-		}
-
-		Ref<IndexBuffer> indexBuffer = IndexBuffer::Create(indecies.data(), indecies.size());
-		vertexArray->SetIndexBuffer(indexBuffer);
-
-
-		//material.material->shader->SetMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
-		//material.material->Bind();
-		vertexArray->Bind();
-		RenderCommand::DrawIndexed(vertexArray, indecies.size());
-		//vertexArray.reset();
 	}
 
 	void BatchRenderer::DrawMesh(const glm::mat4& transform, MeshRendererComponent& src, MaterialComponent& material, int entityID)
