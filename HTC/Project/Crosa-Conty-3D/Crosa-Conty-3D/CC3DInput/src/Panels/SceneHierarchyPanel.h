@@ -8,6 +8,13 @@
 
 namespace CC3D {
 
+	struct FlagWithPath
+	{
+		bool flag;
+		std::string path;
+		bool resetFlag = false;
+	};
+
 	class SceneHierarchyPanel
 	{
 	public:
@@ -28,5 +35,5 @@ namespace CC3D {
 		Ref<Scene> m_Context;
 		Entity m_SelectionContext;
 	};
-
+	static FlagWithPath ShowSetTexture(Ref<Texture2D>& Texture, const std::string& textureName);
 }

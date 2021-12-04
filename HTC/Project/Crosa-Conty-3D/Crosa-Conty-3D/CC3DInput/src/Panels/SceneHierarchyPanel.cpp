@@ -12,8 +12,9 @@ namespace CC3D {
 
 	static std::string BoolString(bool x) { if (x)return "true"; return "false"; }
 
-	static void ShowSetTexture(CC3D::Ref<CC3D::Texture2D>& Texture, const std::string& textureName)
+	static FlagWithPath ShowSetTexture(Ref<Texture2D>& Texture, const std::string& textureName)
 	{
+
 		ImGui::Text((textureName + " Texture").c_str());
 
 		static float thumbnailSize = 128.0f;
@@ -48,6 +49,7 @@ namespace CC3D {
 			uint32_t data = 0xffffffff;
 			Texture->SetData(&data, sizeof(uint32_t));
 		}
+		return {false,""};
 	}
 	SceneHierarchyPanel::SceneHierarchyPanel(const Ref<Scene>& context)
 	{
