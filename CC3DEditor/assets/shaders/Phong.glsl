@@ -13,6 +13,17 @@ layout(location = 6) in float a_TexIndex;
 layout(location = 7) in float a_TilingFactor;
 layout(location = 8) in int a_EntityID;
 
+
+struct Material
+{
+	vec3 color;
+	sampler2D diffuse;
+	sampler2D specular;
+	sampler2D normalMap;
+	sampler2D displacementMap;
+	float shininess;
+};
+
 uniform mat4 u_ViewProjection;
 
 out vec4 v_Color;
@@ -47,6 +58,6 @@ uniform sampler2D u_Textures[32];// only support 32 textures
 
 void main()
 {
-	color = v_Color;
+	color = texture(u_Textures[int(v_TexIndex)], v_TexCoord * v_TilingFactor) * v_Color;
 	color2 = v_EntityID; // placeholder for our entity ID
 }

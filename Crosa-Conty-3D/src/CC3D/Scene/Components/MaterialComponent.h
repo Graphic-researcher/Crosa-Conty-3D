@@ -21,5 +21,13 @@ namespace CC3D {
 			}
 		}
 		MaterialComponent(const MaterialComponent&) = default;
+		void Bind()
+		{
+			material->Bind();
+		}
+		void Unbind()
+		{
+			material->Unbind();
+		}
 	};
 }

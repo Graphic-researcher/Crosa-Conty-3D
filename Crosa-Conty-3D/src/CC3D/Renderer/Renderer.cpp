@@ -61,7 +61,6 @@ namespace CC3D
 
 	void Renderer::DrawRenderer(const glm::mat4& transform, MeshRendererComponent& src, MaterialComponent& material, int entityID)
 	{
-		material.material->Bind();// shader 要先bind再设置
 		material.material->shader->SetMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
 		const float textureIndex = 1.0f; // White Texture
 		const float tilingFactor = 1.0f;
@@ -115,7 +114,7 @@ namespace CC3D
 		
 		vertexArray->Bind();
 		RenderCommand::DrawIndexed(vertexArray, indecies.size());
-		material.material->shader->Unbind();
+
 
 		//vertexArray.reset();
 	}

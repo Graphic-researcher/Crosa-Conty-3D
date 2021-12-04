@@ -453,7 +453,7 @@ namespace CC3D {
 			});
 		DrawComponent<MaterialComponent>("Material", entity, [](auto& component)
 			{
-				ImGui::Text("Material");
+				ImGui::Text(component.material->shader->GetName().c_str());
 			});
 
 		ImGui::PushItemWidth(50);

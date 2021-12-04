@@ -1,11 +1,14 @@
-[20:43:38] [warning] CC3D: Initialized Log
-[20:43:38] [info] APP: Hello Crosa Conty 3D!
-[20:43:38] [info] CC3D: Creating window CC3D Editor (1280, 720)
-[20:43:39] [info] CC3D: OpenGL Info:
-[20:43:39] [info] CC3D:   Vendor: NVIDIA Corporation
-[20:43:39] [info] CC3D:   Renderer: GeForce GTX 1660 Ti/PCIe/SSE2
-[20:43:39] [info] CC3D:   Version: 4.6.0 NVIDIA 462.31
-[20:43:39] [info] CC3D:   GLSL_Version: 4.60 NVIDIA
-[20:43:40] [error] CC3D: Failed to load image!: assets\textures\124.png
-[20:43:49] [trace] APP: Successed Load Model
-[20:44:03] [trace] APP: Successed Load Model
+[21:01:11] [warning] CC3D: Initialized Log
+[21:01:11] [info] APP: Hello Crosa Conty 3D!
+[21:01:11] [info] CC3D: Creating window CC3D Editor (1280, 720)
+[21:01:11] [info] CC3D: OpenGL Info:
+[21:01:11] [info] CC3D:   Vendor: NVIDIA Corporation
+[21:01:11] [info] CC3D:   Renderer: GeForce GTX 1660 Ti/PCIe/SSE2
+[21:01:11] [info] CC3D:   Version: 4.6.0 NVIDIA 462.31
+[21:01:11] [info] CC3D:   GLSL_Version: 4.60 NVIDIA
+[21:01:12] [error] CC3D: Failed to load image!: assets\textures\124.png
+[21:01:14] [trace] APP: Successed Load Model
+[21:01:14] [error] CC3D: Program/shader state performance warning: Vertex shader in program 3 is being recompiled based on GL state.
+[21:01:20] [warning] APP: Could not load monkey.fbx - not a scene file
+[21:01:20] [warning] APP: Could not load monkey.obj - not a scene file
+[21:01:23] [trace] APP: Successed Load Model
