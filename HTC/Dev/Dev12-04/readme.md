@@ -78,3 +78,38 @@ static FlagWithPath ShowSetTexture(Ref<Texture2D>& Texture, const std::string& t
 
 ![skybox](skybox.gif)
 
+## PBR Material UI
+
+code version :
+
+```c++
+case MaterialType::Material_Cook_Torrance:
+{
+    ImGui::ColorEdit3("Color", (float*)(&CastRef<CookTorranceBRDF>(material.MaterialSrc)->Color));
+    ImGui::Separator();
+    Ref<Texture2D>& AlbedoTexture = CastRef<CookTorranceBRDF>(material.MaterialSrc)->AlbedoTexture;
+    ShowSetTexture(AlbedoTexture, "Albedo");
+    ImGui::Separator();
+    Ref<Texture2D>& NormalTexture = CastRef<CookTorranceBRDF>(material.MaterialSrc)->NormalTexture;
+    ShowSetTexture(NormalTexture, "Normal");
+    ImGui::Separator();
+    Ref<Texture2D>& MetallicTexture = CastRef<CookTorranceBRDF>(material.MaterialSrc)->MetallicTexture;
+    ShowSetTexture(MetallicTexture, "Metallic");
+    ImGui::SliderFloat("Metallic", &CastRef<CookTorranceBRDF>(material.MaterialSrc)->Metallic, 0.0f, 1.0f, "%.2f");
+    ImGui::Separator();
+    Ref<Texture2D>& RoughnessTexture = CastRef<CookTorranceBRDF>(material.MaterialSrc)->RoughnessTexture;
+    ShowSetTexture(RoughnessTexture, "Roughness");
+    ImGui::SliderFloat("Roughness", &CastRef<CookTorranceBRDF>(material.MaterialSrc)->Roughness, 0.0f, 1.0f, "%.2f");
+    ImGui::Separator();
+    Ref<Texture2D>& AOTexture = CastRef<CookTorranceBRDF>(material.MaterialSrc)->AOTexture;
+    ShowSetTexture(AOTexture, "AmibientOcclusion");
+    ImGui::Separator();
+    Ref<Texture2D>& DisplacementTexture = CastRef<CookTorranceBRDF>(material.MaterialSrc)->DisplacementTexture;
+    ShowSetTexture(DisplacementTexture, "Displacement");
+    ImGui::DragFloat("Height Scale", &CastRef<CookTorranceBRDF>(material.MaterialSrc)->HeightScale, 0.01f);
+    ImGui::Separator();
+    break;
+}
+```
+
+![image-20211204135420171](pbr.png)
