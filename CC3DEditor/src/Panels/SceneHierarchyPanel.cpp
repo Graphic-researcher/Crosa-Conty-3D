@@ -290,26 +290,39 @@ namespace CC3D {
 		// TagComponent
 		if (entity.HasComponent<TagComponent>())
 		{
-			auto& tag = entity.GetComponent<TagComponent>().Tag;
+			auto& tagComponent = entity.GetComponent<TagComponent>();
 
 			char buffer[256];
 			memset(buffer, 0, sizeof(buffer));
-			std::strncpy(buffer, tag.c_str(), sizeof(buffer));
+			std::strncpy(buffer, tagComponent.Tag.c_str(), sizeof(buffer));
 			if (ImGui::InputText("##Tag", buffer, sizeof(buffer)))
 			{
-				tag = std::string(buffer);
+				tagComponent.Tag = std::string(buffer);
+			}
+			ImGui::SameLine();
+			ImGui::Checkbox("Static", &tagComponent.IsStatic);
+			// TODO change the static state of SubEntity
+		}
+		if (entity.HasComponent<TransformComponent>())
+		{
+			ImVec2 contentRegionAvailable = ImGui::GetContentRegionAvail();
+			ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2{ 4, 4 });
+			float lineHeight = GImGui->Font->FontSize + GImGui->Style.FramePadding.y * 2.0f;
+			ImGui::Separator();
+			ImGuiTreeNodeFlags treeNodeFlags = ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_Framed | ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_AllowItemOverlap | ImGuiTreeNodeFlags_FramePadding;
+			bool open = ImGui::TreeNodeEx((void*)typeid(TransformComponent).hash_code(), treeNodeFlags, "Tranform");
+			ImGui::PopStyleVar();
+			if (open)
+			{
+				auto& transformComponent = entity.GetComponent<TransformComponent>();
+				DrawVec3Control("Translation", transformComponent.Translation);
+				glm::vec3 rotation = glm::degrees(transformComponent.Rotation);
+				DrawVec3Control("Rotation", rotation);
+				transformComponent.Rotation = glm::radians(rotation);
+				DrawVec3Control("Scale", transformComponent.Scale, 1.0f);
+				ImGui::TreePop();
 			}
 		}
-
-		// TransformComponent
-		DrawComponent<TransformComponent>("Transform", entity, [](auto& component)
-			{
-				DrawVec3Control("Translation", component.Translation);
-				glm::vec3 rotation = glm::degrees(component.Rotation);
-				DrawVec3Control("Rotation", rotation);
-				component.Rotation = glm::radians(rotation);
-				DrawVec3Control("Scale", component.Scale, 1.0f);
-			});
 
 		DrawComponent<CameraComponent>("Camera", entity, [](auto& component)
 			{

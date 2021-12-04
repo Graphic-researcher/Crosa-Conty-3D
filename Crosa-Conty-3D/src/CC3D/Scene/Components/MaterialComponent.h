@@ -9,7 +9,17 @@ namespace CC3D {
 		Ref<Material> material;
 		glm::vec4 Color{ 1.0f, 1.0f, 1.0f, 1.0f };
 
-		MaterialComponent() = default;
+		MaterialComponent() { material = CreateRef<PhongMaterial>(); }
+		MaterialComponent(MaterialType materialType) {
+			switch (materialType)
+			{
+			case MaterialType::Phong:
+				material = CreateRef<PhongMaterial>();
+				break;
+			default:
+				break;
+			}
+		}
 		MaterialComponent(const MaterialComponent&) = default;
 	};
 }

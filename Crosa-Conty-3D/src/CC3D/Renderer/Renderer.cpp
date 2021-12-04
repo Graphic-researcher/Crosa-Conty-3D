@@ -6,6 +6,26 @@
 #include "CC3D/Renderer/RenderCommand.h"
 namespace CC3D
 {
+	namespace Utils
+	{
+		void ConnectIndices(std::vector<uint32_t>& former, std::vector<uint32_t>& later)
+		{
+			// 不能直接加在后面，因为这样会导致indexbuffer出错，新的模型的indexbuffer是重新开始的
+			if (former.size() > 0)
+			{
+				uint32_t offset = *std::max_element(former.begin(), former.end());
+				for (uint32_t& index : later)
+				{
+					index += offset + 1;
+				}
+
+				former.insert(former.end(), later.begin(), later.end());
+			}
+			else
+				former.insert(former.end(), later.begin(), later.end());
+		}
+	}
+	Renderer::SceneData* Renderer::m_SceneData = new Renderer::SceneData;
 	// TODO 区分普通渲染和batch rendering
 	struct TriVertex
 	{
@@ -72,27 +92,6 @@ namespace CC3D
 		s_Data.TriVertexArray->AddVertexBuffer(s_Data.TriVertexBuffer);
 		s_Data.TriVertexBufferBase = new TriVertex[s_Data.MaxVertices];
 
-
-		//uint32_t* TriIndices = new uint32_t[s_Data.MaxIndices];
-
-		//uint32_t offset = 0;
-		//for (uint32_t i = 0; i < s_Data.MaxIndices; i += 6)
-		//{
-		//	TriIndices[i + 0] = offset + 0;
-		//	TriIndices[i + 1] = offset + 1;
-		//	TriIndices[i + 2] = offset + 2;
-
-		//	TriIndices[i + 3] = offset + 2;
-		//	TriIndices[i + 4] = offset + 3;
-		//	TriIndices[i + 5] = offset + 0;
-
-		//	offset += 4;// +4 是因为本质上是画4个点
-		//}
-
-		//Ref<IndexBuffer> TriIB = IndexBuffer::Create(TriIndices, s_Data.MaxIndices);
-		//s_Data.TriVertexArray->SetIndexBuffer(TriIB);
-		//delete[] TriIndices;
-
 		s_Data.WhiteTexture = Texture2D::Create(1, 1);
 		uint32_t whiteTextureData = 0xffff00ff;
 		s_Data.WhiteTexture->SetData(&whiteTextureData, sizeof(uint32_t));
@@ -120,11 +119,14 @@ namespace CC3D
 	void Renderer::BeginScene(const Camera& camera, const glm::mat4& transform)
 	{
 		CC3D_PROFILE_FUNCTION();
-
+#pragma region BatchRendering
 		glm::mat4 viewProj = camera.GetProjection() * glm::inverse(transform);
 
 		s_Data.TextureShader->Bind();
 		s_Data.TextureShader->SetMat4("u_ViewProjection", viewProj);
+#pragma endregion
+
+		m_SceneData->ViewProjectionMatrix = camera.GetProjection() * glm::inverse(transform);
 
 		StartBatch();
 	}
@@ -132,11 +134,13 @@ namespace CC3D
 	void Renderer::BeginScene(const EditorCamera& camera)
 	{
 		CC3D_PROFILE_FUNCTION();
-
+#pragma region BatchRendering
 		glm::mat4 viewProj = camera.GetViewProjection();
 
 		s_Data.TextureShader->Bind();
 		s_Data.TextureShader->SetMat4("u_ViewProjection", viewProj);
+#pragma endregion
+		m_SceneData->ViewProjectionMatrix = viewProj;
 
 		StartBatch();
 	}
@@ -165,7 +169,7 @@ namespace CC3D
 		s_Data.TriIndices.clear();
 
 		
-
+		s_Data.TriVertexArray->Bind();
 		RenderCommand::DrawIndexed(s_Data.TriVertexArray, s_Data.TriIndexCount);
 		s_Data.Stats.DrawCalls++;
 	}
@@ -177,17 +181,19 @@ namespace CC3D
 
 	void Renderer::DrawRenderer(const glm::mat4& transform, MeshRendererComponent& src, MaterialComponent& material, int entityID)
 	{
-		
-		/*const std::vector<Mesh>& meshes = src.m_Meshes;
+		const float textureIndex = 0.0f; // White Texture
+		const float tilingFactor = 1.0f;
+		std::vector<Mesh>& meshes = src.m_Meshes;
 		std::vector<uint32_t> indecies;
-
 		Ref<VertexArray> vertexArray = VertexArray::Create();
-
 		size_t size = meshes.size();
 		for (size_t i = 0; i < size; i++)
 		{
-			indecies.insert(indecies.end(),meshes[i].indices.begin(), meshes[i].indices.end());
-			Ref<VertexBuffer> m_VertexBuffers = VertexBuffer::Create(meshes[i].vertices.size() * sizeof(Vertex));
+			const size_t TriVertexCount = meshes[i].vertices.size();
+
+			Utils::ConnectIndices(indecies, meshes[i].indices);
+
+			Ref<VertexBuffer> m_VertexBuffers = VertexBuffer::Create(TriVertexCount * sizeof(TriVertex));
 			m_VertexBuffers->SetLayout({
 				{ ShaderDataType::Float3, "a_Position"		},
 				{ ShaderDataType::Float3, "a_Normal"		},
@@ -200,21 +206,33 @@ namespace CC3D
 				{ ShaderDataType::Float,  "a_TilingFactor"	},
 				{ ShaderDataType::Int,    "a_EntityID"		}
 				});
-			m_VertexBuffers->SetData(meshes[i].vertices.data(), meshes[i].vertices.size() * sizeof(Vertex));
+			TriVertex* TriVertexBuffer = new TriVertex[TriVertexCount];
+			for (size_t j = 0; j < TriVertexCount; j++)
+			{
+				TriVertexBuffer[j].Position = glm::vec3(transform * glm::vec4(meshes[i].vertices[j].Position, 1));
+				TriVertexBuffer[j].Normal = meshes[i].vertices[j].Normal;//把世界坐标的法向量传进去
+				TriVertexBuffer[j].Tangent = meshes[i].vertices[j].Tangent;
+				TriVertexBuffer[j].Bitangent = meshes[i].vertices[j].Bitangent;
+
+				TriVertexBuffer[j].Color = material.Color;
+				TriVertexBuffer[j].TexCoord = meshes[i].vertices[j].TexCoords;
+				TriVertexBuffer[j].TexIndex = textureIndex;
+				TriVertexBuffer[j].TilingFactor = tilingFactor;
+				TriVertexBuffer[j].EntityID = entityID;
+			}
+			
+			m_VertexBuffers->SetData(TriVertexBuffer, TriVertexCount * sizeof(TriVertex));
 			vertexArray->AddVertexBuffer(m_VertexBuffers);
 		}
 
 		Ref<IndexBuffer> indexBuffer = IndexBuffer::Create(indecies.data(), indecies.size());
 		vertexArray->SetIndexBuffer(indexBuffer);
 
-		Ref<Shader> shader = Shader::Create("assets/shaders/Phong.glsl");
-
-		glm::mat4 viewProj = camera.GetProjection() * glm::inverse(transform);
-
-		s_Data.TextureShader->Bind();
-		s_Data.TextureShader->SetMat4("u_ViewProjection", viewProj);
-
-		RenderCommand::DrawIndexed(vertexArray, indecies.size());*/
+		vertexArray->Bind();
+		material.material->shader->SetMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
+		material.material->Bind();
+		RenderCommand::DrawIndexed(vertexArray, indecies.size());
+		vertexArray.reset();
 	}
 
 	void Renderer::DrawMesh(const glm::mat4& transform, MeshRendererComponent& src, MaterialComponent& material, int entityID)
@@ -231,26 +249,13 @@ namespace CC3D
 				NextBatch();
 
 			// 不能直接加在后面，因为这样会导致indexbuffer出错，新的模型的indexbuffer是重新开始的
-			if (s_Data.TriIndices.size() > 0)
-			{
-				uint32_t offset = *std::max_element(s_Data.TriIndices.begin(), s_Data.TriIndices.end());
-				for (uint32_t& index : meshes[i].indices)
-				{
-					index += offset + 1;
-				}
-
-				s_Data.TriIndices.insert(s_Data.TriIndices.end(), meshes[i].indices.begin(), meshes[i].indices.end());
-			}
-			else
-				s_Data.TriIndices.insert(s_Data.TriIndices.end(), meshes[i].indices.begin(), meshes[i].indices.end());
-			
+			Utils::ConnectIndices(s_Data.TriIndices, meshes[i].indices);
 
 			const size_t TriVertexCount = meshes[i].vertices.size();
 			for (size_t j = 0; j < TriVertexCount; j++)
 			{
 				// TODO multiple Textures
 				s_Data.TriVertexBufferPtr->Position = glm::vec3(transform * glm::vec4(meshes[i].vertices[j].Position, 1));
-				glm::vec3 p = s_Data.TriVertexBufferPtr->Position;
 				s_Data.TriVertexBufferPtr->Normal = meshes[i].vertices[j].Normal;//把世界坐标的法向量传进去
 				s_Data.TriVertexBufferPtr->Tangent = meshes[i].vertices[j].Tangent;
 				s_Data.TriVertexBufferPtr->Bitangent = meshes[i].vertices[j].Bitangent;

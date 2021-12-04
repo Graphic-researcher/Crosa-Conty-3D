@@ -1,5 +1,6 @@
 #pragma once
 #include "CC3D/Renderer/Shader.h"
+#include "CC3D/Renderer/Material.h"
 
 #include <glm/glm.hpp>
 namespace CC3D {

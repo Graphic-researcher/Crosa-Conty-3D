@@ -7,7 +7,7 @@ namespace CC3D {
 	{
 		std::string Tag;
 		// TODO change to enum
-		bool IsStatic = true;
+		bool IsStatic = false;
 
 		TagComponent() = default;
 		TagComponent(const TagComponent&) = default;
@@ -15,5 +15,6 @@ namespace CC3D {
 			: Tag(tag) {}
 		TagComponent(const std::string& tag, const bool isStatic)
 			: Tag(tag), IsStatic(isStatic) {}
+
 	};
 }

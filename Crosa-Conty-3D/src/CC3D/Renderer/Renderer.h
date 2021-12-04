@@ -42,6 +42,13 @@ namespace CC3D {
 		static void ResetStats();
 		static Statistics GetStats();
 	private:
+
+		struct SceneData
+		{
+			glm::mat4 ViewProjectionMatrix;
+		};
+
+		static SceneData* m_SceneData;
 		static void StartBatch();
 		static void NextBatch();
 	};

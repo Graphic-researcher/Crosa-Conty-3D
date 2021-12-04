@@ -163,7 +163,8 @@ namespace CC3D{
 
 		// Bind textures
 		for (uint32_t i = 0; i < s_Data.TextureSlotIndex; i++)// why here
-			s_Data.TextureSlots[i]->Bind(i);	
+			s_Data.TextureSlots[i]->Bind(i);
+		s_Data.QuadVertexArray->Bind();// importent
 		RenderCommand::DrawIndexed(s_Data.QuadVertexArray, s_Data.QuadIndexCount);
 		s_Data.Stats.DrawCalls++;
 	}

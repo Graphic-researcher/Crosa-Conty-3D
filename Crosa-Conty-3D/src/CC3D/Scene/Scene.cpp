@@ -305,7 +305,6 @@ namespace CC3D {
 		Renderer2D::BeginScene(camera);
 		// group 是侵入式的，会生成一个group，这样很快，但是需要更小心的操作
 		auto Renderer2DView = m_Registry.view<TagComponent, TransformComponent, SpriteRendererComponent>();
-			m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
 		for (auto entity : Renderer2DView)
 		{
 			auto [tag, transform, sprite] = Renderer2DView.get<TagComponent, TransformComponent, SpriteRendererComponent>(entity);
@@ -319,19 +318,19 @@ namespace CC3D {
 #pragma region Batch Renderer
 		// TODO carefully use grounp and view
 		Renderer::BeginScene(camera);// rename to BeginBatch Rendering
-		auto RendererView = m_Registry.view<TagComponent, TransformComponent, MeshRendererComponent, MaterialComponent>();
-		for (auto entity : RendererView)
+		auto BatchRendererView = m_Registry.view<TagComponent, TransformComponent, MeshRendererComponent, MaterialComponent>();
+		for (auto entity : BatchRendererView)
 		{
-			auto [tag, transform, mesh, material] = RendererView.get<TagComponent, TransformComponent, MeshRendererComponent, MaterialComponent>(entity);
+			auto [tag, transform, mesh, material] = BatchRendererView.get<TagComponent, TransformComponent, MeshRendererComponent, MaterialComponent>(entity);
 			// TODO 判断是否应该批 渲染
 			// TODO Material
 			// TODO GetGlobalTranform is expensive
 
-			auto LightGroup = m_Registry.group<TransformComponent>(entt::get<LightComponent>);
+			auto LightView = m_Registry.view<TransformComponent, LightComponent>();
 			uint32_t lightslot = 0;
-			for (auto entity : LightGroup)
+			for (auto entity : LightView)
 			{
-				auto [light, lightPos] = LightGroup.get<LightComponent, TransformComponent>(entity);
+				auto [light, lightPos] = LightView.get<LightComponent, TransformComponent>(entity);
 				light.Bind(material.material, lightPos.GlobalTranslation, lightslot++);
 			}
 			if(tag.IsStatic)
@@ -487,6 +486,11 @@ namespace CC3D {
 	
 	template<>
 	void Scene::OnComponentAdded<MaterialComponent>(Entity entity, MaterialComponent& component)
+	{
+	}
+	
+	template<>
+	void Scene::OnComponentAdded<LightComponent>(Entity entity, LightComponent& component)
 	{
 	}
 

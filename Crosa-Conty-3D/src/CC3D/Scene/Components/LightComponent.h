@@ -26,7 +26,7 @@ namespace CC3D {
 			switch (Type)
 			{
 			case LightType::Point:
-				light->Bind(shader, position, slot);
+				light->Bind(material, position, slot);
 				break;
 			default:
 				break;
