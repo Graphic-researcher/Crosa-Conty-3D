@@ -181,3 +181,8 @@ m_DataFormat = dataFormat;
 CC3D_CORE_ASSERT(internalFormat & dataFormat, "Format not supported!");
 ```
 
+## Default Color
+
+Just like Unity Pink color error
+
+![image-20211204150919699](pink.png)

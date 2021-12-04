@@ -26,6 +26,7 @@ in flat int v_EntityID;
 
 void main()
 {
-	FragColor=vec4(1.0);
+	FragColor = vec4(1.0f, 0.0f, 1.0f, 1.0f);
+	//FragColor=vec4(1.0);
 	color1 = v_EntityID;
 }
