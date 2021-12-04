@@ -2,6 +2,7 @@
 #include "CC3D/Renderer/RenderContext.h"
 #include "CC3D/Renderer/Renderer2D.h"
 #include "CC3D/Renderer/Renderer.h"
+#include "CC3D/Renderer/BatchRenderer.h"
 
 
 #include "CC3D/Scene/SceneCamera.h"
@@ -19,12 +20,14 @@ namespace CC3D {
 		RenderCommand::Init();
 		Renderer2D::Init();
 		Renderer::Init();
+		BatchRenderer::Init();
 	}
 
 	void RenderContext::Shutdown()
 	{
 		Renderer2D::Shutdown();
 		Renderer::Shutdown();
+		BatchRenderer::Shutdown();
 	}
 
 	void RenderContext::OnWindowResize(uint32_t width, uint32_t height)

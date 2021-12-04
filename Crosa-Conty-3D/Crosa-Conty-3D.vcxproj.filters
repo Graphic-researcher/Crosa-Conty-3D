@@ -207,6 +207,7 @@
     <ClInclude Include="src\CC3D\Renderer\Material.h" />
     <ClInclude Include="src\CC3D\Renderer\Light.h" />
     <ClInclude Include="src\CC3D\Scene\Components\LightComponent.h" />
+    <ClInclude Include="src\CC3D\Renderer\BatchRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CC3D\Core\Application.cpp">
@@ -256,6 +257,7 @@
     <ClCompile Include="src\CC3D\Renderer\Mesh.cpp" />
     <ClCompile Include="src\CC3D\Renderer\Material.cpp" />
     <ClCompile Include="src\CC3D\Renderer\Light.cpp" />
+    <ClCompile Include="src\CC3D\Renderer\BatchRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="vendor\glm\glm\core\func_common.inl" />

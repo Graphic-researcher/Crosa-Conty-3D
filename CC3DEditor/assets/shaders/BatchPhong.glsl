@@ -47,6 +47,6 @@ uniform sampler2D u_Textures[32];// only support 32 textures
 
 void main()
 {
-	color = v_Color;
+	color =  v_Color;
 	color2 = v_EntityID; // placeholder for our entity ID
 }

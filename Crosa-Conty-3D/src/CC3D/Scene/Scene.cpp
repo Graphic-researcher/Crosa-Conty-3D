@@ -3,6 +3,7 @@
 
 #include "Components.h"
 #include "CC3D/Renderer/Renderer2D.h"
+#include "CC3D/Renderer/BatchRenderer.h"
 
 #include <glm/glm.hpp>
 
@@ -211,91 +212,91 @@ namespace CC3D {
 	void Scene::OnUpdateRuntime(Timestep ts)
 	{
 
-		// Update scripts
-		{
-			m_Registry.view<NativeScriptComponent>().each([=](auto entity, auto& nsc)
-				{
-					// TODO: Move to Scene::OnScenePlay
-					if (!nsc.Instance)
-					{
-						nsc.Instance = nsc.InstantiateScript();
-						nsc.Instance->m_Entity = Entity{ entity, this };
-						nsc.Instance->OnCreate();
-					}
+		//// Update scripts
+		//{
+		//	m_Registry.view<NativeScriptComponent>().each([=](auto entity, auto& nsc)
+		//		{
+		//			// TODO: Move to Scene::OnScenePlay
+		//			if (!nsc.Instance)
+		//			{
+		//				nsc.Instance = nsc.InstantiateScript();
+		//				nsc.Instance->m_Entity = Entity{ entity, this };
+		//				nsc.Instance->OnCreate();
+		//			}
 
-					nsc.Instance->OnUpdate(ts);
-				});
-		}
+		//			nsc.Instance->OnUpdate(ts);
+		//		});
+		//}
 
-		// Physics
-		{
-			const int32_t velocityIterations = 6;
-			const int32_t positionIterations = 2;
-			m_PhysicsWorld->Step(ts, velocityIterations, positionIterations);
+		//// Physics
+		//{
+		//	const int32_t velocityIterations = 6;
+		//	const int32_t positionIterations = 2;
+		//	m_PhysicsWorld->Step(ts, velocityIterations, positionIterations);
 
-			// Retrieve transform from Box2D
-			auto view = m_Registry.view<Rigidbody2DComponent>();
-			for (auto e : view)
-			{
-				Entity entity = { e, this };
-				auto& transform = entity.GetComponent<TransformComponent>();
-				auto& rb2d = entity.GetComponent<Rigidbody2DComponent>();
+		//	// Retrieve transform from Box2D
+		//	auto view = m_Registry.view<Rigidbody2DComponent>();
+		//	for (auto e : view)
+		//	{
+		//		Entity entity = { e, this };
+		//		auto& transform = entity.GetComponent<TransformComponent>();
+		//		auto& rb2d = entity.GetComponent<Rigidbody2DComponent>();
 
-				b2Body* body = (b2Body*)rb2d.RuntimeBody;
-				const auto& position = body->GetPosition();
-				transform.GlobalTranslation.x = position.x;
-				transform.GlobalTranslation.y = position.y;
-				transform.GlobalRotation.z = body->GetAngle();
-			}
-		}
+		//		b2Body* body = (b2Body*)rb2d.RuntimeBody;
+		//		const auto& position = body->GetPosition();
+		//		transform.GlobalTranslation.x = position.x;
+		//		transform.GlobalTranslation.y = position.y;
+		//		transform.GlobalRotation.z = body->GetAngle();
+		//	}
+		//}
 
-		// Scene Render
+		//// Scene Render
 
 
-		// Render 2D
-		Camera* mainCamera = nullptr;
-		glm::mat4 cameraTransform;
-		{
-			auto view = m_Registry.view<TransformComponent, CameraComponent>();
-			for (auto entity : view)
-			{
-				auto [transform, camera] = view.get<TransformComponent, CameraComponent>(entity);
+		//// Render 2D
+		//Camera* mainCamera = nullptr;
+		//glm::mat4 cameraTransform;
+		//{
+		//	auto view = m_Registry.view<TransformComponent, CameraComponent>();
+		//	for (auto entity : view)
+		//	{
+		//		auto [transform, camera] = view.get<TransformComponent, CameraComponent>(entity);
 
-				if (camera.Primary)
-				{
-					mainCamera = &camera.Camera;
-					cameraTransform = transform.GetGlobalTransform();
-					break;
-				}
-			}
-		}
+		//		if (camera.Primary)
+		//		{
+		//			mainCamera = &camera.Camera;
+		//			cameraTransform = transform.GetGlobalTransform();
+		//			break;
+		//		}
+		//	}
+		//}
 
-		if (mainCamera)
-		{
-			Renderer2D::BeginScene(*mainCamera, cameraTransform);
+		//if (mainCamera)
+		//{
+		//	Renderer2D::BeginScene(*mainCamera, cameraTransform);
 
-			auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
-			for (auto entity : group)
-			{
-				auto [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
-				Renderer2D::DrawSprite(transform.GetGlobalTransform(), sprite, (int)entity);
-			}
+		//	auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
+		//	for (auto entity : group)
+		//	{
+		//		auto [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
+		//		Renderer2D::DrawSprite(transform.GetGlobalTransform(), sprite, (int)entity);
+		//	}
 
-			//// 粒子系统 
-			//auto view = m_Registry.view<TransformComponent, ParticleSystemComponent>();
-			//for (auto entity : view)
-			//{
-			//	auto [transform, particleSystem] = view.get<TransformComponent, ParticleSystemComponent>(entity);
+		//	//// 粒子系统 
+		//	//auto view = m_Registry.view<TransformComponent, ParticleSystemComponent>();
+		//	//for (auto entity : view)
+		//	//{
+		//	//	auto [transform, particleSystem] = view.get<TransformComponent, ParticleSystemComponent>(entity);
 
-			//	for (int i = 0; i < 5; i++)
-			//		particleSystem.Emit();
+		//	//	for (int i = 0; i < 5; i++)
+		//	//		particleSystem.Emit();
 
-			//	particleSystem.OnUpdate(ts);
-			//	particleSystem.OnRender();
-			//}
+		//	//	particleSystem.OnUpdate(ts);
+		//	//	particleSystem.OnRender();
+		//	//}
 
-			Renderer2D::EndScene();
-		}
+		//	Renderer2D::EndScene();
+		//}
 	}
 
 	void Scene::OnUpdateEditor(Timestep ts, EditorCamera& camera)
@@ -309,14 +310,17 @@ namespace CC3D {
 			auto [tag, transform, sprite] = Renderer2DView.get<TagComponent, TransformComponent, SpriteRendererComponent>(entity);
 
 			// TODO GetGlobalTranform is expensive
-			//if(tag.IsStatic)
+			if(tag.IsStatic)
 				Renderer2D::DrawSprite(transform.GetGlobalTransform(), sprite, (int)entity);
 		}
 		Renderer2D::EndScene();
 #pragma endregion
-#pragma region Batch Renderer
+#pragma region Renderer
 		// TODO carefully use grounp and view
-		Renderer::BeginScene(camera);// rename to BeginBatch Rendering
+		BatchRenderer::BeginScene(camera);// rename to BeginBatch Rendering
+
+		
+
 		auto BatchRendererView = m_Registry.view<TagComponent, TransformComponent, MeshRendererComponent, MaterialComponent>();
 		for (auto entity : BatchRendererView)
 		{
@@ -333,9 +337,9 @@ namespace CC3D {
 				light.Bind(material.material, lightPos.GlobalTranslation, lightslot++);
 			}
 			if(tag.IsStatic)
-				Renderer::DrawMesh(transform.GetGlobalTransform(), mesh, material, (int)entity);
+				BatchRenderer::DrawMesh(transform.GetGlobalTransform(), mesh, material, (int)entity);
 		}
-		Renderer::EndScene();
+		BatchRenderer::EndScene();
 #pragma endregion TODO need complete
 
 #pragma region Renderer
@@ -345,7 +349,7 @@ namespace CC3D {
 			auto [tag, transform, mesh, material] = RendererView.get<TagComponent, TransformComponent, MeshRendererComponent, MaterialComponent>(entity);
 			// TODO Material
 			// TODO GetGlobalTranform is expensive
-			if(!tag.IsStatic)
+			if (!tag.IsStatic)
 				Renderer::DrawRenderer(transform.GetGlobalTransform(), mesh, material, (int)entity);
 		}
 #pragma endregion	TODO need complete
@@ -354,38 +358,38 @@ namespace CC3D {
 
 	void Scene::OnUpdateGame(Timestep ts)
 	{
-		// Render 2D
-		Camera* mainCamera = nullptr;
-		glm::mat4 cameraTransform;
-		{
-			auto view = m_Registry.view<TransformComponent, CameraComponent>();
-			for (auto entity : view)
-			{
-				auto [transform, camera] = view.get<TransformComponent, CameraComponent>(entity);
+		//// Render 2D
+		//Camera* mainCamera = nullptr;
+		//glm::mat4 cameraTransform;
+		//{
+		//	auto view = m_Registry.view<TransformComponent, CameraComponent>();
+		//	for (auto entity : view)
+		//	{
+		//		auto [transform, camera] = view.get<TransformComponent, CameraComponent>(entity);
 
-				if (camera.Primary)
-				{
-					mainCamera = &camera.Camera;
-					cameraTransform = transform.GetGlobalTransform();
-					break;
-				}
-			}
-		}
+		//		if (camera.Primary)
+		//		{
+		//			mainCamera = &camera.Camera;
+		//			cameraTransform = transform.GetGlobalTransform();
+		//			break;
+		//		}
+		//	}
+		//}
 
-		if (mainCamera)
-		{
-			Renderer2D::BeginScene(*mainCamera, cameraTransform);
+		//if (mainCamera)
+		//{
+		//	Renderer2D::BeginScene(*mainCamera, cameraTransform);
 
-			auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
-			for (auto entity : group)
-			{
-				auto [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
+		//	auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
+		//	for (auto entity : group)
+		//	{
+		//		auto [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
 
-				Renderer2D::DrawSprite(transform.GetGlobalTransform(), sprite, (int)entity);
-			}
+		//		Renderer2D::DrawSprite(transform.GetGlobalTransform(), sprite, (int)entity);
+		//	}
 
-			Renderer2D::EndScene();
-		}
+		//	Renderer2D::EndScene();
+		//}
 	}
 
 	void Scene::OnViewportResize(uint32_t width, uint32_t height)

@@ -81,6 +81,8 @@ namespace CC3D {
 			m_Context->m_Registry.each([&](auto entityID)
 				{
 					Entity entity{ entityID , m_Context.get() };
+					if (!entity)
+						return;
 					if(!entity.GetComponent<TransformComponent>().parent)
 						DrawEntityNode(entity);
 				});
