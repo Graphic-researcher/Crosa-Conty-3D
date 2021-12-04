@@ -11,8 +11,13 @@ struct FlagWithPath
 };
 void EditorLayer::EnvironmentLoad()
 {
+    static float thumbnailSize = 128.0f;
     ImGui::Begin("Environment");
-    Ref<Texture2D>& HDRTexture = m_ActiveScene->m_Cubemap->GetTexture();
+    Ref<Texture2D> HDRTexture;
+    if (m_ActiveScene->m_Cubemap != nullptr)
+    {
+        HDRTexture = m_ActiveScene->m_Cubemap->GetTexture();
+    }
     FlagWithPath f = ShowSetTexture(HDRTexture, "HDR");
     if (f.flag)
     {
@@ -22,7 +27,7 @@ void EditorLayer::EnvironmentLoad()
     {
         m_ActiveScene->m_Cubemap = Cubemap::Create();
     }
-    ImGui::End();
+    ImGui::End();//Environment
 }
 static FlagWithPath ShowSetTexture(Ref<Texture2D>& Texture, const std::string& textureName)
 {

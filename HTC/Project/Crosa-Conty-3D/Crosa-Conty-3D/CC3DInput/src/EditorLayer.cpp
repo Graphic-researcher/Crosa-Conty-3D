@@ -16,7 +16,6 @@ namespace CC3D {
 	EditorLayer::EditorLayer()
 		: Layer("EditorLayer"), m_CameraController(1280.0f / 720.0f), m_SquareColor({ 0.2f, 0.3f, 0.8f, 1.0f })
 	{
-
 	}
 
 	void EditorLayer::OnAttach()
@@ -179,7 +178,8 @@ namespace CC3D {
 
 				m_EditorCamera.OnUpdate(ts);
 				//TODO : TEMP TO REMOVE
-				m_ActiveScene->m_Cubemap->BindCubeMap(m_EditorCamera);
+				if(m_ActiveScene->m_Cubemap!=nullptr)
+					m_ActiveScene->m_Cubemap->BindCubeMap(m_EditorCamera);
 				m_ActiveScene->OnUpdateEditor(ts, m_EditorCamera);
 				break;
 			}
@@ -311,8 +311,13 @@ namespace CC3D {
 
 	void EditorLayer::EnvironmentLoad()
 	{
+		static float thumbnailSize = 128.0f;
 		ImGui::Begin("Environment");
-		Ref<Texture2D>& HDRTexture = m_ActiveScene->m_Cubemap->GetTexture();
+		Ref<Texture2D> HDRTexture;
+		if (m_ActiveScene->m_Cubemap != nullptr)
+		{
+			HDRTexture = m_ActiveScene->m_Cubemap->GetTexture();
+		}
 		FlagWithPath f = ShowSetTexture(HDRTexture, "HDR");
 		if (f.flag)
 		{
@@ -322,7 +327,7 @@ namespace CC3D {
 		{
 			m_ActiveScene->m_Cubemap = Cubemap::Create();
 		}
-		ImGui::End();
+		ImGui::End();//Environment
 	}
 
 	void EditorLayer::ViewPortUI()
@@ -409,7 +414,7 @@ namespace CC3D {
 			}
 		}
 
-		ImGui::End();
+		ImGui::End();//viewport
 		ImGui::PopStyleVar();
 	}
 
@@ -430,7 +435,7 @@ namespace CC3D {
 		//ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
 		//ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
 
-		ImGui::End();
+		ImGui::End();//Stats
 	}
 
 	void EditorLayer::UI_Toolbar()
@@ -459,7 +464,7 @@ namespace CC3D {
 		}
 		ImGui::PopStyleVar(2);
 		ImGui::PopStyleColor(3);
-		ImGui::End();
+		ImGui::End();//toolbar
 	}
 
 	void EditorLayer::OnEvent(Event& e)
