@@ -80,7 +80,7 @@ static FlagWithPath ShowSetTexture(Ref<Texture2D>& Texture, const std::string& t
 
 ## PBR Material UI
 
-code version :
+code version : [here](https://github.com/Graphic-researcher/Crosa-Conty-3D/commit/3190c9a38aa80849d559c32d190dde78f16dd112)
 
 ```c++
 case MaterialType::Material_Cook_Torrance:
@@ -113,3 +113,42 @@ case MaterialType::Material_Cook_Torrance:
 ```
 
 ![image-20211204135420171](pbr.png)
+
+## A bug Report
+
+Because of the selection of entity mode is using OpenGL RED_INTEGER draw mode. We recognize the entity through the integer value pass through the shader . 
+
+```glsl
+#type vertex
+#version 450 
+//...
+uniform int a_EntityID;
+out flat int v_EntityID;
+void main()
+{
+	v_EntityID = a_EntityID;
+	gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
+}
+#type fragment
+#version 450
+layout(location = 0) out vec4 FragColor;
+layout(location = 1) out int color1;
+in flat int v_EntityID;
+void main()
+{
+	FragColor=vec4(1.0);
+	color1 = v_EntityID;
+}
+```
+
+So there has a safety problem:
+
+If our view port didn't cover whole object like this
+
+![image-20211204140130531](b1.png)
+
+That means we only select a part of object not the whole object and then we delete it , we can't delete the whole entity but a part of it (sounds strange but I guess that is the problem).And it would cause the following entt invalid entity assert:
+
+![image-20211204140419914](b2.png)
+
+I would try to solve it if I assure that is problem and find method.  
