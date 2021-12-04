@@ -164,7 +164,6 @@ namespace CC3D {
 				
 	}
 
-
 	void Scene::OnRuntimeStart()
 	{
 		m_PhysicsWorld = new b2World({ 0.0f, -9.8f });
@@ -310,7 +309,7 @@ namespace CC3D {
 			auto [tag, transform, sprite] = Renderer2DView.get<TagComponent, TransformComponent, SpriteRendererComponent>(entity);
 
 			// TODO GetGlobalTranform is expensive
-			if(tag.IsStatic)
+			//if(tag.IsStatic)
 				Renderer2D::DrawSprite(transform.GetGlobalTransform(), sprite, (int)entity);
 		}
 		Renderer2D::EndScene();

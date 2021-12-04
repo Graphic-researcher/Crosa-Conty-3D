@@ -145,7 +145,10 @@ namespace CC3D {
 		if (ImGui::BeginPopupContextItem())
 		{
 			if (ImGui::MenuItem("Delete Entity"))
+			{
+				m_SelectionContext = entity;
 				entityDeleted = true;
+			}
 
 			ImGui::EndPopup();
 		}
@@ -445,6 +448,10 @@ namespace CC3D {
 		DrawComponent<MeshRendererComponent>("Mesh Renderer", entity, [](auto& component)
 			{
 				ImGui::Text("Mesh Number: %d", component.MeshNum);
+			});
+		DrawComponent<MaterialComponent>("Material", entity, [](auto& component)
+			{
+				ImGui::Text("Material");
 			});
 
 		ImGui::PushItemWidth(50);

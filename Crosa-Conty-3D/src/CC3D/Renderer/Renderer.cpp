@@ -181,7 +181,7 @@ namespace CC3D
 
 	void Renderer::DrawRenderer(const glm::mat4& transform, MeshRendererComponent& src, MaterialComponent& material, int entityID)
 	{
-		const float textureIndex = 0.0f; // White Texture
+		const float textureIndex = 1.0f; // White Texture
 		const float tilingFactor = 1.0f;
 		std::vector<Mesh>& meshes = src.m_Meshes;
 		std::vector<uint32_t> indecies;
@@ -222,17 +222,19 @@ namespace CC3D
 			}
 			
 			m_VertexBuffers->SetData(TriVertexBuffer, TriVertexCount * sizeof(TriVertex));
+			delete[] TriVertexBuffer;
 			vertexArray->AddVertexBuffer(m_VertexBuffers);
 		}
 
 		Ref<IndexBuffer> indexBuffer = IndexBuffer::Create(indecies.data(), indecies.size());
 		vertexArray->SetIndexBuffer(indexBuffer);
 
-		vertexArray->Bind();
+		
 		material.material->shader->SetMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
 		material.material->Bind();
+		vertexArray->Bind();
 		RenderCommand::DrawIndexed(vertexArray, indecies.size());
-		vertexArray.reset();
+		//vertexArray.reset();
 	}
 
 	void Renderer::DrawMesh(const glm::mat4& transform, MeshRendererComponent& src, MaterialComponent& material, int entityID)
