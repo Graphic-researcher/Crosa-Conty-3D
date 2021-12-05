@@ -451,9 +451,15 @@ namespace CC3D {
 			{
 				ImGui::Text("Mesh Number: %d", component.MeshNum);
 			});
+
 		DrawComponent<MaterialComponent>("Material", entity, [](auto& component)
 			{
 				ImGui::Text(component.material->shader->GetName().c_str());
+			});
+
+		DrawComponent<LightComponent>("Light", entity, [](auto& component)
+			{
+				ImGui::Text("Light");
 			});
 
 		ImGui::PushItemWidth(50);
@@ -508,6 +514,25 @@ namespace CC3D {
 					ImGui::CloseCurrentPopup();
 				}
 			}
+
+			if (!m_SelectionContext.HasComponent<MaterialComponent>())
+			{
+				if (ImGui::MenuItem("Material"))
+				{
+					m_SelectionContext.AddComponent<MaterialComponent>();
+					ImGui::CloseCurrentPopup();
+				}
+			}
+
+			if (!m_SelectionContext.HasComponent<LightComponent>())
+			{
+				if (ImGui::MenuItem("Light"))
+				{
+					m_SelectionContext.AddComponent<LightComponent>();
+					ImGui::CloseCurrentPopup();
+				}
+			}
+
 
 			ImGui::EndPopup();
 		}
