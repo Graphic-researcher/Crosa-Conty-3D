@@ -47,6 +47,11 @@ namespace CC3D {
 		void RenderLight(const EditorCamera& camera);
 		//Environement:
 		Ref<Cubemap> m_Cubemap = nullptr;
+		//TO avoid the incompelete delete of entity
+		///See more information in Dev 12-04
+		bool HasEntity(Entity entity);
+
+
 	private:
 		template<typename T>
 		void OnComponentAdded(Entity entity, T& component);

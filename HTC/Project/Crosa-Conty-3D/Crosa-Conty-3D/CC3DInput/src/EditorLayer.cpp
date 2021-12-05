@@ -423,7 +423,7 @@ namespace CC3D {
 		ImGui::Begin("Stats");
 
 		std::string name = "Select Entity";
-		if (m_HoveredEntity)
+		if (m_ActiveScene->HasEntity(m_HoveredEntity))
 			name = m_HoveredEntity.GetComponent<TagComponent>().Tag;
 		ImGui::Text("Hovered Entity: %s", name.c_str());
 

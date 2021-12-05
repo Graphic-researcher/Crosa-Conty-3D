@@ -367,6 +367,11 @@ namespace CC3D {
 		}
 	}
 
+	bool Scene::HasEntity(Entity entity)
+	{
+		return m_Registry.valid(entity);
+	}
+
 
 
 
