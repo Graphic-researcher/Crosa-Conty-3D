@@ -78,4 +78,33 @@ namespace CC3D::Math {
 		return true;
 	}
 
+	bool GetTranslation(const glm::mat4& transform, glm::vec3& translation)
+	{
+		// From glm::decompose in matrix_decompose.inl
+
+		using namespace glm;
+		using T = float;
+		mat4 LocalMatrix(transform);
+
+		// Normalize the matrix.
+		if (epsilonEqual(LocalMatrix[3][3], static_cast<float>(0), epsilon<T>()))
+			return false;
+
+		// First, isolate perspective.  This is the messiest.
+		if (
+			epsilonNotEqual(LocalMatrix[0][3], static_cast<T>(0), epsilon<T>()) ||
+			epsilonNotEqual(LocalMatrix[1][3], static_cast<T>(0), epsilon<T>()) ||
+			epsilonNotEqual(LocalMatrix[2][3], static_cast<T>(0), epsilon<T>()))
+		{
+			// Clear the perspective partition
+			LocalMatrix[0][3] = LocalMatrix[1][3] = LocalMatrix[2][3] = static_cast<T>(0);
+			LocalMatrix[3][3] = static_cast<T>(1);
+		}
+
+		// Next take care of translation (easy).
+		translation = vec3(LocalMatrix[3]);
+
+		return true;
+	}
+
 }

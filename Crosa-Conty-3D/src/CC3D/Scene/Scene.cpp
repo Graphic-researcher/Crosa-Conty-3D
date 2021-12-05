@@ -322,7 +322,7 @@ namespace CC3D {
 		for (auto entity : BatchRendererView)
 		{
 			auto [tag, transform, mesh, material] = BatchRendererView.get<TagComponent, TransformComponent, MeshRendererComponent, MaterialComponent>(entity);
-			material.Bind();
+			//material.Bind();
 			auto LightView = m_Registry.view<TransformComponent, LightComponent>();
 			uint32_t lightslot = 0;
 			for (auto entity : LightView)
@@ -332,6 +332,7 @@ namespace CC3D {
 			}
 			if(tag.IsStatic)
 				BatchRenderer::DrawMesh(transform.GetGlobalTransform(), mesh, material, (int)entity);
+			//material.Unbind();
 		}
 		BatchRenderer::EndScene();
 #pragma endregion TODO need complete
@@ -353,6 +354,7 @@ namespace CC3D {
 			// TODO GetGlobalTranform is expensive
 			if (!tag.IsStatic)
 				Renderer::DrawRenderer(transform.GetGlobalTransform(), mesh, material, (int)entity);
+			material.Unbind();
 		}
 		Renderer::EndScene();
 #pragma endregion	TODO need complete

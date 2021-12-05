@@ -40,6 +40,7 @@ namespace CC3D {
 		struct SceneData
 		{
 			glm::mat4 ViewProjectionMatrix;
+			glm::vec3 ViewPosition;
 		};
 
 		static SceneData* m_SceneData;

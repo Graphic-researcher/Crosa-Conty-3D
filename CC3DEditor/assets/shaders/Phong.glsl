@@ -2,16 +2,13 @@
 
 #type vertex
 #version 460 core
-
 layout(location = 0) in vec3 a_Position;
 layout(location = 1) in vec3 a_Normal;
 layout(location = 2) in vec3 a_Tangent;
 layout(location = 3) in vec3 a_Bitangent;
-layout(location = 4) in vec4 a_Color;
-layout(location = 5) in vec2 a_TexCoord;
-layout(location = 6) in float a_TexIndex;
-layout(location = 7) in float a_TilingFactor;
-layout(location = 8) in int a_EntityID;
+layout(location = 4) in vec2 a_TexCoord;
+
+layout(location = 5) in int a_EntityID;
 
 
 struct Material
@@ -25,21 +22,39 @@ struct Material
 };
 
 uniform mat4 u_ViewProjection;
+uniform mat4 u_Transform;
+uniform vec3 u_ViewPos;
+uniform float u_HeightScale;
+uniform Material u_Material;
 
-out vec4 v_Color;
+
 out vec2 v_TexCoord;
-out float v_TexIndex;
-out float v_TilingFactor;
+out vec3 v_Normal;
+out vec3 v_FragPos;
+out mat3 TBN;
+out vec3 v_ViewPos;
+
 out flat int v_EntityID;
 
 void main()
 {
-	v_Color = a_Color;
+	vec3 T = normalize(vec3(u_Transform * vec4(a_Tangent, 0.0)));
+	vec3 B = normalize(vec3(u_Transform * vec4(a_Bitangent, 0.0)));
+	vec3 N = normalize(vec3(u_Transform * vec4(a_Normal, 0.0)));
+	TBN = transpose(mat3(T, B, N));
+	if (a_TexCoord.x == a_TexCoord.y && a_TexCoord.x == 0)
+		TBN = mat3(1.0);
+
+	float height = texture(u_Material.displacementMap, a_TexCoord).r;
+	height = u_HeightScale * height;
+
+	v_Normal = TBN * mat3(transpose(inverse(u_Transform))) * a_Normal;
+	v_FragPos = TBN * vec3(u_Transform * vec4(a_Position + a_Normal * height, 1.0));
+	v_ViewPos = TBN * u_ViewPos;
 	v_TexCoord = a_TexCoord;
-	v_TexIndex = a_TexIndex;
-	v_TilingFactor = a_TilingFactor;
 	v_EntityID = a_EntityID;
-	gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
+
+	gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
 }
 
 #type fragment
@@ -48,16 +63,17 @@ void main()
 layout(location = 0) out vec4 color;
 layout(location = 1) out int color2;//µÚ¶þ¸öFrameBuffer
 
-in vec4 v_Color;
 in vec2 v_TexCoord;
-in float v_TexIndex;
-in float v_TilingFactor;
+in vec3 v_Normal;
+in vec3 v_FragPos;
+in mat3 TBN;
+in vec3 v_ViewPos;
+
 in flat int v_EntityID;
 
-uniform sampler2D u_Textures[32];// only support 32 textures
 
 void main()
 {
-	color = texture(u_Textures[int(v_TexIndex)], v_TexCoord * v_TilingFactor) * v_Color;
+	color = vec4(1.0,1.0,1.0,1.0);
 	color2 = v_EntityID; // placeholder for our entity ID
 }
