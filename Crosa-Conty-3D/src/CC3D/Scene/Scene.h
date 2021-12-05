@@ -23,6 +23,7 @@ namespace CC3D {
 		Entity CreateEntityWithUUID(UUID uuid, const std::string& name = std::string());
 
 		Entity FindEntityByUUID(UUID uuid);
+		bool HasEntity(Entity entity);
 
 		void DestroyEntity(Entity entity);
 

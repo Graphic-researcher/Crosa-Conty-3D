@@ -110,7 +110,11 @@ namespace CC3D {
 					sprite.AddSubEntity(s);
 					sprite.AddSubEntity(s1);
 				}
-
+				if (ImGui::MenuItem("Create Light"))
+				{
+					Entity light = m_Context->CreateEntity("Light");
+					light.AddComponent<LightComponent>();
+				}
 				ImGui::EndPopup();
 			}
 		}	
@@ -184,8 +188,9 @@ namespace CC3D {
 		}
 	}
 
-	static void DrawVec3Control(const std::string& label, glm::vec3& values, float resetValue = 0.0f, float columnWidth = 100.0f)
+	static bool DrawVec3Control(const std::string& label, glm::vec3& values, float resetValue = 0.0f, float columnWidth = 100.0f)
 	{
+		glm::vec3 preValues = values;
 		ImGuiIO& io = ImGui::GetIO();
 		auto boldFont = io.Fonts->Fonts[0];
 		ImGui::PushID(label.c_str());
@@ -247,6 +252,7 @@ namespace CC3D {
 		ImGui::Columns(1);
 
 		ImGui::PopID();
+		return preValues != values;
 	}
 
 	template<typename T, typename UIFunction>
@@ -319,13 +325,16 @@ namespace CC3D {
 			ImGui::PopStyleVar();
 			if (open)
 			{
+				bool isChanged = false;
 				auto& transformComponent = entity.GetComponent<TransformComponent>();
-				DrawVec3Control("Translation", transformComponent.Translation);
+				isChanged |= DrawVec3Control("Translation", transformComponent.Translation);
 				glm::vec3 rotation = glm::degrees(transformComponent.Rotation);
-				DrawVec3Control("Rotation", rotation);
+				isChanged |= DrawVec3Control("Rotation", rotation);
 				transformComponent.Rotation = glm::radians(rotation);
-				DrawVec3Control("Scale", transformComponent.Scale, 1.0f);
+				isChanged |= DrawVec3Control("Scale", transformComponent.Scale, 1.0f);
 				ImGui::TreePop();
+				if (isChanged)
+					transformComponent.UpdateGlobalTransform();
 			}
 		}
 

@@ -122,10 +122,9 @@ uniform DirLight u_DirLight[MAX_LIGHT_NUM];
 uniform PointLight u_PointLight[MAX_LIGHT_NUM];
 uniform SpotLight u_SpotLight[MAX_LIGHT_NUM];
 
-uniform int BasicNum;
-uniform int DirLightNum;
+//uniform int DirLightNum;
 uniform int PointLightNum;
-uniform int SpotLightNum;
+//uniform int SpotLightNum;
 uniform int u_UseNormalMap;
 
 // TODO
@@ -232,17 +231,13 @@ void main()
         normal = v_Normal;
 
     vec3 result = vec3(0.0);
-    //for (int i = 0; i < BasicNum; i++)
-    //{
-    //    result += CalculateLight(u_Light[i]);
-    //}
 
     //for (int i = 0; i < DirLightNum; i++)
     //{
     //    result += CalculateDirLight(u_DirLight[i]);
     //}
 
-    for (int i = 0; i < 1; i++)
+    for (int i = 0; i < PointLightNum; i++)
     {
         result += CalculatePointLight(u_PointLight[i]);
     }

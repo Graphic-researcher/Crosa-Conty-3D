@@ -130,6 +130,11 @@ namespace CC3D {
 		return entity;
 	}
 
+	bool Scene::HasEntity(Entity entity)
+	{	
+		return m_Registry.valid(entity);
+	}
+
 	void Scene::DestroyEntity(Entity entity)
 	{
 		if (entity.GetComponent<TransformComponent>().children.empty())
@@ -345,11 +350,18 @@ namespace CC3D {
 			auto [tag, transform, mesh, material] = RendererView.get<TagComponent, TransformComponent, MeshRendererComponent, MaterialComponent>(entity);
 			material.Bind();
 			auto LightView = m_Registry.view<TransformComponent, LightComponent>();
-			uint32_t lightslot = 0;
+			uint32_t PointLightslot = 0;
 			for (auto entity : LightView)
 			{
 				auto [light, lightPos] = LightView.get<LightComponent, TransformComponent>(entity);
-				light.Bind(material.material, lightPos.GlobalTranslation, lightslot++);
+				switch (light.Type)
+				{
+				case LightType::Point:
+					light.Bind(material.material, lightPos.GlobalTranslation, PointLightslot++);
+					break;
+				dafault:
+					break;
+				}
 			}
 			// TODO GetGlobalTranform is expensive
 			if (!tag.IsStatic)

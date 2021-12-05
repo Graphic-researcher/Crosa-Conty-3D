@@ -15,6 +15,7 @@ namespace CC3D {
 		material->SetFloat("u_PointLight[" + std::to_string(slot) + "].linear", Linear);
 		material->SetFloat("u_PointLight[" + std::to_string(slot) + "].quadratic", Quadratic);
 		material->SetFloat("u_PointLight[" + std::to_string(slot) + "].intensity", Intensity);
+		material->SetInt("PointLightNum", slot + 1);
 	}
 #pragma endregion
 	
