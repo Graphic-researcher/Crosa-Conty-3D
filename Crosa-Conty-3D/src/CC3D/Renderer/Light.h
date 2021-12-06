@@ -21,6 +21,8 @@ namespace CC3D {
 		~Light() = default;
 
 		virtual void Bind(const Ref<Material>& material, const glm::vec3& position, const uint32_t& slot) = 0;
+		// For direct light and spot light
+		virtual void Bind(const Ref<Material>& material, const glm::vec3& position, const glm::vec3& rotation, const uint32_t& slot) = 0;
 	};
 
 	struct PointLight : public Light
@@ -34,6 +36,16 @@ namespace CC3D {
 		~PointLight() = default;
 
 		virtual void Bind(const Ref<Material>& material, const glm::vec3& position, const uint32_t& slot) override
+		{
+			material->SetFloat3("u_PointLight[" + std::to_string(slot) + "].color", Color);
+			material->SetFloat3("u_PointLight[" + std::to_string(slot) + "].position", position);
+			material->SetFloat("u_PointLight[" + std::to_string(slot) + "].constant", Constant);
+			material->SetFloat("u_PointLight[" + std::to_string(slot) + "].linear", Linear);
+			material->SetFloat("u_PointLight[" + std::to_string(slot) + "].quadratic", Quadratic);
+			material->SetFloat("u_PointLight[" + std::to_string(slot) + "].intensity", Intensity);
+		}
+
+		virtual void Bind(const Ref<Material>& material, const glm::vec3& position, const glm::vec3& rotation, const uint32_t& slot) override
 		{
 			material->SetFloat3("u_PointLight[" + std::to_string(slot) + "].color", Color);
 			material->SetFloat3("u_PointLight[" + std::to_string(slot) + "].position", position);
@@ -58,6 +70,14 @@ namespace CC3D {
 			material->SetFloat3("u_DirLight[" + std::to_string(slot) + "].direction", Direction);
 			material->SetFloat("u_DirLight[" + std::to_string(slot) + "].intensity", Intensity);
 		}
+
+		virtual void Bind(const Ref<Material>& material, const glm::vec3& position, const glm::vec3& rotation, const uint32_t& slot) override
+		{
+			material->Bind();
+			material->SetFloat3("u_DirLight[" + std::to_string(slot) + "].color", Color);
+			material->SetFloat3("u_DirLight[" + std::to_string(slot) + "].direction", rotation);
+			material->SetFloat("u_DirLight[" + std::to_string(slot) + "].intensity", Intensity);
+		}
 	};
 
 	struct SpotLight : public Light
@@ -66,6 +86,10 @@ namespace CC3D {
 		~SpotLight() = default;
 
 		virtual void Bind(const Ref<Material>& material, const glm::vec3& position, const uint32_t& slot) override
+		{
+			int a = 0;
+		}
+		virtual void Bind(const Ref<Material>& material, const glm::vec3& position, const glm::vec3& rotation, const uint32_t& slot) override
 		{
 			int a = 0;
 		}

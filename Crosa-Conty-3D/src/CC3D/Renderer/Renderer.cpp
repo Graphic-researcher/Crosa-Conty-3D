@@ -5,6 +5,10 @@
 #include "CC3D/Renderer/Shader.h"
 #include "CC3D/Renderer/RenderCommand.h"
 #include "CC3D/Math/Math.h"
+
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/matrix.hpp>
+#include <glm/ext/matrix_clip_space.hpp>
 namespace CC3D
 {
 	Renderer::SceneData* Renderer::m_SceneData = new Renderer::SceneData;
@@ -24,11 +28,18 @@ namespace CC3D
 	void Renderer::Init()
 	{
 		CC3D_PROFILE_FUNCTION();
+
+		// TODO ShadowMap 选项调节
+		FramebufferSpecification fbSpec;
+		fbSpec.Attachments = { FramebufferTextureFormat::Depth };
+		fbSpec.Width = 1024;
+		fbSpec.Height = 1024;
+		m_SceneData->ShadowMap = Framebuffer::Create(fbSpec);
+		m_SceneData->DepthShader = Shader::Create("assets/shaders/ShadowMap.glsl");
 	}
 	void Renderer::Shutdown()
 	{
 		CC3D_PROFILE_FUNCTION();
-		delete[] m_SceneData;
 	}
 
 	void Renderer::BeginScene(const Camera& camera, const glm::mat4& transform)
@@ -51,12 +62,72 @@ namespace CC3D
 		CC3D_PROFILE_FUNCTION();
 	}
 
+	void Renderer::BeginCastShadow(const Ref<Light> directLight, const TransformComponent& lightTranform)
+	{
+		if (!directLight|| directLight->Intensity == 0)
+			return;
+		m_SceneData->ShadowMap->Bind();
+		m_SceneData->DepthShader->Bind();
+
+		glm::mat4 lightProjection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f);
+		glm::mat4 lightView = glm::lookAt(lightTranform.GlobalTranslation, glm::vec3(0.0f), glm::vec3(0.0, 1.0, 0.0));
+		glm::mat4 lightSpaceMatrix = lightProjection * lightView;
+
+		m_SceneData->LightSpaceMatrix = lightSpaceMatrix;
+		m_SceneData->DepthShader->SetMat4("u_LightSpaceMatrix", lightSpaceMatrix);
+	}
+
+	void Renderer::EndCastShadow()
+	{
+		m_SceneData->DepthShader->Unbind();
+		m_SceneData->ShadowMap->Unbind();
+	}
+
+	void Renderer::DrawShadow(const glm::mat4& transform, MeshRendererComponent& src)
+	{
+		m_SceneData->DepthShader->SetMat4("u_Transform", transform);
+
+		std::vector<Mesh>& meshes = src.m_Meshes;
+		std::vector<uint32_t> indecies;
+		Ref<VertexArray> vertexArray = VertexArray::Create();
+		size_t size = meshes.size();
+		for (size_t i = 0; i < size; i++)
+		{
+			const size_t TriVertexCount = meshes[i].vertices.size();
+
+			indecies = meshes[i].indices;
+
+			Ref<VertexBuffer> m_VertexBuffers = VertexBuffer::Create(TriVertexCount * sizeof(MeshVertex));
+			m_VertexBuffers->SetLayout({
+				{ ShaderDataType::Float3, "a_Position"		},
+				});
+			glm::vec3* MeshVertexBuffer = new glm::vec3[TriVertexCount];
+			for (size_t j = 0; j < TriVertexCount; j++)
+			{
+				MeshVertexBuffer[j] = meshes[i].vertices[j].Position;
+			}
+
+			m_VertexBuffers->SetData(MeshVertexBuffer, TriVertexCount * sizeof(glm::vec3));
+			delete[] MeshVertexBuffer;
+			vertexArray->AddVertexBuffer(m_VertexBuffers);
+		}
+
+		Ref<IndexBuffer> indexBuffer = IndexBuffer::Create(indecies.data(), indecies.size());
+		vertexArray->SetIndexBuffer(indexBuffer);
+
+		vertexArray->Bind();
+		RenderCommand::DrawIndexed(vertexArray, indecies.size());
+	}
+
 	void Renderer::DrawRenderer(const glm::mat4& transform, MeshRendererComponent& src, MaterialComponent& material, int entityID)
 	{
 
 		material.material->SetMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
+		material.material->SetMat4("u_LightSpaceMatrix", m_SceneData->LightSpaceMatrix);
 		material.material->SetMat4("u_Transform", transform);
+
 		material.material->SetFloat3("u_ViewPos", m_SceneData->ViewPosition);
+		material.material->SetInt("ShadowMap", m_SceneData->ShadowMap->GetDepthAttachmentRendererID());
 
 		std::vector<Mesh>& meshes = src.m_Meshes;
 		std::vector<uint32_t> indecies;

@@ -43,10 +43,12 @@ namespace CC3D {
 
 		bool m_ViewportFocused = false, m_ViewportHovered = false;
 
-		Ref<Framebuffer> m_Framebuffer;
+		Ref<Framebuffer> m_EditorFramebuffer;
 		Ref<Framebuffer> m_GameFramebuffer;
 
 		Ref<Scene> m_ActiveScene;
+
+		// TODO need fix and complete
 		Ref<Scene> m_EditorScene;
 		std::filesystem::path m_EditorScenePath;
 

@@ -47,12 +47,6 @@ namespace CC3D {
 	{
 		m_Framebuffer = framebuffer;
 	}
-
-	void GameViewportPanel::SetSelectedEntity(Entity entity)
-	{
-		m_SelectionContext = entity;
-	}
-
 	void GameViewportPanel::DrawGizmos()
 	{
 		// TODO Gizmos 

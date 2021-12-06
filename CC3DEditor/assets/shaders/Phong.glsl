@@ -21,6 +21,7 @@ struct Material
 	float shininess;
 };
 
+uniform mat4 u_LightSpaceMatrix;
 uniform mat4 u_ViewProjection;
 uniform mat4 u_Transform;
 uniform vec3 u_ViewPos;
@@ -33,6 +34,7 @@ out vec3 v_Normal;
 out vec3 v_FragPos;
 out mat3 TBN;
 out vec3 v_ViewPos;
+out vec4 FragPosLightSpace;
 
 out flat int v_EntityID;
 
@@ -54,6 +56,8 @@ void main()
 	v_TexCoord = a_TexCoord;
 	v_EntityID = a_EntityID;
 
+
+    FragPosLightSpace = u_LightSpaceMatrix * vec4(a_Position + a_Normal * height, 1.0);
 	gl_Position = u_ViewProjection * u_Transform * vec4(a_Position + a_Normal * height, 1.0);
 }
 
@@ -68,6 +72,7 @@ in vec3 v_Normal;
 in vec3 v_FragPos;
 in mat3 TBN;
 in vec3 v_ViewPos;
+in vec4 FragPosLightSpace;
 
 in flat int v_EntityID;
 struct Material
@@ -122,7 +127,7 @@ uniform DirLight u_DirLight[MAX_LIGHT_NUM];
 uniform PointLight u_PointLight[MAX_LIGHT_NUM];
 uniform SpotLight u_SpotLight[MAX_LIGHT_NUM];
 
-uniform sampler2D shadowMap;
+uniform sampler2D ShadowMap;
 
 uniform int DirectLightNum;
 uniform int PointLightNum;
@@ -225,6 +230,23 @@ vec3 CalculateSpotLight(SpotLight light)
 
 }
 
+
+float ShadowCalculation(vec4 fragPosLightSpace)
+{
+    // perform perspective divide
+    vec3 projCoords = fragPosLightSpace.xyz / fragPosLightSpace.w;
+    // transform to [0,1] range
+    projCoords = projCoords * 0.5 + 0.5;
+    // get closest depth value from light's perspective (using [0,1] range fragPosLight as coords)
+    float closestDepth = texture(ShadowMap, projCoords.xy).r;
+    // get depth of current fragment from light's perspective
+    float currentDepth = projCoords.z;
+    // check whether current frag pos is in shadow
+    float shadow = currentDepth > closestDepth ? 1.0 : 0.0;
+
+    return shadow;
+}
+
 void main()
 {
     if (u_UseNormalMap == 1)
@@ -249,6 +271,9 @@ void main()
     //    result += CalculateSpotLight(u_SpotLight[i]);
     //}
 
-	color = vec4(result * u_Material.color,1.0);
+    float shadow = ShadowCalculation(FragPosLightSpace);
+    result *= shadow;
+
+	color = vec4(result,1.0);
 	color2 = v_EntityID; // placeholder for our entity ID
 }

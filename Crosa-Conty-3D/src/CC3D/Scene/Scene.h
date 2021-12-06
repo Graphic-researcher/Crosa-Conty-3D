@@ -1,9 +1,12 @@
 #pragma once
 
 #include "CC3D/Core/Timestep.h"
-#include "CC3D/Renderer/EditorCamera.h"
 #include "CC3D/Core/UUID.h"
-#include "entt.hpp"
+
+#include "CC3D/Renderer/EditorCamera.h"
+#include "CC3D/Renderer/FrameBuffer.h"
+
+#include <entt.hpp>
 
 class b2World;
 
@@ -40,16 +43,20 @@ namespace CC3D {
 		void DuplicateEntity(Entity entity);
 
 		Entity GetPrimaryCameraEntity();
+
+		Ref<Framebuffer> GetEditorFramebuffer() { return EditorFramebuffer; }
+		Ref<Framebuffer> GetGameFramebuffer() { return GameFramebuffer; }
 	private:
 		template<typename T>
 		void OnComponentAdded(Entity entity, T& component);
 	private:
 		entt::registry m_Registry;
 		uint32_t m_ViewportWidth = 0, m_ViewportHeight = 0;
-
-
 		// physics
 		b2World* m_PhysicsWorld = nullptr;
+
+		Ref<Framebuffer> EditorFramebuffer;
+		Ref<Framebuffer> GameFramebuffer;
 
 		friend class Entity;
 		friend class SceneSerializer;

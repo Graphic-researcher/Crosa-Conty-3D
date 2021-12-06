@@ -490,6 +490,8 @@ namespace CC3D {
 					ImGui::EndCombo();
 				}
 				ImGui::DragFloat("Intensity", &light.light->Intensity, 0.01, 0, 5);
+
+
 			});
 
 		ImGui::PushItemWidth(50);

@@ -32,12 +32,7 @@ namespace CC3D {
 		m_IconPlay = Texture2D::Create("Resources/Icons/PlayIcon.png");
 		m_IconStop = Texture2D::Create("Resources/Icons/StopIcon.png");
 
-		// Scene Framebuffer
-		FramebufferSpecification fbSpec;
-		fbSpec.Attachments = { FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::RED_INTEGER, FramebufferTextureFormat::Depth };
-		fbSpec.Width = 1280;
-		fbSpec.Height = 720;
-		m_Framebuffer = Framebuffer::Create(fbSpec);
+
 
 		// Game Framebuffer
 		FramebufferSpecification gameFbSpec;
@@ -53,6 +48,8 @@ namespace CC3D {
 		m_ActiveScene = m_EditorScene;
 		m_ContentBrowserPanel.OnAttach();
 		m_GameViewportPanel.SetFramebuffer(m_GameFramebuffer);
+
+		m_EditorFramebuffer = m_ActiveScene->GetEditorFramebuffer();
 	}
 
 	void EditorLayer::OnDetach()
@@ -65,21 +62,21 @@ namespace CC3D {
 		CC3D_PROFILE_FUNCTION();
 
 		// Scene Resize
-		if (FramebufferSpecification spec = m_Framebuffer->GetSpecification();
+		if (FramebufferSpecification spec = m_EditorFramebuffer->GetSpecification();
 			m_ViewportSize.x > 0.0f && m_ViewportSize.y > 0.0f && // zero sized framebuffer is invalid
 			(spec.Width != m_ViewportSize.x || spec.Height != m_ViewportSize.y))
 		{
-			m_Framebuffer->Resize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
+			m_EditorFramebuffer->Resize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 			m_EditorCamera.SetViewportSize(m_ViewportSize.x, m_ViewportSize.y);
 			m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 		}
 
 		//Game viewport Resize
-		if (FramebufferSpecification gameSpec = m_Framebuffer->GetSpecification();
+		if (FramebufferSpecification gameSpec = m_EditorFramebuffer->GetSpecification();
 			m_GameViewportSize.x > 0.0f && m_GameViewportSize.y > 0.0f && // zero sized framebuffer is invalid
 			(gameSpec.Width != m_GameViewportSize.x || gameSpec.Height != m_GameViewportSize.y))
 		{
-			m_Framebuffer->Resize((uint32_t)m_GameViewportSize.x, (uint32_t)m_GameViewportSize.y);
+			m_EditorFramebuffer->Resize((uint32_t)m_GameViewportSize.x, (uint32_t)m_GameViewportSize.y);
 		}
 
 
@@ -94,14 +91,10 @@ namespace CC3D {
 		{
 		case SceneState::Edit:
 		{
-			// Scene viewport
-			m_Framebuffer->Bind();
-			RenderCommand::SetClearColor(glm::vec4{ 0.1f, 0.1f, 0.1f, 1 });
-			RenderCommand::Clear();
-			// Clear our entity ID attachment to -1
-			m_Framebuffer->ClearAttachment(1, -1);
+			
 			m_ActiveScene->OnUpdateEditor(ts, m_EditorCamera);
 
+			//TODO remove
 			auto [mx, my] = ImGui::GetMousePos();
 			mx -= m_ViewportBounds[0].x;
 			my -= m_ViewportBounds[0].y;
@@ -112,11 +105,11 @@ namespace CC3D {
 
 			if (mouseX >= 0 && mouseY >= 0 && mouseX < (int)viewportSize.x && mouseY < (int)viewportSize.y)
 			{
-				int pixelData = m_Framebuffer->ReadPixel(1, mouseX, mouseY);
+				int pixelData = m_EditorFramebuffer->ReadPixel(1, mouseX, mouseY);
 				m_HoveredEntity = pixelData == -1 ? Entity() : Entity((entt::entity)pixelData, m_ActiveScene.get());
 			}
 
-			m_Framebuffer->Unbind();
+			m_EditorFramebuffer->Unbind();
 
 			//m_GameFramebuffer->Bind();
 			//RenderCommand::SetClearColor(glm::vec4{ 0.1f, 0.1f, 0.1f, 1 });
@@ -135,11 +128,11 @@ namespace CC3D {
 			m_GameFramebuffer->Unbind();
 
 			// Scene viewport
-			m_Framebuffer->Bind();
+			m_EditorFramebuffer->Bind();
 			RenderCommand::SetClearColor(glm::vec4{ 0.1f, 0.1f, 0.1f, 1 });
 			RenderCommand::Clear();
 			// Clear our entity ID attachment to -1
-			m_Framebuffer->ClearAttachment(1, -1);
+			m_EditorFramebuffer->ClearAttachment(1, -1);
 			m_ActiveScene->OnUpdateEditor(ts, m_EditorCamera);
 
 			auto [mx, my] = ImGui::GetMousePos();
@@ -152,11 +145,11 @@ namespace CC3D {
 
 			if (mouseX >= 0 && mouseY >= 0 && mouseX < (int)viewportSize.x && mouseY < (int)viewportSize.y)
 			{
-				int pixelData = m_Framebuffer->ReadPixel(1, mouseX, mouseY);
+				int pixelData = m_EditorFramebuffer->ReadPixel(1, mouseX, mouseY);
 				m_HoveredEntity = pixelData == -1 ? Entity() : Entity((entt::entity)pixelData, m_ActiveScene.get());
 			}
 
-			m_Framebuffer->Unbind();
+			m_EditorFramebuffer->Unbind();
 			break;
 		}
 		// TODO Pause
@@ -279,7 +272,8 @@ namespace CC3D {
 		ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
 		m_ViewportSize = glm::vec2{ viewportPanelSize.x, viewportPanelSize.y };
 
-		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
+		uint32_t textureID = m_EditorFramebuffer->GetColorAttachmentRendererID();
+		textureID = Renderer::GetShadowMap()->GetDepthAttachmentRendererID();
 		ImGui::Image((void*)textureID, ImVec2{ m_ViewportSize.x, m_ViewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 
 
@@ -300,12 +294,6 @@ namespace CC3D {
 			ImGuizmo::SetDrawlist();
 
 			ImGuizmo::SetRect(m_ViewportBounds[0].x, m_ViewportBounds[0].y, m_ViewportBounds[1].x - m_ViewportBounds[0].x, m_ViewportBounds[1].y - m_ViewportBounds[0].y);
-
-			// Camera
-			/*auto cameraEntity = m_ActiveScene->GetPrimaryCameraEntity();
-			const auto& camera = cameraEntity.GetComponent<CameraComponent>().Camera;
-			const glm::mat4& cameraProjection = camera.GetProjection();
-			glm::mat4 cameraView = glm::inverse(cameraEntity.GetComponent<TransformComponent>().GetTransform());*/
 
 			// Editor camera
 			const glm::mat4& cameraProjection = m_EditorCamera.GetProjection();

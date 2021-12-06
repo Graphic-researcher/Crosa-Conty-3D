@@ -42,6 +42,10 @@ namespace CC3D {
 		{
 			light->Bind(material, position, slot);
 		}
+		void Bind(const Ref<Material>& material, const glm::vec3& position, const glm::vec3& rotation, const uint32_t& slot = 0)
+		{
+			light->Bind(material, position, rotation, slot);
+		}
 
 	};
 }

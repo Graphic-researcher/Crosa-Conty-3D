@@ -30,6 +30,9 @@
     <ClCompile Include="src\Panels\GameViewportPanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Panels\EditorViewportPanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\EditorLayer.h">
@@ -44,5 +47,11 @@
     <ClInclude Include="src\Panels\GameViewportPanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Panels\EditorViewportPanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\shaders\ShadowMap.glsl" />
   </ItemGroup>
 </Project>

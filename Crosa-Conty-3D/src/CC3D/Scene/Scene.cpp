@@ -5,6 +5,7 @@
 #include "CC3D/Renderer/Renderer2D.h"
 #include "CC3D/Renderer/BatchRenderer.h"
 
+
 #include <glm/glm.hpp>
 
 #include "Entity.h"
@@ -33,6 +34,11 @@ namespace CC3D {
 
 	Scene::Scene()
 	{
+		FramebufferSpecification fbSpec;
+		fbSpec.Attachments = { FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::RED_INTEGER, FramebufferTextureFormat::Depth };
+		fbSpec.Width = 1280;
+		fbSpec.Height = 720;
+		EditorFramebuffer = Framebuffer::Create(fbSpec);
 	}
 
 	Scene::~Scene()
@@ -306,6 +312,43 @@ namespace CC3D {
 
 	void Scene::OnUpdateEditor(Timestep ts, EditorCamera& camera)
 	{
+
+		// Shadow cast
+		Ref<Light> directLight = CreateRef<DirectLight>();
+		directLight->Intensity = 0;
+		TransformComponent lightTransform;
+		auto DirectLightView = m_Registry.view<TransformComponent, LightComponent>();
+		for (auto entity : DirectLightView)
+		{
+			auto [light, Transform] = DirectLightView.get<LightComponent, TransformComponent>(entity);
+			if (light.Type == LightType::Direct)
+			{
+				if (directLight->Intensity < light.light->Intensity)
+				{
+					directLight = light.light;
+					lightTransform = Transform;
+				}
+			}
+		}
+		Renderer::BeginCastShadow(directLight, lightTransform);
+		auto ShadowView = m_Registry.view<TagComponent, TransformComponent, MeshRendererComponent, MaterialComponent>();
+		for (auto entity : ShadowView)
+		{
+			auto [tag, transform, mesh] = ShadowView.get<TagComponent, TransformComponent, MeshRendererComponent>(entity);
+			// TODO GetGlobalTranform is expensive
+			if (!tag.IsStatic)
+				Renderer::DrawShadow(transform.GetGlobalTransform(), mesh);
+		}
+		Renderer::EndCastShadow();
+
+		// Reset framebuffer
+		EditorFramebuffer->Bind();
+		RenderCommand::SetClearColor(glm::vec4{ 0.1f, 0.1f, 0.1f, 1 });
+		RenderCommand::Clear();
+		// Clear our entity ID attachment to -1
+		EditorFramebuffer->ClearAttachment(1, -1);
+		/////////////////////////////////////////////////////
+
 #pragma region Batch Renderer2D
 		Renderer2D::BeginScene(camera);
 		// group 是侵入式的，会生成一个group，这样很快，但是需要更小心的操作
@@ -343,6 +386,7 @@ namespace CC3D {
 #pragma endregion 
 
 #pragma region Renderer
+		
 		Renderer::BeginScene(camera);
 		auto RendererView = m_Registry.view<TagComponent, TransformComponent, MeshRendererComponent, MaterialComponent>();
 		for (auto entity : RendererView)
@@ -363,7 +407,7 @@ namespace CC3D {
 					break;
 				case LightType::Direct:
 					// TODO Shadow map
-					light.Bind(material.material, lightPos.GlobalTranslation, DirectLightslot++);
+					light.Bind(material.material, lightPos.GlobalTranslation, lightPos.GlobalRotation, DirectLightslot++);
 					break;
 				case LightType::Spot:
 					light.Bind(material.material, lightPos.GlobalTranslation, SpotLightslot++);
@@ -380,7 +424,7 @@ namespace CC3D {
 		}
 		Renderer::EndScene();
 #pragma endregion
-		
+
 	}
 
 	void Scene::OnUpdateGame(Timestep ts)

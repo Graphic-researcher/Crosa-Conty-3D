@@ -7,11 +7,11 @@
 
 namespace CC3D {
 
-	class GameViewportPanel
+	class EditorViewportPanel
 	{
 	public:
-		GameViewportPanel() = default;
-		GameViewportPanel(const Ref<Scene>& scene);
+		EditorViewportPanel() = default;
+		EditorViewportPanel(const Ref<Scene>& scene);
 
 		void SetContext(const Ref<Scene>& scene);
 
@@ -20,14 +20,13 @@ namespace CC3D {
 		void SetFramebuffer(Ref<Framebuffer> framebuffer);
 
 	private:
-		void DrawGizmos();// TODO ‘⁄Game ”Õºø™∆ÙGizmos
+		void DrawGizmos();
 	private:
 		Ref<Framebuffer> m_Framebuffer;
 		Ref<Scene> m_Context;
-		Entity m_SelectionContext;
 
-		glm::vec2 m_GameViewportSize = glm::vec2{ 0.0f, 0.0f };
-		glm::vec2 m_GameViewportBounds[2];
+		glm::vec2 m_EditorViewportSize = glm::vec2{ 0.0f, 0.0f };
+		glm::vec2 m_EditorViewportBounds[2];
 	};
 
 }

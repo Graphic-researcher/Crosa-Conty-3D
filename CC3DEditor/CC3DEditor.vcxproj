@@ -104,14 +104,19 @@
     <ClCompile Include="src\CC3DInputApp.cpp" />
     <ClCompile Include="src\EditorLayer.cpp" />
     <ClCompile Include="src\Panels\ContentBrowserPanel.cpp" />
+    <ClCompile Include="src\Panels\EditorViewportPanel.cpp" />
     <ClCompile Include="src\Panels\GameViewportPanel.cpp" />
     <ClCompile Include="src\Panels\SceneHierarchyPanel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\EditorLayer.h" />
     <ClInclude Include="src\Panels\ContentBrowserPanel.h" />
+    <ClInclude Include="src\Panels\EditorViewportPanel.h" />
     <ClInclude Include="src\Panels\GameViewportPanel.h" />
     <ClInclude Include="src\Panels\SceneHierarchyPanel.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\shaders\ShadowMap.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
