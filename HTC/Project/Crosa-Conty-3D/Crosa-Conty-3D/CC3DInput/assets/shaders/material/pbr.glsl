@@ -40,9 +40,10 @@ void main()
     height=u_HeightScale*height;
 
     v_Normal=mat3(transpose(inverse(u_Transform)))*a_Normal;
-    v_FragPos=vec3(u_Transform*vec4(a_Position,1.0));
+    //v_FragPos=vec3(u_Transform*vec4(a_Position,1.0));
+    v_FragPos=vec3(u_Transform*vec4(a_Position+height,1.0));
     v_TexCoords=a_TexCoord;
-    gl_Position = u_ViewProjection * u_Transform * vec4(a_Position+a_Normal*height, 1.0);
+    gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
 }
 
 

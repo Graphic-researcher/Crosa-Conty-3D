@@ -52,7 +52,7 @@ void main()
     v_ViewPos=TBN*u_ViewPos;
     v_TexCoords=a_TexCoord;
     
-    gl_Position = u_ViewProjection * u_Transform * vec4(a_Position+a_Normal*height, 1.0);
+    gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
 }
 
 #type fragment
