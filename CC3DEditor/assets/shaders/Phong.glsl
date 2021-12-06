@@ -122,9 +122,11 @@ uniform DirLight u_DirLight[MAX_LIGHT_NUM];
 uniform PointLight u_PointLight[MAX_LIGHT_NUM];
 uniform SpotLight u_SpotLight[MAX_LIGHT_NUM];
 
-//uniform int DirLightNum;
+uniform sampler2D shadowMap;
+
+uniform int DirectLightNum;
 uniform int PointLightNum;
-//uniform int SpotLightNum;
+uniform int SpotLightNum;
 uniform int u_UseNormalMap;
 
 // TODO
@@ -232,10 +234,10 @@ void main()
 
     vec3 result = vec3(0.0);
 
-    //for (int i = 0; i < DirLightNum; i++)
-    //{
-    //    result += CalculateDirLight(u_DirLight[i]);
-    //}
+    for (int i = 0; i < DirectLightNum; i++)
+    {
+        result += CalculateDirLight(u_DirLight[i]);
+    }
 
     for (int i = 0; i < PointLightNum; i++)
     {

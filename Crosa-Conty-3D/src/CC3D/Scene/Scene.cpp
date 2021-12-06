@@ -322,25 +322,25 @@ namespace CC3D {
 #pragma endregion
 #pragma region BatchRenderer
 		// TODO carefully use grounp and view
-		BatchRenderer::BeginScene(camera);// rename to BeginBatch Rendering
-		auto BatchRendererView = m_Registry.view<TagComponent, TransformComponent, MeshRendererComponent, MaterialComponent>();
-		for (auto entity : BatchRendererView)
-		{
-			auto [tag, transform, mesh, material] = BatchRendererView.get<TagComponent, TransformComponent, MeshRendererComponent, MaterialComponent>(entity);
-			//material.Bind();
-			auto LightView = m_Registry.view<TransformComponent, LightComponent>();
-			uint32_t lightslot = 0;
-			for (auto entity : LightView)
-			{
-				auto [light, lightPos] = LightView.get<LightComponent, TransformComponent>(entity);
-				light.Bind(material.material, lightPos.GlobalTranslation, lightslot++);
-			}
-			if(tag.IsStatic)
-				BatchRenderer::DrawMesh(transform.GetGlobalTransform(), mesh, material, (int)entity);
-			//material.Unbind();
-		}
-		BatchRenderer::EndScene();
-#pragma endregion TODO need complete
+		//BatchRenderer::BeginScene(camera);// rename to BeginBatch Rendering
+		//auto BatchRendererView = m_Registry.view<TagComponent, TransformComponent, MeshRendererComponent, MaterialComponent>();
+		//for (auto entity : BatchRendererView)
+		//{
+		//	auto [tag, transform, mesh, material] = BatchRendererView.get<TagComponent, TransformComponent, MeshRendererComponent, MaterialComponent>(entity);
+		//	//material.Bind();
+		//	auto LightView = m_Registry.view<TransformComponent, LightComponent>();
+		//	uint32_t lightslot = 0;
+		//	for (auto entity : LightView)
+		//	{
+		//		auto [light, lightPos] = LightView.get<LightComponent, TransformComponent>(entity);
+		//		light.Bind(material.material, lightPos.GlobalTranslation, lightslot++);
+		//	}
+		//	if(tag.IsStatic)
+		//		BatchRenderer::DrawMesh(transform.GetGlobalTransform(), mesh, material, (int)entity);
+		//	//material.Unbind();
+		//}
+		//BatchRenderer::EndScene();
+#pragma endregion 
 
 #pragma region Renderer
 		Renderer::BeginScene(camera);
@@ -351,6 +351,8 @@ namespace CC3D {
 			material.Bind();
 			auto LightView = m_Registry.view<TransformComponent, LightComponent>();
 			uint32_t PointLightslot = 0;
+			uint32_t DirectLightslot = 0;
+			uint32_t SpotLightslot = 0;
 			for (auto entity : LightView)
 			{
 				auto [light, lightPos] = LightView.get<LightComponent, TransformComponent>(entity);
@@ -359,17 +361,25 @@ namespace CC3D {
 				case LightType::Point:
 					light.Bind(material.material, lightPos.GlobalTranslation, PointLightslot++);
 					break;
-				dafault:
+				case LightType::Direct:
+					// TODO Shadow map
+					light.Bind(material.material, lightPos.GlobalTranslation, DirectLightslot++);
+					break;
+				case LightType::Spot:
+					light.Bind(material.material, lightPos.GlobalTranslation, SpotLightslot++);
+					break;
+				default:
 					break;
 				}
 			}
+			material.material->SetLightNum(PointLightslot, DirectLightslot, SpotLightslot);
 			// TODO GetGlobalTranform is expensive
 			if (!tag.IsStatic)
 				Renderer::DrawRenderer(transform.GetGlobalTransform(), mesh, material, (int)entity);
 			material.Unbind();
 		}
 		Renderer::EndScene();
-#pragma endregion	TODO need complete
+#pragma endregion
 		
 	}
 

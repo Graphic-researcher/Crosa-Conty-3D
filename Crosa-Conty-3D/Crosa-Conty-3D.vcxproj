@@ -217,7 +217,6 @@
     <ClCompile Include="src\CC3D\Core\Application.cpp" />
     <ClCompile Include="src\CC3D\Math\Math.cpp" />
     <ClCompile Include="src\CC3D\Renderer\BatchRenderer.cpp" />
-    <ClCompile Include="src\CC3D\Renderer\Light.cpp" />
     <ClCompile Include="src\CC3D\Renderer\Material.cpp" />
     <ClCompile Include="src\CC3D\Renderer\Mesh.cpp" />
     <ClCompile Include="src\CC3D\Renderer\Model.cpp" />

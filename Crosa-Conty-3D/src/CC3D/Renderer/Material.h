@@ -44,6 +44,12 @@ namespace CC3D
 				texture->SetData(&data, sizeof(uint32_t));
 			}
 		}
+		void SetLightNum(uint32_t PointLightslot, uint32_t DirectLightslot, uint32_t SpotLightslot)
+		{
+			SetInt("PointLightNum", PointLightslot);
+			SetInt("DirectLightNum", DirectLightslot);
+			SetInt("SpotLightNum", SpotLightslot);
+		}
 		void ResetTexture(Ref<Texture2D>& texture, const std::string path = std::string())
 		{
 			if (path.empty())

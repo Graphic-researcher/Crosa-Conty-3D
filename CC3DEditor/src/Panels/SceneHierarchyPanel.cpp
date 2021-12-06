@@ -468,7 +468,28 @@ namespace CC3D {
 
 		DrawComponent<LightComponent>("Light", entity, [](auto& component)
 			{
-				ImGui::Text("Light");
+				auto& light = component;
+
+				const char* lightStrings[] = { "Point", "Direct", "Spot" };
+				const char* currentLightTypeString = lightStrings[(int)light.Type];
+				if (ImGui::BeginCombo("Point", currentLightTypeString))
+				{
+					for (int i = 0; i < 3; i++)
+					{
+						bool isSelected = currentLightTypeString == lightStrings[i];
+						if (ImGui::Selectable(lightStrings[i], isSelected))
+						{
+							currentLightTypeString = lightStrings[i];
+							light.SetLightType((LightType)i);
+						}
+
+						if (isSelected)
+							ImGui::SetItemDefaultFocus();
+					}
+					
+					ImGui::EndCombo();
+				}
+				ImGui::DragFloat("Intensity", &light.light->Intensity, 0.01, 0, 5);
 			});
 
 		ImGui::PushItemWidth(50);

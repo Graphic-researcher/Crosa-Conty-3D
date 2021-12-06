@@ -1,11 +1,10 @@
-[20:22:58] [warning] CC3D: Initialized Log
-[20:22:58] [info] APP: Hello Crosa Conty 3D!
-[20:22:58] [info] CC3D: Creating window CC3D Editor (1280, 720)
-[20:22:59] [info] CC3D: OpenGL Info:
-[20:22:59] [info] CC3D:   Vendor: NVIDIA Corporation
-[20:22:59] [info] CC3D:   Renderer: GeForce GTX 1660 Ti/PCIe/SSE2
-[20:22:59] [info] CC3D:   Version: 4.6.0 NVIDIA 462.31
-[20:22:59] [info] CC3D:   GLSL_Version: 4.60 NVIDIA
-[20:22:59] [error] CC3D: Failed to load image!: assets\textures\124.png
-[20:23:02] [trace] APP: Successed Load Model
-[20:23:06] [error] CC3D: Program/shader state performance warning: Vertex shader in program 2 is being recompiled based on GL state.
+[21:49:56] [warning] CC3D: Initialized Log
+[21:49:56] [info] APP: Hello Crosa Conty 3D!
+[21:49:56] [info] CC3D: Creating window CC3D Editor (1280, 720)
+[21:49:56] [info] CC3D: OpenGL Info:
+[21:49:56] [info] CC3D:   Vendor: NVIDIA Corporation
+[21:49:56] [info] CC3D:   Renderer: GeForce GTX 1660 Ti/PCIe/SSE2
+[21:49:57] [info] CC3D:   Version: 4.6.0 NVIDIA 462.31
+[21:49:57] [info] CC3D:   GLSL_Version: 4.60 NVIDIA
+[21:49:57] [error] CC3D: Failed to load image!: assets\textures\124.png
+[21:49:59] [trace] APP: Successed Load Model

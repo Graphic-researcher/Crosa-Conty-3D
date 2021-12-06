@@ -141,6 +141,7 @@ namespace CC3D {
 			// Clear our entity ID attachment to -1
 			m_Framebuffer->ClearAttachment(1, -1);
 			m_ActiveScene->OnUpdateEditor(ts, m_EditorCamera);
+
 			auto [mx, my] = ImGui::GetMousePos();
 			mx -= m_ViewportBounds[0].x;
 			my -= m_ViewportBounds[0].y;

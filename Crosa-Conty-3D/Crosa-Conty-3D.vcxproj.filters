@@ -256,7 +256,6 @@
     <ClCompile Include="src\CC3D\Renderer\RenderContext.cpp" />
     <ClCompile Include="src\CC3D\Renderer\Mesh.cpp" />
     <ClCompile Include="src\CC3D\Renderer\Material.cpp" />
-    <ClCompile Include="src\CC3D\Renderer\Light.cpp" />
     <ClCompile Include="src\CC3D\Renderer\BatchRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>

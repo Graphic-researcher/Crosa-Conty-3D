@@ -24,17 +24,6 @@ namespace CC3D {
 		// TODO all renderer extend from Renderer
 		static void DrawRenderer(const glm::mat4& transform, MeshRendererComponent& src, MaterialComponent& material, int entityID);
 
-		//// Stats
-		//struct Statistics
-		//{
-		//	uint32_t DrawCalls = 0;
-		//	uint32_t TriangleCount = 0;
-
-		//	uint32_t GetTotalVertexCount() const { return TriangleCount * 3; }
-		//	uint32_t GetTotalIndexCount() const { return TriangleCount * 3; }
-		//};
-		//static void ResetStats();
-		//static Statistics GetStats();
 	private:
 
 		struct SceneData

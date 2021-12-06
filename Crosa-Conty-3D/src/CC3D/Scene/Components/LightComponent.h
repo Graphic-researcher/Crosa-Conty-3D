@@ -9,28 +9,38 @@ namespace CC3D {
 		Ref<Light> light;
 		LightType Type = LightType::Point;
 
-		LightComponent() { light = CreateRef<PointLight>(); }
+		LightComponent() { SetLightType(LightType::Point); }
+		LightComponent(const LightComponent&) = default;
 		LightComponent(LightType type) { 
+			SetLightType(type);
+		}
+		
+		void SetLightType(LightType type)
+		{
 			switch (type)
 			{
 			case LightType::Point:
 				Type = LightType::Point;
 				light = CreateRef<PointLight>();
 				break;
+			case LightType::Direct:
+				Type = LightType::Direct;
+				light = CreateRef<DirectLight>();
+				break;
+			case LightType::Spot:
+				Type = LightType::Spot;
+				light = CreateRef<SpotLight>();
+				break;
+			default:
+				CC3D_CORE_ASSERT(false, "Not available light type!");
+				break;
 			}
 		}
-		LightComponent(const LightComponent&) = default;
+
 
 		void Bind(const Ref<Material>& material, const glm::vec3& position, const uint32_t& slot = 0)
 		{
-			switch (Type)
-			{
-			case LightType::Point:
-				light->Bind(material, position, slot);
-				break;
-			default:
-				break;
-			}
+			light->Bind(material, position, slot);
 		}
 
 	};
