@@ -330,20 +330,22 @@ namespace CC3D {
 				}
 			}
 		}
-		Renderer::BeginCastShadow(directLight, lightTransform);
-		auto ShadowView = m_Registry.view<TagComponent, TransformComponent, MeshRendererComponent, MaterialComponent>();
-		for (auto entity : ShadowView)
+		if (Renderer::BeginCastShadow(directLight, lightTransform))
 		{
-			auto [tag, transform, mesh] = ShadowView.get<TagComponent, TransformComponent, MeshRendererComponent>(entity);
-			// TODO GetGlobalTranform is expensive
-			if (!tag.IsStatic)
-				Renderer::DrawShadow(transform.GetGlobalTransform(), mesh);
+			auto ShadowView = m_Registry.view<TagComponent, TransformComponent, MeshRendererComponent, MaterialComponent>();
+			for (auto entity : ShadowView)
+			{
+				auto [tag, transform, mesh] = ShadowView.get<TagComponent, TransformComponent, MeshRendererComponent>(entity);
+				// TODO GetGlobalTranform is expensive
+				if (!tag.IsStatic)
+					Renderer::DrawShadow(transform.GetGlobalTransform(), mesh);
+			}
+			Renderer::EndCastShadow();
 		}
-		Renderer::EndCastShadow();
-
+		
 		// Reset framebuffer
 		EditorFramebuffer->Bind();
-		RenderCommand::SetClearColor(glm::vec4{ 0.1f, 0.1f, 0.1f, 1 });
+		RenderCommand::SetClearColor(glm::vec4{ 0.0f, 0.0f, 0.0f, 1 });
 		RenderCommand::Clear();
 		// Clear our entity ID attachment to -1
 		EditorFramebuffer->ClearAttachment(1, -1);

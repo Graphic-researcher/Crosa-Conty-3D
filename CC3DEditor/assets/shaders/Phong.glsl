@@ -57,7 +57,7 @@ void main()
 	v_EntityID = a_EntityID;
 
 
-    FragPosLightSpace = u_LightSpaceMatrix * vec4(a_Position + a_Normal * height, 1.0);
+    FragPosLightSpace = u_LightSpaceMatrix * u_Transform * vec4(a_Position + a_Normal * height, 1.0);
 	gl_Position = u_ViewProjection * u_Transform * vec4(a_Position + a_Normal * height, 1.0);
 }
 
@@ -134,33 +134,15 @@ uniform int PointLightNum;
 uniform int SpotLightNum;
 uniform int u_UseNormalMap;
 
+uniform vec3 u_LightPos;
+
 // TODO
-float Ambient = 0.1;
+float Ambient = 0.3;
 vec3 normal = vec3(0.0, 0.0, 0.0);
 
-//  Calculate normal light
-vec3 CalculateLight(Light light)
-{
-    //  environment light
-    vec3 ambient = Ambient * light.color * vec3(texture(u_Material.diffuse, v_TexCoord));
-
-    //  diffuse light
-    vec3 norm = normalize(normal);
-    vec3 lightDir = normalize(TBN * light.position - v_FragPos);
-    float diff = max(dot(norm, lightDir), 0.0);
-    vec3 diffuse = vec3(texture(u_Material.diffuse, v_TexCoord)) * light.color * diff;
-
-    //  specular light
-    vec3 viewDir = normalize(v_ViewPos - v_FragPos);
-    vec3 reflectDir = reflect(-lightDir, norm);
-    float spec = pow(max(dot(viewDir, reflectDir), 0.0), u_Material.shininess);
-    vec3 specular = vec3(texture(u_Material.specular, v_TexCoord)) * spec * light.color;
-
-    return (ambient + diffuse + specular) * light.intensity;
-}
 
 //  Calculate directional light
-vec3 CalculateDirLight(DirLight light)
+vec3 CalculateDirLight(DirLight light, float shadow)
 {
     //  environment light
     vec3 ambient = Ambient * light.color * vec3(texture(u_Material.diffuse, v_TexCoord));
@@ -177,11 +159,11 @@ vec3 CalculateDirLight(DirLight light)
     float spec = pow(max(dot(viewDir, reflectDir), 0.0), u_Material.shininess);
     vec3 specular = vec3(texture(u_Material.specular, v_TexCoord)) * spec * light.color;
 
-    return (ambient + diffuse + specular) * light.intensity;
+    return (ambient + (1.0 - shadow) * (diffuse + specular)) * light.intensity;
 }
 
 //  Calculate point light
-vec3 CalculatePointLight(PointLight light)
+vec3 CalculatePointLight(PointLight light, float shadow)
 {
     //  environment light
     vec3 ambient = Ambient * light.color * vec3(texture(u_Material.diffuse, v_TexCoord));
@@ -206,7 +188,7 @@ vec3 CalculatePointLight(PointLight light)
 }
 
 //  Calculate Spot light
-vec3 CalculateSpotLight(SpotLight light)
+vec3 CalculateSpotLight(SpotLight light, float shadow)
 {
     //  environment light
     vec3 ambient = Ambient * light.color * vec3(texture(u_Material.diffuse, v_TexCoord));
@@ -231,17 +213,53 @@ vec3 CalculateSpotLight(SpotLight light)
 }
 
 
+//float ShadowCalculation(vec4 fragPosLightSpace)
+//{
+//    // perform perspective divide
+//    vec3 projCoords = fragPosLightSpace.xyz / fragPosLightSpace.w;
+//    // transform to [0,1] range
+//    projCoords = projCoords * 0.5 + 0.5;
+//    // get closest depth value from light's perspective (using [0,1] range fragPosLight as coords)
+//    float closestDepth = texture(ShadowMap, projCoords.xy).r;
+//    // get depth of current fragment from light's perspective
+//    float currentDepth = projCoords.z;
+//    // calculate bias (based on depth map resolution and slope)
+//    vec3 normal = normalize(v_Normal);
+//    vec3 lightDir = normalize(u_LightPos - v_FragPos);
+//    float bias = max(0.05 * (1.0 - dot(normal, lightDir)), 0.005);
+//    // check whether current frag pos is in shadow
+//    // float shadow = currentDepth - bias > closestDepth  ? 1.0 : 0.0;
+//    // PCF
+//    float shadow = 0.0;
+//    vec2 texelSize = 1.0 / textureSize(ShadowMap, 0);
+//    for (int x = -1; x <= 1; ++x)
+//    {
+//        for (int y = -1; y <= 1; ++y)
+//        {
+//            float pcfDepth = texture(ShadowMap, projCoords.xy + vec2(x, y) * texelSize).r;
+//            shadow += currentDepth - bias > pcfDepth ? 1.0 : 0.0;
+//        }
+//    }
+//    shadow /= 1.0;
+//
+//    // keep the shadow at 0.0 when outside the far_plane region of the light's frustum.
+//    //if (projCoords.z > 1.0)
+//    //    shadow = 0.0;
+//
+//    return shadow;
+//}
+
 float ShadowCalculation(vec4 fragPosLightSpace)
 {
-    // perform perspective divide
+    // 执行透视除法
     vec3 projCoords = fragPosLightSpace.xyz / fragPosLightSpace.w;
-    // transform to [0,1] range
+    // 变换到[0,1]的范围
     projCoords = projCoords * 0.5 + 0.5;
-    // get closest depth value from light's perspective (using [0,1] range fragPosLight as coords)
-    float closestDepth = texture(ShadowMap, projCoords.xy).r;
-    // get depth of current fragment from light's perspective
+    // 取得最近点的深度(使用[0,1]范围下的fragPosLight当坐标)
+    float closestDepth = texture(ShadowMap, projCoords.xy).g;
+    // 取得当前片段在光源视角下的深度
     float currentDepth = projCoords.z;
-    // check whether current frag pos is in shadow
+    // 检查当前片段是否在阴影中
     float shadow = currentDepth > closestDepth ? 1.0 : 0.0;
 
     return shadow;
@@ -256,24 +274,29 @@ void main()
 
     vec3 result = vec3(0.0);
 
+    float shadow = ShadowCalculation(FragPosLightSpace);
+
     for (int i = 0; i < DirectLightNum; i++)
     {
-        result += CalculateDirLight(u_DirLight[i]);
+        result += CalculateDirLight(u_DirLight[i], shadow);
     }
 
     for (int i = 0; i < PointLightNum; i++)
     {
-        result += CalculatePointLight(u_PointLight[i]);
+        result += CalculatePointLight(u_PointLight[i], shadow);
     }
 
     //for (int i = 0; i < SpotLightNum; i++)
     //{
-    //    result += CalculateSpotLight(u_SpotLight[i]);
+    //    result += CalculateSpotLight(u_SpotLight[i], shadow);
     //}
 
-    float shadow = ShadowCalculation(FragPosLightSpace);
-    result *= shadow;
-
-	color = vec4(result,1.0);
+    vec3 projCoords = FragPosLightSpace.xyz / FragPosLightSpace.w;
+    projCoords = projCoords * 0.5 + 0.5;
+    float d = texture(ShadowMap, projCoords.xy).r;
+    color = vec4(d, d, d, 1);;
+    if(shadow>0)
+        color = vec4(d, 0, 0, 1);
+	//color = vec4(result * u_Material.color,1.0);
 	color2 = v_EntityID; // placeholder for our entity ID
 }

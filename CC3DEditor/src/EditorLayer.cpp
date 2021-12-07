@@ -273,9 +273,9 @@ namespace CC3D {
 		m_ViewportSize = glm::vec2{ viewportPanelSize.x, viewportPanelSize.y };
 
 		uint32_t textureID = m_EditorFramebuffer->GetColorAttachmentRendererID();
-		textureID = Renderer::GetShadowMap()->GetDepthAttachmentRendererID();
-		ImGui::Image((void*)textureID, ImVec2{ m_ViewportSize.x, m_ViewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
-
+		uint32_t DepthtextureID = Renderer::GetShadowMap()->GetDepthAttachmentRendererID();
+		ImGui::Image((void*)textureID, ImVec2{ m_ViewportSize.x, m_ViewportSize.y/2-10 }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+		ImGui::Image((void*)DepthtextureID, ImVec2{ m_ViewportSize.x, m_ViewportSize.y/2-10 }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 
 		if (ImGui::BeginDragDropTarget())
 		{
