@@ -530,8 +530,8 @@ namespace CC3D {
 				case LightType::LightType_DirLight:
 					ImGui::ColorEdit3("Color", (float*)(&CastRef<DirLight>(light.LightSrc)->Color));
 					ImGui::DragFloat("Intensity", (float*)(&CastRef<DirLight>(light.LightSrc)->Intensity), 0.1f, 0.0f);
-					//ImGui::DragFloat3("Direction", (float*)(&CastRef<DirLight>(light.LightSrc)->Direction), 0.1f);
-					CastRef<DirLight>(light.LightSrc)->Direction = rotation;
+					ImGui::DragFloat3("Direction", (float*)(&CastRef<DirLight>(light.LightSrc)->Direction), 0.1f);
+					//CastRef<DirLight>(light.LightSrc)->Direction = rotation;
 					break;
 				case LightType::LightType_PointLight:
 					ImGui::ColorEdit3("Color", (float*)(&CastRef<PointLight>(light.LightSrc)->Color));
@@ -543,8 +543,8 @@ namespace CC3D {
 				case LightType::LightType_SpotLight:
 					ImGui::ColorEdit3("Color", (float*)(&CastRef<SpotLight>(light.LightSrc)->Color));
 					ImGui::DragFloat("Intensity", (float*)(&CastRef<SpotLight>(light.LightSrc)->Intensity), 0.1f, 0.0f);
-					//ImGui::DragFloat3("Direction", (float*)(&CastRef<SpotLight>(light.LightSrc)->Direction), 0.1f, 0.0f);
-					CastRef<SpotLight>(light.LightSrc)->Direction = rotation;
+					ImGui::DragFloat3("Direction", (float*)(&CastRef<SpotLight>(light.LightSrc)->Direction), 0.1f, 0.0f);
+					//CastRef<SpotLight>(light.LightSrc)->Direction = rotation;
 					ImGui::DragFloat("CutOff", (float*)(&CastRef<SpotLight>(light.LightSrc)->CutOff), 0.01f, 0.0f);
 					ImGui::DragFloat("OuterCutOff", (float*)(&CastRef<SpotLight>(light.LightSrc)->OuterCutOff), 0.01f, 0.0f);
 				default:

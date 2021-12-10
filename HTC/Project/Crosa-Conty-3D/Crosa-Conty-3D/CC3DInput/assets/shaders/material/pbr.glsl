@@ -200,8 +200,8 @@ vec3 CalculateLight(vec3 albedo, float metallic, float roughness, float ao, vec3
     float denominator=4*max(dot(N,V),0.0)*max(dot(N,L),0.0)+0.001;
     vec3 specular=nominator/denominator;
 
-    vec3 kS=F;
-    vec3 kD=vec3(1.0)-kS;
+    vec3 kS=F; //specular reflect
+    vec3 kD=vec3(1.0)-kS; //diffuse or refract
     kD*=1.0-metallic;
 
     float NdotL=max(dot(N,L),0.0);
