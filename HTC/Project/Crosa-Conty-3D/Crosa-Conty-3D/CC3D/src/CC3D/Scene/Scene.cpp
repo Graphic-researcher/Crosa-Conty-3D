@@ -242,8 +242,10 @@ namespace CC3D {
 	{
 		//TODO: 3D Dev
 		RenderObject(camera, m_Cubemap);
-
-		
+		if (m_Cubemap!=nullptr)
+		{
+			m_Cubemap->DrawSkyBox(camera);
+		}	
 		//Renderer2D::BeginScene(camera);
 
 		//auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);

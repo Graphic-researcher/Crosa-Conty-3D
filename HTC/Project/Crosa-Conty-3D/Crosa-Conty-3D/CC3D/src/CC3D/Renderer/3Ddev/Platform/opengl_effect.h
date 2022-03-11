@@ -25,7 +25,7 @@ namespace CC3D
 		virtual std::string GetPathName() const override { return m_Texture->GetPathName(); }
 		virtual Ref<Texture2D>& GetTexture() { return m_Texture; };
 
-		virtual void BindCubeMap(EditorCamera& camera, uint32_t slot = 0) const override;
+		virtual void DrawSkyBox(EditorCamera& camera, uint32_t slot = 0) const override;
 		virtual void BindIrradianceMap(uint32_t slot = 0) const override;
 		virtual void BindPrefilterMap(uint32_t slot = 0) const override;
 		virtual void BindBRDFLUTTMap(uint32_t slot = 0) const override;

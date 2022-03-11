@@ -1,7 +1,7 @@
 # Entity Selection Failure If the viewport didn't cover whole entity
 
 
-Because of the selection of entity mode is using OpenGL RED_INTEGER draw mode. I think the entity selection is C:\Users\lenovo\AppData\Roaming\Typora\typora-user-imagesthrough the integer value pass through the shader . 
+Because of the selection of entity mode is using OpenGL RED_INTEGER draw mode. I think the entity selection is through the integer value pass through the shader . 
 
 ```glsl
 // Basic Texture Shader

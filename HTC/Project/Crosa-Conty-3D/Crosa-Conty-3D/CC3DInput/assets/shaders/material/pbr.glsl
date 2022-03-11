@@ -243,7 +243,7 @@ vec3 CalculateDirLight(vec3 albedo, float metallic, float roughness, float ao, v
     float NDF=DistributionGGX(N,H,roughness);
     float G=GeometrySmith(N,V,L,roughness);
     vec3 F=fresnelSchlick(max(dot(H,V),0.0),F0);
-
+   
     vec3 nominator=NDF*G*F;
     float denominator=4*max(dot(N,V),0.0)*max(dot(N,L),0.0)+0.001;
     vec3 specular=nominator/denominator;
@@ -343,7 +343,6 @@ void main()
     vec3 color=(ambient+Lo);
     color=color/(color+vec3(1.0));
     color=pow(color,vec3(1.0/2.2));
-
     FragColor=vec4(color,1.0);
 	color1 = v_EntityID;
 }

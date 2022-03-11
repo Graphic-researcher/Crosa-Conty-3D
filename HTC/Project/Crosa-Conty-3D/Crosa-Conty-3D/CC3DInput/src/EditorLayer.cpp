@@ -177,10 +177,11 @@ namespace CC3D {
 					m_CameraController.OnUpdate(ts);
 
 				m_EditorCamera.OnUpdate(ts);
-				//TODO : TEMP TO REMOVE
-				if(m_ActiveScene->m_Cubemap!=nullptr)
-					m_ActiveScene->m_Cubemap->BindCubeMap(m_EditorCamera);
 				m_ActiveScene->OnUpdateEditor(ts, m_EditorCamera);
+				//TODO : TEMP TO REMOVE
+				//if(m_ActiveScene->m_Cubemap!=nullptr)
+				//	m_ActiveScene->m_Cubemap->DrawSkyBox(m_EditorCamera);
+				//m_ActiveScene->OnUpdateEditor(ts, m_EditorCamera);
 				break;
 			}
 			case SceneState::Play:
@@ -349,7 +350,7 @@ namespace CC3D {
 
 		m_ViewportSize = { viewportPanelSize.x, viewportPanelSize.y };
 
-
+		///framebuffer to viewport
 		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
 		ImGui::Image(reinterpret_cast<void*>(textureID), ImVec2{ m_ViewportSize.x, m_ViewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 
@@ -362,7 +363,7 @@ namespace CC3D {
 			}
 			ImGui::EndDragDropTarget();
 		}
-
+#pragma region Gizmos
 		// Gizmos
 		Entity selectedEntity = m_SceneHierarchyPanel.GetSelectedEntity();
 		if (selectedEntity && m_GizmoType != -1)
@@ -413,7 +414,7 @@ namespace CC3D {
 				tc.Scale = scale;
 			}
 		}
-
+#pragma endregion
 		ImGui::End();//viewport
 		ImGui::PopStyleVar();
 	}

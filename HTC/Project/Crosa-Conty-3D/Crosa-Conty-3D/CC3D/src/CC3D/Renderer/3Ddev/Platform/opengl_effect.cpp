@@ -45,18 +45,20 @@ namespace CC3D
 		glDeleteBuffers(1, &m_QuadVBO);
 	}
 
-	void OpenGLCubemap::BindCubeMap(EditorCamera& camera, uint32_t slot) const
+	void OpenGLCubemap::DrawSkyBox(EditorCamera& camera, uint32_t slot) const
 	{
+		glDepthFunc(GL_LEQUAL);
 		//glClear(GL_DEPTH_BUFFER_BIT);
-		glDisable(GL_DEPTH_TEST);
+		//glDisable(GL_DEPTH_TEST);
 		//glDepthMask(GL_FALSE);
 		m_BackgroundShader->Bind();
 		m_BackgroundShader->SetMat4("projection", camera.GetProjectionMatrix());
 		m_BackgroundShader->SetMat4("view", camera.GetViewMatrix());
 		glBindTextureUnit(slot, m_CubemapID);
 		RenderCube();
-		glEnable(GL_DEPTH_TEST);
+		//glEnable(GL_DEPTH_TEST);
 		//glDepthMask(GL_TRUE);
+		glDepthFunc(GL_LESS);
 	}
 
 	void OpenGLCubemap::BindIrradianceMap(uint32_t slot) const

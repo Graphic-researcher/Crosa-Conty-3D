@@ -51,6 +51,8 @@ namespace CC3D {
 			Timestep timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 
+			//m_Window->OnUpdate();
+
 			if (!m_Minimized)
 			{
 				{
