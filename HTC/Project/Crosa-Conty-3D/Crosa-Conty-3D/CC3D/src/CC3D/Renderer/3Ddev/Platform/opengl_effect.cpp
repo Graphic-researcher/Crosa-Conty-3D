@@ -47,7 +47,7 @@ namespace CC3D
 
 	void OpenGLCubemap::DrawSkyBox(EditorCamera& camera, uint32_t slot) const
 	{
-		glDepthFunc(GL_LEQUAL);
+		//glDepthFunc(GL_LEQUAL);
 		//glClear(GL_DEPTH_BUFFER_BIT);
 		//glDisable(GL_DEPTH_TEST);
 		//glDepthMask(GL_FALSE);
@@ -58,7 +58,7 @@ namespace CC3D
 		RenderCube();
 		//glEnable(GL_DEPTH_TEST);
 		//glDepthMask(GL_TRUE);
-		glDepthFunc(GL_LESS);
+		//glDepthFunc(GL_LESS);
 	}
 
 	void OpenGLCubemap::BindIrradianceMap(uint32_t slot) const

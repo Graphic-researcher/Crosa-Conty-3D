@@ -300,7 +300,7 @@ void main()
     vec3 F0=vec3(0.0);
     F0=mix(F0,albedo,metallic);
 
-    //reflactance equation
+    //reflectance equation
     vec3 Lo=vec3(0.0);
     
     for(int i=0;i<BasicNum;i++)
